@@ -1,0 +1,61 @@
+\documentclass[11]{article}
+\title{Simulating and Reconstructing X-ray Computerized Tomography}
+\author{Xiang Gao, Qi Li, Suerfu and Yao Zhou}
+
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+\begin{abstract}
+	We propose as APC524 final project a software that simulates X-ray radio-graph and reconstructs the result information to obtain the cross-sectional images of objects imaged. Since its discovery, X-rays are playing an increasingly important role, both in our lives and in scientific research. One application is tomographic imaging: using the penetrating property of X-rays and a proper reconstruction algorithm to reconstruct cross-sectional images from projection images. As the final project of APC524, we would like to design a software that simulates the imaging and reconstruction process, at least for simple objects. In the remainder of the proposal, we would like to show how such a project fits into the principles of APC524 and would like to convince such a project is a suitable final project.
+\end{abstract}
+
+\section{What is Computerized Tomography?}
+	X-ray is a type of elecromagnetic radiation with a very large penetrating power. It can go through ordinary objects with ease. X-ray images can be obtained by recording the X-ray intensity after X-ray passes through an object. Such image is called X-ray radio-graph. Considering the attenuation of X-ray in different object, the intensity at each point is essentially a line integral of attenuation coefficient. Therefore, light region will appear have large X-ray intensity, while dense object will show up with small X-ray intensity.\\
+	The questions is: if we have such X-ray density image from different angles, do we have enough information to reconstruct how the object looks like in the high dimension. To rephrase, can we reconstruct a 2D(3D) object from many 1D(2D) images? This is the subject of tomographic image reconstruction, and was first mathematically proven possible by Johann Radon. Later, Godfrey Hounsfield built an X-ray scanner, with which he demonstrated the possibility of reconstructing cross-sectional images of daily objects, for which he was awarded a Nobel prize. With the aid of modern high-performance computers, tomographic image reconstruction can be handled much faster than the times of Hounsfield. It also explains the name X-ray Computerized Tomography.
+\\
+	In this project, we propose to develop a software that illustrates the X-ray tomographic reconstruction process, and potentially tests the performance of different algorithms.  
+
+\section{Why CT for final project?}
+In this section, we would like to discuss why we chose X-ray simulation and reconstruction as our final project.
+
+\section{What is the structure of the project?}
+At this stage, the blueprint of the project consists of: Geometry construction, X-ray simulation, tomographic image reconstruction, and image processing. Below we will explain each module.
+
+	\subsection{Geometry Construction:}
+		This module constructs geometric objects for X-ray simulation. At the beginning, the geometric objects can be as simple as a sphere inside a cube, of different material/X-ray attenuation coefficient. This geometric information is passed along to X-ray simulations.
+
+	\subsection{X-ray Simulation:}
+		This module takes the geometric information and produces simulated X-ray projection images from each angle. This information is passed along to tomographic image reconstruction.
+
+	\subsection{Tomographic Image Reconstruction:}
+		From the X-ray projection image and the angular information, this module uses different algorithm to reconstruct the tomographic image from the projection images. Different algorithms can be implemented here, such as radon-transform or filtered back-projection. The result is passed along to image processing module.
+
+	\subsection{Image Processing:}
+		This module takes as input the reconstructed tomographic images, and does operations on the images. Potential operations can include various smoothing/filtering processes, making a movie of the image slice moving through the object, or if time allows, combining different cross-sectional images to form a 3D image.
+	
+\subsection{Educational Purpose}
+	It is interesting to note that none of us are from the same department, therefore a project that none of us are familiar in research helps promote our own knowledge as a learner, gives us a chance to dive into a research field of great importance yet possibly less relevance in the future research, and gives us a platform to start from scratch with equal contributions. Unlike some research topics, with fair amount of explanation and demonstration, X-ray CT is easy to understand and appreciate for typical graduate level students, which makes the project a particularly suitable for presentation and demonstration.
+	
+\subsection{Designing to an Interface}
+	One important principle we learned in the course is programming to an interface. In the above mentioned structure of the project, it is clear that each module works independently, and connects to each other through an interface or a protocol.\\ For example, the geometry module can construct different geometric objects, as long as the output is to an interface that X-ray simulation module can understand. 	The X-ray simulation module can simulate different with different X-ray intensity and scattering, and can even load a real medical X-ray image. In either case, the output is to the interface between X-ray simulation and image reconstruction module. The image reconstruction module can call different algorithms through an interface to reconstruct the image.
+
+\subsection{Modular Design for a Team}
+	Each module is completely decoupled from each other. So each team member can work on different modules simultaneously without complex dependencies. The project can of course managed via a git repository. 
+
+\subsection{Automated Tests}
+	Each module can come with its own automated tests. And because we are reconstructing simulated objects, at each step we know if the right result has been obtained. of For example in the geometry construction, it is easy to check if the right geometry has been constructed by specifying relatively simple set-ups. The X-ray simulation can take a simple geometry, such as a sphere in a cube, to produce the X-ray image and compare with expectations. The image reconstruction module can reconstruct with known analytical density plots to see if the right analytical image can be obtained. After each module has passed its own tests and simulation tests, we can potentially try to reconstruct real data from, for example medical X-ray.
+
+\subsection{Parallel Computing}
+	Since in tomographic imaging, we need information from multiple angles, the simulation of X-ray projection imaging is by its nature a parallel process. We can exploit this feature by parallel computing. Some reconstruction algorithm, such as Radon transform, can be potentially made parallel as well, since it is a two dimensional integral.
+
+\subsection{Multi-Language}
+	Each module communicates through data and interfaces, each module can be potentially implemented in different languages. For example, image reconstruction module involves heavy calculations, therefore Fortran, C and C++ are suitable; however in the geometry and image presentation involves graphics and even movies, a high-level language with many convenient libraries (Python, MATLAB) would be convenient. This can also provide us with a chance to programme in a different language.
+
+\subsection{Feasibility}
+	CT reconstruction is a relatively mature field in industry and academia, with many literature and resources available. Faculty and students in astronomy department are also skilled in image processing. Even we encounter difficulties, we believe we can find the right recourse to complete the project. Besides, the physics of CT reconstruction is very well-defined: we won't have any constraints from real physics (e.g. traditional molecular dynamics fail at phase transition, or solving chaotic systems), and no complicated algorithm is involved in this project, but it does, as we believe, illustrate the key points and main ideas of scientific software engineering.
+	
+\section{Conclusion}
+Our project, Simulating and Reconstructing X-ray Tomographic Images, is of relevance for everyone, and is easy for a broad audience to understand and appreciate. The problem has a relatively well-defined modules and interfaces. The process is parallel in nature, allowing better use of computational resources. At each step, simple tests can be implemented to make sure the program is doing the right thing. Because of its modular nature, multiple programming languages can be combined to facilitate the entire project. And most importantly, APC524 is \textbf{NOT} a course on algorithm; all parts of the project involves only relatively simple computations, such as computing line integrals or two dimensional integrals, fourier-transforms and multi-dimensional array manipulations. The project is chosen purely to illustrate and practice what we have learned in this course. Based on the above facts, we propose the project "Simulating and Reconstructing X-ray Tomographic Images" as our final project for APC524. We would appreciate any comment/suggestions! 
+\end{document}
