@@ -56,6 +56,16 @@ At this stage, the blueprint of the project consists of: Geometry construction, 
 \subsection{Feasibility}
 	CT reconstruction is a relatively mature field in industry and academia, with many literature and resources available. Faculty and students in astronomy department are also skilled in image processing. Even we encounter difficulties, we believe we can find ample resources for help. Besides, the physics of CT reconstruction is well defined: we will not be constrained by the inherent difficulties in some situations (e.g. traditional molecular dynamics fail at phase transition, or solving chaotic systems), and no complicated algorithm is involved in this project. Nevertheless, this project will potentially demostrate the key concepts and main ideas of scientific software engineering such as programming to an interface, efficiency and portability.
 	
+
+\subsection{Task Designation}
+Since we have divided the program into four parts, we would like to designate the task according to these parts. Xiang and Qi will collaborate on geometry construction and X-ray simulation parts. Surfu will be in charge of tomographic image reconstruction. Yao will work on image processing. Since we have designed the interface and decided on the input and output for each component of the program, we can work separately without waiting for other parts to be done.
+
+\subsection{Timeline}
+By the end of Thanksgiving, we are planning to finish designing the interface, which will mainly consists of four parts.\\
+By the end of the semester, we are planning to have the $\alpha$ version ready, which will consist of the skeletons of the four parts. Starting from a simple geometry (probably a two-dimensional object), we will design each component. Without digging into the details of algorithm and optimizing performance of the code, we would like to make sure that the interface is working well. 
+By the end of winter break, we are plannin to have the $\beta$ version ready. It will be an extended version of $\alpha$. Different alogorithms, complex object shapes and better visualizations will be the main focus of this version.
+
+	
 \section{Conclusion}
 Our project, Simulating and Reconstructing X-ray Tomographic Images, appeals to the general audience with diverse backgrounds. The problem has relatively well-defined modules and interfaces. The process is parallel in nature, allowing better use of computational resources. At each step, simple tests can be implemented to make sure the program is doing the right thing. Because of its modular nature, multiple programming languages can be combined to facilitate the entire project. And most importantly, APC524 is \textbf{NOT} a course on algorithm; all parts of the project involves only relatively simple computations, such as computing line integrals or two dimensional integrals, fourier-transforms and multi-dimensional array manipulations. We consider this proposed project as one which integrates various aspects of good practices of programming that we have learned in this course. Therefore, we propose "Simulating and Reconstructing X-ray Tomographic Images" as our final project for APC524. We would greatly appreciate any comment/suggestions! 
 \end{document}
