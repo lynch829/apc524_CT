@@ -9,12 +9,12 @@ double gauss_1D(double x){
 }
 
 double gauss_2D(double x, double y){
-    return exp(-x*x/6 -y*y/3 + x*y/4);
+    return sin(x)*sin(y)*exp(-x*x/6 -y*y/3 + x*y/4);
 }
 
 int main(int argc, char* argv[]){
     if(argc!=3){
-        printf("./test N-array N-index-to-print");
+        printf("\n./test N-array N-index-to-print\n");
         return 0;
     }
 
@@ -23,10 +23,10 @@ int main(int argc, char* argv[]){
     int n_ini = 0;
 
     Image** gauss = new Image*[N];
-    gauss[0] = new AnaImage( Dim1, gauss_1D); n_ini++;
-    if(N > 1) gauss[1] = new AnaImage( Dim2, gauss_2D); n_ini++;
+    gauss[0] = new AnaFunction( gauss_1D); n_ini++;
+    if(N > 1) gauss[1] = new AnaImage2D( gauss_2D); n_ini++;
 
-    gauss[n] -> Print();
+    static_cast<AnaImage2D*>(gauss[1])->Print(-10,10,200,-10,10,200);
 
 //    for(int i=0;i<n_ini;n++)
   //      delete gauss[i];
