@@ -9,7 +9,7 @@ double gauss_1D(double x){
 }
 
 double gauss_2D(double x, double y){
-    return sin(x)*sin(y)*exp(-x*x/6 -y*y/3 + x*y/4);
+    return exp(-x*x/6 -y*y/3 + x*y/4)+ x*y/100;
 }
 
 int main(int argc, char* argv[]){
