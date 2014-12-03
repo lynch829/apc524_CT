@@ -11,41 +11,41 @@ typedef double (*f3D)(double,double,double);
 */
 class AnaFunction : public Function {
 public:
-    AnaFunction( f1D );	//! constructs with R->R
-    ~AnaFunction();	//! destructor, does nothing.
-    double& operator()(double);	//! evaluate function value.
+    AnaFunction( f1D, double x );//! Constructs with R->R. X is the range of this function.
+    ~AnaFunction();	//! Destructor, does nothing.
+    double& operator()(double);	//! Evaluate function value and returns by reference.
     
-    void Print();	//! Print out image, by default from -10 to 10 with spacing 0.2
+    void Print();	//! Print out image on default range with N=200.
     void Print(double, double, int);
 private:
     f1D _f1d;	//! 1D function
-    double var;	//! temp variable to hold return value for double& operator()
+    double var;	//! Temp variable to hold return value for double& operator()
 };
 /*!
   Concrete 2D image class with analytical expressions.
 */
 class AnaImage2D : public Image2D {
 public:
-    AnaImage2D( f2D );	//! constructs with R2->R
-    ~AnaImage2D();	//! destructor, does nothing.
-    double& operator()(double, double);	//! evaluate function value.
+    AnaImage2D( f2D, double, double );	//! Constructs with R2->R.
+    ~AnaImage2D();	//! Destructor, does nothing.
+    double& operator()(double, double);	//! Evaluate function value.
     
-    void Print();	//! Print out image, by default from -10 to 10 with spacing 0.2
+    void Print();	//! Print out image, on default range with N=200.
     void Print(double, double, int, double, double, int);
 private:
     f2D _f2d;	//! 2D function
-    double var;	//! temp variable to hold return value for double& operator()
+    double var;	//! Temp variable to hold return value for double& operator()
 };
 /*!
   Concrete 3D image class with analytical expressions.
 */
 class AnaImage3D : public Image3D {
 public:
-    AnaImage3D( f3D );	//! constructs with R3->R
+    AnaImage3D( f3D, double, double, double );	//! constructs with R3->R
     ~AnaImage3D();	//! destructor, does nothing.
     double& operator()(double, double, double);	//! evaluate function value.
     
-    void Print();	//! Print out image, by default from -10 to 10 with spacing 0.2
+    void Print();	//! Print out image, on default range with N=200;
     void Print(double, double, int, double, double, int, double z=0);
 private:
     f3D _f3d;	//! 3D function
