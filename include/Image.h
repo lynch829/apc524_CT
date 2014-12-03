@@ -3,10 +3,14 @@
 */
 #ifndef IMAGE_ABSTRACT
 #define IMAGE_ABSTRACT 1
+#include<math.h>
+#include"LineIntegral.h"
+
 /*!
     enum Dimension. 0, 1, 2, 3 are all possible dimensions.
 */
 enum Dimension{Dim0 = 0, Dim1, Dim2, Dim3};
+
 /*!
 An abstract Image class should contain the following abstract virtual methods:
 a function to return dimensionality.
@@ -42,7 +46,7 @@ public:
     void SetRange(double rx);	//! Set symmetrized range of independent variable.
     double GetRange();		//! Returns the symmetrized range.
 protected:
-    double _rx;
+    double _rx, _r;
 };
 /*!
 Image2D is an Image with dimension 2. A few further functions to consider, such as integration along a line and get projections in different angles.
@@ -59,8 +63,10 @@ public:
     double GetRangeX();	//! Returns symmetrized range in X direction.
     double GetRangeY();	//! Returns symmetrized range in Y direction.
     double GetRadius();	//! Returns the smallest radius that would enclose the figure.
+    void GetProjection(double angle, double spacing, LineIntegral* l);
+			//! Given angle, spacing of lines and an integration method, performs line integral.
 protected:
-    double _rx, _ry;
+    double _rx, _ry, _r;
 };
 /*!
 Image3D is an Image with dimension 3. A few further functions to consider, such as projections.
@@ -79,6 +85,6 @@ public:
     double GetRangeZ();	//! Returns symmetrized range in Z direction.
     double GetRadius();	//! Returns smallest radius that would enclose the X-Y cross-section.
 protected:
-    double _rx, _ry, _rz;
+    double _rx, _ry, _rz, _r;
 };
 #endif

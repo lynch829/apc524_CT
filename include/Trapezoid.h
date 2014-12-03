@@ -1,14 +1,15 @@
 #ifndef TRAPEZOID
 #define TRAPEZOID 1
 
-#include"Integral.h"
+#include"LineIntegral.h"
+#include<functional>
 
-class Trapezoid : public Integral {
+class Trapezoid : public LineIntegral {
 
 public:
-    Trapezoid(int n);
+    Trapezoid();
     ~Trapezoid();
-    double Integrate(double (*f)(double) f, double xmin, double xmax, int N);
+    double Integrate(std::function<double(double)>, double xmin, double xmax, int N);
 };
 
 #endif
