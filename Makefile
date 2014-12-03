@@ -8,7 +8,7 @@ TEST_DIR=./test/
 TEST_SRC=$(wildcard ./test/test_*.cpp)
 TEST_OBJ=$(patsubst %.cpp, %.o, $(TEST_SRC))
 
-analytical1D : ${TEST_OBJ} ${SRC_DIR}AnaImage.o ${SRC_DIR}Image.o ${SRC_DIR}Trapezoid.o ${SRC_DIR}LineIntegral.o
+analytical1D : ${TEST_OBJ} $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} $^ -o $@
 	chmod +x $@
 %.o : %.cpp

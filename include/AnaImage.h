@@ -2,10 +2,11 @@
 #define ANAIMAGE 1
 
 #include"Image.h"
+#include"Function.h"
+#include"Image2D.h"
+#include"Image3D.h"
+#include"globals.h"
 
-typedef double (*f1D)(double);
-typedef double (*f2D)(double,double);
-typedef double (*f3D)(double,double,double);
 /*!
   Concrete 1D image class with analytical expressions.
 */
@@ -21,6 +22,7 @@ private:
     f1D _f1d;	//! 1D function
     double var;	//! Temp variable to hold return value for double& operator()
 };
+
 /*!
   Concrete 2D image class with analytical expressions.
 */
@@ -36,6 +38,7 @@ private:
     f2D _f2d;	//! 2D function
     double var;	//! Temp variable to hold return value for double& operator()
 };
+
 /*!
   Concrete 3D image class with analytical expressions.
 */

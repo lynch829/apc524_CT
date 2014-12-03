@@ -3,7 +3,7 @@
 #include<iostream>
 #include<stdio.h>
 
-AnaFunction::AnaFunction( f1D f, double x):Function(x){
+AnaFunction::AnaFunction( f1D f, double x) : Function(x){
     _f1d = f;
     var = 0;
 }
@@ -29,7 +29,7 @@ AnaImage3D::~AnaImage3D(){}
 double& AnaFunction::operator()(double x){ return var = _f1d(x); }
 
 void AnaFunction::Print(){
-    this->Print(-_rx,_rx,100);
+    this->Print(-_r,_r,100);
 }
 void AnaFunction::Print(double xmin, double xmax, int N){
     double step = (xmax-xmin)/N;
