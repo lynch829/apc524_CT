@@ -12,7 +12,7 @@ class LineIntegral{
 public:
     LineIntegral();
     virtual ~LineIntegral();
-    virtual double Integrate(std::function< double (double)>, double xmin, double xmax, int N)=0;
+    virtual double Integrate(std::function< double (double)>, double xmin, double xmax, double N)=0;
 };
 
 #endif

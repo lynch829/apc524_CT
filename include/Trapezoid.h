@@ -9,7 +9,7 @@ class Trapezoid : public LineIntegral {
 public:
     Trapezoid();
     ~Trapezoid();
-    double Integrate(std::function<double(double)>, double xmin, double xmax, int N);
+    double Integrate(std::function<double(double)>, double xmin, double xmax, double step);
 };
 
 #endif

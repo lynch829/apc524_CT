@@ -2,42 +2,124 @@
   \brief
   Implements numerical images.
 */
-
 #include"Function.h"
 #include"Interpolator.h"
 
+// Default constructor, everything to NULL.
 NumFunction::NumFunction()
 {
-    
+    _datax = NULL;    
     _datay = NULL;
     _size = 0;
 }
 
-NumFunction::NumFunction(int size, double* y): _size(size)
+// Constructor with a size input.
+NumFunction::NumFunction(int size): Function(0), _size(size)
+{
+    _datax = NULL;
+    _datay = NULL;
+    _size = 0;
+}
+
+// Constructor with a given array.
+NumFunction::NumFunction(int size, double* x, double* y): Function(0), _size(size)
+{
+    double avg = 0;		// symmetrize the given array. Center them at 0.
+    for(int i=0;i<_size;i++){avg += x[i];}
+    avg /= _size;
+    _datax = new double[_size];
+    _datay = new double[_size];
+    for(int i=0;i<_size;i++){
+        _datax = x[i]-avg;	_datay = y[i];
+    }
+    _r = fabs(_datax[0]) > fabs(_datax[_size-1]) ? fabs(_datax[0]) : fabs(_datax[_size-1]);
+}
+
+// Constructor with a size, a range and a set of y-values.
+NumFunction::NumFunction(int size, double r, double* y): Function(r), _size(size)
 {
     _datay = new double[_size];
-    for(int i=0;i<_size;i++)
-}
-
-NumFunction::NumFunction(&Function f)
-{
-    _size = f._size;
     for(int i=0;i<_size;i++){
-        _x = new double[_size];
-        _y = new double[_size];
+        _datay[i] = y[i];
+        _datax[i] = -_r + i*(2*_r)/(_size-1);
     }
 }
-        ~NumFunction();
 
-        NumFunction& operator=(&NumFunction);
-        double& operator(double);
+// Copy constructor that takes in the same type.
+NumFunction::NumFunction(const NumFunction& f)
+{
+    _size = f._size;
+    _datax = new double[_size];    _datay = new double[_size];
+    for(int i=0;i<_size;i++){
+        _datax[i] = f._datax[i];    
+        _datay[i] = f._datay[i];	// Performs a deep copy.
+    }
+}
 
-        void Print();
-        void Print(double,double,int);
+// Copy assignment, used when modifying existing objects, so have to take care of memories.
+NumFunction& NumFunction::operator=(const NumFunction& f)
+{
+    if(_datax!=NULL) delete [] _datax;
+    if(_datay!=NULL) delete [] _datay;	// free memory if previously contains objects.
+    _size = f._size;
+    _r = f._r;
+    _datax = new double[_size];    _datay = new double[_size];
+    for(int i=0;i<_size;i++){
+        _datax[i] = f._datax[i];    
+        _datay[i] = f._datay[i];	// Performs a deep copy.
+    }
+}
 
-private:
-        double* _datax; //!< X-coordinates of the points.
-        double* _datay; //!< Y-Coordinates of the points.
-        int _size;      //!< size of the array.
-};
+// Constructor with a size and a Function object. Use operator () to initialize.
+NumFunction::NumFunction(int size, Function& f)
+{
+    _size = size;
+    _r = f._r;
+    _datax = new double[_size];    _datay = new double[_size];
+    for(int i=0;i<_size;i++){
+        _datax[i] = -_r + i*(2*_r)/(_size-1);        
+        _datay[i] = f(_datax[i]);	// Evaluate at _datax{} and assign the value to the new obj.
+    }
+}
+
+// Assignment operator for construction.
+void NumFunction::Copy(int size, const Function&)
+{
+    if(_datax!=NULL) delete [] _datax;
+    if(_datay!=NULL) delete [] _datay;	// free memory if previously contains objects.
+    _size = size;
+    _datax = new double[_size];    _datay = new double[_size];
+    for(int i=0;i<_size;i++){
+        _datax[i] = -_r + i*(2*_r)/(_size-1);        
+        _datay[i] = f(_datax[i]);	// Evaluate at _datax{} and assign the value to the new obj.
+    }
+}
+
+~NumFunction()
+{
+    if(_datax!=NULL) delete [] _datax;
+    if(_datay!=NULL) delete [] _datay;
+}
+
+double operator(double x,Interpolator* intpl)
+{
+    // should implement the operator with an interpolation method.
+    return intpl->Interpolate(x,_datax,_datay,_size);
+}
+
+double& operator(int index)
+{
+    if(index<0 || index>size-1) printf("Index out of range!\n");
+    return _datay[index];
+}
+
+void Print()
+{
+    for(int i=0; i<_size; i++) printf("%.9f\t%.9f\n",_datax[i],_datay[i]);
+}
+
+void Print(double,double,int)
+{
+    for(int )// here have to perform a search
+}
 

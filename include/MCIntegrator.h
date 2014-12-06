@@ -10,7 +10,7 @@ class MCIntegrator : public LineIntegral {
 public:
     MCIntegrator();
     ~MCIntegrator();
-    double Integrate(std::function<double(double)>, double xmin, double xmax, int N);
+    double Integrate(std::function<double(double)>, double xmin, double xmax, double N);
 };
 
 #endif

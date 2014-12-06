@@ -12,8 +12,8 @@
 An abstract Image class should contain the following abstract virtual methods:
 (1) A function to return dimensionality. 
 (2) A method that returns value at x. 
-An Image is further classified into 1D (Function), 2D and 3D.
-Object in each dimension will have to implement operator(). S
+An Image is further classified into 1D (Function), 2D(Image2D) and 3D(Image3D).
+Object in each dimension will have to implement operator(), which returns the image value at the argument point. S
 */
 
 class Image{
