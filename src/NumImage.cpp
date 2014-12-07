@@ -103,8 +103,8 @@ void NumFunction::Copy(int size, const Function&)
 
 double operator(double x,Interpolator* intpl)
 {
-    // should implement the operator with an interpolation method.
-    return intpl->Interpolate(x,_datax,_datay,_size);
+    // should implement the operator with an interpolation method. Have to check if the array is symmetric or not. A better approach is to first treat as symmetric, if returns wrong position, then performs a search algorithm to determine the position.
+    return intpl->Interpolate1D(x,_datax,_datay,_size);
 }
 
 double& operator(int index)
@@ -118,8 +118,9 @@ void Print()
     for(int i=0; i<_size; i++) printf("%.9f\t%.9f\n",_datax[i],_datay[i]);
 }
 
-void Print(double,double,int)
+void Print(double xi, double xf ,int N)
 {
-    for(int )// here have to perform a search
+    double d = (xf-xi)/N;
+    for(double x=xi; x<xf; x+= d) printf("%.9f\t%.9f\n",x,(*this)(x,NULL));
 }
 
