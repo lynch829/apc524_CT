@@ -2,19 +2,19 @@
 #define ANAIMAGE 1
 
 #include "Image.h"
-#include "Function.h"
-#include "Image2D.h"
-#include "Image3D.h"
+#include "Curve.h"
+#include "Surface.h"
+#include "Volume.h"
 #include "Interpolator.h"
 #include "globals.h"
 
 /*!
   Concrete 1D image class with analytical expressions. It is defined on a domain of radius given as the second argument of constructor.
 */
-class AnaFunction : public Function {
+class AnaCurve : public Curve {
 public:
-    AnaFunction( f1D, double x );//!< Constructs with R->R. X is the range of this function.
-    ~AnaFunction();	//!< Destructor, does nothing.
+    AnaCurve( f1D, double range );//!< Constructs with R->R. X is the range of this function.
+    ~AnaCurve();	//!< Destructor, does nothing.
 
     double operator()(double, Interpolator*);	//!< Evaluate function value and returns by reference.    
     void Print();	//!< Print out image on default range with N=200.
@@ -27,10 +27,10 @@ private:
 /*!
   Concrete 2D image class with analytical expressions.
 */
-class AnaImage2D : public Image2D {
+class AnaSurface : public Surface {
 public:
-    AnaImage2D( f2D, double, double );	//! Constructs with R2->R.
-    ~AnaImage2D();	//! Destructor, does nothing.
+    AnaSurface( f2D, double, double );	//! Constructs with R2->R.
+    ~AnaSurface();	//! Destructor, does nothing.
     double operator()(double, double, Interpolator*);	//! Evaluate function value.
     
     void Print();	//! Print out image, on default range with N=200.
@@ -42,10 +42,10 @@ private:
 /*!
   Concrete 3D image class with analytical expressions.
 */
-class AnaImage3D : public Image3D {
+class AnaVolume : public Volume {
 public:
-    AnaImage3D( f3D, double, double, double );	//! constructs with R3->R
-    ~AnaImage3D();	//! destructor, does nothing.
+    AnaVolume( f3D, double, double, double );	//! constructs with R3->R
+    ~AnaVolume();	//! destructor, does nothing.
     double operator()(double, double, double, Interpolator*);	//! evaluate function value.
     
     void Print();	//! Print out image, on default range with N=200;

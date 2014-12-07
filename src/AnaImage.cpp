@@ -3,33 +3,33 @@
 #include<iostream>
 #include<stdio.h>
 
-AnaFunction::AnaFunction( f1D f, double x) : Function(x)
+AnaCurve::AnaCurve( f1D f, double x) : Curve(x)
 { _f1d = f; }
 
-AnaFunction::~AnaFunction()
+AnaCurve::~AnaCurve()
 {}
 
-AnaImage2D::AnaImage2D( f2D f, double x, double y):Image2D(x,y)
+AnaSurface::AnaSurface( f2D f, double x, double y):Surface(x,y)
 { _f2d = f; }
 
-AnaImage2D::~AnaImage2D()
+AnaSurface::~AnaSurface()
 { }
 
-AnaImage3D::AnaImage3D( f3D f, double x, double y, double z):Image3D(x,y,z)
+AnaVolume::AnaVolume( f3D f, double x, double y, double z):Volume(x,y,z)
 { _f3d = f; }
 
-AnaImage3D::~AnaImage3D()
+AnaVolume::~AnaVolume()
 { }
 
 //================================================================
 
-double AnaFunction::operator()(double x, Interpolator* intp)
+double AnaCurve::operator()(double x, Interpolator* intp)
 { return _f1d(x); }
 
-void AnaFunction::Print()
+void AnaCurve::Print()
 { this->Print(-_r,_r,100); }
 
-void AnaFunction::Print(double xmin, double xmax, int N)
+void AnaCurve::Print(double xmin, double xmax, int N)
 {
     double step = (xmax-xmin)/N;
     for( double x = xmin; x < xmax; x += step)
@@ -37,13 +37,13 @@ void AnaFunction::Print(double xmin, double xmax, int N)
 }
 //================================================================
 
-double AnaImage2D::operator()(double x, double y, Interpolator* intp)
+double AnaSurface::operator()(double x, double y, Interpolator* intp)
 { return _f2d(x,y); }
 
-void AnaImage2D::Print()
+void AnaSurface::Print()
 { this->Print(-_rx,_rx,200,-_ry,_ry,200); }
 
-void AnaImage2D::Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny)
+void AnaSurface::Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny)
 {
     double stepx = (xmax-xmin)/Nx; double stepy = (ymax-ymin)/Ny;
     for( double y = ymax; y > ymin; y -= stepy){
@@ -54,13 +54,13 @@ void AnaImage2D::Print(double xmin, double xmax, int Nx, double ymin, double yma
 }
 //================================================================
 
-double AnaImage3D::operator()(double x, double y, double z, Interpolator* intp)
+double AnaVolume::operator()(double x, double y, double z, Interpolator* intp)
 { return _f3d(x,y,z); }
 
-void AnaImage3D::Print()
+void AnaVolume::Print()
 { this->Print(-_rx,_rx,200,-_ry,_ry,200,0); }
 
-void AnaImage3D::Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z)
+void AnaVolume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z)
 {
     double stepx = (xmax-xmin)/Nx; double stepy = (ymax-ymin)/Ny;
     for( double y = ymax; y > ymin; y -= stepy){

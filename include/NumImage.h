@@ -4,28 +4,28 @@
 #ifndef NUMIMAGE
 #define NUMIMAGE 1
 
-#include"Function.h"
-#include"Image2D.h"
-#include"Image3D.h"
+#include"Curve.h"
+#include"Surface.h"
+#include"Volume.h"
 #include"Interpolator.h"
 
 /*!
-  This class implements the Function abstract class with numerical points. The values are obtained by interpolation.
+  This class implements the Curve abstract class with numerical points. The values are obtained by interpolation.
 */
 
-class NumFunction : public Function{
+class NumCurve : public Curve{
 
 public:
-	NumFunction();		//!< Default constructor, everything null and 0.
-	NumFunction(int size);	//!< Default constructor, _size set and everything else null and 0.
-	NumFunction(int size, double* x, double* y);	//!< Initialize with a given x and y array.
-	NumFunction(int size, double r, double* y);	//!< Initialize with a radius and an array.
-	NumFunction(const NumFunction&);		//!< Copy constructor, same type as NumFunction.
-	NumFunction& operator=(const Function&);	//!< Assignment constructor for same type.
-	NumFunction(int size, const Function&);	//!< Copy constr. for general Function obj. Needs size info.
-	void Copy(int size, const Function&);	//!< Copy operator for general Function, will use previous size information.
+	NumCurve();		//!< Default constructor, everything null and 0.
+	NumCurve(int size);	//!< Default constructor, _size set and everything else null and 0.
+	NumCurve(int size, double* x, double* y);	//!< Initialize with a given x and y array.
+	NumCurve(int size, double r, double* y);	//!< Initialize with a radius and an array.
+	NumCurve(const NumCurve&);		//!< Copy constructor, same type as NumCurve.
+	NumCurve& operator=(const Curve&);	//!< Assignment constructor for same type.
+	NumCurve(int size, const Curve&);	//!< Copy constr. for general Curve obj. Needs size info.
+	void Copy(int size, const Curve&);	//!< Copy operator for general Curve, will use previous size information.
 
-	~NumFunction();		//!< Destructor, has to delete stored data.
+	~NumCurve();		//!< Destructor, has to delete stored data.
 
 	double operator(double, Interpolator*);
 				//!< Operator () to access lvalues, argument double will be rounded to nearest intger and be used to access.
@@ -40,11 +40,11 @@ protected:
 	int _size;	//!< size of the array.
 };
 
-class NumImage2D : public Image2D{
+class NumSurface : public Surface{
 
 };
 
-class NumImage3D : public Image3D{
+class NumVolume : public Volume{
 
 };
 

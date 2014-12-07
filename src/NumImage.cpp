@@ -16,9 +16,8 @@ NumFunction::NumFunction()
 // Constructor with a size input.
 NumFunction::NumFunction(int size): Function(0), _size(size)
 {
-    _datax = NULL;
-    _datay = NULL;
-    _size = 0;
+    _datax = new double[_size];
+    _datay = new double[_size];
 }
 
 // Constructor with a given array.
@@ -101,13 +100,13 @@ void NumFunction::Copy(int size, const Function&)
     if(_datay!=NULL) delete [] _datay;
 }
 
-double operator(double x,Interpolator* intpl)
+double operator()(double x,Interpolator* intpl)
 {
     // should implement the operator with an interpolation method. Have to check if the array is symmetric or not. A better approach is to first treat as symmetric, if returns wrong position, then performs a search algorithm to determine the position.
     return intpl->Interpolate1D(x,_datax,_datay,_size);
 }
 
-double& operator(int index)
+double& operator()(int index)
 {
     if(index<0 || index>size-1) printf("Index out of range!\n");
     return _datay[index];

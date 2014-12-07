@@ -8,12 +8,12 @@
 #include"Interpolator.h"
 
 /*!
-Image3D is an Image with dimension 3. A few further functions to consider, such as projections. S
+Volume is an Image with dimension 3. A few further functions to consider, such as projections. S
 */
-class Image3D : public Image{
+class Volume : public Image{
 public:
-    Image3D(double,double,double);      //! Constructor. Argument is the symmetrical range of each dim. S
-    virtual ~Image3D(); //! Virtual destructor, in case someone calls delete derived. S
+    Volume(double,double,double);      //! Constructor. Argument is the symmetrical range of each dim. S
+    virtual ~Volume(); //! Virtual destructor, in case someone calls delete derived. S
     virtual double operator()(double x, double y, double z,Interpolator* intpl) = 0;
                         //! Returns image value at that integer point. S
     virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z) = 0;

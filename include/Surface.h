@@ -10,15 +10,15 @@
 #include"Interpolator.h"
 
 /*!
-Image2D is an Image with dimension 2. GetProjection method would return either a double as the result of one particular line integral, or a reference to Function class as the integrations along all the parallel lines. S
+Surface is an Image with dimension 2. GetProjection method would return either a double as the result of one particular line integral, or a reference to Curve class as the integrations along all the parallel lines. S
 */
 
-class Image2D : public Image{
+class Surface : public Image{
 
 public:
 
-    Image2D(double,double);     //!< Constructor. Argument is the length in X and Y direction. S
-    virtual ~Image2D(); //!< Virtual destructor, in case someone calls delete derived. S
+    Surface(double,double);     //!< Constructor. Argument is the length in X and Y direction. S
+    virtual ~Surface(); //!< Virtual destructor, in case someone calls delete derived. S
 
     virtual double operator()(double x, double y, Interpolator intpl=NULL) = 0;
                         //!< Returns image value at the argument point. S
@@ -32,10 +32,10 @@ public:
     void SetIntegralStep(); 	//!< Sets the stepsize in the line integral. S
     double GetIntegralStep();	//!< Returns the step length of line integral. S
 
-    void GetProjection(LineIntegral* l, double angle=0, double spacing=0.1);
+    Curve GetProjection(LineIntegral* l, double angle=0, double spacing=0.1);
                         //!< Given angle, spacing of lines and an integration method, performs line integral. LineIntegral method is mandatory, and angle and spacing has default parameters. Angle starts from X-axis and moves counter-clockwise. S
 
-    void GetProjectionAtAngle(LineIntegral* l, double angle=0, double distance=0);
+    double GetProjectionAtAngle(LineIntegral* l, double angle=0, double distance=0);
                         //!< Given angle, performs line integral. LineIntegral method is mandatory.Angle starts from X-axis and moves counter-clockwise. S
 
 protected:
