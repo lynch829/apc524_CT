@@ -14,6 +14,6 @@ void Curve::SetRange(double rx){
 	_r = rx;
 }
 
-double Curve::GetRange(){
+double Curve::GetRange() const{
 	return _r;
 }

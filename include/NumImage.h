@@ -5,7 +5,6 @@
 #define NUMIMAGE 1
 
 #include"Curve.h"
-#include"Surface.h"
 #include"Volume.h"
 #include"Interpolator.h"
 
@@ -21,15 +20,15 @@ public:
 	NumCurve(int size, double* x, double* y);	//!< Initialize with a given x and y array.
 	NumCurve(int size, double r, double* y);	//!< Initialize with a radius and an array.
 	NumCurve(const NumCurve&);		//!< Copy constructor, same type as NumCurve.
-	NumCurve& operator=(const Curve&);	//!< Assignment constructor for same type.
+	NumCurve& operator=(const NumCurve&);	//!< Assignment constructor for same type.
 	NumCurve(int size, const Curve&);	//!< Copy constr. for general Curve obj. Needs size info.
 	void Copy(int size, const Curve&);	//!< Copy operator for general Curve, will use previous size information.
 
 	~NumCurve();		//!< Destructor, has to delete stored data.
 
-	double operator(double, Interpolator*);
+	double operator()(double, Interpolator*) const;
 				//!< Operator () to access lvalues, argument double will be rounded to nearest intger and be used to access.
-	double& operator(int);	//!< This method can be used to set values at the integer nodes.
+	double& operator()(int);	//!< This method can be used to set values at the integer nodes.
 
 	void Print();	//!< Default method, print out everything as two columns.
 	void Print(double,double,int);	//!< Print for a given range.
@@ -40,12 +39,14 @@ protected:
 	int _size;	//!< size of the array.
 };
 
-class NumSurface : public Surface{
+#include "Surface.h"
 
-};
+//class NumSurface : public Surface{
 
-class NumVolume : public Volume{
+//};
 
-};
+//class NumVolume : public Volume{
+
+//};
 
 #endif

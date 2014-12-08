@@ -23,7 +23,7 @@ AnaVolume::~AnaVolume()
 
 //================================================================
 
-double AnaCurve::operator()(double x, Interpolator* intp)
+double AnaCurve::operator()(double x, Interpolator* intp) const
 { return _f1d(x); }
 
 void AnaCurve::Print()
@@ -37,7 +37,7 @@ void AnaCurve::Print(double xmin, double xmax, int N)
 }
 //================================================================
 
-double AnaSurface::operator()(double x, double y, Interpolator* intp)
+double AnaSurface::operator()(double x, double y, Interpolator* intp) const
 { return _f2d(x,y); }
 
 void AnaSurface::Print()
@@ -54,7 +54,7 @@ void AnaSurface::Print(double xmin, double xmax, int Nx, double ymin, double yma
 }
 //================================================================
 
-double AnaVolume::operator()(double x, double y, double z, Interpolator* intp)
+double AnaVolume::operator()(double x, double y, double z, Interpolator* intp) const
 { return _f3d(x,y,z); }
 
 void AnaVolume::Print()

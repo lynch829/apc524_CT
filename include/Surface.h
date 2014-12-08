@@ -5,10 +5,10 @@
 #ifndef IMAGE2D
 #define IMAGE2D 1
 
-#include"LineIntegral.h"
-#include"Image.h"
-#include"Interpolator.h"
-
+#include "LineIntegral.h"
+#include "Image.h"
+#include "Interpolator.h"
+#include "NumImage.h"
 /*!
 Surface is an Image with dimension 2. GetProjection method would return either a double as the result of one particular line integral, or a reference to Curve class as the integrations along all the parallel lines. S
 */
@@ -17,22 +17,22 @@ class Surface : public Image{
 
 public:
 
-    Surface(double,double);     //!< Constructor. Argument is the length in X and Y direction. S
+    Surface(double,double);     //!< Constructor. Argument is the HALF-length in X and Y direction. S
     virtual ~Surface(); //!< Virtual destructor, in case someone calls delete derived. S
 
-    virtual double operator()(double x, double y, Interpolator intpl=NULL) = 0;
+    virtual double operator() (double x, double y, Interpolator* intpl=0) const = 0;
                         //!< Returns image value at the argument point. S
     virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny) = 0;
                         //!< Print out the field. S
     void SetRange(double rx, double ry); //!< Sets symmetrized range in X and Y direction. S
-    double GetRangeX(); //!< Returns symmetrized range in X direction. S
-    double GetRangeY(); //!< Returns symmetrized range in Y direction. S
-    double GetRadius(); //!< Returns the smallest radius that would enclose the figure. S
+    double GetRangeX() const; //!< Returns symmetrized range in X direction. S
+    double GetRangeY() const; //!< Returns symmetrized range in Y direction. S
+    double GetRadius() const; //!< Returns the smallest radius that would enclose the figure. S
 
     void SetIntegralStep(); 	//!< Sets the stepsize in the line integral. S
-    double GetIntegralStep();	//!< Returns the step length of line integral. S
+    double GetIntegralStep() const;	//!< Returns the step length of line integral. S
 
-    Curve GetProjection(LineIntegral* l, double angle=0, double spacing=0.1);
+    NumCurve GetProjection(LineIntegral* l, double angle=0, double spacing=0.01);
                         //!< Given angle, spacing of lines and an integration method, performs line integral. LineIntegral method is mandatory, and angle and spacing has default parameters. Angle starts from X-axis and moves counter-clockwise. S
 
     double GetProjectionAtAngle(LineIntegral* l, double angle=0, double distance=0);

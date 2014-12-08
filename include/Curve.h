@@ -20,7 +20,7 @@ public:
     Curve(double rx);//!< Constructor. Argument is the radial size of the function. S
     virtual ~Curve();//!< Virtual destructor, in case someone calls delete derived. S
 
-    virtual double operator()(double x,Interpolator* intpl=NULL) = 0;
+    virtual double operator()(double x, Interpolator* intpl = 0) const = 0;
                         //!< Returns image value at the argument point. S
 
     virtual void Print(double xmin, double xmax, int N=100) = 0;
@@ -28,7 +28,7 @@ public:
 
     void SetRange(double rx);   //!< Set symmetrized range of independent variable. S
 
-    double GetRange();          //!< Returns the symmetrized range. S
+    double GetRange() const;          //!< Returns the symmetrized range. S
 
 protected:
 

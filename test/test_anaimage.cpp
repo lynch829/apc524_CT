@@ -1,10 +1,11 @@
-#include"Image.h"
-#include"AnaImage.h"
-#include"Trapezoid.h"
-#include"MCIntegrator.h"
-#include<math.h>
-#include<stdlib.h>
-#include<stdio.h>
+#include "Image.h"
+#include "AnaImage.h"
+#include "NumImage.h"
+#include "Trapezoid.h"
+#include "MCIntegrator.h"
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 double gauss_1D(double x){
     return exp(-x*x/6);
@@ -19,20 +20,37 @@ double gauss_3D(double x, double y, double z){
     return exp(-x*x/6 -y*y/3 + x*y/4 - z*z/3 + z*y/4);
 }
 
+double cylinder(double x, double y){
+    return (x*x+y*y > 4)?0:1;
+}
+
+double box(double x, double y){
+    double val = 0;
+    if(fabs(x)<2 && fabs(y)<2) val = 1;
+    return val;
+}
+
 int main(int argc, char* argv[]){
 
-    Image* gauss  = new AnaImage2D( gauss_2D, 10, 10);
+//  creates a nonsymmetric gaussian on 20 x 20 region.
+    Image* gauss  = new AnaSurface( gauss_2D, 10, 10);
 
+// defines trapezoid integration rule.
     LineIntegral* l=new Trapezoid();
-    AnaImage2D* ptr2 = (AnaImage2D*)gauss;
 
-    if(argc<2){
-	gauss->Print();
-	return 0;
+//  since Projection is defined
+
+    switch(argc)
+    {
+        case 1 : {gauss->Print(); delete gauss; return 0;}
+        case 2 : {
+		 Surface* ptr = (Surface*)gauss; //Image has no GetProjection, must downcast.
+                 NumCurve a; a = ptr->GetProjection(l,atof(argv[1]),0.01);
+                 a.Print();
+                 delete gauss; return 0;
+		 }
+        default: {delete gauss; break;}
     }
-    ptr2->GetProjection(l,atof(argv[1]),0.01);
-
-    delete gauss;
 
     return 0;
 }
