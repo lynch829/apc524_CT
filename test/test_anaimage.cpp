@@ -36,8 +36,10 @@ int main(int argc, char* argv[]){
     Image* gauss  = new AnaSurface( gauss_2D, 10, 10);
 
 // creates a numerical line using gauss_1D.
-    Image* gauss1 = new AnaCurve( gauss_1D,10);
-    //Image* NumGauss = new NumCurve(100,gauss1);
+    Curve* gauss1 = new AnaCurve( gauss_1D,10);
+    Image* num_gauss1 = new NumCurve(100,*gauss1);
+    
+    
 // defines trapezoid integration rule.
     LineIntegral* l=new Trapezoid();
 
@@ -45,7 +47,7 @@ int main(int argc, char* argv[]){
 
     switch(argc)
     {
-        case 1 : {gauss1->Print(); delete gauss1; return 0;}
+        case 1 : {num_gauss1->Print(); delete gauss1; delete num_gauss1;return 0;}
         case 2 : {
 		 Surface* ptr = (Surface*)gauss; //Image has no GetProjection, must downcast.
                  NumCurve a; a = ptr->GetProjection(l,atof(argv[1]),0.01);
