@@ -3,6 +3,7 @@
   Implements numerical images.
 */
 #include "Curve.h"
+#include "Surface.h"
 #include "Interpolator.h"
 #include "NumImage.h"
 #include <stdio.h>
@@ -127,3 +128,20 @@ void NumCurve::Print(double xi, double xf ,int N)
     for(double x=xi; x<xf; x+= d) printf("%.9f\t%.9f\n",x,(*this)(x,0));
 }
 
+//Default constructor, everything to Null
+NumSurface::NumSurface : Surface(0,0)
+{
+    _datax = 0;
+    _datay = 0;
+    _dataz = 0;
+    _sizex = 0;
+    _sizey = 0;
+};
+
+// Constructor with a size input.
+NumSurface::NumSurface(int sizex, int sizey): Surface(0,0), _sizex(sizex), _sizey(sizey)
+{
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
+    _dataz = new double[_sizex][_sizey];
+};

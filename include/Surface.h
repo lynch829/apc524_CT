@@ -2,13 +2,12 @@
     \brief Abstract Image class for Two-dimensional CT images. S
 */
 
-#ifndef IMAGE2D
-#define IMAGE2D 1
-
+#ifndef SURFACE
+#define SURFACE 1
+#include "NumImage.h"
 #include "LineIntegral.h"
 #include "Image.h"
 #include "Interpolator.h"
-#include "NumImage.h"
 /*!
 Surface is an Image with dimension 2. GetProjection method would return either a double as the result of one particular line integral, or a reference to Curve class as the integrations along all the parallel lines. S
 */
@@ -32,11 +31,12 @@ public:
     void SetIntegralStep(); 	//!< Sets the stepsize in the line integral. S
     double GetIntegralStep() const;	//!< Returns the step length of line integral. S
 
-    NumCurve GetProjection(LineIntegral* l, double angle=0, double spacing=0.01);
+    NumCurve GetProjection(LineIntegral* l, double angle=0, double spacing=0.01,Interpolator* intpl=0);
                         //!< Given angle, spacing of lines and an integration method, performs line integral. LineIntegral method is mandatory, and angle and spacing has default parameters. Angle starts from X-axis and moves counter-clockwise. S
 
-    double GetProjectionAtAngle(LineIntegral* l, double angle=0, double distance=0);
+    double GetProjectionAtAngle(LineIntegral* l, double angle=0, double distance=0,Interpolator* intpl=0);
                         //!< Given angle, performs line integral. LineIntegral method is mandatory.Angle starts from X-axis and moves counter-clockwise. S
+    
 
 protected:
 

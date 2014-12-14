@@ -5,6 +5,7 @@
 #define NUMIMAGE 1
 
 #include"Curve.h"
+#include"Image.h"
 #include"Volume.h"
 #include"Interpolator.h"
 
@@ -39,11 +40,36 @@ protected:
 	int _size;	//!< size of the array.
 };
 
-#include "Surface.h"
+#include"Surface.h"
 
-//class NumSurface : public Surface{
+class NumSurface : public Surface{
 
-//};
+public:
+    NumSurface();		//!< Default constructor, everything null and 0.
+    NumSurface(int sizex, int sizey);	//!< Default constructor, _size set and everything else null and 0.
+    NumSurface(int sizex, double* x, int sizey, double* y, double* z);	//!< Initialize with a given x,y,z array.
+    NumSurface(int size, double r, double* z);	//!< Initialize with a radius and an array.
+    NumSurface(const NumSurface&);		//!< Copy constructor, same type as NumSurface.
+    NumSurface& operator=(const NumSurface&);	//!< Assignment constructor for same type.
+    NumSurface(int sizex, int sizey, const Surface&);	//!< Copy constr. for general Surface obj. Needs size info.
+    void Copy(int sizex, int sizey, const Surface&);	//!< Copy operator for general Surface, will use previous size information.
+    
+    ~NumSurface();		//!< Destructor, has to delete stored data.
+    
+    double operator()(double, Interpolator*) const;
+				//!< Operator () to access lvalues, argument double will be rounded to nearest intger and be used to access.
+    double& operator()(int);	//!< This method can be used to set values at the integer nodes.
+    
+    void Print();	//!< Default method, print out everything as three columns.
+    void Print(double,double,int,double,double,int);	//!< Print out image.
+    
+protected:
+    double* _datax;	//!< X-Coordinates of the points.
+    double* _datay;	//!< Y-Coordinates of the points.
+    double* _dataz; //!< Z-Coordinates of the points.
+    int _sizex;	//!< size of the array in x direction.
+    int _sizey; //!< size of the array in y direction.
+};
 
 //class NumVolume : public Volume{
 
