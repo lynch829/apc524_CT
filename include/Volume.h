@@ -16,7 +16,8 @@ public:
     virtual ~Volume(); //! Virtual destructor, in case someone calls delete derived. S
     virtual double operator() (double x, double y, double z,Interpolator* intpl) const = 0;
                         //! Returns image value at that integer point. S
-    virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z) = 0;
+    virtual void Print(); //!< Implements Image::Print().
+    virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z, Interpolator* intpl=0);
                         //! Print the cross-section at z. S
     void SetRange(double rx, double ry, double rz);//! Sets symmetrized range in X direction. S
     double GetRangeX() const; //! Returns symmetrized range in X direction. S

@@ -22,8 +22,8 @@ public:
 
     virtual double operator()(double x, Interpolator* intpl = 0) const = 0;
                         //!< Returns image value at the argument point. S
-
-    virtual void Print(double xmin, double xmax, int N=100) = 0;
+    virtual void Print(); //!< Implements Image::Print
+    virtual void Print(double xmin, double xmax, int N=100, Interpolator* intpl = 0);
                         //!< Output the function values in the range. S
 
     void SetRange(double rx);   //!< Set symmetrized range of independent variable. S

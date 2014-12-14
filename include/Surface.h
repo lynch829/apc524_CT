@@ -4,10 +4,11 @@
 
 #ifndef SURFACE
 #define SURFACE 1
-#include "NumImage.h"
 #include "LineIntegral.h"
 #include "Image.h"
 #include "Interpolator.h"
+#include "NumCurve.h"
+
 /*!
 Surface is an Image with dimension 2. GetProjection method would return either a double as the result of one particular line integral, or a reference to Curve class as the integrations along all the parallel lines. S
 */
@@ -21,7 +22,8 @@ public:
 
     virtual double operator() (double x, double y, Interpolator* intpl=0) const = 0;
                         //!< Returns image value at the argument point. S
-    virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny) = 0;
+    virtual void Print(); //!< This print is supposed to implement Image::Print, though it is another virtual function.
+    virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl = 0);
                         //!< Print out the field. S
     void SetRange(double rx, double ry); //!< Sets symmetrized range in X and Y direction. S
     double GetRangeX() const; //!< Returns symmetrized range in X direction. S

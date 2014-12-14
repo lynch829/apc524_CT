@@ -17,8 +17,6 @@ public:
     ~AnaCurve();	//!< Destructor, does nothing.
 
     double operator()(double, Interpolator*) const;	//!< Evaluate function value and returns by reference.    
-    void Print();	//!< Print out image on default range with N=200.
-    void Print(double, double, int);
 
 private:
     f1D _f1d;	//!< 1D function
@@ -33,8 +31,6 @@ public:
     ~AnaSurface();	//! Destructor, does nothing.
     double operator()(double, double, Interpolator*) const;	//! Evaluate function value.
     
-    void Print();	//! Print out image, on default range with N=200.
-    void Print(double, double, int, double, double, int);
 private:
     f2D _f2d;	//! 2D function
 };
@@ -48,8 +44,6 @@ public:
     ~AnaVolume();	//! destructor, does nothing.
     double operator()(double, double, double, Interpolator*) const;	//! evaluate function value.
     
-    void Print();	//! Print out image, on default range with N=200;
-    void Print(double, double, int, double, double, int, double z=0);
 private:
     f3D _f3d;	//! 3D function
 };

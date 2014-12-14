@@ -1,11 +1,8 @@
 /*!
   \brief
-  Implements numerical images.
+  Implements numerical curve.
 */
-#include "Curve.h"
-#include "Surface.h"
-#include "Interpolator.h"
-#include "NumImage.h"
+#include "NumCurve.h"
 #include <stdio.h>
 
 // Default constructor, everything to NULL.
@@ -121,27 +118,3 @@ void NumCurve::Print()
 {
     for(int i=0; i<_size; i++) printf("%.9f\t%.9f\n",_datax[i],_datay[i]);
 }
-
-void NumCurve::Print(double xi, double xf ,int N)
-{
-    double d = (xf-xi)/N;
-    for(double x=xi; x<xf; x+= d) printf("%.9f\t%.9f\n",x,(*this)(x,0));
-}
-
-//Default constructor, everything to Null
-NumSurface::NumSurface : Surface(0,0)
-{
-    _datax = 0;
-    _datay = 0;
-    _dataz = 0;
-    _sizex = 0;
-    _sizey = 0;
-};
-
-// Constructor with a size input.
-NumSurface::NumSurface(int sizex, int sizey): Surface(0,0), _sizex(sizex), _sizey(sizey)
-{
-    _datax = new double[_sizex];
-    _datay = new double[_sizey];
-    _dataz = new double[_sizex][_sizey];
-};
