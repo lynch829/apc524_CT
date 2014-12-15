@@ -33,8 +33,8 @@ public:
 	void Print(double,double,int);	//!< Print for a given range.
 
 protected:
-	double* _datax;	//!< Y-Coordinates of the points.
-	double* _datay;	//!< Y-Coordinates of the points.
+	double* _datax;	//!< X-Coordinates of the points.
+	double* _datay;	//!< Values at X-Coordinates.
 	int _size;	//!< size of the array.
 };
 

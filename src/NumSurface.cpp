@@ -52,8 +52,138 @@ NumSurface::NumSurface(int sizex, double* x, int sizey, double* y, double** z)
 }
 
 // Constructor with a given size, range and a set of z-values
-//NumSurface::NumSurface(int size)
+NumSurface::NumSurface(int sizex, double rx, int sizey, double ry, double** z)
+: Surface(rx,ry), _sizex(sizex), _sizey(sizey)
+{
+    _dataz = new double*[_sizex];
+    for(int i=0;i<_sizex;i++){
+        _dataz[i] = new double[_sizey];
+        _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+    }
+    for(int i=0;i<_sizey;i++){
+        _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            _dataz[i][j] = z[i][j];
+        }
+    }
+}
 
-NumSurface::~NumSurface(){}
-void NumSurface::Print(){}
+// Copy constructor that takes in the same type.
+NumSurface::NumSurface(const NumSurface& f) : Surface(f._rx, f._ry)
+{
+    _sizex = f._sizex; _sizey = f._sizey;
+    _datax = new double[_sizex]; _datay = new double[_sizey];
+    _dataz = new double*[_sizex];
+    for (int i=0;i<_sizex;i++){
+        _datax[i] = f._datax[i];
+        _dataz[i] = new double[_sizey];
+    }
+    for (int i=0;i<_sizey;i++){
+        _datay[i] = f._datay[i];
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            _dataz[i][j] = f._dataz[i][j]; // Performs a deep copy.
+        }
+    }
+}
+
+//Copy assignment, used when modifying existing objects.
+NumSurface& NumSurface::operator=(const NumSurface& f)
+{
+    if(_datax!=0) delete [] _datax;
+    if(_datay!=0) delete [] _datay;
+    if(_dataz!=0) delete [] _dataz;
+    _sizex = f._sizex; _sizey = f._sizey;
+    _datax = new double[_sizex]; _datay = new double[_sizey];
+    _dataz = new double*[_sizex];
+    for (int i=0;i<_sizex;i++){
+        _datax[i] = f._datax[i];
+        _dataz[i] = new double[_sizey];
+    }
+    for (int i=0;i<_sizey;i++){
+        _datay[i] = f._datay[i];
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            _dataz[i][j] = f._dataz[i][j]; // Performs a deep copy.
+        }
+    }
+    return (*this);
+}
+// Constructor with a size and a Surface object. Use operator () to initialize.
+NumSurface::NumSurface(int sizex, int sizey, const Surface& f) : Surface(0,0)
+{
+    _sizex = sizex;
+    _sizey = sizey;
+    _rx = f.GetRangeX(); _ry = f.GetRangeY();
+    _datax = new double[_sizex]; _datay = new double[_sizey];
+    _dataz = new double*[_sizex];
+    for(int i=0;i<_sizex;i++){
+        _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+        _dataz[i] = new double[_sizey];
+    }
+    for(int i=0;i<_sizey;i++){
+        _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            _dataz[i][j] = f(_datax[i],_datay[j],0);
+        }
+    }
+}
+// Assignment operator for construction.
+    void NumSurface::Copy(int sizex, int sizey, const Surface& f)
+    {
+        if(_datax!=0) delete [] _datax;
+        if(_datay!=0) delete [] _datay;
+        if(_dataz!=0) delete [] _dataz;
+        _sizex = sizex; _sizey  = sizey;
+        _rx = f.GetRangeX(); _ry = f.GetRangeY();
+        _datax = new double[_sizex]; _datay = new double[_sizey];
+        _dataz = new double*[_sizex];
+        for(int i=0;i<_sizex;i++){
+            _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+            _dataz[i] = new double[_sizey];
+        }
+        for(int i=0;i<_sizey;i++){
+            _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
+        }
+        for(int i=0;i<_sizex;i++){
+            for(int j=0;j<_sizey;j++){
+                _dataz[i][j] = f(_datax[i],_datay[j],0);
+            }
+        }
+    }
+        
+NumSurface::~NumSurface()
+{
+    if(_datax!=0) delete [] _datax;
+    if(_datay!=0) delete [] _datay;
+    if(_dataz!=0) delete [] _dataz;
+}
+        
+double NumSurface::operator()(double x, double y,   Interpolator* intpl) const
+{
+    return 0;
+}
+
+double& NumSurface::operator()(int indexX, int indexY)
+{
+    if(indexX < 0 || indexX >_sizex-1 || indexY <0 || indexY >_sizey-1)
+    printf("Index out of range");
+    return _dataz[indexX][indexY];
+}
+    
+    
+void NumSurface::Print()
+{
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++)
+            printf("%.9f\t",_dataz[i][j]);
+        printf("/n");
+    }
+}
 void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int Ny){}

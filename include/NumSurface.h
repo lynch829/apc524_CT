@@ -25,9 +25,9 @@ public:
     
     ~NumSurface();		//!< Destructor, has to delete stored data.
     
-    double operator()(double, Interpolator*) const;
+    double operator()(double, double, Interpolator*) const;
 				//!< Operator () to access lvalues, argument double will be rounded to nearest intger and be used to access.
-    double& operator()(int);	//!< This method can be used to set values at the integer nodes.
+    double& operator()(int,int);	//!< This method can be used to set values at the integer nodes.
     
     void Print();	//!< Default method, print out everything as three columns.
     void Print(double,double,int,double,double,int);	//!< Print out image.
