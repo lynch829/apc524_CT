@@ -23,7 +23,7 @@ NumCurve::NumCurve(int size): Curve(0), _size(size)
 // Constructor with a given array.
 NumCurve::NumCurve(int size, double* x, double* y): Curve(0), _size(size)
 {
-    double avg = 0;		// symmetrize the given array. Center them at 0.
+        double avg = 0;		// symmetrize the given array. Center them at 0.
     for(int i=0;i<_size;i++){avg += x[i];}
     avg /= _size;
     _datax = new double[_size];
