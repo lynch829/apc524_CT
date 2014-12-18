@@ -1,12 +1,15 @@
 #ifndef INTERPOLATOR
-#define INTERPOLATOR 1
+#define INTERPOLATOR
+#include <vector>
+using std::vector;
 
 class Interpolator{
 
 public:
     Interpolator();
-    virtual ~Interpolator();
-    virtual double Interpolate(double,int,double*,double*,double*);
+    ~Interpolator();
+    virtual double Interpolate(vector<double>&, double**, double*, int*, int) = 0;
+    int coord2index(int*, int*, int);
 };
 
 #endif
