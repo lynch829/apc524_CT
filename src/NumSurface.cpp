@@ -183,7 +183,7 @@ void NumSurface::Print()
     for(int i=0;i<_sizex;i++){
         for(int j=0;j<_sizey;j++)
             printf("%.9f\t",_dataz[i][j]);
-        printf("/n");
+        printf("\n");
     }
 }
 void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int Ny){}
