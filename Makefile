@@ -5,14 +5,18 @@ CXX_FLAGS=-Wall -g -std=c++0x -I${INC_DIR} -I${SRC_DIR}
 INC_DIR=./include/
 SRC_DIR=./src/
 TEST_DIR=./test/
-TEST_SRC=$(wildcard ./test/test_*.cpp)
-TEST_OBJ=$(patsubst %.cpp, %.o, $(TEST_SRC))
 
-analytical1D : ${TEST_OBJ} $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+test_sbp : ./test/test_sbp.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} $^ -o $@
 	chmod +x $@
+
+test_anaimage : ./test/test_anaimage.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+	${CXX} ${CXX_FLAGS} $^ -o $@
+	chmod +x $@
+
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} -c $< -o $@
+
 ${SRC_DIR}%.o : ${SRC_DIR}%.cpp
 	${CXX} ${CXX_FLAGS} -c $< -o $@
 

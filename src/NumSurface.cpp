@@ -4,6 +4,7 @@
 */
 
 #include "NumSurface.h"
+#include <stdio.h>
 
 //! Default constructor, everything to Null
 NumSurface::NumSurface() : Surface(0,0)
@@ -55,6 +56,8 @@ NumSurface::NumSurface(int sizex, double* x, int sizey, double* y, double** z)
 NumSurface::NumSurface(int sizex, double rx, int sizey, double ry, double** z)
 : Surface(rx,ry), _sizex(sizex), _sizey(sizey)
 {
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
     _dataz = new double*[_sizex];
     for(int i=0;i<_sizex;i++){
         _dataz[i] = new double[_sizey];
