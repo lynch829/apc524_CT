@@ -105,7 +105,11 @@ double NumCurve::operator()(double x, Interpolator* intpl) const
 {
     // should implement the operator with an interpolation method. Have to check if the array is symmetric or not. A better approach is to first treat as symmetric, if returns wrong position, then performs a search algorithm to determine the position.
 //    return intpl->Interpolate(x,_datax,_datay,_size);
-    return 0;
+    double d = 2*_r/(_size-1);
+    int i0 = int((x+_r)/d)+1;
+    int i1 = i0 +1;
+    if (i1>=_size) return 0;
+    else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
 }
 
 double& NumCurve::operator()(int index)

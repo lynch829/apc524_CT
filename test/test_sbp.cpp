@@ -38,8 +38,8 @@ double box(double x, double y){
 
 int main(int argc, char* argv[]){
     double range = 10;
-    const int size=100;
-    const int Nres=100;
+    const int size=200;
+    const int Nres=400;
     double angle[size];
     NumCurve* container = new NumCurve[size];
     for(int i=0;i<size;i++) angle[i] = 0 + i*180.0/size;
@@ -49,16 +49,21 @@ int main(int argc, char* argv[]){
     NumSurface* sf;
 
     for(int i=0; i<size; i++){
-        cout<<"Porcessing projection at angle"<<angle[i]<<endl;
-        NumCurve a = gauss->GetProjection(l,angle[i],0.01);
-        container[i] = a;
+//        cout<<"Porcessing projection at angle "<<angle[i]<<endl;
+        container[i] = gauss->GetProjection(l,angle[i],0.1);
     }
-    cout<<"Processing back-projection"<<endl;
+//    cout<<"Processing back-projection "<<endl;
+//    cout<<container[1](double(-14.1),0)<<endl;
+//    cout<<container<<" "<<&container[0]<<" "<<&container[1]<<endl;
     sf = SimpleBackProjection(angle,container,size,Nres);
+//    container[0].Print();
+//    container[1].Print();
+
     sf->Print();
 
     delete sf;
     delete l;
     delete gauss;
+    delete [] container;
     return 0;
 }
