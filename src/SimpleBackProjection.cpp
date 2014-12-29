@@ -24,7 +24,8 @@ NumSurface* SimpleBackProjection( double* angle, Curve* curve, int size, int Nre
             for( int j=0; j<Nres; j++){
                 double x = -range + i*2*range/(Nres-1);
                 double y = -range + j*2*range/(Nres-1);
-                double t = x*cos(angle[ll]*pi/180) - y*sin(angle[ll]*pi/180);
+                double t = x*cos(angle[ll]) - y*sin(angle[ll]);
+//		printf("t is:%.5f adding: %.5f\n",t,(curves)[ll](t,0));
                 z[i][j] += (curves)[ll](t,0);
             }
     }
