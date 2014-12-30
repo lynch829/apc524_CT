@@ -103,23 +103,51 @@ NumCurve::~NumCurve()
 
 double NumCurve::operator()(double x, Interpolator* intpl) const
 {
-    // should implement the operator with an interpolation method. Have to check if the array is symmetric or not. A better approach is to first treat as symmetric, if returns wrong position, then performs a search algorithm to determine the position.
+//  Should implement the operator with an interpolation method. Have to check if the array is symmetric or not. 
+//  A better approach is to first treat as symmetric, if returns wrong position, then performs a search algorithm to determine the position.
+
 //    return intpl->Interpolate(x,_datax,_datay,_size);
     double d = 2*_r/(_size-1);
     int i0 = int((x+_r)/d);	// recall An = A0 + i*d
     int i1 = i0 +1;
-//    printf("want x=%.5f, evaluating x0=%.5f, x1=%.5f, y0=%.5f, y1=%.5f, val=%.5f\n",x,_datax[i0],_datax[i1],_datay[i0],_datay[i1],_datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d);
-    if ( i1>_size || i0 < 0 ) return 0;
+    if ( i1>_size-1 || i0 < 0 ) return 0;
     else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
+}
+
+double& NumCurve::operator[](int index)
+{
+    if(index<0 || index>_size-1){
+        printf("Index out of range!\n");
+        index = 0;
+    }
+    return _datay[index];
 }
 
 double& NumCurve::operator()(int index)
 {
-    if(index<0 || index>_size-1) printf("Index out of range!\n");
+    if(index<0 || index>_size-1){
+        printf("Index out of range!\n");
+        index = 0;
+    }
     return _datay[index];
+}
+
+double* NumCurve::GetXPtr()
+{
+    return _datax;
+}
+
+double* NumCurve::GetYPtr()
+{
+    return _datay;
 }
 
 void NumCurve::Print()
 {
     for(int i=0; i<_size; i++) printf("%.9f\t%.9f\n",_datax[i],_datay[i]);
+}
+
+int NumCurve::GetSize()
+{
+    return _size;
 }

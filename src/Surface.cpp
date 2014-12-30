@@ -26,8 +26,8 @@ NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, I
     int counter = 0;
     for(double d = -_r; d<_r; d += spacing){ counter++; }
     NumCurve ret(counter);
-    double *x = new double[counter];
-    double *y = new double[counter];
+    double *x = ret.GetXPtr();
+    double *y = ret.GetYPtr();
 
     int i=0;
     for(double d = -_r; d < _r; d += spacing){
@@ -38,7 +38,8 @@ NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, I
     return NumCurve(counter,x,y);
 }
 
-double Surface::GetProjectionAtAngle(LineIntegral* l, double angle, double d, Interpolator* intpl){
+double Surface::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d, Interpolator* intpl){
+	double angle = angle_arg-pi/2;
 	double ri = sqrt(_r*_r-d*d);	//!< t goes from -range to +range
         std::function<double (double)> fptr = [angle,d,ri,intpl,this](double t) -> double{
             double temp = (*this)((ri-t)*sin(angle)+d*cos(angle),(t-ri)*cos(angle)+d*sin(angle),intpl);

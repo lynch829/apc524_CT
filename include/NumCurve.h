@@ -25,13 +25,18 @@ public:
 
 	~NumCurve();		//!< Destructor, has to delete stored data.
 
-	double operator()(double, Interpolator*) const;
+	double operator()(double, Interpolator* intpl=0) const;
 				//!< Operator () to access lvalues, argument double will be rounded to nearest intger and be used to access.
-	double& operator()(int);	//!< This method can be used to set values at the integer nodes.
+        double& operator()(int);
+	double& operator[](int);	//!< This method can be used to set values at the integer nodes.
 
 	void Print();	//!< Default method, print out everything as two columns.
 	void Print(double,double,int);	//!< Print for a given range.
 
+	double* GetXPtr();
+	double* GetYPtr();
+
+        int GetSize();	//!< Return size of the data array.
 protected:
 	double* _datax;	//!< X-Coordinates of the points.
 	double* _datay;	//!< Values at X-Coordinates.

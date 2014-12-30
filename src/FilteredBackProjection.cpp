@@ -1,14 +1,26 @@
-#include "SimpleBackProjection.h"
+#include "FilteredBackProjection.h"
 #include "globals.h"
 #include <math.h>
 #include <stdio.h>
 #include <iostream>
 
-NumSurface* SimpleBackProjection( double* angle, Curve* curve, int size, int Nres)
+NumSurface* FilteredBackProjection( double* angle, Curve* curve, int size, int Nres)
 {
     NumCurve* curves = (NumCurve*) curve;
     double range = 0;
     for(int i = 0; i<size; i++) range = max<double>((curves)[i].GetRange(),range);
+
+//---------------convolute with ramp filter--------------------------------------
+    for(int i = 0; i<size; i++){
+        double tau = 2*range/(curves[i].GetSize()-1);
+        NumCurve conv = curves[i];
+        for(int j=0;j<curves[i].GetSize();j++){
+            conv[j] = 0;
+            for(int k=j-curves[i].GetSize()+1;k<j+1;k++)
+                conv[j] +=tau*Hamming(k,tau)*(curves[i])[j-k];
+        }
+        curves[i]=conv;
+    }
 
     double **z = new double*[Nres];
     for(int i=0;i<Nres;i++){
@@ -21,7 +33,6 @@ NumSurface* SimpleBackProjection( double* angle, Curve* curve, int size, int Nre
                 double x = -range + i*2*range/(Nres-1);
                 double y = -range + j*2*range/(Nres-1);
                 double t = x*cos(angle[ll]) - y*sin(angle[ll]);
-//		printf("t is:%.5f adding: %.5f\n",t,(curves)[ll](t,0));
                 z[i][j] += (curves)[ll](t,0);
             }
     }
@@ -30,3 +41,4 @@ NumSurface* SimpleBackProjection( double* angle, Curve* curve, int size, int Nre
     delete [] z;
     return recon;
 }
+

@@ -100,7 +100,8 @@ NumSurface& NumSurface::operator=(const NumSurface& f)
     if(_datay!=0) delete [] _datay;
     if(_dataz!=0) delete [] _dataz;
     _sizex = f._sizex; _sizey = f._sizey;
-    _datax = new double[_sizex]; _datay = new double[_sizey];
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
     _dataz = new double*[_sizex];
     for (int i=0;i<_sizex;i++){
         _datax[i] = f._datax[i];
