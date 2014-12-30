@@ -20,7 +20,7 @@ double gauss_1D(double x){
 
 double gauss_2D(double x, double y){
 //    return exp(-x*x/6 -y*y/3 + x*y/4)+ x*y/100;
-    return x*x/4+y*y/9<1 ? 1 : 0;
+    return x*x+y*y<4 ? 1 : 0;
 //	return exp(-x*x/3-y*y/15);
 }
 
