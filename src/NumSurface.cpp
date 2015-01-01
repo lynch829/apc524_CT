@@ -166,7 +166,10 @@ NumSurface::~NumSurface()
 {
     if(_datax!=0) delete [] _datax;
     if(_datay!=0) delete [] _datay;
-    if(_dataz!=0) delete [] _dataz;
+    if(_dataz!=0) {
+        for(int i=0;i<_sizex;i++) delete [] _dataz[i];
+        delete [] _dataz;
+    }
 }
         
 double NumSurface::operator()(double x, double y,   Interpolator* intpl) const

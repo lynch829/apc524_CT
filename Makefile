@@ -6,11 +6,11 @@ INC_DIR=./include/
 SRC_DIR=./src/
 TEST_DIR=./test/
 
-test_sbp : ./test/test_sbp.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+testNumCurve : ./test/testNumCurve.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} $^ -o $@
 	chmod +x $@
 
-test_anaimage : ./test/test_anaimage.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+testSBP : ./test/testSBP.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} $^ -o $@
 	chmod +x $@
 

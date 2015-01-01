@@ -37,6 +37,7 @@ NumCurve::NumCurve(int size, double* x, double* y): Curve(0), _size(size)
 // Constructor with a size, a range and a set of y-values.
 NumCurve::NumCurve(int size, double r, double* y): Curve(r), _size(size)
 {
+    _datax = new double[_size];
     _datay = new double[_size];
     for(int i=0;i<_size;i++){
         _datay[i] = y[i];
