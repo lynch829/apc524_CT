@@ -205,7 +205,7 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
             fx_in[i+j*_sizex] = _dataz[i][j];
         }
     }
-    return intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
+    double ret = intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
     delete [] fx_in; //delete memory allocation
     delete [] size_in;
     for (int i=0;i<dim;i++){
@@ -214,7 +214,7 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
         }
     }
     delete [] datax_in;
-   
+    return ret;
 }
 
 double& NumSurface::operator()(int indexX, int indexY)

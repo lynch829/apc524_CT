@@ -17,14 +17,14 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 5;	// range of the geometry
-    const int size=2;	// number of view
-    const int Nres=100;	// resolution/ N of point in the projected curve.
+    const int size=512;	// number of view
+    const int Nres=1000;	// resolution/ N of point in the projected curve.
     double angle[size];	// array containing size angles.
 
     NumCurve* container = new NumCurve[size];
     for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size; //  since 180 symmetry, do not include endpoint.
 
-    Surface* gauss = new AnaSurface (Triangle, range, range); // a circle defined on a 10 by 10 grid.
+    Surface* gauss = new AnaSurface (Rectangle, range, range); // a circle defined on a 10 by 10 grid.
     LineIntegral* l = new Trapezoid();	// integ. method
     NumSurface* sf;	// numerical surface to contain the reconstructed result.
 
