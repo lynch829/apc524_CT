@@ -6,13 +6,16 @@ INC_DIR=./include/
 SRC_DIR=./src/
 TEST_DIR=./test/
 
-testNumCurve : ./test/testNumCurve.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+.PHONY: test
+test : testNumCurve testSBP testNumSurface
+
+test% : ./test/test%.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} $^ -o $@
 	chmod +x $@
 
-testSBP : ./test/testSBP.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
-	${CXX} ${CXX_FLAGS} $^ -o $@
-	chmod +x $@
+#testSBP : ./test/testSBP.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+#	${CXX} ${CXX_FLAGS} $^ -o $@
+#	chmod +x $@
 
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} -c $< -o $@

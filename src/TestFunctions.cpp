@@ -5,7 +5,7 @@ double Gauss1D(double x){
 }
 
 double Gauss2D(double x, double y){
-    return exp(-x*x/3-y*y/5);
+    return exp(-x*x/3-y*y/5)*sin(x);
 }
 
 double Gauss3D(double x, double y, double z){

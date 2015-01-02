@@ -172,7 +172,7 @@ NumSurface::~NumSurface()
     }
 }
         
-double NumSurface::operator()(double x, double y,   Interpolator* intpl) const
+double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
     return 0;
 }

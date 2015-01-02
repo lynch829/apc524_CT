@@ -15,41 +15,48 @@ int main(int argc, char* argv[]){
     if(argc>1) choice = atoi(argv[1]);
 
 // default ctor()
-    NumCurve a;
-    NumCurve* aptr = &a;
-    if(!assertEqual(a,*aptr)) return -1;
+    NumSurface a;
+    NumSurface* aptr = &a;
+//    if(!assertEqual(a,*aptr)) return -1;
 
 // ctor with a size;
-    NumCurve b(100);
-    NumCurve* bptr = &b;
+    Surface *b_temp = new AnaSurface(Gauss2D,10,10);
+    NumSurface b(10,10,*b_temp);
+    NumSurface* bptr = &b;
 
     double range = 20;
     const int N = 500;
     double datax[N] = {0};
     double datay[N] = {0};
+    double** dataz = new double*[N];
     for(int i=0;i<N;i++){
         datax[i] = -range + i*2.0*range/(N-1);
-        datay[i] = exp(-fabs(datax[i]/(0.5*range)))*sin(datax[i]);
+        datay[i] = datax[i];
+        dataz[i] = new double[N];
     }
 
+    for(int i=0;i<N;i++)
+        for(int j=0;j<N;j++)
+            dataz[i][j] = exp(-(datax[i])*(datax[i])-(datay[j])*(datay[j]))*sin(datax[i]);
+
 // ctor with data points
-    NumCurve* c = new NumCurve(N,range,datay);
-    Curve* cptr = c;
+    NumSurface* c = new NumSurface(N,datax,N,datay,dataz);
+    Surface* cptr = c;
 // copy ctor
-    NumCurve d(*c);
-    if(!assertEqual(c,&d)) return -1;
+    NumSurface d(*c);
+//    if(!assertEqual(c,&d)) return -1;
 
 // test assignment
     if(choice==0)aptr->Print();
     if(choice==1)bptr->Print();
     if(choice==2)c->Print();
     if(choice==3)d.Print();
-    if(choice==4)cptr->Print(-2*range,2*range,100000);
+    if(choice==4)cptr->Print(-range,range,200,-range,range,200);
 // test assignment
     a = *c;
     b = d;
-    if(!assertEqual(a,*c)) return -1;
-    if(!assertEqual(b,d)) return -1;
+//    if(!assertEqual(a,*c)) return -1;
+//    if(!assertEqual(b,d)) return -1;
 
     delete c;
     return 0;

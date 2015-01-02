@@ -16,27 +16,28 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    double range = 10;
-    const int size=64;
-    const int Nres=100;
-    double angle[size];
+    double range = 10;	// range of the geometry
+    const int size=2;	// number of view
+    const int Nres=200;	// resolution/ N of point in the projected curve.
+    double angle[size];	// array containing size angles.
 
     NumCurve* container = new NumCurve[size];
-    for(int i=0;i<size;i++) angle[i] = 0 + i*pi/(size-1); //  since 180 symmetry, do not include endpoint.
+    for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size; //  since 180 symmetry, do not include endpoint.
 
-    Surface* gauss = new AnaSurface (Circle, range, range);
-    LineIntegral* l = new Trapezoid();
-    NumSurface* sf;
+    Surface* gauss = new AnaSurface (Gauss2D, range, range); // a circle defined on a 10 by 10 grid.
+    LineIntegral* l = new Trapezoid();	// integ. method
+    NumSurface* sf;	// numerical surface to contain the reconstructed result.
 
-    for(int i=0; i<1; i++){
-        NumCurve a = gauss->GetProjection(l,angle[i],0.1);
-        container[i] = a;
+    for(int i=0; i<size; i++){
+        container[i] = gauss->GetProjection(l,angle[i],0.1);
+        container[i].Print();
     }
 
-    sf = FilteredSymmetricBackProjection(angle,container,size,Nres);
-    sf->Print();
-
-    delete sf;
+//    sf = FilteredSymmetricBackProjection(angle,container,size,Nres);	// filtered back-projection
+//    sf = FilteredBackProjection(angle,container,size,Nres);	// filtered back-projection
+//    sf->Print();	// print out the result.
+//    gauss->Print();
+//    delete sf;
     delete l;
     delete gauss;
     delete [] container;
