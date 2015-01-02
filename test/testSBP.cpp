@@ -16,28 +16,29 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    double range = 10;	// range of the geometry
+    double range = 5;	// range of the geometry
     const int size=2;	// number of view
-    const int Nres=200;	// resolution/ N of point in the projected curve.
+    const int Nres=100;	// resolution/ N of point in the projected curve.
     double angle[size];	// array containing size angles.
 
     NumCurve* container = new NumCurve[size];
     for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size; //  since 180 symmetry, do not include endpoint.
 
-    Surface* gauss = new AnaSurface (Gauss2D, range, range); // a circle defined on a 10 by 10 grid.
+    Surface* gauss = new AnaSurface (Triangle, range, range); // a circle defined on a 10 by 10 grid.
     LineIntegral* l = new Trapezoid();	// integ. method
     NumSurface* sf;	// numerical surface to contain the reconstructed result.
 
     for(int i=0; i<size; i++){
+        cerr<<"Projecting at angle "<< angle[i]<<endl;
         container[i] = gauss->GetProjection(l,angle[i],0.1);
-        container[i].Print();
+//        if(i==1) container[i].Print();
     }
 
 //    sf = FilteredSymmetricBackProjection(angle,container,size,Nres);	// filtered back-projection
-//    sf = FilteredBackProjection(angle,container,size,Nres);	// filtered back-projection
-//    sf->Print();	// print out the result.
+    sf = FilteredBackProjection(angle,container,size,Nres);	// filtered back-projection
+    sf->Print();	// print out the result.
 //    gauss->Print();
-//    delete sf;
+    delete sf;
     delete l;
     delete gauss;
     delete [] container;

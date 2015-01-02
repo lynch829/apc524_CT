@@ -18,6 +18,19 @@ NumCurve::NumCurve(int size): Curve(0), _size(size)
 {
     _datax = new double[_size];
     _datay = new double[_size];
+    for(int i=0;i<size;i++){
+        _datax[i]=0; _datay[i]=0;
+    }
+}
+// Constructor with a size and a range.
+NumCurve::NumCurve(int size, double r): Curve(r), _size(size)
+{
+    _datax = new double[_size];
+    _datay = new double[_size];
+    for(int i=0;i<size;i++){
+        _datax[i]=-r+i*(2*r)/size;
+        _datay[i]=0;
+    }
 }
 
 // Constructor with a given array.

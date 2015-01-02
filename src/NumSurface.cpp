@@ -187,8 +187,8 @@ double& NumSurface::operator()(int indexX, int indexY)
     
 void NumSurface::Print()
 {
-    for(int i=0;i<_sizex;i++){
-        for(int j=0;j<_sizey;j++)
+    for(int j=_sizey-1;j>=0;j--){
+        for(int i=0;i<_sizex;i++)
             printf("%.9f\t",_dataz[i][j]);
         printf("\n");
     }

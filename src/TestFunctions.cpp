@@ -22,6 +22,13 @@ double Rectangle(double x, double y){
     return val;
 }
 
+double Triangle(double x, double y){
+    if(y<-1) return 0;
+    if(2*x+y>1) return 0;
+    if(2*x-y<-1) return 0;
+    return sin(x);
+}
+
 bool assertArrayEqual(double *x, double *y, int n, double precision){
 
     for(int i=0;i<n;i++){

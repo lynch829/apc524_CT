@@ -23,26 +23,20 @@ double Surface::GetRangeY() const { return _ry; }
 double Surface::GetRadius() const { return _r; }
 
 NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, Interpolator* intpl){
-    int counter = 0;
-    for(double d = -_r; d<_r; d += spacing){ counter++; }
-    NumCurve ret(counter);
+    int N = int(2*_r/spacing)+1;
+    NumCurve ret(N,_r);
     double *x = ret.GetXPtr();
     double *y = ret.GetYPtr();
 
-    int i=0;
-    for(double d = -_r; d < _r; d += spacing){
-        x[i] = d;
-        y[i] = this->GetProjectionAtAngle(l,angle,d,intpl);
-        i++;
-    }
-    return NumCurve(counter,x,y);
+    for(int i=0; i < N; i++)
+        y[i] = this->GetProjectionAtAngle(l,angle,x[i],intpl);
+    return ret;
 }
 
-double Surface::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d, Interpolator* intpl){
-	double angle = angle_arg-pi/2;
+double Surface::GetProjectionAtAngle(LineIntegral* l, double angle, double d, Interpolator* intpl){
 	double ri = sqrt(_r*_r-d*d);	//!< t goes from -range to +range
         std::function<double (double)> fptr = [angle,d,ri,intpl,this](double t) -> double{
-            double temp = (*this)((ri-t)*sin(angle)+d*cos(angle),(t-ri)*cos(angle)+d*sin(angle),intpl);
+            double temp = (*this)(-sin(angle)*(t-ri)+d*cos(angle),cos(angle)*(t-ri)+d*sin(angle),intpl);
             return temp;
         };
         return l->Integrate(fptr, 0 , 2*ri, _step);

@@ -28,15 +28,16 @@ NumSurface* FilteredBackProjection( double* angle, Curve* curve, int size, int N
         z[i] = new double[Nres];
         for(int j=0;j<Nres;j++) z[i][j] = 0;
     }
+
     for(int ll=0; ll<size; ll++){	// iterate over all angle of view
-        std::cout<<ll<<" th loop!\n";
-        for( int i=0; i<Nres; i++)	// loop over X-coordinate
+        for( int i=0; i<Nres; i++){	// loop over X-coordinate
+            double x = -range + i*2*range/(Nres-1);
             for( int j=0; j<Nres; j++){	// loop over y-coordinate
-                double x = -range + i*2*range/(Nres-1);
                 double y = -range + j*2*range/(Nres-1);
-                double t = x*cos(angle[ll]) - y*sin(angle[ll]);	// distance to origin for angle ll.
-                z[i][j] += (curves)[ll](t,0)/size;	// superpose the value.
+                double t = x*cos(angle[ll]) + y*sin(angle[ll]);	// distance to origin for angle ll.
+                z[i][j] += (curves)[ll](t,0)*pi/size;	// superpose the value.
             }
+        }
     }
     NumSurface* recon = new NumSurface(Nres,range,Nres,range,z);
     for(int i=0;i<Nres;i++) delete [] z[i];
