@@ -117,15 +117,43 @@ NumCurve::~NumCurve()
 
 double NumCurve::operator()(double x, Interpolator* intpl) const
 {
-//  Should implement the operator with an interpolation method. Have to check if the array is symmetric or not. 
-//  A better approach is to first treat as symmetric, if returns wrong position, then performs a search algorithm to determine the position.
-
-//    return intpl->Interpolate(x,_datax,_datay,_size);
-    double d = 2*_r/(_size-1);
-    int i0 = int((x+_r)/d);	// recall An = A0 + i*d
-    int i1 = i0 +1;
-    if ( i1>_size-1 || i0 < 0 ) return 0;
-    else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
+    int dim=1; //dimension is 1
+    vector<double> x_in(dim,x); //set coord. to be interpolated at
+    double** datax_in; //set original coord. to be searched for
+    datax_in = new double*[dim];
+    for(int i=0;i<dim;i++){
+        datax_in[i] = new double[_size];
+    }
+    for(int i=0;i<dim;i++){
+        for(int j=0;j<_size;j++){
+            datax_in[i][j] = _datax[j];
+        }
+    }
+    double* fx_in; //set given values on original coord.
+    fx_in = new double[_size];
+    for(int i=0;i<_size;i++){
+        fx_in[i] = _datay[i];
+    }
+    int* size_in; //set size of data in each dimension.
+    size_in = new int[dim];
+    for(int i=0;i<_size;i++){
+        size_in[i] =_size;
+    }
+    return intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
+    
+    delete [] fx_in; //delete memory allocation
+    delete [] size_in;
+    for (int i=0;i<dim;i++){
+        for (int j=0;j<_size;j++){
+            delete [] datax_in[i];
+        }
+    }
+    delete [] datax_in;
+//   double d = 2*_r/(_size-1);
+//    int i0 = int((x+_r)/d);	// recall An = A0 + i*d
+//    int i1 = i0 +1;
+//    if ( i1>_size-1 || i0 < 0 ) return 0;
+//    else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
 }
 
 double& NumCurve::operator[](int index)
