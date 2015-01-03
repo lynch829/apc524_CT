@@ -18,6 +18,7 @@ class Surface : public Image{
 public:
 
     Surface(double,double);     //!< Constructor. Argument is the HALF-length in X and Y direction. S
+    Surface(double,double,double);   //!Constructor for Romberg Integration Method. Last argument is epsilon.
     virtual ~Surface(); //!< Virtual destructor, in case someone calls delete derived. S
 
     virtual double operator() (double x, double y, Interpolator* intpl=0) const = 0;

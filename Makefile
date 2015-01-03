@@ -13,7 +13,9 @@ test_sbp : ./test/test_sbp.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 test_anaimage : ./test/test_anaimage.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} $^ -o $@
 	chmod +x $@
-
+test_volume : ./test/test_volume.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+	${CXX} ${CXX_FLAGS} $^ -o $@
+	chmod +x $@
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} -c $< -o $@
 

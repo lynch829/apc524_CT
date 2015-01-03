@@ -181,7 +181,17 @@ double& NumSurface::operator()(int indexX, int indexY)
     return _dataz[indexX][indexY];
 }
     
-    
+double* NumSurface::GetXPtr(){
+    return _datax;
+}
+
+double* NumSurface::GetYPtr(){
+    return _datay;
+}
+
+double** NumSurface::GetZPtr(){
+    return _dataz;
+}
 void NumSurface::Print()
 {
     for(int i=0;i<_sizex;i++){

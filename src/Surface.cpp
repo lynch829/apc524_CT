@@ -12,6 +12,14 @@ Surface::Surface(double rx, double ry) : Image(Dim2){
     _step = 0.001;
 }
 
+
+Surface::Surface(double rx, double ry, double epsilon) : Image(Dim2){
+    _rx = rx;
+    _ry = ry;
+    _step = epsilon;
+}   //! This constructor is especicailly for Romberg Integration Method, for it needs a value of epsilon instead of step size.
+
+
 Surface::~Surface(){}
 
 void Surface::SetRange(double rx,double ry){ _rx = rx; _ry = ry; _r = sqrt(_rx*_rx+_ry*_ry); }
