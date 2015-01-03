@@ -9,14 +9,13 @@ SRC_DIR=./src/
 TEST_DIR=./test/
 
 .PHONY: test
-test : testNumCurve testSBP testNumSurface 
+test : testNumCurve testSBP testNumSurface test_volume
 
 test% : ./test/test%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
-	chmod +x $@
-test_volume : ./test/test_volume.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
-	${CXX} ${CXX_FLAGS} $^ -o $@
-	chmod +x $@
+	@chmod +x $@
+	@mv $@ ./bin/
+
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
 

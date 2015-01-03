@@ -34,7 +34,7 @@ bool assertArrayEqual(double *x, double *y, int n, double precision){
     for(int i=0;i<n;i++){
         double diff=fabs(x[i]-y[i]);
         if(diff>precision){
-            printf("Failed: array didn't match at index %d by %.5f\n",i,diff);
+            fprintf(stderr,"Test failed: array didn't match at index %d by %.5f\n",i,diff);
             return false;
         }
     }
@@ -44,20 +44,20 @@ bool assertArrayEqual(double *x, double *y, int n, double precision){
 bool assertEqual(NumCurve a, NumCurve b, double precision){
 
     if(a.GetXPtr()==b.GetXPtr()){
-        printf("Warning: the two have the same X pointer address.\n");
+        fprintf(stderr,"Test warning: the two have the same X pointer address.\n");
     }
     if(a.GetYPtr()==b.GetYPtr()){
-        printf("Warning: the two have the same Y pointer address.\n");
+        fprintf(stderr,"Test warning: the two have the same Y pointer address.\n");
     }
 
     if(a.GetSize()!=b.GetSize()){
-        printf("Failed: different size.\n");
+        fprintf(stderr,"Test failed: different size.\n");
         return false;
     }
     double size = a.GetSize();
     double diff=fabs(a.GetRange()-b.GetRange());
     if(diff>precision){
-        printf("Failed: range difference %.10f greater than precision %.10f\n",diff,precision);
+        fprintf(stderr,"Test failed: range difference %.10f greater than precision %.10f\n",diff,precision);
         return false;
     }
 

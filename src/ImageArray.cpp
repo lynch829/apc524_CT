@@ -1,15 +1,20 @@
 #include "ImageArray.h"
 #include "globals.h"
 
-ImageArray::ImageArray():_size(0){};
-ImageArray::~ImageArray(){};
+ImageArray::ImageArray():_size(0){}
+ImageArray::~ImageArray()
+{
+    _angle.clear();
+    _filtered.clear();
+    _curve.clear();
+}
 
 int ImageArray::GetSize()
 {
     return _size;
 }
 
-double& ImageArray::GetAngle(int i)
+double ImageArray::GetAngle(int i)
 {
     return _angle[i];
 }
@@ -31,7 +36,7 @@ void ImageArray::Print()
 {
     for(int i=0;i<_size;i++){
         _curve[i].Print();
-        std::cout<<std::endl;
+
     }
 }
 
@@ -39,7 +44,7 @@ void ImageArray::PrintFiltered()
 {
     for(int i=0;i<_size;i++){
         _filtered[i].Print();
-         std::cout<<std::endl;
+        printf("\n");
     }
 }
 
@@ -48,12 +53,12 @@ void ImageArray::PrintSinogram(double spacing)
     bool same_size = true;
     for(int i=0;i<_size-1;i++)
         if(_curve[i].GetSize()!=_curve[i+1].GetSize()) {same_size = false; break;}
-    if(same_size){ std::cerr<<"same size, preparing to print()\n";
+    if(same_size)
     for(int i=_size-1;i>=0;i--){
          for(int j=0;j<_curve[i].GetSize();j++)
              printf("%.8f ",(_curve[i])[j]);
          printf("\n");
-    }}
+    }
     else
     for(int i=_size-1;i>=0;i++){
          for(double j=-_curve[i].GetRange();j<_curve[i].GetRange();j+=spacing)

@@ -13,7 +13,7 @@ public:
     ~ImageArray();
 
     int GetSize();
-    double& GetAngle(int);
+    double GetAngle(int);
     double GetRange();
 
     NumCurve& GetCurve(int);
@@ -21,7 +21,6 @@ public:
     void PushBack(double, const NumCurve& );
     void ConvolveWithKernal(double (*kernal)(int,double)=Hamming);
     
-
     void Print();
     void PrintFiltered();
     void PrintSinogram(double spacing = 0.01);
