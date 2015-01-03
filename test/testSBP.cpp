@@ -18,7 +18,7 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 5;	// range of the geometry
-    const int size=2;	// number of view
+    const int size=200;	// number of view
     const int Nres=1000;	// resolution/ N of point in the projected curve.
     double angle[size];	// array containing size angles.
 
