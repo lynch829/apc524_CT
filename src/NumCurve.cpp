@@ -117,13 +117,17 @@ NumCurve::~NumCurve()
 
 double NumCurve::operator()(double x, Interpolator* intpl) const
 {
+
     if(intpl==0){
         double d = 2*_r/(_size-1);
         int i0 = int((x+_r)/d);	// recall An = A0 + i*d
         int i1 = i0 +1;
+        while ( x > _datax[i1] && i1 < _size) {i0++;i1++;}
+        while ( x < _datax[i0] && i0 >= 0) {i0--;i1--;}	// move interval to match with given point.
         if ( i1>_size-1 || i0 < 0 ) return 0;
         else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
     }
+
     else{
         int dim=1; //dimension is 1
         vector<double> x_in(dim,x); //set coord. to be interpolated at
