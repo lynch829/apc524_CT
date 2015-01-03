@@ -4,8 +4,9 @@
 #include "Image.h"
 #include "Curve.h"
 #include "NumSurface.h"
+#include "ImageArray.h"
 #include "globals.h"
 
-NumSurface* FilteredBackProjection(double*, Curve*,int size, int Nres=100);
+NumSurface* FilteredBackProjection( ImageArray&, int Nres=100, double (*kernal)(int,double)=Hamming);
 
 #endif

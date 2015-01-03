@@ -26,6 +26,10 @@ public:
     virtual void Print(double xmin, double xmax, int N=100, Interpolator* intpl = 0);
                         //!< Output the function values in the range. S
 
+    virtual void ExportHDF(const char*); //!< Implements Image::ExportHDF
+    virtual void ExportHDF(const char*, double xmin, double xmax, int N=100, Interpolator* intpl = 0);
+                        //!< Output the function values to a HDF5 file for later process.
+
     void SetRange(double rx);   //!< Set symmetrized range of independent variable. S
 
     double GetRange() const;          //!< Returns the symmetrized range. S
@@ -33,7 +37,6 @@ public:
 protected:
 
     double _r;	//!< Range of the function, same as the radius. S
-
 };
 
 #endif

@@ -18,6 +18,7 @@ public:
     NumSurface(int sizex, int sizey);	//!< Default constructor, _size set and everything else null and 0.
     NumSurface(int sizex, double* x, int sizey, double* y, double** z);	//!< Initialize with a given x,y,z array.
     NumSurface(int sizex, double rx, int sizey, double ry, double** z);	//!< Initialize with a radius and an array.
+    NumSurface(int sizex, double rx, int sizey, double ry);	//!< Initialize with a radius and range.
     NumSurface(const NumSurface&);		//!< Copy constructor, same type as NumSurface.
     NumSurface& operator=(const NumSurface&);	//!< Assignment constructor for same type.
     NumSurface(int sizex, int sizey, const Surface&);	//!< Copy constr. for general Surface obj. Needs size info.
@@ -31,10 +32,17 @@ public:
     
     void Print();	//!< Default method, print out everything as three columns.
     void Print(double,double,int,double,double,int);	//!< Print out image.
+<<<<<<< HEAD
     double* GetXPtr();
     double* GetYPtr();
     double** GetZPtr();
     
+=======
+
+     void ExportHDF(const char*);//!< Default, export everything as three columns.
+    void ExportHDF(const char*, double,double,int,double,double,int);//!< Export data in the range.
+
+>>>>>>> 7ae13887afa1897a13ad2f21d1973d0f9d476d8b
 protected:
     double* _datax;	//!< X-Coordinates of the points.
     double* _datay;	//!< Y-Coordinates of the points.

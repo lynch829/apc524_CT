@@ -16,6 +16,7 @@ class NumCurve : public Curve{
 public:
 	NumCurve();		//!< Default constructor, everything null and 0.
 	NumCurve(int size);	//!< Default constructor, _size set and everything else null and 0./Users/qili/Downloads/apc524_CT/include/NumCurve.h
+	NumCurve(int size, double r);	//!< Default constructor, _size and range set
 	NumCurve(int size, double* x, double* y);	//!< Initialize with a given x and y array.
 	NumCurve(int size, double r, double* y);	//!< Initialize with a radius and an array.
 	NumCurve(const NumCurve&);		//!< Copy constructor, same type as NumCurve.
@@ -33,6 +34,8 @@ public:
 	void Print();	//!< Default method, print out everything as two columns.
 	void Print(double,double,int);	//!< Print for a given range.
 
+	void ExportHDF(const char*);	//!< Default method, export to HDF as two columns.
+	void ExportHDF(const char*, double,double,int);	//!< Export HDF for a given range.
 	double* GetXPtr();
 	double* GetYPtr();
 

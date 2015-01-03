@@ -18,6 +18,19 @@ NumCurve::NumCurve(int size): Curve(0), _size(size)
 {
     _datax = new double[_size];
     _datay = new double[_size];
+    for(int i=0;i<size;i++){
+        _datax[i]=0; _datay[i]=0;
+    }
+}
+// Constructor with a size and a range.
+NumCurve::NumCurve(int size, double r): Curve(r), _size(size)
+{
+    _datax = new double[_size];
+    _datay = new double[_size];
+    for(int i=0;i<size;i++){
+        _datax[i]=-r+i*(2*r)/size;
+        _datay[i]=0;
+    }
 }
 
 // Constructor with a given array.
@@ -37,6 +50,7 @@ NumCurve::NumCurve(int size, double* x, double* y): Curve(0), _size(size)
 // Constructor with a size, a range and a set of y-values.
 NumCurve::NumCurve(int size, double r, double* y): Curve(r), _size(size)
 {
+    _datax = new double[_size];
     _datay = new double[_size];
     for(int i=0;i<_size;i++){
         _datay[i] = y[i];
@@ -103,15 +117,52 @@ NumCurve::~NumCurve()
 
 double NumCurve::operator()(double x, Interpolator* intpl) const
 {
-//  Should implement the operator with an interpolation method. Have to check if the array is symmetric or not. 
-//  A better approach is to first treat as symmetric, if returns wrong position, then performs a search algorithm to determine the position.
 
-//    return intpl->Interpolate(x,_datax,_datay,_size);
-    double d = 2*_r/(_size-1);
-    int i0 = int((x+_r)/d);	// recall An = A0 + i*d
-    int i1 = i0 +1;
-    if ( i1>_size-1 || i0 < 0 ) return 0;
-    else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
+    if(intpl==0){
+        double d = 2*_r/(_size-1);
+        int i0 = int((x+_r)/d);	// recall An = A0 + i*d
+        int i1 = i0 +1;
+        while ( x > _datax[i1] && i1 < _size) {i0++;i1++;}
+        while ( x < _datax[i0] && i0 >= 0) {i0--;i1--;}	// move interval to match with given point.
+        if ( i1>_size-1 || i0 < 0 ) return 0;
+        else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
+    }
+
+    else{
+        int dim=1; //dimension is 1
+        vector<double> x_in(dim,x); //set coord. to be interpolated at
+        double** datax_in; //set original coord. to be searched for
+        datax_in = new double*[dim];
+        for(int i=0;i<dim;i++){
+            datax_in[i] = new double[_size];
+        }
+        for(int i=0;i<dim;i++){
+            for(int j=0;j<_size;j++){
+                datax_in[i][j] = _datax[j];
+            }
+        }
+        double* fx_in; //set given values on original coord.
+        fx_in = new double[_size];
+        for(int i=0;i<_size;i++){
+            fx_in[i] = _datay[i];
+        }
+        int* size_in; //set size of data in each dimension.
+        size_in = new int[dim];
+        for(int i=0;i<_size;i++){
+            size_in[i] =_size;
+        }
+        double ret = intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
+    
+        delete [] fx_in; //delete memory allocation
+        delete [] size_in;
+        for (int i=0;i<dim;i++){
+            for (int j=0;j<_size;j++){
+                 delete [] datax_in[i];
+            }
+        }
+        delete [] datax_in;
+        return ret;
+    }
 }
 
 double& NumCurve::operator[](int index)
@@ -144,7 +195,19 @@ double* NumCurve::GetYPtr()
 
 void NumCurve::Print()
 {
-    for(int i=0; i<_size; i++) printf("%.9f\t%.9f\n",_datax[i],_datay[i]);
+    for(int i=0; i<_size; i++) printf("%.9f %.9f\n",_datax[i],_datay[i]);
+}
+
+void NumCurve::ExportHDF(const char* file)
+{
+    hid_t file_id;
+    hsize_t dims[Dim1];
+    dims[0] = _size;
+    herr_t status;
+    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    status = H5LTmake_dataset(file_id,"/x",Dim1,dims,H5T_NATIVE_DOUBLE,_datax);
+    status = H5LTmake_dataset(file_id,"/data",Dim1,dims,H5T_NATIVE_DOUBLE,_datay);
+    status = H5Fclose(file_id);
 }
 
 int NumCurve::GetSize()

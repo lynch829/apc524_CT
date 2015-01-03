@@ -1,28 +1,29 @@
-
 CXX=g++
-CXX_FLAGS=-Wall -g -std=c++0x -I${INC_DIR} -I${SRC_DIR}
+CXX_FLAGS=-Wall -g -std=c++0x 
+INCLUDE= -I./include -I/usr/local/hdf5/include -I/usr/local/include
+LINKER= -L /usr/local/hdf5/lib
+LIBS= -lhdf5 -lhdf5_cpp -lhdf5_hl -lhdf5_hl_cpp
 
 INC_DIR=./include/
 SRC_DIR=./src/
 TEST_DIR=./test/
 
-test_sbp : ./test/test_sbp.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
-	${CXX} ${CXX_FLAGS} $^ -o $@
-	chmod +x $@
+.PHONY: test
+test : testNumCurve testSBP testNumSurface 
 
-test_anaimage : ./test/test_anaimage.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
-	${CXX} ${CXX_FLAGS} $^ -o $@
+test% : ./test/test%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
 	chmod +x $@
 test_volume : ./test/test_volume.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} $^ -o $@
 	chmod +x $@
 %.o : %.cpp
-	${CXX} ${CXX_FLAGS} -c $< -o $@
+	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
 
-${SRC_DIR}%.o : ${SRC_DIR}%.cpp
-	${CXX} ${CXX_FLAGS} -c $< -o $@
+#${SRC_DIR}%.o : ${SRC_DIR}%.cpp
+#	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
 
 .PHONY : clean
 clean :
-	rm ${SRC_DIR}*.o
-	rm ${TEST_DIR}*.o
+	@for i in `ls ${SRC_DIR}*.o`; do rm ${i}; done
+	@for i in `ls ${TEST_DIR}*.o`; do rm ${i}; done

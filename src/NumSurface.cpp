@@ -73,6 +73,27 @@ NumSurface::NumSurface(int sizex, double rx, int sizey, double ry, double** z)
     }
 }
 
+// Constructor with a given size, range and a set of z-values
+NumSurface::NumSurface(int sizex, double rx, int sizey, double ry)
+: Surface(rx,ry), _sizex(sizex), _sizey(sizey)
+{
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
+    _dataz = new double*[_sizex];
+    for(int i=0;i<_sizex;i++){
+        _dataz[i] = new double[_sizey];
+        _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+    }
+    for(int i=0;i<_sizey;i++){
+        _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            _dataz[i][j] = 0;
+        }
+    }
+}
+
 // Copy constructor that takes in the same type.
 NumSurface::NumSurface(const NumSurface& f) : Surface(f._rx, f._ry)
 {
@@ -166,12 +187,55 @@ NumSurface::~NumSurface()
 {
     if(_datax!=0) delete [] _datax;
     if(_datay!=0) delete [] _datay;
-    if(_dataz!=0) delete [] _dataz;
+    if(_dataz!=0) {
+        for(int i=0;i<_sizex;i++) delete [] _dataz[i];
+        delete [] _dataz;
+    }
 }
         
-double NumSurface::operator()(double x, double y,   Interpolator* intpl) const
+double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
-    return 0;
+    int dim=2; //dimmension is 2
+    vector<double> x_in; x_in.resize(dim);
+    x_in[1]=x ;x_in[2]=y; // set coordinate to be interpolated at
+    //printf("%.8f\n%.8f\n",x,y);
+    int* size_in; //set size of data in each dimension.
+    size_in = new int[dim];
+    size_in[0] = _sizex; size_in[1] = _sizey;
+    int size = size_in[0]; //size is the maximum of size in all dimensions
+    for(int i=0;i<dim;i++){
+        if(size > size_in[i]) size = size_in[i];
+    }
+    
+    double** datax_in; // get the existing coordinates
+    datax_in = new double*[dim];
+    for (int i=0;i<dim;i++){
+        datax_in[i] = new double[size];
+    }
+    for (int i=0;i<_sizex;i++){
+        datax_in[0][i]=_datax[i];
+    }
+    for (int i=0;i<_sizey;i++){
+        datax_in[1][i]=_datay[i];
+    }
+    
+    double* fx_in; //set given values on original coord.
+    fx_in = new double[_sizex*_sizey];
+    for(int j=0;j<_sizey;j++){
+        for(int i=0;i<_sizex;i++) {
+            fx_in[i+j*_sizex] = _dataz[i][j];
+        }
+    }
+    double ret = intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
+    delete [] fx_in; //delete memory allocation
+    delete [] size_in;
+    for (int i=0;i<dim;i++){
+        for (int j=0;j<size;j++){
+            delete [] datax_in[i];
+        }
+    }
+    delete [] datax_in;
+    return ret;
 }
 
 double& NumSurface::operator()(int indexX, int indexY)
@@ -181,6 +245,7 @@ double& NumSurface::operator()(int indexX, int indexY)
     return _dataz[indexX][indexY];
 }
     
+<<<<<<< HEAD
 double* NumSurface::GetXPtr(){
     return _datax;
 }
@@ -192,12 +257,44 @@ double* NumSurface::GetYPtr(){
 double** NumSurface::GetZPtr(){
     return _dataz;
 }
+=======
+>>>>>>> 7ae13887afa1897a13ad2f21d1973d0f9d476d8b
 void NumSurface::Print()
 {
-    for(int i=0;i<_sizex;i++){
-        for(int j=0;j<_sizey;j++)
+    for(int j=_sizey-1;j>=0;j--){
+        for(int i=0;i<_sizex;i++)
             printf("%.9f\t",_dataz[i][j]);
         printf("\n");
     }
 }
-void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int Ny){}
+
+void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int Ny)
+{
+
+}
+
+void NumSurface::ExportHDF(const char* file)
+{
+    double data[_sizex*_sizey];
+    for (int i = 0; i<_sizex; i++){
+        for (int j = 0; j<_sizey; j++){
+            data[i*_sizey + j] = _dataz[i][j];
+        }
+    }
+    hid_t file_id;
+    hsize_t dims[Dim2];
+    dims[0] = _sizex;
+    dims[1] = _sizey;
+    hsize_t dimx[Dim1];
+    dimx[0] = _sizex;
+    hsize_t dimy[Dim1];
+    dimy[0] = _sizey;
+    herr_t status;
+    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,_datax);
+    status = H5LTmake_dataset(file_id,"/y",Dim1,dimy,H5T_NATIVE_DOUBLE,_datay);
+    status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,data);
+    status = H5Fclose(file_id);
+}
+
+void NumSurface::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
