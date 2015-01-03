@@ -37,11 +37,11 @@ NumSurface::NumSurface(int sizex, double* x, int sizey, double* y, double** z)
         _datax[i] = x[i]-avgx; _dataz[i] = new double[_sizey];
     }
     double avgy = 0;		// y-direction,symmetrize the given array. Center them at 0.
-    for(int i=0;i<_sizey;i++){avgy += x[i];}
+    for(int i=0;i<_sizey;i++){avgy += y[i];}
     avgy /= _sizey;
     _datay = new double[_sizey];
     for(int i=0;i<_sizey;i++){
-        _datay[i] = x[i]-avgy;
+        _datay[i] = y[i]-avgy;
     }
     for(int i=0;i<_sizex;i++){
         for(int j=0;j<_sizey;j++){
@@ -98,7 +98,10 @@ NumSurface& NumSurface::operator=(const NumSurface& f)
 {
     if(_datax!=0) delete [] _datax;
     if(_datay!=0) delete [] _datay;
-    if(_dataz!=0) delete [] _dataz;
+    if(_dataz!=0) {
+        for(int i=0;i<_sizex;i++) delete [] _dataz[i];
+        delete [] _dataz;
+    }
     _sizex = f._sizex; _sizey = f._sizey;
     _datax = new double[_sizex];
     _datay = new double[_sizey];
@@ -174,6 +177,10 @@ NumSurface::~NumSurface()
         
 double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
+    if (intpl ==0){
+        return 0;
+    }
+    else{
     int dim=2; //dimmension is 2
     vector<double> x_in; x_in.resize(dim);
     x_in[1]=x ;x_in[2]=y; // set coordinate to be interpolated at
@@ -215,6 +222,7 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
     }
     delete [] datax_in;
     return ret;
+    }
 }
 
 double& NumSurface::operator()(int indexX, int indexY)
