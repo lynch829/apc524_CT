@@ -13,7 +13,8 @@ test : testNumCurve testSBP testNumSurface
 
 test% : ./test/test%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
-	chmod +x $@
+	@chmod +x $@
+	@mv $@ ./bin/
 
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@

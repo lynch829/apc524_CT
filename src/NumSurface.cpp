@@ -198,7 +198,6 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
     int dim=2; //dimmension is 2
     vector<double> x_in; x_in.resize(dim);
     x_in[1]=x ;x_in[2]=y; // set coordinate to be interpolated at
-    //printf("%.8f\n%.8f\n",x,y);
     int* size_in; //set size of data in each dimension.
     size_in = new int[dim];
     size_in[0] = _sizex; size_in[1] = _sizey;
@@ -240,8 +239,10 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 
 double& NumSurface::operator()(int indexX, int indexY)
 {
-    if(indexX < 0 || indexX >_sizex-1 || indexY <0 || indexY >_sizey-1)
-    printf("Index out of range");
+    if(indexX < 0 || indexX >_sizex-1 || indexY <0 || indexY >_sizey-1){
+        fprintf(stderr,"Error: NumSurface::operator(,) index %d %d out of range.\n",indexX,indexY);
+        indexX=0; indexY=0;
+    }
     return _dataz[indexX][indexY];
 }
     

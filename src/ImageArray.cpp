@@ -1,15 +1,20 @@
 #include "ImageArray.h"
 #include "globals.h"
 
-ImageArray::ImageArray():_size(0){};
-ImageArray::~ImageArray(){};
+ImageArray::ImageArray():_size(0){}
+ImageArray::~ImageArray()
+{
+    _angle.clear();
+    _filtered.clear();
+    _curve.clear();
+}
 
 int ImageArray::GetSize()
 {
     return _size;
 }
 
-double& ImageArray::GetAngle(int i)
+double ImageArray::GetAngle(int i)
 {
     return _angle[i];
 }
@@ -31,7 +36,7 @@ void ImageArray::Print()
 {
     for(int i=0;i<_size;i++){
         _curve[i].Print();
-        std::cout<<std::endl;
+
     }
 }
 
@@ -39,7 +44,7 @@ void ImageArray::PrintFiltered()
 {
     for(int i=0;i<_size;i++){
         _filtered[i].Print();
-         std::cout<<std::endl;
+        printf("\n");
     }
 }
 

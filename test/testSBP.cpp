@@ -5,7 +5,6 @@
 #include "Surface.h"
 #include "Trapezoid.h"
 #include "MCIntegrator.h"
-#include "SimpleBackProjection.h"
 #include "FilteredBackProjection.h"
 #include "TestFunctions.h"
 #include "globals.h"
