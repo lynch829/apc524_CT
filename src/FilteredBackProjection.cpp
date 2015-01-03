@@ -8,7 +8,7 @@ NumSurface* FilteredBackProjection( ImageArray& array, int Nres, double (*kernal
 {
     const double range = array.GetRange();
 
-//    array.ConvolveWithKernal(kernal);	// filtered
+    array.ConvolveWithKernal(kernal);	// filtered
     NumSurface* rec = new NumSurface(Nres,range,Nres,range);
     int Nangle = array.GetSize();
     for(int ll=0; ll<Nangle; ll++){	// iterate over all angle of view
@@ -19,11 +19,8 @@ NumSurface* FilteredBackProjection( ImageArray& array, int Nres, double (*kernal
                 double y = -range + j*2*range/(Nres-1);
                 double t = x*cos(angle) + y*sin(angle);	// distance to origin for angle ll.
                 (*rec)(i,j) += (array.GetFilteredCurve(ll))(t,0)*pi/Nangle; // superpose the value.
-                std::cerr << (array.GetFilteredCurve(ll))(t,0)<<"\t"<<(*rec)(i,j)<<std::endl;
             }
         }
-//        array.GetFilteredCurve(ll).Print();
-    rec->Print();
     }
     return rec;
 }

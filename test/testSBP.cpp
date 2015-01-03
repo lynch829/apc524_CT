@@ -18,7 +18,7 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 5;	// range of the geometry
-    const int size=1;	// number of view
+    const int size=2;	// number of view
     const int Nres=1000;	// resolution/ N of point in the projected curve.
     double angle[size];	// array containing size angles.
 
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
 //    sf = FilteredSymmetricBackProjection(angle,container,size,Nres);	// filtered back-projection
     sf = FilteredBackProjection(array,Nres,Hamming);	// filtered back-projection
 //    array.PrintFiltered();
-//    sf->Print();	// print out the result.
+    sf->Print();	// print out the result.
 
     delete sf;
     delete l;

@@ -73,9 +73,10 @@ void ImageArray::ConvolveWithKernal(double (*kernal)(int,double))
 {
     double _range = this->GetRange();
     for(int i=0;i<_size;i++){
-        double tau = 2*_range/(_curve[i].GetSize()-1);
-        for(int j=0;j<_curve[i].GetSize();j++){		// beginning convolution.
-            for(int k=j-_curve[i].GetSize()+1;k<j+1;k++)
+        int Npt = _curve[i].GetSize();
+        double tau = 2*_range/(Npt-1);			// Nyquist frequency
+        for(int j=0;j<Npt;j++){		// beginning convolution.
+            for(int k=j-Npt+1;k<j+1;k++)
                 _filtered[i][j] += tau * kernal(k,tau)*(_curve[i])[j-k];
         }
     }
