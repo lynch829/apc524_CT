@@ -18,6 +18,7 @@ public:
     NumSurface(int sizex, int sizey);	//!< Default constructor, _size set and everything else null and 0.
     NumSurface(int sizex, double* x, int sizey, double* y, double** z);	//!< Initialize with a given x,y,z array.
     NumSurface(int sizex, double rx, int sizey, double ry, double** z);	//!< Initialize with a radius and an array.
+    NumSurface(int sizex, double rx, int sizey, double ry);	//!< Initialize with a radius and range.
     NumSurface(const NumSurface&);		//!< Copy constructor, same type as NumSurface.
     NumSurface& operator=(const NumSurface&);	//!< Assignment constructor for same type.
     NumSurface(int sizex, int sizey, const Surface&);	//!< Copy constr. for general Surface obj. Needs size info.

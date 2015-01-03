@@ -73,6 +73,24 @@ NumSurface::NumSurface(int sizex, double rx, int sizey, double ry, double** z)
     }
 }
 
+// Constructor with a given size, range and a set of z-values
+NumSurface::NumSurface(int sizex, double rx, int sizey, double ry)
+: Surface(rx,ry), _sizex(sizex), _sizey(sizey)
+{
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
+    _dataz = new double*[_sizex];
+    for(int i=0;i<_sizex;i++){
+        _dataz[i] = new double[_sizey];
+        _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+    }
+    for(int i=0;i<_sizey;i++){
+        _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
+    }
+    for(int i=0;i<_sizex;i++)
+        for(int j=0;j<_sizey;j++)
+            _dataz[i][j] = 0;
+}
 // Copy constructor that takes in the same type.
 NumSurface::NumSurface(const NumSurface& f) : Surface(f._rx, f._ry)
 {
@@ -219,8 +237,9 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 
 double& NumSurface::operator()(int indexX, int indexY)
 {
-    if(indexX < 0 || indexX >_sizex-1 || indexY <0 || indexY >_sizey-1)
-    printf("Index out of range");
+    if(indexX < 0 || indexX >_sizex-1 || indexY <0 || indexY >_sizey-1){
+        printf("Index out of range"); return _dataz[0][0];
+    }
     return _dataz[indexX][indexY];
 }
     
