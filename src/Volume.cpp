@@ -44,13 +44,12 @@ NumSurface Volume::GetProjection(LineIntegral* l, double angle, double spacingr,
     double **z = ret.GetZPtr();
     
     int i = 0;
-    int j = 0;
     for(double d1 = -_rz; d1 < _rz; d1 += spacingz){
         x[i] = d1;
+        int j = 0;
         for(double d2 = -_r; d2 < _r; d2 += spacingr){
             y[j] = d2;
             z[i][j] = this->GetProjectionAtAngle(l,angle,d2,d1,intpl);
-            printf("%.9f %.9f\n",d2,d1);
             j++;
         }
         i++;
@@ -63,7 +62,6 @@ double Volume::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d,
     double ri = sqrt(_r*_r-d*d);	//!< t goes from -range to +range
     std::function<double (double)> fptr = [angle,d,z,ri,intpl,this](double t) -> double{
         double temp = (*this)((ri-t)*sin(angle)+d*cos(angle),(t-ri)*cos(angle)+d*sin(angle),z,intpl);
-        printf("value is %lf\n", temp);
         return temp;
     };
     return l->Integrate(fptr, 0 , 2*ri, _step);
