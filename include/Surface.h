@@ -31,7 +31,7 @@ public:
     double GetRangeY() const; //!< Returns symmetrized range in Y direction. S
     double GetRadius() const; //!< Returns the smallest radius that would enclose the figure. S
 
-    void SetIntegralStep(); 	//!< Sets the stepsize in the line integral. S
+    void SetIntegralStep(double epsilon); 	//!< Sets the stepsize in the line integral. S
     double GetIntegralStep() const;	//!< Returns the step length of line integral. S
 
     NumCurve GetProjection(LineIntegral* l, double angle=0, double spacing=0.01,Interpolator* intpl=0);

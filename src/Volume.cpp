@@ -29,6 +29,10 @@ double Volume::GetRangeZ() const { return _rz; }
 
 double Volume::GetRadius() const { return _r; }
 
+void Volume::SetIntegralStep(double epsilon){
+    _step = epsilon;
+}
+
 NumSurface Volume::GetProjection(LineIntegral* l, double angle, double spacingr, double spacingz, Interpolator* intpl){
     int counterr = 0;
     int counterz = 0;

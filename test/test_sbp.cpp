@@ -44,12 +44,16 @@ int main(int argc, char* argv[]){
     const int size=256;
     const int Nres=200;
     double angle[size];
+    
+//    omp_set_num_threads(atoi(argv[2]));
+    
     NumCurve* container = new NumCurve[size];
     for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size; //  since 180 symmetry, do not include endpoint.
 
     Surface* gauss = new AnaSurface (gauss_2D, range, range);
     LineIntegral* l = new Trapezoid();
     NumSurface* sf;
+
 
     for(int i=0; i<size; i++){
         NumCurve a = gauss->GetProjection(l,angle[i],0.1);

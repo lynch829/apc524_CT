@@ -5,6 +5,8 @@
 #include "Surface.h"
 #include "Trapezoid.h"
 #include "MCIntegrator.h"
+#include "Romberg.h"
+#include "NearestNeighborIntpl.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -36,6 +38,7 @@ int main(int argc, char* argv[]){
 
 //  creates a nonsymmetric gaussian on 20 x 20 region.
     Image* gauss  = new AnaSurface( gauss_2D, 10, 10);
+    Interpolator* intpl= new NearestNeighborIntpl();
 
 // creates a numerical line using gauss_1D.
 //    Curve* gauss1 = new AnaCurve( gauss_1D,10);
@@ -45,17 +48,19 @@ int main(int argc, char* argv[]){
     Surface* gauss2 = new AnaSurface( gauss_2D,10,10);
     NumSurface* num_gauss2 = new NumSurface(100,100,*gauss2);   
 // defines trapezoid integration rule.
-    LineIntegral* l=new Trapezoid();
-
+//    LineIntegral* l=new Trapezoid();
+    LineIntegral* l = new Romberg();
+    
 //  since Projection is defined
-
     switch(argc)
     {
        case 1 : {num_gauss2->Print(); delete gauss2; delete num_gauss2;return 0;}
   //     case 1 : {num_gauss1->Print(); delete gauss1; delete num_gauss1;return 0;}
         case 2 : {
-		 Surface* ptr = (Surface*)gauss; //Image has no GetProjection, must downcast.
-                 NumCurve a; a = ptr->GetProjection(l,atof(argv[1]),0.01);
+		 Surface* ptr = (Surface*)num_gauss2; //Image has no GetProjection, must downcast.
+            ptr->SetIntegralStep(0.00001);
+            
+                 NumCurve a; a = ptr->GetProjection(l,atof(argv[1]),0.01,intpl);
                  a.Print();
                  delete gauss; return 0;
 		 }

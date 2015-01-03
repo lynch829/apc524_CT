@@ -27,6 +27,7 @@ public:
     double GetRangeY() const; //! Returns symmetrized range in Y direction. S
     double GetRangeZ() const; //! Returns symmetrized range in Z direction. S
     double GetRadius() const; //! Returns smallest radius that would enclose the X-Y cross-section. S
+    void SetIntegralStep(double epsilon);
     NumSurface GetProjection(LineIntegral* l, double angle=0, double spacingr=0.01, double spacingz=0.01, Interpolator* intpl=0);    //!< Given angle, spacing of lines and an integration method, performs line integral. LineIntegral method is mandatory, and angle and spacing has default parameters. Angle starts from X-axis and moves counter-clockwise. S
     double GetProjectionAtAngle(LineIntegral* l, double angle_arg=0, double d=0, double z=0, Interpolator* intpl=0);    //!< Given angle, performs line integral at height z. LineIntegral method is mandatory.Angle starts from X-axis and moves counter-clockwise. S
 protected:

@@ -43,9 +43,13 @@ NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, I
         y[i] = this->GetProjectionAtAngle(l,angle,d,intpl);
         i++;
     }
+    printf("get\n");
     return NumCurve(counter,x,y);
 }
 
+void Surface::SetIntegralStep(double epsilon){
+    _step = epsilon;
+}
 double Surface::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d, Interpolator* intpl){
 	double angle = angle_arg-pi/2;
 	double ri = sqrt(_r*_r-d*d);	//!< t goes from -range to +range
