@@ -11,21 +11,17 @@ TEST_DIR=./test/
 .PHONY: test
 test : testNumCurve testSBP testNumSurface 
 
-test% : ./test/test%.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+test% : ./test/test%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
 	chmod +x $@
-
-#testSBP : ./test/testSBP.cpp $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
-#	${CXX} ${CXX_FLAGS} $^ -o $@
-#	chmod +x $@
 
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
 
-${SRC_DIR}%.o : ${SRC_DIR}%.cpp
-	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
+#${SRC_DIR}%.o : ${SRC_DIR}%.cpp
+#	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
 
 .PHONY : clean
 clean :
-	rm ${SRC_DIR}*.o
-	rm ${TEST_DIR}*.o
+	@for i in `ls ${SRC_DIR}*.o`; do rm ${i}; done
+	@for i in `ls ${TEST_DIR}*.o`; do rm ${i}; done

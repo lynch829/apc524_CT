@@ -23,7 +23,10 @@ class Image{
 public:
     Image(Dimension dim = Dim0);//!< Constructor. Dimension by default is 0. S
     virtual ~Image();		//!< Virtual destructor, in case someone calls delete derived. S
+
     virtual void Print() = 0;	//!< Default method for printing. S
+    virtual void ExportHDF(const char*) = 0;	//!< Method to print to HDF5 file.
+
     Dimension GetDimension();	//!< Returns the dimension of the image. S
 
 protected:

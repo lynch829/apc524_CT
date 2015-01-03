@@ -15,11 +15,8 @@ void Volume::SetRange(double rx, double ry, double rz){
 }
 
 double Volume::GetRangeX() const { return _rx; }
-
 double Volume::GetRangeY() const { return _ry; }
-
 double Volume::GetRangeZ() const { return _rz; }
-
 double Volume::GetRadius() const { return _r; }
 
 void Volume::Print()
@@ -27,6 +24,22 @@ void Volume::Print()
 
 void Volume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z, Interpolator* intpl)
 {
+    double stepx = (xmax-xmin)/Nx; double stepy = (ymax-ymin)/Ny;
+    for( double y = ymax; y >= ymin; y -= stepy){
+        for( double x = xmin; x <= xmax; x += stepx)
+            printf(" %.9f", (*this)(x,y,z,intpl));
+        printf("\n");
+    }
+}
+
+void Volume::ExportHDF(const char* file)
+{
+    this->ExportHDF(file,-_rx,_rx,200,-_ry,_ry,200,0.0,0.0,0.0);
+}
+
+void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double zmin, double zmax, int Nz, Interpolator* intpl)
+{
+    double z = 0; //temporary.
     hid_t file_id;
     hsize_t dims[Dim2]={Nx, Ny};
     hsize_t dimx[Dim1]={Nx};
@@ -54,4 +67,3 @@ void Volume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, i
     status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,data);
     status = H5Fclose(file_id);
 }
-

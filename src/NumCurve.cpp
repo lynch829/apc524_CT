@@ -4,7 +4,6 @@
 */
 #include "NumCurve.h"
 #include <stdio.h>
-#define FILE "output/Curve.h5"
 #define RANK 1
 
 // Default constructor, everything to NULL.
@@ -197,10 +196,15 @@ double* NumCurve::GetYPtr()
 
 void NumCurve::Print()
 {
+    for(int i=0; i<_size; i++) printf("%.9f %.9f\n",_datax[i],_datay[i]);
+}
+
+void NumCurve::ExportHDF(const char* file)
+{
     hid_t file_id;
     hsize_t dims[RANK]={_size};
     herr_t status;
-    file_id = H5Fcreate(FILE, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset(file_id,"/x",RANK,dims,H5T_NATIVE_DOUBLE,_datax);
     status = H5LTmake_dataset(file_id,"/data",RANK,dims,H5T_NATIVE_DOUBLE,_datay);
     status = H5Fclose(file_id);

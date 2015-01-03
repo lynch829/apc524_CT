@@ -38,6 +38,7 @@ int main(int argc, char* argv[]){
     sf = FilteredBackProjection(array,Nres,Hamming);	// filtered back-projection
 //    array.PrintFiltered();
     sf->Print();	// print out the result.
+    sf->ExportHDF("output/test.h5");
 
     delete sf;
     delete l;

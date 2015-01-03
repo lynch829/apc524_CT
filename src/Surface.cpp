@@ -5,7 +5,6 @@
 #include "Surface.h"
 #include <stdio.h>
 #include <math.h>
-#define FILE "output/Surface.h5"
 
 Surface::Surface(double rx, double ry) : Image(Dim2){
     _rx = rx; _ry = ry;
@@ -47,9 +46,26 @@ double Surface::GetProjectionAtAngle(LineIntegral* l, double angle, double d, In
 }
 
 void Surface::Print()
-{ this->Print(-_rx,_rx,200,-_ry,_ry,200); }
+{
+  this->Print(-_rx,_rx,200,-_ry,_ry,200);
+}
 
 void Surface::Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl)
+{
+    double stepx = (xmax-xmin)/Nx; double stepy = (ymax-ymin)/Ny;
+    for( double y = ymax; y >= ymin; y -= stepy){
+        for( double x = xmin; x <= xmax; x += stepx)
+            printf(" %.9f", (*this)(x,y,intpl));
+        printf("\n");
+    }
+}
+
+void Surface::ExportHDF(const char* file)
+{
+    this->ExportHDF(file,-_rx,_rx,200,-_ry,_ry,200);
+}
+
+void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl)
 {
     hid_t file_id;
     hsize_t dims[Dim2]={Nx, Ny};
@@ -70,7 +86,7 @@ void Surface::Print(double xmin, double xmax, int Nx, double ymin, double ymax, 
             data[i][j] = (*this)(x[i], y[j], intpl);
         }
     }
-    file_id = H5Fcreate(FILE, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,x);
     status = H5LTmake_dataset(file_id,"/y",Dim1,dimy,H5T_NATIVE_DOUBLE,y);
     status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,data);
