@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
     ImageArray array;
     for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size; //  since 180 symmetry, do not include endpoint.
 
-    Surface* gauss = new AnaSurface (Rectangle, range, range); // a circle defined on a 10 by 10 grid.
+    Surface* gauss = new AnaSurface (Circle, range, range); // a circle defined on a 10 by 10 grid.
     LineIntegral* l = new Trapezoid();	// integ. method
     NumSurface* sf;	// numerical surface to contain the reconstructed result.
 
