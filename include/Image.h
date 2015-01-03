@@ -5,8 +5,10 @@
 #ifndef IMAGE_ABSTRACT
 #define IMAGE_ABSTRACT 1
 
-#include"globals.h"
-#include"LineIntegral.h"
+#include "globals.h"
+#include "LineIntegral.h"
+#include "hdf5.h"
+#include "hdf5_hl.h"
 
 /*!
 An abstract Image class should contain the following abstract virtual methods:

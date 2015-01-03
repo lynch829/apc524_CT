@@ -1,4 +1,4 @@
-    #ifndef ANAIMAGE
+#ifndef ANAIMAGE
 #define ANAIMAGE 1
 
 #include "Image.h"

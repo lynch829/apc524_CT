@@ -5,6 +5,8 @@
 
 #include "NumSurface.h"
 #include <stdio.h>
+#define FILE "output/Surface.h5"
+
 
 //! Default constructor, everything to Null
 NumSurface::NumSurface() : Surface(0,0)
@@ -227,10 +229,15 @@ double& NumSurface::operator()(int indexX, int indexY)
     
 void NumSurface::Print()
 {
-    for(int j=_sizey-1;j>=0;j--){
-        for(int i=0;i<_sizex;i++)
-            printf("%.9f\t",_dataz[i][j]);
-        printf("\n");
-    }
+    hid_t file_id;
+    hsize_t dims[Dim2]={_sizex, _sizey};
+    hsize_t dimx[Dim1]={_sizex};
+    hsize_t dimy[Dim1]={_sizey};
+    herr_t status;
+    file_id = H5Fcreate(FILE, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,_datax);
+    status = H5LTmake_dataset(file_id,"/y",Dim1,dimy,H5T_NATIVE_DOUBLE,_datay);
+    status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,_dataz);
+    status = H5Fclose(file_id);
 }
 void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int Ny){}
