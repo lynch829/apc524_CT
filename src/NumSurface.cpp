@@ -245,8 +245,7 @@ double& NumSurface::operator()(int indexX, int indexY)
     }
     return _dataz[indexX][indexY];
 }
-    
-<<<<<<< HEAD
+
 double* NumSurface::GetXPtr(){
     return _datax;
 }
@@ -258,8 +257,7 @@ double* NumSurface::GetYPtr(){
 double** NumSurface::GetZPtr(){
     return _dataz;
 }
-=======
->>>>>>> 7ae13887afa1897a13ad2f21d1973d0f9d476d8b
+
 void NumSurface::Print()
 {
     for(int j=_sizey-1;j>=0;j--){

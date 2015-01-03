@@ -32,17 +32,14 @@ public:
     
     void Print();	//!< Default method, print out everything as three columns.
     void Print(double,double,int,double,double,int);	//!< Print out image.
-<<<<<<< HEAD
+
     double* GetXPtr();
     double* GetYPtr();
     double** GetZPtr();
     
-=======
-
-     void ExportHDF(const char*);//!< Default, export everything as three columns.
+    void ExportHDF(const char*);//!< Default, export everything as three columns.
     void ExportHDF(const char*, double,double,int,double,double,int);//!< Export data in the range.
 
->>>>>>> 7ae13887afa1897a13ad2f21d1973d0f9d476d8b
 protected:
     double* _datax;	//!< X-Coordinates of the points.
     double* _datay;	//!< Y-Coordinates of the points.
@@ -50,6 +47,5 @@ protected:
     int _sizex;	//!< size of the array in x direction.
     int _sizey; //!< size of the array in y direction.
 };
-
 
 #endif

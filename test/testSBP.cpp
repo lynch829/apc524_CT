@@ -30,10 +30,10 @@ int main(int argc, char* argv[]){
     LineIntegral* l;
     Trapezoid t; l = &t;	// integ. method
     NumSurface sf;	// Num Surf to contain reconstructed result.
-
+NumCurve a = gauss->GetProjection(l,0,0.1);
     for(int i=0; i<size; i++){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
-        array.PushBack(angle[i], gauss->GetProjection(l,angle[i],0.1));
+        array.PushBack(angle[i], a);
     }
 
     sf = *(FilteredBackProjection(array,Nres,Hamming));

@@ -31,23 +31,13 @@ NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, I
     double *x = ret.GetXPtr();
     double *y = ret.GetYPtr();
 
-    int i=0;
-    for(double d = -_r; d < _r; d += spacing){
-        x[i] = d;
-        y[i] = this->GetProjectionAtAngle(l,angle,d,intpl);
-        i++;
-    }
-    return NumCurve(counter,x,y);
+    for(int i=0; i < N; i++)
+        y[i] = this->GetProjectionAtAngle(l,angle,x[i],intpl);
+    return ret;
 }
 
 void Surface::SetIntegralStep(double epsilon){
     _step = epsilon;
-}
-double Surface::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d, Interpolator* intpl){
-	double angle = angle_arg-pi/2;
-    for(int i=0; i < N; i++)
-        y[i] = this->GetProjectionAtAngle(l,angle,x[i],intpl);
-    return ret;
 }
 
 double Surface::GetProjectionAtAngle(LineIntegral* l, double angle, double d, Interpolator* intpl){
