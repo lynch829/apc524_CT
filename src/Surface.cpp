@@ -43,7 +43,6 @@ NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, I
         y[i] = this->GetProjectionAtAngle(l,angle,d,intpl);
         i++;
     }
-    printf("get\n");
     return NumCurve(counter,x,y);
 }
 
