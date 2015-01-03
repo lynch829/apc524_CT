@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm
+import sys
+
+#print str(sys.argv[1])
+data=np.loadtxt(str(sys.argv[1]))
+fig, ax = plt.subplots()
+cax = plt.imshow(data,cmap=cm.rainbow)
+maximum=data.max()
+minimum=data.min()
+cbar = fig.colorbar(cax,ticks=np.linspace(minimum,maximum,10))
+#cbar.ax.set_yticklabels([, '0', '> 1'])# vertically oriented colorbar
+plt.show()
