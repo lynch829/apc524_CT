@@ -4,45 +4,25 @@
 #include <stdio.h>
 #include <iostream>
 
-NumSurface* FilteredBackProjection( double* angle, Curve* curve, int size, int Nres)
+NumSurface* FilteredBackProjection( ImageArray& array, int Nres, double (*kernal)(int,double))
 {
-    NumCurve* curves = (NumCurve*) curve;	// match address increment. Necessary.
-    double range = 0;
-    for(int i = 0; i<size; i++) range = max<double>((curves)[i].GetRange(),range); // find range (largest)
+    const double range = array.GetRange();
 
-//---------------convolute with ramp filter--------------------------------------
-    for(int i = 0; i<size; i++){	// iterate over all angle of view.
-        double tau = 2*range/(curves[i].GetSize()-1);	// spacing in real space.
-        NumCurve conv = curves[i];	// temporary object to hold value.
-        for(int j=0;j<curves[i].GetSize();j++){	// convolution.
-            conv[j] = 0;
-            for(int k=j-curves[i].GetSize()+1;k<j+1;k++)
-                conv[j] +=tau*Hamming(k,tau)*(curves[i])[j-k];
-        }
-        curves[i]=conv;
-    }
-//-----------------back projection.-----------------------------------------
-
-    double **z = new double*[Nres];	// final value of the 2D surface to be reconstructed.
-    for(int i=0;i<Nres;i++){
-        z[i] = new double[Nres];
-        for(int j=0;j<Nres;j++) z[i][j] = 0;
-    }
-
-    for(int ll=0; ll<size; ll++){	// iterate over all angle of view
+    array.ConvolveWithKernal(kernal);	// filtered
+    NumSurface* rec = new NumSurface(Nres,range,Nres,range);
+    int Nangle = array.GetSize();
+    for(int ll=0; ll<Nangle; ll++){	// iterate over all angle of view
+        double angle = array.GetAngle(ll);
         for( int i=0; i<Nres; i++){	// loop over X-coordinate
             double x = -range + i*2*range/(Nres-1);
             for( int j=0; j<Nres; j++){	// loop over y-coordinate
                 double y = -range + j*2*range/(Nres-1);
-                double t = x*cos(angle[ll]) + y*sin(angle[ll]);	// distance to origin for angle ll.
-                z[i][j] += (curves)[ll](t,0)*pi/size;	// superpose the value.
+                double t = x*cos(angle) + y*sin(angle);	// distance to origin for angle ll.
+                (*rec)(i,j) += (array.GetFilteredCurve(ll))(t,0)*pi/Nangle; // superpose the value.
             }
         }
     }
-    NumSurface* recon = new NumSurface(Nres,range,Nres,range,z);
-    for(int i=0;i<Nres;i++) delete [] z[i];
-    delete [] z;
-    return recon;
+    return rec;
 }
 
 NumSurface* FilteredSymmetricBackProjection( double* angle, Curve* curve, int size, int Nres)
