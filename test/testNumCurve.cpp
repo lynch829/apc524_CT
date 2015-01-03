@@ -41,7 +41,7 @@ int main(int argc, char* argv[]){
 
 // test assignment
     if(choice==0)aptr->Print();
-    if(choice==1)bptr->Print();
+    if(choice==1)bptr->Print(); 
     if(choice==2)c->Print();
     if(choice==3)d.Print();
     if(choice==4)cptr->Print(-2*range,2*range,100000);

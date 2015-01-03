@@ -21,9 +21,10 @@ double Curve::GetRange() const{
 void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, Interpolator* intpl)
 {
   hid_t file_id;
-  hsize_t dims[Dim1]={N};
   double x[N];
   double data[N];
+  hsize_t dims[Dim1];
+  dims[0] = N;
   double step = (xmax-xmin)/N;
   herr_t status;
   for( int i = 0; i < N; i++) {

@@ -1,14 +1,16 @@
-# Python script to plot data from "Curve.h5"
+# Python script to plot data from 
+# /usr/bin/env python
 
 import h5py
 import matplotlib.pyplot as plt
+import sys
 
-fname = "Curve"
+fname = sys.argv[1]
 
 infile = h5py.File(fname + ".h5", 'r')
 x = infile["x"]
 data = infile["data"]
 plt.plot(x, data)
-plt.savefig(fname + ".eps")
+plt.savefig(fname + ".png")
 infile.close()
 
