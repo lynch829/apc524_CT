@@ -268,9 +268,13 @@ void NumSurface::ExportHDF(const char* file)
         }
     }
     hid_t file_id;
-    hsize_t dims[Dim2]={_sizex, _sizey};
-    hsize_t dimx[Dim1]={_sizex};
-    hsize_t dimy[Dim1]={_sizey};
+    hsize_t dims[Dim2];
+    dims[0] = _sizex;
+    dims[1] = _sizey;
+    hsize_t dimx[Dim1];
+    dimx[0] = _sizex;
+    hsize_t dimy[Dim1];
+    dimy[0] = _sizey;
     herr_t status;
     file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,_datax);

@@ -68,12 +68,16 @@ void Surface::ExportHDF(const char* file)
 void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl)
 {
     hid_t file_id;
-    hsize_t dims[Dim2]={Nx, Ny};
-    hsize_t dimx[Dim1]={Nx};
-    hsize_t dimy[Dim1]={Ny};
+    hsize_t dims[Dim2];
+    dims[0] = Nx;
+    dims[1] = Ny; 
+    hsize_t dimx[Dim1];
+    dimx[0] = Nx;
+    hsize_t dimy[Dim1];
+    dimy[0] = Ny;
     double x[Nx];
     double y[Ny];
-    double data[Nx][Ny];
+    double data[Nx*Ny];
     double stepx = (xmax-xmin)/Nx;
     double stepy = (ymax-ymin)/Ny;
     herr_t status;
@@ -83,7 +87,7 @@ void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, doub
     for( int i = 0; i < Nx; i++) {
         x[i] = xmin + stepx * i;
         for( int j = 0; j < Ny; j++) {
-            data[i][j] = (*this)(x[i], y[j], intpl);
+            data[i*Ny + j] = (*this)(x[i], y[j], intpl);
         }
     }
     file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
