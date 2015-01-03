@@ -261,6 +261,12 @@ void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int N
 
 void NumSurface::ExportHDF(const char* file)
 {
+    double data[_sizex*_sizey];
+    for (int i = 0; i<_sizex; i++){
+        for (int j = 0; j<_sizey; j++){
+            data[i*_sizey + j] = _dataz[i][j];
+        }
+    }
     hid_t file_id;
     hsize_t dims[Dim2]={_sizex, _sizey};
     hsize_t dimx[Dim1]={_sizex};
@@ -269,7 +275,7 @@ void NumSurface::ExportHDF(const char* file)
     file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,_datax);
     status = H5LTmake_dataset(file_id,"/y",Dim1,dimy,H5T_NATIVE_DOUBLE,_datay);
-    status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,_dataz);
+    status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,data);
     status = H5Fclose(file_id);
 }
 
