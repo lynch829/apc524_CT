@@ -41,13 +41,17 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
 {
     double z = 0; //temporary.
     hid_t file_id;
-    hsize_t dims[Dim2]={Nx, Ny};
-    hsize_t dimx[Dim1]={Nx};
-    hsize_t dimy[Dim1]={Ny};
+    hsize_t dims[Dim2];
+    dims[0] = Nx;
+    dims[1] = Ny;
+    hsize_t dimx[Dim1];
+    dimx[0] = Nx;
+    hsize_t dimy[Dim1];
+    dimy[0] = Ny;
     hsize_t dimz[Dim1]={1};
     double x[Nx];
     double y[Ny];
-    double data[Nx][Ny];
+    double data[Nx*Ny];
     double stepx = (xmax-xmin)/Nx;
     double stepy = (ymax-ymin)/Ny;
     herr_t status;
@@ -57,7 +61,7 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
     for( int i = 0; i < Nx; i++) {
         x[i] = xmin + stepx * i;
         for( int j = 0; j < Ny; j++) {
-            data[i][j] = (*this)(x[i], y[j], z, intpl);
+            data[i*Ny + j] = (*this)(x[i], y[j], z, intpl);
         }
     }
     file_id = H5Fcreate(FILE, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);

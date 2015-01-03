@@ -9,8 +9,6 @@ import sys
 fname = sys.argv[1]
 
 infile = h5py.File(fname + ".h5", 'r')
-x = infile["x"]
-y = infile["y"]
 x = np.array((infile["x"]))
 y = np.array((infile["y"]))
 data = np.array((infile["data"]))
