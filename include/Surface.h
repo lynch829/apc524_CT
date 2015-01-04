@@ -26,11 +26,11 @@ public:
     virtual void Print(); //!< Implement Image::Print, though it is another virtual function.
     virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl = 0);
                         //!< Print out the field. S
-
+#ifdef USE_HDF
     virtual void ExportHDF(const char*); //!< Implement Image::ExportHDF, though it is another virtual function.
     virtual void ExportHDF(const char*,double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl = 0);
                         //!< Export the surface to an HDF file. S
-
+#endif
     void SetRange(double rx, double ry); //!< Sets symmetrized range in X and Y direction. S
     double GetRangeX() const; //!< Returns symmetrized range in X direction. S
     double GetRangeY() const; //!< Returns symmetrized range in Y direction. S

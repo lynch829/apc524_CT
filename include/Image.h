@@ -7,9 +7,11 @@
 
 #include "globals.h"
 #include "LineIntegral.h"
+
+#ifdef USE_HDF
 #include "hdf5.h"
 #include "hdf5_hl.h"
-
+#endif
 /*!
 An abstract Image class should contain the following abstract virtual methods:
 (1) A function to return dimensionality. 
@@ -25,8 +27,9 @@ public:
     virtual ~Image();		//!< Virtual destructor, in case someone calls delete derived. S
 
     virtual void Print() = 0;	//!< Default method for printing. S
+#ifdef USE_HDF
     virtual void ExportHDF(const char*) = 0;	//!< Method to print to HDF5 file.
-
+#endif
     Dimension GetDimension();	//!< Returns the dimension of the image. S
 
 protected:

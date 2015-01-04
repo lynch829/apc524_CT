@@ -33,9 +33,10 @@ public:
 
 	void Print();	//!< Default method, print out everything as two columns.
 	void Print(double,double,int);	//!< Print for a given range.
-
+#ifdef USE_HDF
 	void ExportHDF(const char*);	//!< Default method, export to HDF as two columns.
 	void ExportHDF(const char*, double,double,int);	//!< Export HDF for a given range.
+#endif
 	double* GetXPtr();
 	double* GetYPtr();
 

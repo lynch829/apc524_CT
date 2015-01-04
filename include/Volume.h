@@ -22,9 +22,11 @@ public:
     virtual void Print(); //!< Implements Image::Print().
     virtual void Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z, Interpolator* intpl=0);
                         //! Print the cross-section at z. S
+#ifdef USE_HDF
     virtual void ExportHDF(const char*); //!< Implements Image::ExportHDF().
     virtual void ExportHDF(const char*,double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double zmin, double zmax, int Nz, Interpolator* intpl=0);
                         //! Export the cross-section at z to an HDF5 file. S
+#endif
     void SetRange(double rx, double ry, double rz);//! Sets symmetrized range in X direction. S
     double GetRangeX() const; //! Returns symmetrized range in X direction. S
     double GetRangeY() const; //! Returns symmetrized range in Y direction. S

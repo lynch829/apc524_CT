@@ -25,11 +25,11 @@ public:
     virtual void Print(); //!< Implements Image::Print
     virtual void Print(double xmin, double xmax, int N=100, Interpolator* intpl = 0);
                         //!< Output the function values in the range. S
-
+#ifdef USE_HDF
     virtual void ExportHDF(const char*); //!< Implements Image::ExportHDF
     virtual void ExportHDF(const char*, double xmin, double xmax, int N=100, Interpolator* intpl = 0);
                         //!< Output the function values to a HDF5 file for later process.
-
+#endif
     void SetRange(double rx);   //!< Set symmetrized range of independent variable. S
 
     double GetRange() const;          //!< Returns the symmetrized range. S
