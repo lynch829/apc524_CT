@@ -8,5 +8,6 @@
 #include "globals.h"
 
 NumSurface* FilteredBackProjection( ImageArray&, int Nres=100, double (*kernal)(int,double)=Hamming);
+NumSurface* FilteredBackProjection3D( ImageArray&, int Nres=100, double (*kernal)(int,double)=Hamming);
 
 #endif
