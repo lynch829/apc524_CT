@@ -22,6 +22,7 @@ public:
 	NumCurve(const NumCurve&);		//!< Copy constructor, same type as NumCurve.
 	NumCurve& operator=(const NumCurve&);	//!< Assignment constructor for same type.
 	NumCurve(int size, const Curve&);	//!< Copy constr. for general Curve obj. Needs size info.
+  NumCurve(const char* file); //! !< Constructor from HDF5 file.
 	void Copy(int size, const Curve&);	//!< Copy operator for general Curve, will use previous size information.
 
 	~NumCurve();		//!< Destructor, has to delete stored data.

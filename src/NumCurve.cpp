@@ -205,10 +205,25 @@ void NumCurve::ExportHDF(const char* file)
     dims[0] = _size;
     herr_t status;
     file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
-    status = H5LTmake_dataset(file_id,"/x",Dim1,dims,H5T_NATIVE_DOUBLE,_datax);
-    status = H5LTmake_dataset(file_id,"/data",Dim1,dims,H5T_NATIVE_DOUBLE,_datay);
+    status = H5LTmake_dataset_double(file_id,"/x",Dim1,dims,_datax);
+    status = H5LTset_attribute_int(file_id,"/x","size of x",&_size,1);
+    status = H5LTmake_dataset_double(file_id,"/data",Dim1,dims,_datay);
     status = H5Fclose(file_id);
 }
+// Constructor from a HDF5 file.
+NumCurve::NumCurve(const char* file): Curve(0)
+{
+    hid_t file_id;
+    herr_t status;
+    int _size;
+    file_id = H5Fopen(file, H5F_ACC_RDONLY, H5P_DEFAULT);
+    status = H5LTget_attribute_int(file_id, "/x", "size of x", &_size);
+    double _datax[_size], _datay[_size];
+    status = H5LTread_dataset_double(file_id,"/x",_datax);
+    status = H5LTread_dataset_double(file_id,"/data",_datay);
+    status = H5Fclose(file_id);
+}
+    
 #endif
 int NumCurve::GetSize()
 {

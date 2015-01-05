@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
 double gauss_1D(double x){
     return exp(-x*x/6);
 }

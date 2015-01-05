@@ -52,10 +52,18 @@ int main(int argc, char* argv[]){
 #ifdef USE_HDF
         bptr->ExportHDF("output/test.h5");
 #endif
-}
+    }
     if(choice==2)c->Print();
     if(choice==3)d.Print();
     if(choice==4)cptr->Print(-range,range,200,-range,range,200);
+#ifdef USE_HDF
+    if(choice==5){
+        NumSurface* e = new NumSurface("output/test.h5");
+        e->ExportHDF("output/repeat.h5");
+    }
+#endif
+    
+
 // test assignment
     a = *c;
     b = d;

@@ -22,6 +22,7 @@ public:
     NumSurface(const NumSurface&);		//!< Copy constructor, same type as NumSurface.
     NumSurface& operator=(const NumSurface&);	//!< Assignment constructor for same type.
     NumSurface(int sizex, int sizey, const Surface&);	//!< Copy constr. for general Surface obj. Needs size info.
+    NumSurface(const char* file); //!< constructor from hdf5 file.
     void Copy(int sizex, int sizey, const Surface&);	//!< Copy operator for general Surface, will use previous size information.
     
     ~NumSurface();		//!< Destructor, has to delete stored data.

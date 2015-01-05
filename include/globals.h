@@ -4,6 +4,8 @@
 #ifndef GLOBAL
 #define GLOBAL 1
 
+#define USE_HDF 1
+
 #define pi 3.14159265357
 #include <stdlib.h>
 enum Dimension{Dim0=0, Dim1, Dim2, Dim3};
