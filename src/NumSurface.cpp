@@ -37,11 +37,11 @@ NumSurface::NumSurface(int sizex, double* x, int sizey, double* y, double** z)
         _datax[i] = x[i]-avgx; _dataz[i] = new double[_sizey];
     }
     double avgy = 0;		// y-direction,symmetrize the given array. Center them at 0.
-    for(int i=0;i<_sizey;i++){avgy += x[i];}
+    for(int i=0;i<_sizey;i++){avgy += y[i];}
     avgy /= _sizey;
     _datay = new double[_sizey];
     for(int i=0;i<_sizey;i++){
-        _datay[i] = x[i]-avgy;
+        _datay[i] = y[i]-avgy;
     }
     for(int i=0;i<_sizex;i++){
         for(int j=0;j<_sizey;j++){
