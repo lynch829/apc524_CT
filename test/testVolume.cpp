@@ -61,7 +61,9 @@ int main(int argc, char* argv[]){
     ptr->SetIntegralStep(0.0001);
     a = ptr->GetProjection(l,atof(argv[1]),0.01,0.01);
     //a.Print();
+#ifdef USE_HDF
     gauss->ExportHDF("output/test.h5");
+#endif
     delete gauss;
  //   delete gauss3;
  //   delete num_gauss3;
