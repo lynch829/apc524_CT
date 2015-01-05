@@ -48,7 +48,11 @@ int main(int argc, char* argv[]){
 
 // test assignment
     if(choice==0)aptr->Print();
-    if(choice==1){bptr->Print();bptr->ExportHDF("output/test.h5");}
+    if(choice==1){bptr->Print();
+#ifdef USE_HDF
+        bptr->ExportHDF("output/test.h5");
+#endif
+}
     if(choice==2)c->Print();
     if(choice==3)d.Print();
     if(choice==4)cptr->Print(-range,range,200,-range,range,200);

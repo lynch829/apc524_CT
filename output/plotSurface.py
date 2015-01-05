@@ -8,12 +8,12 @@ import sys
 
 fname = sys.argv[1]
 
-infile = h5py.File(fname + ".h5", 'r')
+infile = h5py.File(fname, 'r')
 x = np.array((infile["x"]))
 y = np.array((infile["y"]))
 data = np.array((infile["data"]))
 X, Y = np.meshgrid(x, y)
 plt.pcolormesh(X, Y, data.T)
-plt.savefig(fname + ".png")
+plt.savefig(fname[:-3] + ".png")
 infile.close()
 

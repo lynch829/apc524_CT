@@ -1,8 +1,6 @@
 #include "Volume.h"
 #include <math.h>
 #include <stdio.h>
-#include <iostream>
-#include <stdlib.h>
 #define FILE "output/Volume.h5"
 
 Volume::Volume(double rx, double ry, double rz):Image(Dim3){
@@ -83,10 +81,10 @@ void Volume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, i
         printf("\n");
     }
 }
-
+#ifdef USE_HDF
 void Volume::ExportHDF(const char* file)
 {
-    this->ExportHDF(file,-_rx,_rx,200,-_ry,_ry,200,0.0,0.0,0.0);
+    this->ExportHDF(file,-_rx,_rx,100,-_ry,_ry,100,-_rz,_rz,50);
 }
 
 void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double zmin, double zmax, int Nz, Interpolator* intpl)
@@ -124,10 +122,11 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
             }
         }
     }
-    file_id = H5Fcreate(FILE, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,x);
     status = H5LTmake_dataset(file_id,"/y",Dim1,dimy,H5T_NATIVE_DOUBLE,y);
     status = H5LTmake_dataset(file_id,"/z",Dim1,dimz,H5T_NATIVE_DOUBLE,z);
     status = H5LTmake_dataset(file_id,"/data",Dim3,dims,H5T_NATIVE_DOUBLE,data);
     status = H5Fclose(file_id);
 }
+#endif

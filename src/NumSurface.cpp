@@ -298,7 +298,7 @@ void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int N
 {
 
 }
-
+#ifdef USE_HDF
 void NumSurface::ExportHDF(const char* file)
 {
     double data[_sizex*_sizey];
@@ -324,3 +324,4 @@ void NumSurface::ExportHDF(const char* file)
 }
 
 void NumSurface::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
+#endif

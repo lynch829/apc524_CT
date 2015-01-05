@@ -38,10 +38,10 @@ public:
     double* GetXPtr();
     double* GetYPtr();
     double** GetZPtr();
-    
+#ifdef USE_HDF    
     void ExportHDF(const char*);//!< Default, export everything as three columns.
     void ExportHDF(const char*, double,double,int,double,double,int);//!< Export data in the range.
-
+#endif
 protected:
     double* _datax;	//!< X-Coordinates of the points.
     double* _datay;	//!< Y-Coordinates of the points.
