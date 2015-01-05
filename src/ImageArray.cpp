@@ -7,6 +7,7 @@ ImageArray::~ImageArray()
     _angle.clear();
     _filtered.clear();
     _curve.clear();
+    _height.clear();
 }
 
 int ImageArray::GetSize()
@@ -101,7 +102,7 @@ double ImageArray::GetRange()
 double ImageArray::GetRangeZ()
 {
     double r = 0;
-    for(int i=0;i<_slice;i++) r = max<double>(r,_height[i]);
+    for(int i=0;i<_size;i++) r = max<double>(r,_height[i]);
     return r;
 }
 

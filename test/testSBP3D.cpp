@@ -17,11 +17,11 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    double range = 5;	// range of the geometry
-    const int size=10;	// number of view per slice
+    double range = 2;	// range of the geometry
+    const int size=5;	// number of view per slice
     const int slice=5; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
-    const int Nres=10;// resolution/ N of point in the projected curve.
+    const int Nres=100;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.
     double height[slice]; // array containing height.
     double spacingz; // distance between each projected horizontal slice.
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
     array.SetSlice(slice); // set the number of projected horizontal slice in array.
     spacingz = 2*range/slice; // set the spacing in z to obtain projection.
     for(int k=0;k<slice;k++){
-        height [k] = -range + (k+0.5)*spacingz;
+        height[k] = -range+spacingz*k;
         for(int i=0;i<size;i++) {
 	    angle[i+k*slice] = 0 + i*pi/size;
 	}
@@ -42,22 +42,32 @@ int main(int argc, char* argv[]){
     NumVolume sf;	// Num Surf to contain reconstructed result.
 
     for(int k=0;k<slice;k++){
-        cerr<<"Projecting at height"<<height[k]<<endl;
+        cerr<<"k= Projecting at height "<< k << "\t" <<height[k]<<endl;
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*slice]<<endl;
             NumSurface gauss_tmp;
+            NumSurface* gauss_tmp_ptr;
+    //gauss_tmp = gauss->GetProjection(l,0.2,0.1,spacingz);
             gauss_tmp = gauss->GetProjection(l,angle[i+k*slice],0.1,spacingz); //spacingr =0.1
+            gauss_tmp_ptr = &(gauss_tmp);
             //Use a method of NumSurface to turn surface into numcurve;
-            NumCurve curve_tmp=gauss_tmp.Surface2Curve();
+            NumCurve curve_tmp=gauss_tmp_ptr->Surface2Curve();
+            cerr<<"r" << curve_tmp.GetRange()<<endl;
+            //array.PushBack(0.1, -range+0.5*spacingz, curve_tmp);
             array.PushBack(angle[i+k*slice], height[k], curve_tmp);
+            cerr<<"runPushBack"<<endl;
         }
     }
 
-
-    sf = *(FilteredBackProjection3D(array,Nres,Hamming));
+    cerr<<"range="<<array.GetRange()<<endl;
+    cerr<<"rangez="<<array.GetRangeZ()<<endl;
+    cerr<<"slice="<<array.GetSlice()<<endl;
+    cerr<<"size="<<array.GetSize()<<endl;
+    //sf = *(FilteredBackProjection3D(array,Nres,Hamming));
+    //cerr<<"runFBP3D"<<endl;
 			// filtered 3D back-projection
-    array.PrintFiltered();
-    sf.Print();	// print out the result.
+    //array.PrintFiltered();
+    //sf.Print();	// print out the result.
 //#ifdef USE_HDF
 //    sf.ExportHDF("output/test.h5");
 //#endif
