@@ -207,15 +207,15 @@ NumCurve NumSurface::Surface2Curve()
         for(int j=0;j<this->_sizey;j++){
             datay[j+i*this->_sizey] = z[i][j]; //put the y dimension of z in datay
             datax[j+i*this->_sizey] = y[j]; //spacingr information is given in datax
-            std::cerr << "y[j] is " <<j<<" "<< y[j] <<std::endl;
+            //std::cerr << "y[j] is " <<j<<" "<< y[j] <<std::endl;
         }
      }
     NumCurve ret(size, datax, datay); //construct NumCurve that is equivalent to NumSurface
     double r = fabs(y[0]) > fabs(y[this->_sizey-1]) ? fabs(y[0]) : fabs(y[this->_sizey-1]);
     ret.SetRange(r);
-    std::cerr << "r is " << r <<std::endl;
-    std::cerr << "size is " << size <<std::endl;
-    std::cerr << "ydimension is " <<this->_sizey << std::endl;
+    //std::cerr << "r is " << r <<std::endl;
+    //std::cerr << "size is " << size <<std::endl;
+    //std::cerr << "ydimension is " <<this->_sizey << std::endl;
     return ret;
     delete [] datax; delete [] datay;
 }

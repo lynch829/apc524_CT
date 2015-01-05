@@ -42,7 +42,7 @@ int main(int argc, char* argv[]){
     NumVolume sf;	// Num Surf to contain reconstructed result.
 
     for(int k=0;k<slice;k++){
-        cerr<<"k= Projecting at height "<< k << "\t" <<height[k]<<endl;
+        cerr<<"Projecting at height "<<height[k]<<endl;
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*slice]<<endl;
             NumSurface gauss_tmp;
@@ -52,22 +52,24 @@ int main(int argc, char* argv[]){
             gauss_tmp_ptr = &(gauss_tmp);
             //Use a method of NumSurface to turn surface into numcurve;
             NumCurve curve_tmp=gauss_tmp_ptr->Surface2Curve();
-            cerr<<"r" << curve_tmp.GetRange()<<endl;
+            //cerr<<"r" << curve_tmp.GetRange()<<endl;
             //array.PushBack(0.1, -range+0.5*spacingz, curve_tmp);
             array.PushBack(angle[i+k*slice], height[k], curve_tmp);
-            cerr<<"runPushBack"<<endl;
+            //cerr<<"runPushBack"<<endl;
         }
     }
 
-    cerr<<"range="<<array.GetRange()<<endl;
-    cerr<<"rangez="<<array.GetRangeZ()<<endl;
-    cerr<<"slice="<<array.GetSlice()<<endl;
-    cerr<<"size="<<array.GetSize()<<endl;
-    //sf = *(FilteredBackProjection3D(array,Nres,Hamming));
-    //cerr<<"runFBP3D"<<endl;
+    //cerr<<"range="<<array.GetRange()<<endl;
+    //cerr<<"rangez="<<array.GetRangeZ()<<endl;
+    //cerr<<"slice="<<array.GetSlice()<<endl;
+    //cerr<<"size="<<array.GetSize()<<endl;
+    cerr<<"running FBP3D"<<endl;
+    sf = *(FilteredBackProjection3D(array,Nres,Hamming));
+    cerr<<"Done running FBP3D"<<endl;
+    //cerr << "sf(3,3,3) = " << sf(3,3,3) << endl;
 			// filtered 3D back-projection
     //array.PrintFiltered();
-    //sf.Print();	// print out the result.
+   //sf.Print();	// print out the result.
 //#ifdef USE_HDF
 //    sf.ExportHDF("output/test.h5");
 //#endif

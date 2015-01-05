@@ -30,9 +30,21 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
 {
     const double range = array.GetRange(); //this is the same as 2D since we are considering slice by slice
     const double rangeZ = array.GetRangeZ(); // this is the maximum domain height.
+    //std::cerr << "range is " << range <<std::endl;
+    //std::cerr << "rangeZ is " << rangeZ<<std::endl;
+
     int Nslice = array.GetSlice(); //Nslice is the slice number of horizontal slice
+    std::cerr << "Nslice is " << Nslice<<std::endl;
     array.ConvolveWithKernal(kernal); //filtered
+    std::cerr << "convolution done" << std::endl;
     double*** w;
+    w = new double**[Nres];
+    for(int i=0;i<Nres;i++){
+        w[i] = new double*[Nres];
+        for(int j=0;j<Nres;j++){
+            w[i][j] = new double[Nslice];
+        }
+    }
     int Nangle = array.GetSize(); //Nangle is slice*size number of angle views
     int NviewPerslice = Nangle/Nslice; // NviewPerslice is the total number of angle view per slice. Assuming each slice has the same number of angle view for now.
     for(int k=0;k<Nslice;k++){ //iterate over number of horizontal slice
@@ -49,5 +61,11 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
         }
     }
    NumVolume* rec = new NumVolume(Nres,range,Nres,range,Nslice,rangeZ,w);
-        return rec;
+   for (int i = 0; i < Nres; ++i) {
+        for (int j = 0; j < Nres; ++j)
+            delete [] w[i][j];
+        delete [] w[i];
+    }
+    delete [] w;
+    return rec;
 }
