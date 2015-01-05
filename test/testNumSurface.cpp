@@ -58,8 +58,9 @@ int main(int argc, char* argv[]){
     if(choice==4)cptr->Print(-range,range,200,-range,range,200);
 #ifdef USE_HDF
     if(choice==5){
-        NumSurface* e = new NumSurface("output/test.h5");
-        e->ExportHDF("output/repeat.h5");
+        NumSurface* e = new NumSurface("output/BaltimoreDowntown.h5");
+        e->ExportHDF("output/BaltimoreDowntown2.h5");
+    delete e;
     }
 #endif
     
