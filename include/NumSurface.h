@@ -27,6 +27,8 @@ public:
     
     ~NumSurface();		//!< Destructor, has to delete stored data.
     
+    NumCurve Surface2Curve(); //!< Turn NumSurface to NumCurve. To be used in turning results of GetProjection for 3D objects to ImageArray PushBack method.
+    
     double operator()(double, double, Interpolator*) const;
 				//!< Operator () to access lvalues, argument double will be rounded to nearest intger and be used to access.
     double& operator()(int,int);	//!< This method can be used to set values at the integer nodes.

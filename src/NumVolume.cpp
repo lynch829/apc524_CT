@@ -320,10 +320,11 @@ double& NumVolume::operator()(int indexX, int indexY, int indexZ)
     
 void NumVolume::Print()
 {
-    for (int k=_sizez-1;k>=0;k--){
-        for(int j=0;j<=_sizey;j++){
-            for(int i=0;i<_sizex;i++)
+    for (int k=0;k<_sizez;k++){
+        for(int j=_sizey-1;j>=0;j--){
+            for(int i=0;i<_sizex;i++){
                 printf("%.9f\t",_dataw[i][j][k]);
+            }
             printf("\n");
         }
     }
