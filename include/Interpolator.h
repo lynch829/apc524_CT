@@ -3,6 +3,9 @@
 #include <vector>
 using std::vector;
 
+/*!
+    Interpolator class.
+*/
 class Interpolator{
 
 public:

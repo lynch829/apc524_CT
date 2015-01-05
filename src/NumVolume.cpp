@@ -71,7 +71,7 @@ NumVolume::NumVolume(int sizex, double* x, int sizey, double* y, int sizez, doub
     _rz = fabs(_dataz[0]) > fabs(_dataz[_sizez-1]) ? fabs(_dataz[0]) : fabs(_dataz[_sizez-1]);
 }
 
-// Constructor with a given size, range and a set of z-values
+//! Constructor with a given size, range and a set of z-values
 NumVolume::NumVolume(int sizex, double rx, int sizey, double ry, int sizez, double rz, double*** w)
 : Volume(rx,ry,rz), _sizex(sizex), _sizey(sizey),_sizez(sizez)
 {
@@ -101,10 +101,34 @@ NumVolume::NumVolume(int sizex, double rx, int sizey, double ry, int sizez, doub
             }
         }
     }
-
 }
 
-// Copy constructor that takes in the same type.
+//! Constructor with a given size, range but z-values are unknown.
+NumVolume::NumVolume(int sizex, double rx, int sizey, double ry, int sizez, double rz)
+: Volume(rx,ry,rz), _sizex(sizex), _sizey(sizey),_sizez(sizez)
+{
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
+    _dataz = new double[_sizez];
+    _dataw = new double**[_sizex];
+    for(int i=0;i<_sizex;i++){
+        _dataw[i] = new double*[_sizey];
+        _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            _dataw[i][j] = new double[_sizez];
+        }
+    }
+    for(int i=0;i<_sizey;i++){
+        _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
+    }
+    for(int i=0;i<_sizez;i++){
+        _dataz[i] = -_rz + i*(2*_rz)/(_sizez-1);
+    }
+}
+
+//! Copy constructor that takes in the same type.
 NumVolume::NumVolume(const NumVolume& f) : Volume(f._rx, f._ry, f._rz)
 {
     _sizex = f._sizex; _sizey = f._sizey; _sizez = f._sizez;
@@ -135,7 +159,7 @@ NumVolume::NumVolume(const NumVolume& f) : Volume(f._rx, f._ry, f._rz)
     }
 }
 
-//Copy assignment, used when modifying existing objects.
+//! Copy assignment, used when modifying existing objects.
 NumVolume& NumVolume::operator=(const NumVolume& f)
 {
     if(_datax!=0) delete [] _datax;
@@ -171,7 +195,8 @@ NumVolume& NumVolume::operator=(const NumVolume& f)
     }
     return (*this);
 }
-// Constructor with a size and a Volume object. Use operator () to initialize.
+
+//! Constructor with a size and a Volume object. Use operator () to initialize.
 NumVolume::NumVolume(int sizex, int sizey, int sizez, const Volume& f) : Volume(0,0,0)
 {
     _sizex = sizex;
@@ -205,49 +230,51 @@ NumVolume::NumVolume(int sizex, int sizey, int sizez, const Volume& f) : Volume(
         }
     }
 }
-// Assignment operator for construction.
-    void NumVolume::Copy(int sizex, int sizey, int sizez, const Volume& f)
-    {
-        if(_datax!=0) delete [] _datax;
-        if(_datay!=0) delete [] _datay;
-        if(_dataz!=0) delete [] _dataz;
-        if(_dataw!=0) {
-            for (int i = 0; i < _sizex; ++i) {
-                for (int j = 0; j < _sizey; ++j)
-                    delete [] _dataw[i][j];
-                delete [] _dataw[i];
-            }
-            delete [] _dataw;
+
+//! Assignment operator for construction.
+void NumVolume::Copy(int sizex, int sizey, int sizez, const Volume& f)
+{
+    if(_datax!=0) delete [] _datax;
+    if(_datay!=0) delete [] _datay;
+    if(_dataz!=0) delete [] _dataz;
+    if(_dataw!=0) {
+        for (int i = 0; i < _sizex; ++i) {
+            for (int j = 0; j < _sizey; ++j)
+                delete [] _dataw[i][j];
+            delete [] _dataw[i];
         }
-        _sizex = sizex; _sizey  = sizey; _sizez = sizez;
-        _rx = f.GetRangeX(); _ry = f.GetRangeY();_rz = f.GetRangeZ();
-        _datax = new double[_sizex]; _datay = new double[_sizey];
-        _dataz = new double[_sizez]; _dataw = new double**[_sizex];
-        
-        for(int i=0;i<_sizex;i++){
-            _dataw[i] = new double*[_sizey];
-            _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+        delete [] _dataw;
+    }
+    _sizex = sizex; _sizey  = sizey; _sizez = sizez;
+    _rx = f.GetRangeX(); _ry = f.GetRangeY();_rz = f.GetRangeZ();
+    _datax = new double[_sizex]; _datay = new double[_sizey];
+    _dataz = new double[_sizez]; _dataw = new double**[_sizex];
+      
+    for(int i=0;i<_sizex;i++){
+        _dataw[i] = new double*[_sizey];
+        _datax[i] = -_rx + i*(2*_rx)/(_sizex-1);
+    }
+    for(int i=0;i<_sizey;i++){
+        _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
+    }
+    for(int i=0;i<_sizez;i++){
+        _dataz[i] = -_rz + i*(2*_rz)/(_sizez-1);
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            _dataw[i][j] = new double[_sizez];
         }
-        for(int i=0;i<_sizey;i++){
-            _datay[i] = -_ry + i*(2*_ry)/(_sizey-1);
-        }
-        for(int i=0;i<_sizez;i++){
-            _dataz[i] = -_rz + i*(2*_rz)/(_sizez-1);
-        }
-        for(int i=0;i<_sizex;i++){
-            for(int j=0;j<_sizey;j++){
-                _dataw[i][j] = new double[_sizez];
-            }
-        }
-        for(int i=0;i<_sizex;i++){
-            for(int j=0;j<_sizey;j++){
-                for(int k=0;k<_sizez;k++){
-                    _dataw[i][j][k]= f(_datax[i],_datay[j],_dataz[k],0);
-                }
+    }
+    for(int i=0;i<_sizex;i++){
+        for(int j=0;j<_sizey;j++){
+            for(int k=0;k<_sizez;k++){
+                _dataw[i][j][k]= f(_datax[i],_datay[j],_dataz[k],0);
             }
         }
     }
-        
+}
+
+//! Numerical Volume destructor, frees memory.
 NumVolume::~NumVolume()
 {
     if(_datax!=0) delete [] _datax;
@@ -260,7 +287,8 @@ NumVolume::~NumVolume()
     }
     delete [] _dataw;
 }
-        
+
+//! Operator for returning value at a given point.
 double NumVolume::operator()(double x, double y, double z, Interpolator* intpl) const
 {
     int dim=3; //dimmension is 2
@@ -310,6 +338,7 @@ double NumVolume::operator()(double x, double y, double z, Interpolator* intpl) 
     return ret;
 }
 
+//! Operator returning a reference to the data at the specified index.
 double& NumVolume::operator()(int indexX, int indexY, int indexZ)
 {
     if(indexX < 0 || indexX >_sizex-1 || indexY <0 || indexY >_sizey-1|| indexZ <0 || indexZ >_sizez-1)
@@ -317,7 +346,7 @@ double& NumVolume::operator()(int indexX, int indexY, int indexZ)
     return _dataw[indexX][indexY][indexZ];
 }
     
-    
+//! Default print method.
 void NumVolume::Print()
 {
     for (int k=0;k<_sizez;k++){
@@ -330,5 +359,26 @@ void NumVolume::Print()
     }
 
 }
+
+//! Print data in the range.
 void NumVolume::Print(double xi, double xf, int Nx, double yi, double yf, int Ny){}
 
+double* NumVolume::GetXPtr()
+{
+    return _datax;
+}
+
+double* NumVolume::GetYPtr()
+{
+    return _datay;
+}
+
+double* NumVolume::GetZPtr()
+{
+    return _dataz;
+}
+
+double*** NumVolume::GetWPtr()
+{
+    return _dataw;
+}

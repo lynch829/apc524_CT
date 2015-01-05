@@ -1,5 +1,9 @@
 CXX=g++
+ifdef USE_HDF
+CXX_FLAGS= -DUSE_HDF -Wall -g -std=c++0x
+else
 CXX_FLAGS=-Wall -g -std=c++0x 
+endif
 INCLUDE= -I./include -I/usr/local/hdf5/include -I/usr/local/include
 LINKER= -L/usr/local/hdf5/lib -L/usr/local/lib
 LIBS= -lhdf5 -lhdf5_cpp -lhdf5_hl -lhdf5_hl_cpp

@@ -21,17 +21,11 @@ AnaVolume::AnaVolume( f3D f, double x, double y, double z):Volume(x,y,z)
 AnaVolume::~AnaVolume()
 { }
 
-//================================================================
-
 double AnaCurve::operator()(double x, Interpolator* intp) const
 { return _f1d(x); }
 
-//================================================================
-
 double AnaSurface::operator()(double x, double y, Interpolator* intp) const
 { return _f2d(x,y); }
-
-//================================================================
 
 double AnaVolume::operator()(double x, double y, double z, Interpolator* intp) const
 { return _f3d(x,y,z); }

@@ -7,6 +7,10 @@
 #include <stdio.h>
 #include <iostream>
 
+/*!
+    This is a container class that contains objects of type NumCurve. The curves can be projections taken at various angles and heights, stored as vectors in the class. This object will be passed on to reconstructor such as FilteredBackProjection.
+*/
+
 class ImageArray{
 public:
     ImageArray();
