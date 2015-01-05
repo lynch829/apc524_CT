@@ -215,10 +215,10 @@ NumCurve::NumCurve(const char* file): Curve(0)
 {
     hid_t file_id;
     herr_t status;
-    int _size;
     file_id = H5Fopen(file, H5F_ACC_RDONLY, H5P_DEFAULT);
     status = H5LTget_attribute_int(file_id, "/x", "size of x", &_size);
-    double _datax[_size], _datay[_size];
+    _datax = new double[_size];
+    _datay = new double[_size];
     status = H5LTread_dataset_double(file_id,"/x",_datax);
     status = H5LTread_dataset_double(file_id,"/data",_datay);
     status = H5Fclose(file_id);
