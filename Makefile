@@ -1,7 +1,7 @@
 CXX=g++
 CXX_FLAGS=-Wall -g -std=c++0x 
 INCLUDE= -I./include -I/usr/local/hdf5/include -I/usr/local/include
-LINKER= -L /usr/local/hdf5/lib
+LINKER= -L /usr/local/hdf5/lib -L /usr/local/lib
 LIBS= -lhdf5 -lhdf5_cpp -lhdf5_hl -lhdf5_hl_cpp
 
 INC_DIR=./include/
