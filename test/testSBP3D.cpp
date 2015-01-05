@@ -69,7 +69,7 @@ int main(int argc, char* argv[]){
     //cerr << "sf(3,3,3) = " << sf(3,3,3) << endl;
 			// filtered 3D back-projection
     //array.PrintFiltered();
-   //sf.Print();	// print out the result.
+    sf.Print();	// print out the result.
 //#ifdef USE_HDF
 //    sf.ExportHDF("output/test.h5");
 //#endif
