@@ -19,6 +19,11 @@ double ImageArray::GetAngle(int i)
     return _angle[i];
 }
 
+double ImageArray::GetHeight(int i)
+{
+    return _height[i];
+}
+
 NumCurve& ImageArray::GetCurve(int i)
 {
     return _curve[i];
@@ -29,6 +34,15 @@ void ImageArray::PushBack(double a, const NumCurve& c)
     _curve.push_back(c);
     _filtered.push_back(c);
     _angle.push_back(a);
+    _size++;
+}
+
+void ImageArray::PushBack(double a, double h, const NumCurve& c)
+{
+    _curve.push_back(c);
+    _filtered.push_back(c);
+    _angle.push_back(a);
+    _height.push_back(h);
     _size++;
 }
 

@@ -192,6 +192,24 @@ NumSurface::~NumSurface()
         delete [] _dataz;
     }
 }
+
+//Turn NumSurface into a NumCurve object.
+
+NumCurve NumSurface::Surface2Curve()
+{
+    double *y = this->_datay; double **z= this->_dataz;
+    int size = this->_sizex * this->_sizey; //size of NumCurve is _sizex * _sizey
+    double* datax;double* datay; //datax is x coordinate of NumCurve datay is the values of NumCurve
+    datax = new double[size]; datay = new double[size];
+    for(int i=0;i<this->_sizex;i++){
+        for(int j=0;j<this->_sizey;j++){
+            datay[j+i*this->_sizey] = z[i][j]; //put the y dimension of z in datay
+            datax[j+i*this->_sizey] = y[j]; //angle information is given in datax
+        }
+     }
+    NumCurve ret(size, datax, datay); //construct NumCurve that is equivalent to NumSurface
+    return ret;
+}
         
 double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
