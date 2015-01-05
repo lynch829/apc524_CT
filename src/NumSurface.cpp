@@ -290,11 +290,38 @@ void NumSurface::ExportHDF(const char* file)
     dimy[0] = _sizey;
     herr_t status;
     file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
-    status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,_datax);
-    status = H5LTmake_dataset(file_id,"/y",Dim1,dimy,H5T_NATIVE_DOUBLE,_datay);
-    status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,data);
+    status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,_datax);
+    status = H5LTset_attribute_int(file_id, "/x", "size of x", &_sizex, 1);
+    status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,_datay);
+    status = H5LTset_attribute_int(file_id, "/y", "size of y", &_sizey, 1);
+    status = H5LTmake_dataset_double(file_id,"/data",Dim2,dims,data);
     status = H5Fclose(file_id);
 }
 
 void NumSurface::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
+
+// Constructor from a HDF5 file.
+NumSurface::NumSurface(const char* file): Surface(0, 0)
+{
+    hid_t file_id;
+    herr_t status;
+    int _sizex, _sizey;
+    file_id = H5Fopen(file, H5F_ACC_RDONLY, H5P_DEFAULT);
+    status = H5LTget_attribute_int(file_id, "/x", "size of x", &_sizex);
+    status = H5LTget_attribute_int(file_id, "/y", "size of y", &_sizey);
+    double _datax[_sizex], _datay[_sizey];
+    double data[_sizex*_sizey];
+    status = H5LTread_dataset_double(file_id,"/x",_datax);
+    status = H5LTread_dataset_double(file_id,"/y",_datay);
+    status = H5LTread_dataset_double(file_id,"/data",data);
+    _dataz = new double*[_sizex];
+    for (int i=0;i<_sizex;i++){
+        _dataz[i] = new double[_sizey];
+        for (int j = 0; j<_sizey; j++){
+            _dataz[i][j] = data[i*_sizey + j];
+        }
+    }
+    status = H5Fclose(file_id);
+}
+
 #endif

@@ -117,10 +117,13 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
         }
     }
     file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
-    status = H5LTmake_dataset(file_id,"/x",Dim1,dimx,H5T_NATIVE_DOUBLE,x);
-    status = H5LTmake_dataset(file_id,"/y",Dim1,dimy,H5T_NATIVE_DOUBLE,y);
-    status = H5LTmake_dataset(file_id,"/z",Dim1,dimz,H5T_NATIVE_DOUBLE,z);
-    status = H5LTmake_dataset(file_id,"/data",Dim3,dims,H5T_NATIVE_DOUBLE,data);
+    status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,x);
+    status = H5LTset_attribute_int(file_id,"/x","size of x",&Nx,1);
+    status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,y);
+    status = H5LTset_attribute_int(file_id,"/y","size of y",&Ny,1);
+    status = H5LTmake_dataset_double(file_id,"/z",Dim1,dimz,z);
+    status = H5LTset_attribute_int(file_id,"/z","size of z",&Nz,1);
+    status = H5LTmake_dataset_double(file_id,"/data",Dim3,dims,data);
     status = H5Fclose(file_id);
 }
 #endif

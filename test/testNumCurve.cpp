@@ -44,7 +44,12 @@ int main(int argc, char* argv[]){
     if(choice==1)bptr->Print(); 
     if(choice==2)c->Print();
     if(choice==3)d.Print();
-    if(choice==4)cptr->Print(-2*range,2*range,100000);
+    if(choice==4) {
+        cptr->Print(-2*range,2*range,100000);
+#ifdef USE_HDF
+        cptr->ExportHDF("output/curve.h5");
+#endif 
+    }
 // test assignment
     a = *c;
     b = d;
