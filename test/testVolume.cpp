@@ -38,11 +38,11 @@ double box(double x, double y){
 
 int main(int argc, char* argv[]){
     if(argc<2){
-        printf("usage: ./test_volume angle\n"); 
+        printf("usage: ./testVolume angle\n"); 
         return -1;
     }
     //  creates a nonsymmetric gaussian on 20 x 20 region.
-    Image* gauss  = new AnaVolume( gauss_3D, 6, 6, 6);
+    Image* gauss  = new AnaVolume( gauss_3D, 2, 3, 3);
    // Interpolator* intpl = new NearestNeighborIntpl();
     // creates a numerical line using gauss_1D.
     //    Curve* gauss1 = new AnaCurve( gauss_1D,10);
@@ -60,7 +60,8 @@ int main(int argc, char* argv[]){
     NumSurface a;
     ptr->SetIntegralStep(0.0001);
     a = ptr->GetProjection(l,atof(argv[1]),0.01,0.01);
-    a.Print();
+    //a.Print();
+    gauss->ExportHDF("output/test.h5");
     delete gauss;
  //   delete gauss3;
  //   delete num_gauss3;
