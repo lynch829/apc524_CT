@@ -197,7 +197,7 @@ void NumCurve::Print()
 {
     for(int i=0; i<_size; i++) printf("%.9f %.9f\n",_datax[i],_datay[i]);
 }
-
+#ifdef USE_HDF
 void NumCurve::ExportHDF(const char* file)
 {
     hid_t file_id;
@@ -209,7 +209,7 @@ void NumCurve::ExportHDF(const char* file)
     status = H5LTmake_dataset(file_id,"/data",Dim1,dims,H5T_NATIVE_DOUBLE,_datay);
     status = H5Fclose(file_id);
 }
-
+#endif
 int NumCurve::GetSize()
 {
     return _size;

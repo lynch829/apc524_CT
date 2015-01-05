@@ -12,9 +12,6 @@ Surface::Surface(double rx, double ry) : Image(Dim2){
     _step = 0.001;
 }
 
-
-
-
 Surface::~Surface(){}
 
 void Surface::SetRange(double rx,double ry){ _rx = rx; _ry = ry; _r = sqrt(_rx*_rx+_ry*_ry); }
@@ -66,7 +63,7 @@ void Surface::Print(double xmin, double xmax, int Nx, double ymin, double ymax, 
         printf("\n");
     }
 }
-
+#ifdef USE_HDF
 void Surface::ExportHDF(const char* file)
 {
     this->ExportHDF(file,-_rx,_rx,200,-_ry,_ry,200);
@@ -103,3 +100,4 @@ void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, doub
     status = H5LTmake_dataset(file_id,"/data",Dim2,dims,H5T_NATIVE_DOUBLE,data);
     status = H5Fclose(file_id);
 }
+#endif

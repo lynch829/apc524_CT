@@ -75,7 +75,7 @@ void Volume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, i
         printf("\n");
     }
 }
-
+#ifdef USE_HDF
 void Volume::ExportHDF(const char* file)
 {
     this->ExportHDF(file,-_rx,_rx,100,-_ry,_ry,100,-_rz,_rz,50);
@@ -123,3 +123,4 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
     status = H5LTmake_dataset(file_id,"/data",Dim3,dims,H5T_NATIVE_DOUBLE,data);
     status = H5Fclose(file_id);
 }
+#endif

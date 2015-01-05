@@ -17,7 +17,7 @@ void Curve::SetRange(double rx){
 double Curve::GetRange() const{
 	return _r;
 }
-
+#ifdef USE_HDF
 void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, Interpolator* intpl)
 {
   hid_t file_id;
@@ -41,7 +41,7 @@ void Curve::ExportHDF(const char* file)
 {
   this->ExportHDF(file,-_r,_r,100);
 }
-
+#endif
 void Curve::Print(double xmin, double xmax, const int N, Interpolator* intpl)
 {
   double step = (xmax-xmin)/N;
