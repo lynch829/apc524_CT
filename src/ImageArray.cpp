@@ -14,6 +14,16 @@ int ImageArray::GetSize()
     return _size;
 }
 
+void ImageArray::SetSlice(int slice)
+{
+    _slice = slice;
+}
+
+int ImageArray::GetSlice()
+{
+    return _slice;
+}
+
 double ImageArray::GetAngle(int i)
 {
     return _angle[i];
@@ -37,7 +47,7 @@ void ImageArray::PushBack(double a, const NumCurve& c)
     _size++;
 }
 
-void ImageArray::PushBack(double a, double h, const NumCurve& c)
+void ImageArray::PushBack(double a, double h, const NumCurve& c) //PushBack method for 3D objects.Note that _size will be the total number of NumCurves in the whole 3D domain.
 {
     _curve.push_back(c);
     _filtered.push_back(c);
@@ -85,6 +95,13 @@ double ImageArray::GetRange()
 {
     double r = 0;
     for(int i=0;i<_size;i++) r = max<double>(r,_curve[i].GetRange());
+    return r;
+}
+
+double ImageArray::GetRangeZ()
+{
+    double r = 0;
+    for(int i=0;i<_slice;i++) r = max<double>(r,_height[i]);
     return r;
 }
 
