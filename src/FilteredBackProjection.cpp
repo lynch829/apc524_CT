@@ -23,6 +23,10 @@ NumSurface* FilteredBackProjection( ImageArray& array, int Nres, double (*kernal
                 (*rec)(i,j) += (array.GetFilteredCurve(ll))(t,0)*pi/Nangle; // Superpose all values, assuming uniform grid.
             }
         }
+        #ifdef USE_HDF
+        char file[100]; sprintf(file,"output/batman_rec%d.h5",ll);
+        rec->ExportHDF(file);
+	#endif
     }
     return rec;
 }

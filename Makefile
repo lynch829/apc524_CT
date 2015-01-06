@@ -13,7 +13,12 @@ SRC_DIR=./src/
 TEST_DIR=./test/
 
 .PHONY: test
-test : testNumCurve testSBP testNumSurface testVolume testSBP3D
+test : demoBatman testSBP testNumCurve testNumSurface testVolume testSBP3D
+
+demo% : ./test/demo%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
+	@chmod +x $@
+	@mv $@ ./bin/
 
 test% : ./test/test%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
