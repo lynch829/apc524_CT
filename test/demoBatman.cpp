@@ -14,11 +14,15 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-    double range = 8;	// range of the geometry
-    const int size=10;	// number of view
-    const int Nres=500;	// resolution/ N of point in the projected curve.
+    if(argc<3){
+        printf("usage: %s N-projection output-name\n",argv[0]);
+        return -1;
+    }
+    double range = 8;			// range of the geometry
+    int size=atof(argv[1]);		// number of view
+    int Nres=500;	// resolution/ N of point in the projected curve.
 
-    double angle[size];	// array containing size angles.
+    double* angle = new double[size];	// array containing size angles.
     for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size;
 			//  since 180 symmetry, do not include endpoint.
     ImageArray array;
@@ -31,15 +35,14 @@ int main(int argc, char* argv[]){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
         array.PushBack(angle[i], joker.GetProjection(l,angle[i],0.1));
     }
-//    array.Print();
-			// inspect array if necessary.
-//    array.PrintSinogram();
-			// print out the sinogram if necessary.
+//    array.Print();		// inspect array if necessary.
+//    array.PrintSinogram();	// print out the sinogram if necessary.
     NumSurface sf = *(FilteredBackProjection(array,Nres,Hamming));
 			// performs filtered back-projection.
-    sf.Print();		// print out the result.
+//    sf.Print();		// print out the result.
 #ifdef USE_HDF
-//    sf.ExportHDF("output/test.h5");
+    sf.ExportHDF(argv[2]);
 #endif
+    delete angle;
     return 0;
 }
