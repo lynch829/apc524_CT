@@ -418,7 +418,7 @@ void NumVolume::ExportHDF(const char* file)
     status = H5LTset_attribute_int(file_id, "/y", "size of y", &_sizey, 1);
     status = H5LTmake_dataset_double(file_id,"/z",Dim1,dimz,_dataz);
     status = H5LTset_attribute_int(file_id, "/z", "size of z", &_sizez, 1);
-    status = H5LTmake_dataset_double(file_id,"/data",Dim2,dims,data);
+    status = H5LTmake_dataset_double(file_id,"/data",Dim3,dims,data);
     status = H5Fclose(file_id);
 }
 

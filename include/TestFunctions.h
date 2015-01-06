@@ -13,10 +13,11 @@ double Gauss2D(double x, double y);	//!< 2D Gauss
 double Gauss3D(double x, double y, double z);	//!< 3D Gauss
 
 double Sphere(double x, double y, double z);
+double Heart(double x, double y, double z); //!< Heart function
+
 double Circle(double x, double y);	//!< Circle. Returns 1 or 0.
 double Rectangle(double x, double y);	//!< Rectangle Returns 1 or 0.
 double Triangle(double x, double y);	//!< Triangle. Returns 1 or 0.
-
 bool assertArrayEqual(double *, double *, int, double precision = 1e-8);
 	//!< Check if two arrays agree within the precision.
 bool assertEqual(NumCurve, NumCurve, double precision=1e-8);
