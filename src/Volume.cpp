@@ -1,6 +1,7 @@
 #include "Volume.h"
 #include <math.h>
 #include <stdio.h>
+#include<iostream>
 #define FILE "output/Volume.h5"
 
 Volume::Volume(double rx, double ry, double rz):Image(Dim3){
@@ -57,7 +58,9 @@ NumSurface Volume::GetProjection(LineIntegral* l, double angle, double spacingr,
     //std::cerr << "counterz=" << counterz <<std::endl;
     //std::cerr << "spacingr=" << spacingr <<std::endl;
     //std::cerr << "y[counterr]" << y[counterr-1] << std::endl;
-    return NumSurface(counterz, x, counterr, y, z);
+    NumSurface ret1 = NumSurface(counterz, x, counterr, y, z);
+    std::cerr << "range" << ret1.GetRadius() << std::endl;
+    return ret1;
 }
 
 double Volume::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d, double z, Interpolator* intpl){

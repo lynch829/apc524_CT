@@ -47,19 +47,54 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
     }
     int Nangle = array.GetSize(); //Nangle is slice*size number of angle views
     int NviewPerslice = Nangle/Nslice; // NviewPerslice is the total number of angle view per slice. Assuming each slice has the same number of angle view for now.
+    double sum[Nres][Nres];
     for(int k=0;k<Nslice;k++){ //iterate over number of horizontal slice
+        for(int i=0;i<Nres;i++){
+            for(int j=0;j<Nres;j++){
+                sum[i][j] =0;
+            }
+        }
+        std::cerr<< "k is" << k << std::endl;
         for(int ll=0; ll<NviewPerslice; ll++){ // iterate over angle of view per slice
             double angle = array.GetAngle(ll+k*NviewPerslice);
-            for( int i=0; i<Nres; i++){	// loop over X-coordinate
+            for( int i=0; i<Nres; i++){	// loop over x-coordinate
                 double x = -range + i*2*range/(Nres-1);
                 for( int j=0; j<Nres; j++){	// loop over y-coordinate
                     double y = -range + j*2*range/(Nres-1);
                     double t = x*cos(angle) + y*sin(angle);	// distance to origin for angle ll.
-                    w[i][j][k] += (array.GetFilteredCurve(ll))(t,0)*pi/Nangle; // superpose the value, assuming uniform grid.
-                }
+                    //std::cerr<< "t is" << t << std::endl;
+                    NumCurve temp_Curve = (array.GetFilteredCurve(ll+k*NviewPerslice));
+                    int size_y = temp_Curve.GetSize()/Nslice;
+                    //std::cerr<< "size_y is" << size_y << std::endl;
+                    NumCurve temp_Slice = NumCurve(size_y);
+                    temp_Slice.SetRange(range);
+                    double* yy = temp_Slice.GetYPtr();
+                    double* xx = temp_Slice.GetXPtr();
+                    double* Y = temp_Curve.GetYPtr();
+                    double* X = temp_Curve.GetXPtr();
+                    //std::cerr<< "running1" << std::endl;
+                    for(int q=0;q<size_y;q++){
+                        double tempy = Y[q+k*size_y];
+                        double tempx = X[q];
+                        //std::cerr<< "tempx " << tempx << "tempy " << tempy<<std::endl;
+                        yy[q] = tempy;
+                        xx[q] = tempx;
+                    }
+                    //std::cerr<< "running2" << std::endl;
+                    sum[i][j] += (temp_Slice)(t,0)*pi/NviewPerslice;
+                    //std::cerr<< "running3" << std::endl;
+                   // superpose the value, assuming uniform grid.
+                } // i loop
+            }// j loop
+        }    // ll loop
+        //std::cerr<< "sum is" << sum[50][50]<< std::endl;
+        for( int ii=0; ii<Nres; ii++){	// loop over x-coordinate
+            for( int jj=0; jj<Nres; jj++){	// loop over y-coordinate
+                w[ii][jj][k] = sum[ii][jj];
             }
         }
-    }
+        //std::cerr<< "sum is" << sum[50][50]<< std::endl;
+    }// k loop
    NumVolume* rec = new NumVolume(Nres,range,Nres,range,Nslice,rangeZ,w);
    for (int i = 0; i < Nres; ++i) {
         for (int j = 0; j < Nres; ++j)

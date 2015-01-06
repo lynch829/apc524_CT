@@ -12,6 +12,7 @@ double Gauss3D(double x, double y, double z);
 double Circle(double x, double y);
 double Rectangle(double x, double y);
 double Triangle(double x, double y);
+double Sphere(double x, double y, double z);
 
 bool assertArrayEqual(double *, double *, int, double precision = 1e-8);
 

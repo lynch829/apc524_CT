@@ -41,7 +41,7 @@ public:
 	double* GetXPtr();
 	double* GetYPtr();
 
-        int GetSize();	//!< Return size of the data array.
+    int GetSize();	//!< Return size of the data array.
 protected:
 	double* _datax;	//!< X-Coordinates of the points.
 	double* _datay;	//!< Values at X-Coordinates.

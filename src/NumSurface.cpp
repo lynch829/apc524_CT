@@ -52,6 +52,7 @@ NumSurface::NumSurface(int sizex, double* x, int sizey, double* y, double** z)
     }
     _rx = fabs(_datax[0]) > fabs(_datax[_sizex-1]) ? fabs(_datax[0]) : fabs(_datax[_sizex-1]);
     _ry = fabs(_datay[0]) > fabs(_datay[_sizey-1]) ? fabs(_datay[0]) : fabs(_datay[_sizey-1]);
+    _r = sqrt(_rx*_rx+_ry*_ry);
 }
 
 // Constructor with a given size, range and a set of z-values
@@ -199,23 +200,23 @@ NumSurface::~NumSurface()
 
 NumCurve NumSurface::Surface2Curve()
 {
-    double *y = this->_datay; double **z= this->_dataz;
-    int size = this->_sizex * this->_sizey; //size of NumCurve is _sizex * _sizey
+    double *y = this->GetYPtr(); double **z= this->GetZPtr();
+    int size = _sizex * _sizey; //size of NumCurve is _sizex * _sizey
     double* datax;double* datay; //datax is x coordinate of NumCurve datay is the values of NumCurve
     datax = new double[size]; datay = new double[size];
     for(int i=0;i<this->_sizex;i++){
-        for(int j=0;j<this->_sizey;j++){
-            datay[j+i*this->_sizey] = z[i][j]; //put the y dimension of z in datay
-            datax[j+i*this->_sizey] = y[j]; //spacingr information is given in datax
+        for(int j=0;j<_sizey;j++){
+            datay[j+i*_sizey] = z[i][j]; //put the y dimension of z in datay
+            datax[j+i*_sizey] = y[j]; //spacingr information is given in datax
             //std::cerr << "y[j] is " <<j<<" "<< y[j] <<std::endl;
         }
      }
     NumCurve ret(size, datax, datay); //construct NumCurve that is equivalent to NumSurface
-    double r = fabs(y[0]) > fabs(y[this->_sizey-1]) ? fabs(y[0]) : fabs(y[this->_sizey-1]);
+    double r = fabs(y[0]) > fabs(y[_sizey-1]) ? fabs(y[0]) : fabs(y[_sizey-1]);
     ret.SetRange(r);
-    //std::cerr << "r is " << r <<std::endl;
-    //std::cerr << "size is " << size <<std::endl;
-    //std::cerr << "ydimension is " <<this->_sizey << std::endl;
+    std::cerr << "r is " << r <<std::endl;
+    std::cerr << "size is " << size <<std::endl;
+    std::cerr << "ydimension is " <<_sizey << std::endl;
     return ret;
     delete [] datax; delete [] datay;
 }
