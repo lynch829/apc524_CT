@@ -13,16 +13,20 @@ NumSurface* FilteredBackProjection( ImageArray& array, int Nres, double (*kernal
     std::cerr<<"FBP: Convolution done."<<std::endl;
     NumSurface* rec = new NumSurface(Nres,range,Nres,range);	// NumSurface to store the reconstructed obj.
     int Nangle = array.GetSize();
+    std::cerr<<"Size is."<< Nangle <<std::endl;
     for(int ll=0; ll<Nangle; ll++){	// Iterate over all angle of view
         double angle = array.GetAngle(ll);
+        std::cerr<<"Angle is."<< angle <<std::endl;
         for( int i=0; i<Nres; i++){	// Loop over X-coordinates of final surface.
             double x = -range + i*2*range/(Nres-1);
             for( int j=0; j<Nres; j++){	// Loop over y-coordinate of final surface.
                 double y = -range + j*2*range/(Nres-1);
                 double t = x*cos(angle) + y*sin(angle);	// Distance from (x,y) to origin at angle ll.
+                //std::cerr<<"t is."<< t <<" "<<i<<" "<<j<< "range is "<< range<<std::endl;
                 (*rec)(i,j) += (array.GetFilteredCurve(ll))(t,0)*pi/Nangle; // Superpose all values, assuming uniform grid.
             }
         }
+        std::cerr<<"running" <<std::endl;
 //        #ifdef USE_HDF
 //        char file[100]; sprintf(file,"output/batman_rec%d.h5",ll);
 //        rec->ExportHDF(file);

@@ -146,7 +146,7 @@ NumSurface::NumSurface(int sizex, int sizey, const Surface& f) : Surface(0,0)
 {
     _sizex = sizex;
     _sizey = sizey;
-    _rx = f.GetRangeX(); _ry = f.GetRangeY();
+    _rx = f.GetRangeX(); _ry = f.GetRangeY(); _r = sqrt(_rx*_rx+_ry*_ry);
     _datax = new double[_sizex]; _datay = new double[_sizey];
     _dataz = new double*[_sizex];
     for(int i=0;i<_sizex;i++){
@@ -224,14 +224,14 @@ NumCurve NumSurface::Surface2Curve()
 double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
     if(intpl==0){
-        std::cerr << "run1 "<<std::endl;
+        //std::cerr << "run1 "<<std::endl;
         double ret;
         int dim=2; //dimmension is 2
         double dx = 2*_rx/(_sizex-1);
         int i0x = int((x+_rx)/dx);
         int i1x = i0x+1;
         double dy = 2*_ry/(_sizey-1);
-        int i0y = int((y+_rx)/dy);
+        int i0y = int((y+_ry)/dy);
         int i1y = i0y+1;
         while ( i1x < _sizex && x > _datax[i1x] ) {i0x++;i1x++;}
         while ( i1y < _sizey && y > _datay[i1y] ) {i0y++;i1y++;}
