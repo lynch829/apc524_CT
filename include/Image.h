@@ -1,5 +1,5 @@
 /*! \file
-    \brief Abstract Image class for CT images. S
+    \brief Abstract Image class from which everything will derive.
 */
 
 #ifndef IMAGE_ABSTRACT
@@ -12,10 +12,12 @@
 #include "hdf5.h"
 #include "hdf5_hl.h"
 #endif
+
 /*!
 An abstract Image class should contain the following abstract virtual methods:
-(1) A function to return dimensionality. 
-(2) A method that returns value at x. 
+(1) A function to return dimensionality.
+(2) A Print method for default output.
+(3) An Export method to create HDF5 file.
 An Image is further classified into 1D (Curve), 2D(Surface) and 3D(Volume).
 Object in each dimension will have to implement operator(), which returns the image value at the argument point. S
 */
@@ -34,7 +36,6 @@ public:
 
 protected:
     Dimension _dim;		//! Dimension of the problem, will be 1D, 2D, or 3D.
-
 };
 
 #endif

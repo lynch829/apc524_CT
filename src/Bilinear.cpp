@@ -28,10 +28,10 @@ double Bilinear::Interpolate(vector<double>& x, double** data_x, double* fx, int
     }
     if (i1[1] >size[0]-1 || i1[2] >size[1]-1|| i0[1] < 0 || i0[2] <0) return 0;
     else {
-        int* q11 = new int[2];q11[0]=i0[1];q11[1]=i0[2];
-        int* q12 = new int[2];q12[0]=i0[1];q12[1]=i1[2];
-        int* q21 = new int[2];q21[0]=i1[1];q21[1]=i0[2];
-        int* q22 = new int[2];q22[0]=i1[1];q22[1]=i1[2];
+        int q11[2]={0};q11[0]=i0[1];q11[1]=i0[2];	//!< Avoid using new since it is costly. Also after new, have to delete.
+        int q12[2]={0};q12[0]=i0[1];q12[1]=i1[2];
+        int q21[2]={0};q21[0]=i1[1];q21[1]=i0[2];
+        int q22[2]={0};q22[0]=i1[1];q22[1]=i1[2];
         double Q11 =fx[coord2index(q11,size,dim)];
         double Q21 =fx[coord2index(q12,size,dim)];
         double Q12 =fx[coord2index(q21,size,dim)];

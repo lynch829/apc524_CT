@@ -38,8 +38,8 @@ public:
 	void ExportHDF(const char*);	//!< Default method, export to HDF as two columns.
 	void ExportHDF(const char*, double,double,int);	//!< Export HDF for a given range.
 #endif
-	double* GetXPtr();
-	double* GetYPtr();
+	double* GetXPtr();	//!< Returns a pointer to the array of coordinates for faster access.
+	double* GetYPtr();	//!< Returns a pointer to the array of values for faster access.
 
     int GetSize();	//!< Return size of the data array.
 protected:

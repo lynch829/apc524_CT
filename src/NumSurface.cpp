@@ -333,11 +333,11 @@ NumSurface::NumSurface(const char* file): Surface(0, 0)
 {
     hid_t file_id;
     herr_t status;
-    int _sizex, _sizey;
     file_id = H5Fopen(file, H5F_ACC_RDONLY, H5P_DEFAULT);
     status = H5LTget_attribute_int(file_id, "/x", "size of x", &_sizex);
     status = H5LTget_attribute_int(file_id, "/y", "size of y", &_sizey);
-    double _datax[_sizex], _datay[_sizey];
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
     double data[_sizex*_sizey];
     status = H5LTread_dataset_double(file_id,"/x",_datax);
     status = H5LTread_dataset_double(file_id,"/y",_datay);

@@ -39,4 +39,3 @@ protected:
     double _rx, _ry, _rz, _r, _step;
 };
 #endif
-
