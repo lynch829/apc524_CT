@@ -12,6 +12,10 @@ double Gauss3D(double x, double y, double z){
     return exp(-x*x/6 -y*y/3 + x*y/4 - z*z/3 + z*y/4);
 }
 
+double Heart(double x, double y, double z){
+    return (pow((x*x+9*y*y/4+z*z-1),3)-x*x*z*z*z-9*y*y*z*z*z/80 >0)?0:1;
+}
+
 double Circle(double x, double y){
     return (x*x+y*y > 16)?0:1;
 }
