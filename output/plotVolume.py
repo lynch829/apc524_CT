@@ -4,7 +4,7 @@ import numpy as np
 import h5py
 #import sys
 
-fname = "test.h5" #sys.argv[1]
+fname = "heart.h5" #sys.argv[1]
 infile = h5py.File(fname, 'r')
 x = np.array((infile["x"]))
 y = np.array((infile["y"]))

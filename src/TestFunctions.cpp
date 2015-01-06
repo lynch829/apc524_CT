@@ -81,17 +81,21 @@ bool assertEqual(NumCurve *a, NumCurve *b, double precision){
 
 double Batman(double x, double y)
 {
-    double w=3*sqrt(1-x*x/49);
-    double l=0.5*(x+3)-3.0/7*sqrt(40-40*(x+1)*(x+1))+6.0/7*sqrt(10);
-    double h=0.5*(fabs(x+0.5)+fabs(x-0.5)+6-11*(x+3.0/4)+fabs(x-3.0/4));
-    double r=0.5*(3-x)-3.0/7*sqrt(40-10*(x-1)*(x-1))+6.0/7*sqrt(10);
-
-    double top = (h-l)*Heaviside(x+1)+(r-h)*Heaviside(x-1)+(l-w)*Heaviside(x+3)+(w-r)*Heaviside(x-3)+w;
-    double bottom = 0.5*(fabs(x/2)+sqrt(1-(fabs(x-2)-1)*(fabs(x-2)-1))-1./112*(2*sqrt(33)-7)*x*x+3*sqrt(1-x*x/49)-3)*((x+4)/fabs(x+4)-(x-4)/fabs(x-4)-3*sqrt(1-x*x/49));
-    if(isnan(top)) return 2;
-    else if(isnan(bottom)) return 0;
-    else if(y<top && y> bottom) return 1;
-    else return -1;
+    if(y>0 and fabs(x)>3 and x*x/49+y*y/9-1<0)
+        return 1;
+    if(fabs(x)>4 and y < 0 and x*x/49+y*y/9-1<0)
+        return 1;
+    if (y<0 and fabs(x/2)-(3*sqrt(33)-7)/112.*x*x-3+sqrt(1-(fabs(fabs(x)-2)-1)*(fabs(fabs(x)-2)-1))-y <0 and fabs(x)<4)
+        return 1;
+    if (fabs(x)>0.75 and fabs(x)<1 and y < 9-8*fabs(x) and y>0)
+        return 1;
+    if (fabs(x)>0.5 and fabs(x)<0.75 and y>0 and y<3*fabs(x)+0.75)
+        return 1;
+    if (y<2.25 and y>0 and fabs(x)<0.5)
+        return 1;
+    if (y>0 and fabs(x)>1 and fabs(x)<3 and 6.*sqrt(10)/7 + (1.5-0.5*fabs(x))-6.0*sqrt(10)/14.*sqrt(4-(fabs(x)-1)*(fabs(x)-1)) -y > 0  )
+        return 1;
+    else return 0;
 }
 
 double Heaviside(double x){
