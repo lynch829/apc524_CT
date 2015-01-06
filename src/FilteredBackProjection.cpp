@@ -39,7 +39,7 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
     array.ConvolveWithKernal(kernal); // Filter each projection with kernal.
     std::cerr << "FBP: Convolution done" << std::endl;
 
-    NumVolume* rec = new NumVolume(Nres,range,Nres,range,Nslice,rangeZ,w);
+    NumVolume* rec = new NumVolume(Nres,range,Nres,range,Nslice,rangeZ);
     double*** w = rec->GetWPtr();
 
     int Nangle = array.GetSize(); // Nangle is slice*size number of angle views

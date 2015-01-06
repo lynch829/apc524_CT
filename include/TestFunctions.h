@@ -23,4 +23,7 @@ bool assertEqual(NumCurve, NumCurve, double precision=1e-8);
 bool assertEqual(NumCurve*, NumCurve*, double precision=1e-8);
 	//!< Check if two NumCurves pointed by the pointer agrees with each other.
 
+double Batman(double,double);
+	//!< If a point lies in a batman symbol return 1, else return 0.
+double Heaviside(double x);
 #endif
