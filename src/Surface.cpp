@@ -24,12 +24,17 @@ double Surface::GetRadius() const { return _r; }
 
 NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, Interpolator* intpl){
     int N = int(2*_r/spacing)+1;
+    printf("%d %f\n", N, _r);
     NumCurve ret(N,_r);
     double *x = ret.GetXPtr();
     double *y = ret.GetYPtr();
 
-    for(int i=0; i < N; i++)
+    for(int i=0; i < N; i++){
+        printf("initiating %d", i);
         y[i] = this->GetProjectionAtAngle(l,angle,x[i],intpl);
+        printf("y[i] is %f at %d\n",y[i],i);
+    }
+    printf("loop is done");
     return ret;
 }
 

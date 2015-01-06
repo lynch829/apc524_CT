@@ -52,6 +52,7 @@ NumSurface::NumSurface(int sizex, double* x, int sizey, double* y, double** z)
     }
     _rx = fabs(_datax[0]) > fabs(_datax[_sizex-1]) ? fabs(_datax[0]) : fabs(_datax[_sizex-1]);
     _ry = fabs(_datay[0]) > fabs(_datay[_sizey-1]) ? fabs(_datay[0]) : fabs(_datay[_sizey-1]);
+    _r = sqrt(_rx*_rx+_ry*_ry);
 }
 
 // Constructor with a given size, range and a set of z-values
@@ -261,6 +262,7 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
         }
     }
     delete [] datax_in;
+    printf("Intpl Surface returning %f\n",ret);
     return ret;
 }
 
@@ -327,7 +329,7 @@ void NumSurface::ExportHDF(const char* file)
 
 void NumSurface::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
 
-// Constructor from a HDF5 file.
+// Constructor from a HDF5 file. Requires input x and y to be symmetric.
 NumSurface::NumSurface(const char* file): Surface(0, 0)
 {
     hid_t file_id;
@@ -349,6 +351,9 @@ NumSurface::NumSurface(const char* file): Surface(0, 0)
         }
     }
     status = H5Fclose(file_id);
+    _rx = -_datax[0];
+    _ry = -_datay[0];
+    _r = sqrt(_rx*_rx+_ry+_ry);
 }
 
 #endif

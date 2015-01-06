@@ -14,8 +14,8 @@ dset[...] = data[infile[:-4]]
 
 x = outfile.create_dataset("/x", (N[0],), dtype='f')
 x.attrs['size of x'] = N[0]
-x[...] = np.arange(N[0])/float(N[0])
+x[...] = np.arange(N[0])/float(N[0] - 1) -.5
 
 y = outfile.create_dataset("/y", (N[1],), dtype='f')
 y.attrs['size of y'] = N[1]
-y[...] = np.arange(N[1])/float(N[1])
+y[...] = np.arange(N[1])/float(N[1] - 1) -.5
