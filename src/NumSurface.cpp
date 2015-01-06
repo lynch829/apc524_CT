@@ -223,46 +223,83 @@ NumCurve NumSurface::Surface2Curve()
         
 double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
-    int dim=2; //dimmension is 2
-    vector<double> x_in; x_in.resize(dim);
-    x_in[1]=x ;x_in[2]=y; // set coordinate to be interpolated at
-    int* size_in; //set size of data in each dimension.
-    size_in = new int[dim];
-    size_in[0] = _sizex; size_in[1] = _sizey;
-    int size = size_in[0]; //size is the maximum of size in all dimensions
-    for(int i=0;i<dim;i++){
-        if(size > size_in[i]) size = size_in[i];
-    }
-    
-    double** datax_in; // get the existing coordinates
-    datax_in = new double*[dim];
-    for (int i=0;i<dim;i++){
-        datax_in[i] = new double[size];
-    }
-    for (int i=0;i<_sizex;i++){
-        datax_in[0][i]=_datax[i];
-    }
-    for (int i=0;i<_sizey;i++){
-        datax_in[1][i]=_datay[i];
-    }
-    
-    double* fx_in; //set given values on original coord.
-    fx_in = new double[_sizex*_sizey];
-    for(int j=0;j<_sizey;j++){
-        for(int i=0;i<_sizex;i++) {
-            fx_in[i+j*_sizex] = _dataz[i][j];
+    if(intpl==0){
+        std::cerr << "run1 "<<std::endl;
+        double ret;
+        int dim=2; //dimmension is 2
+        double dx = 2*_rx/(_sizex-1);
+        int i0x = int((x+_rx)/dx);
+        int i1x = i0x+1;
+        double dy = 2*_ry/(_sizey-1);
+        int i0y = int((y+_rx)/dy);
+        int i1y = i0y+1;
+        while ( i1x < _sizex && x > _datax[i1x] ) {i0x++;i1x++;}
+        while ( i1y < _sizey && y > _datay[i1y] ) {i0y++;i1y++;}
+        while ( i0x>=0 && x < _datax[i0x]) {i0x--;i1x--;}	// move interval to match with given point.
+        while ( i0y>=0 && y < _datay[i0y]) {i0y--;i1y--;}	// move interval to match with given point.
+        if ( i1x>_sizex-1 || i0x < 0 || i1y>_sizey-1 || i0y < 0) {return 0;}
+        else {
+            double Q11 = _dataz[i0x][i0y];
+            double Q21 = _dataz[i1x][i0y];
+            double Q12 = _dataz[i0x][i1y];
+            double Q22 = _dataz[i1x][i1y];
+            double s1 = Q11*(_datax[i1x]-x)*(_datay[i1y]-y);
+            double s2 = Q21*(x-_datax[i0x])*(_datay[i1y]-y);
+            double s3 = Q12*(_datax[i1x]-x)*(y-_datay[i0y]);
+            double s4 = Q22*(x-_datax[i0x])*(y-_datay[i0y]);
+            ret = 1/((_datax[i1x]-_datax[i0x])*(_datay[i1y]-_datay[i0y]))*(s1+s2+s3+s4);
+            return ret;
         }
     }
-    double ret = intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
-    delete [] fx_in; //delete memory allocation
-    delete [] size_in;
-    for (int i=0;i<dim;i++){
-        for (int j=0;j<size;j++){
+    else {
+        int dim=2; //dimmension is 2
+        vector<double> x_in; x_in.resize(dim);
+        x_in[0]=x ;x_in[1]=y; // set coordinate to be interpolated at
+        //std::cerr << "x_in1 "<< x_in[1] << "x_in2" << x_in[1] <<std::endl;
+        std::cerr << "run2 "<<std::endl;
+        int* size_in; //set size of data in each dimension.
+        size_in = new int[dim];
+        size_in[0] = _sizex; size_in[1] = _sizey;
+        std::cerr << "run3 "<<std::endl;
+        int size = size_in[0]; //size is the maximum of size in all dimensions
+        for(int i=0;i<dim;i++){
+         if(size > size_in[i]) size = size_in[i];
+        }
+        double** datax_in; // get the existing coordinates
+        std::cerr << "run4 "<<std::endl;
+        datax_in = new double*[dim];
+        for (int i=0;i<dim;i++){
+            datax_in[i] = new double[size];
+        }
+        for (int i=0;i<_sizex;i++){
+            datax_in[0][i]=_datax[i];
+        }
+        for (int i=0;i<_sizey;i++){
+            datax_in[1][i]=_datay[i];
+        }
+        double* fx_in; //set given values on original coord.
+        std::cerr << "run5 "<<std::endl;
+        fx_in = new double[_sizex*_sizey];
+        std::cerr << "run6 "<<std::endl;
+        for(int j=0;j<_sizey;j++){
+            for(int i=0;i<_sizex;i++) {
+                std::cerr << "run7 i "<< i<<std::endl;
+                double temp = _dataz[i][j];
+                 fx_in[i+j*_sizex]= temp ;
+            }
+        std::cerr << "run8 j "<< j<<std::endl;
+        }
+        //std::cerr << "x_in1 "<< datax_in[0][0] << "x_in2" << datax_in[0][1] <<std::endl;
+        double ret = intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
+        delete [] fx_in; //delete memory allocation
+        delete [] size_in;
+        for (int i=0;i<dim;i++){
             delete [] datax_in[i];
         }
+        delete [] datax_in;
+        return ret;
     }
-    delete [] datax_in;
-    return ret;
+
 }
 
 double& NumSurface::operator()(int indexX, int indexY)
@@ -350,6 +387,9 @@ NumSurface::NumSurface(const char* file): Surface(0, 0)
         }
     }
     status = H5Fclose(file_id);
+    _rx = -_datax[0];
+    _ry = -_datay[0];
+    _r = sqrt(_rx*_rx+_ry*_ry);
 }
 
 #endif
