@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
 
     double range = 5;	// range of the geometry
     const int size=200;	// number of view
-    const int Nres=1000;// resolution/ N of point in the projected curve.
+    const int Nres=100;// resolution/ N of point in the projected curve.
     double angle[size];	// array containing size angles.
 
     ImageArray array;
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
     NumSurface sf;	// Num Surf to contain reconstructed result.
 //    NumSurface* Baltimore = new NumSurface("output/BaltimoreDowntown.h5");
 
-    const int N = 500;
+    const int N = 100;
     double datax[N] = {0};
     double datay[N] = {0};
     double** dataz = new double*[N];

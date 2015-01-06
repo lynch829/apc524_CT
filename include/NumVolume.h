@@ -31,6 +31,11 @@ public:
     
     void Print();	//!< Default method, print out everything as three columns.
     void Print(double,double,int,double,double,int);	//!< Print out image.
+
+#ifdef USE_HDF    
+    void ExportHDF(const char*);//!< Default, export everything as three columns.
+    void ExportHDF(const char*, double,double,int,double,double,int);//!< Export data in the range.
+#endif
     
 protected:
     double* _datax;	//!< X-Coordinates of the points.
