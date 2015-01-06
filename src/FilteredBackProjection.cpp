@@ -90,7 +90,7 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
         //std::cerr<< "sum is" << sum[50][50]<< std::endl;
         for( int ii=0; ii<Nres; ii++){	// loop over x-coordinate
             for( int jj=0; jj<Nres; jj++){	// loop over y-coordinate
-                w[ii][jj][k] = sum[ii][jj];
+                w[ii][jj][k] = sum[ii][jj]/Nslice;
             }
         }
         //std::cerr<< "sum is" << sum[50][50]<< std::endl;
