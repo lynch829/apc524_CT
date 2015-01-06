@@ -41,7 +41,7 @@ public:
 	double* GetXPtr();	//!< Returns a pointer to the array of coordinates for faster access.
 	double* GetYPtr();	//!< Returns a pointer to the array of values for faster access.
 
-        int GetSize();	//!< Return size of the data array.
+    int GetSize();	//!< Return size of the data array.
 protected:
 	double* _datax;	//!< X-Coordinates of the points.
 	double* _datay;	//!< Values at X-Coordinates.

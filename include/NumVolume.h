@@ -39,6 +39,11 @@ public:
     double* GetYPtr();	//!< Return a pointer to y coordinates.
     double* GetZPtr();	//!< Return a pointer to z coordinates.
     double*** GetWPtr();	//!< Return a pointer containing the data.
+
+#ifdef USE_HDF    
+    void ExportHDF(const char*);//!< Default, export everything as three columns.
+    void ExportHDF(const char*, double,double,int,double,double,int);//!< Export data in the range.
+#endif
     
 protected:
     double* _datax;	//!< X-Coordinates of the points.

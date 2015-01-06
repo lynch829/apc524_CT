@@ -16,6 +16,10 @@ double Circle(double x, double y){
     return (x*x+y*y > 16)?0:1;
 }
 
+double Sphere(double x, double y, double z){
+    return (x*x+y*y+z*z> 1)?0:1;
+}
+
 double Rectangle(double x, double y){
     double val = 0;
     if(fabs(x)<3 && fabs(y)<3) val = 1;

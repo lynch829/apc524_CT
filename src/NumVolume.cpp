@@ -363,6 +363,9 @@ void NumVolume::Print()
 //! Print data in the range.
 void NumVolume::Print(double xi, double xf, int Nx, double yi, double yf, int Ny){}
 
+
+
+
 double* NumVolume::GetXPtr()
 {
     return _datax;
@@ -382,3 +385,41 @@ double*** NumVolume::GetWPtr()
 {
     return _dataw;
 }
+
+#ifdef USE_HDF
+void NumVolume::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
+
+void NumVolume::ExportHDF(const char* file)
+{
+    double data[_sizex*_sizey*_sizez];
+    for (int i = 0; i<_sizex; i++){
+        for (int j = 0; j<_sizey; j++){
+            for (int k = 0; k <_sizez; k++){
+                data[(i*_sizey + j)*_sizez + k] = _dataw[i][j][k];
+            }
+        }
+    }
+    hid_t file_id;
+    hsize_t dims[Dim3];
+    dims[0] = _sizex;
+    dims[1] = _sizey;
+    dims[2] = _sizez;
+    hsize_t dimx[Dim1];
+    dimx[0] = _sizex;
+    hsize_t dimy[Dim1];
+    dimy[0] = _sizey;
+    hsize_t dimz[Dim1];
+    dimz[0] = _sizez;
+    herr_t status;
+    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,_datax);
+    status = H5LTset_attribute_int(file_id, "/x", "size of x", &_sizex, 1);
+    status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,_datay);
+    status = H5LTset_attribute_int(file_id, "/y", "size of y", &_sizey, 1);
+    status = H5LTmake_dataset_double(file_id,"/z",Dim1,dimz,_dataz);
+    status = H5LTset_attribute_int(file_id, "/z", "size of z", &_sizez, 1);
+    status = H5LTmake_dataset_double(file_id,"/data",Dim2,dims,data);
+    status = H5Fclose(file_id);
+}
+
+#endif
