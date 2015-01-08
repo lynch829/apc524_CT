@@ -12,7 +12,7 @@
 */
 
 class NumCurve : public Curve{
-
+friend class Interpolator; //!<
 public:
 	NumCurve();		//!< Default constructor, everything null and 0.
 	NumCurve(int size);	//!< Default constructor, _size set and everything else null and 0./Users/qili/Downloads/apc524_CT/include/NumCurve.h

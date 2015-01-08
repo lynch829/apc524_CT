@@ -252,54 +252,8 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
         }
     }
     else {
-        int dim=2; //dimmension is 2
-        vector<double> x_in; x_in.resize(dim);
-        x_in[0]=x ;x_in[1]=y; // set coordinate to be interpolated at
-        //std::cerr << "x_in1 "<< x_in[1] << "x_in2" << x_in[1] <<std::endl;
-        std::cerr << "run2 "<<std::endl;
-        int* size_in; //set size of data in each dimension.
-        size_in = new int[dim];
-        size_in[0] = _sizex; size_in[1] = _sizey;
-        std::cerr << "run3 "<<std::endl;
-        int size = size_in[0]; //size is the maximum of size in all dimensions
-        for(int i=0;i<dim;i++){
-         if(size > size_in[i]) size = size_in[i];
-        }
-        double** datax_in; // get the existing coordinates
-        std::cerr << "run4 "<<std::endl;
-        datax_in = new double*[dim];
-        for (int i=0;i<dim;i++){
-            datax_in[i] = new double[size];
-        }
-        for (int i=0;i<_sizex;i++){
-            datax_in[0][i]=_datax[i];
-        }
-        for (int i=0;i<_sizey;i++){
-            datax_in[1][i]=_datay[i];
-        }
-        double* fx_in; //set given values on original coord.
-        std::cerr << "run5 "<<std::endl;
-        fx_in = new double[_sizex*_sizey];
-        std::cerr << "run6 "<<std::endl;
-        for(int j=0;j<_sizey;j++){
-            for(int i=0;i<_sizex;i++) {
-                std::cerr << "run7 i "<< i<<std::endl;
-                double temp = _dataz[i][j];
-                 fx_in[i+j*_sizex]= temp ;
-            }
-        std::cerr << "run8 j "<< j<<std::endl;
-        }
-        //std::cerr << "x_in1 "<< datax_in[0][0] << "x_in2" << datax_in[0][1] <<std::endl;
-        double ret = intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
-        delete [] fx_in; //delete memory allocation
-        delete [] size_in;
-        for (int i=0;i<dim;i++){
-            delete [] datax_in[i];
-        }
-        delete [] datax_in;
-        return ret;
-    }
-
+	    return 0;
+}
 }
 
 double& NumSurface::operator()(int indexX, int indexY)

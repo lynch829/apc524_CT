@@ -291,51 +291,7 @@ NumVolume::~NumVolume()
 //! Operator for returning value at a given point.
 double NumVolume::operator()(double x, double y, double z, Interpolator* intpl) const
 {
-    int dim=3; //dimmension is 2
-    vector<double> x_in; x_in.resize(dim);
-    x_in[1]=x ;x_in[2]=y; x_in[3]=z;// set coordinate to be interpolated at
-    int* size_in; //set size of data in each dimension.
-    size_in = new int[dim];
-    size_in[0] = _sizex; size_in[1] = _sizey; size_in[2] = _sizez;
-    int size = size_in[0]; //size is the maximum of size in all dimensions
-    for(int i=0;i<dim;i++){
-        if(size > size_in[i]) size = size_in[i];
-    }
-    
-    double** datax_in; // get the existing coordinates
-    datax_in = new double*[dim];
-    for (int i=0;i<dim;i++){
-        datax_in[i] = new double[size];
-    }
-    for (int i=0;i<_sizex;i++){
-        datax_in[0][i]=_datax[i];
-    }
-    for (int i=0;i<_sizey;i++){
-        datax_in[1][i]=_datay[i];
-    }
-    for (int i=0;i<_sizez;i++){
-        datax_in[2][i]=_dataz[i];
-    }
-    
-    double* fx_in; //set given values on original coord.
-    fx_in = new double[_sizex*_sizey*_sizez];
-    for(int k=0;k<_sizez;k++){
-        for(int j=0;j<_sizey;j++){
-            for(int i=0;i<_sizex;i++) {
-                fx_in[i+j*_sizex+k*(_sizex*_sizey)] = _dataw[i][j][k];
-            }
-        }
-    }
-    double ret = intpl->Interpolate(x_in,datax_in,fx_in,size_in,dim); //return interpolated result
-    delete [] fx_in; //delete memory allocation
-    delete [] size_in;
-    for (int i=0;i<dim;i++){
-        for (int j=0;j<size;j++){
-            delete [] datax_in[i];
-        }
-    }
-    delete [] datax_in;
-    return ret;
+return 0;
 }
 
 //! Operator returning a reference to the data at the specified index.
