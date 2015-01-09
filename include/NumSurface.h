@@ -4,14 +4,13 @@
 #ifndef NUMSURFACE
 #define NUMSURFACE 1
 
-//#include"Interpolator.h"
+#include"Interpolator.h"
 #include"Surface.h"
-//#include"NumCurve.h"
 /*!
   This class implements the Surface abstract class with numerical points. The values are obtained by interpolation.
 */
 
-class Interpolator;
+//class Interpolator;
 class NumSurface : public Surface{
 
 public:

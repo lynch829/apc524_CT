@@ -5,40 +5,26 @@ NearestNeighborIntpl::NearestNeighborIntpl() {}
 
 NearestNeighborIntpl::~NearestNeighborIntpl() {}
 
-double NearestNeighborIntpl::Interpolate(double x, double y, NumSurface* f){
+double NearestNeighborIntpl::Interpolate(double x, double y){
 const int dim = 2;
-double* xptr = f->GetXPtr();
-double* yptr = f->GetYPtr();
-double** zptr = f->GetZPtr();
-int sizex = f->GetSizeX();
-int sizey = f->GetSizeY();
-vector <double*> coord; coord.resize(dim); coord[0] = xptr; coord[1] = yptr; //set the vector of dimension 2 for the coord.
-vector <int> size; size.resize(dim); size[0] = sizex; size[1] = sizey; //set the vector of dimension 2 for the size information.
-vector <double> coord_in; size.resize(dim); coord_in[0] = x; coord_in[1] = y; 
+vector <double*> coord; coord.resize(dim); coord[0] = _xptr; coord[1] = _yptr; //set the vector of dimension 2 for the coord.
+vector <int> size; size.resize(dim); size[0] = _sizex; size[1] = _sizey; //set the vector of dimension 2 for the size information.
+vector <double> coord_in; coord_in.resize(dim); coord_in[0] = x; coord_in[1] = y; 
 vector <int> coord_out; coord_out.resize(dim);
 coord_out = this->FindDist(dim,size,coord,coord_in);
-
-double ret = zptr[coord_out[0]][coord_out[1]];
+double ret = _vptr[coord_out[0]][coord_out[1]];
 return ret;
 }
-double NearestNeighborIntpl::Interpolate(double x, double y, double z, NumVolume* f){
+double NearestNeighborIntpl::Interpolate(double x, double y, double z){
 const int dim = 3;
 vector <int> nearest; nearest.resize(dim); //set the vector of dimension 2 for the nearest points.
-double* xptr = f->GetXPtr();
-double* yptr = f->GetYPtr();
-double* zptr = f->GetZPtr();
-double*** wptr = f->GetWPtr();
-int sizex = f->GetSizeX();
-int sizey = f->GetSizeY();
-int sizez = f->GetSizeZ();
-
-vector <double*> coord; coord.resize(dim); coord[0] = xptr; coord[1] = yptr; coord[2] = zptr;//set the vector of dimension 3 for the coord.
-vector <int> size; size.resize(dim); size[0] = sizex; size[1] = sizey; size[2] = sizez;//set the vector of dimension 3 for the size information.
-vector <double> coord_in; size.resize(dim); coord_in[0] = x; coord_in[1] = y; coord_in[3] = z;
+vector <double*> coord; coord.resize(dim); coord[0] = _xptr; coord[1] = _yptr; coord[2] = _zptr;//set the vector of dimension 3 for the coord.
+vector <int> size; size.resize(dim); size[0] = _sizex; size[1] = _sizey; size[2] = _sizez;//set the vector of dimension 3 for the size information.
+vector <double> coord_in; coord_in.resize(dim); coord_in[0] = x; coord_in[1] = y; coord_in[3] = z;
 
 vector <int> coord_out; coord_out.resize(dim);
 coord_out = this->FindDist(dim,size,coord,coord_in);
-double ret = wptr[coord_out[0]][coord_out[1]][coord_out[2]];
+double ret = _wptr[coord_out[0]][coord_out[1]][coord_out[2]];
 return ret;
 }
 
@@ -54,4 +40,5 @@ for (int d=0; d<dim;d++){
         }
     }
 }
+return nearest;
 }

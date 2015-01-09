@@ -224,7 +224,6 @@ NumCurve NumSurface::Surface2Curve()
 double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
     if(intpl==0){
-        //std::cerr << "run1 "<<std::endl;
         double ret;
         int dim=2; //dimmension is 2
         double dx = 2*_rx/(_sizex-1);
@@ -251,9 +250,11 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
             return ret;
         }
     }
-    else {
-	    return 0;
-}
+	    
+     else{    
+            intpl->set_values(_sizex,_sizey,_datax,_datay,_dataz);
+            return intpl->Interpolate(x,y);
+         }
 }
 
 double& NumSurface::operator()(int indexX, int indexY)

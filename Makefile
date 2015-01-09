@@ -13,7 +13,7 @@ SRC_DIR=./src/
 TEST_DIR=./test/
 
 .PHONY: test
-test : demoBatman testSBP testNumCurve testNumSurface testVolume testSBP3D test_Intpl
+test : demoBatman testSBP testNumCurve testNumSurface testVolume testSBP3D test_Intpl test_Intpl2
 
 demo% : ./test/demo%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
