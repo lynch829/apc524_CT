@@ -12,24 +12,21 @@ using std::vector;
 class Interpolator{
 
 public:
-    Interpolator();
-    ~Interpolator();
-    void set_values(int,int,double*,double*,double**);
-    void set_values(int,int,int,double*,double*,double*,double***);
-    virtual double Interpolate(double, double) = 0;
-    virtual double Interpolate(double, double, double) = 0;
-
-    int coord2index(int*, int*, int);
-
+    Interpolator(); //!< constructor
+    ~Interpolator(); //!< destructor
+    void set_values(int,int,double*,double*,double**); //<! set values to relevant data for NumSurface
+    void set_values(int,int,int,double*,double*,double*,double***); //<! set values to relevant data for NumVolume
+    virtual double Interpolate(double, double) = 0; //!< Interpolate method for NumSurface
+    virtual double Interpolate(double, double, double) = 0; //!< Interpolate method for NumVolume
 protected:
-    int _sizex;
-    int _sizey;
-    int _sizez;
-    double* _xptr;
-    double* _yptr;
-    double* _zptr;
-    double** _vptr;
-    double*** _wptr;
+    int _sizex; //<! size in x direction
+    int _sizey; //<! size in y direction
+    int _sizez; //<! size in z direction (for NumVolume)
+    double* _xptr; //<! pointer to x-coordinates.
+    double* _yptr; //<! pointer to y-coordinates.
+    double* _zptr; //<! pointer to z-coordinates.
+    double** _vptr; //<! pointer to values of NumSurface object.
+    double*** _wptr; //<! pointer to values of NumVolume object.
 };
 
 #endif

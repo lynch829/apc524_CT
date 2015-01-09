@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
     NumSurface* num_gauss2 = new NumSurface(5,10,*gauss2);
   //  NumSurface Baltimore=NumSurface("./output/BaltimoreDowntown.h5");
 // defines trapezoid integration rule.
-    LineIntegral* l=new Trapezoid();
+    //LineIntegral* l=new Trapezoid();
 
 //  since Projection is defined
    switch(argc)
@@ -70,9 +70,11 @@ int main(int argc, char* argv[]){
            //printf("%.9f\n",a(1.8,1.8,intpl));
            //printf("%.9f\n",a(0.8,0.8,intpl));
            //printf("%.9f\n",a(0.1,0.1,intpl));
-               NearestNeighborIntpl intpl_nnb;
-               Interpolator* intpl = &intpl_nnb;
-               printf("%.9f\n",a(rx,ry,intpl));
+               //NearestNeighborIntpl intpl_nnb;
+	       Interpolator* intpl = new NearestNeighborIntpl();
+               //Interpolator* intpl = &intpl_nnb;
+               //printf("%.9f\n",a(rx,ry,intpl));
+	       delete intpl;
                }
            }
 //         printf("done interpolation\n");
@@ -80,7 +82,7 @@ int main(int argc, char* argv[]){
 		 }
         default: {delete gauss; break;}
     }
-
+     delete gauss2;
     return 0;
 }
 
