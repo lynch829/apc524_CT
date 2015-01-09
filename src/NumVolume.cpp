@@ -337,6 +337,20 @@ double* NumVolume::GetZPtr()
     return _dataz;
 }
 
+int NumVolume::GetSizeX()
+{
+    return _sizex;
+}
+
+int NumVolume::GetSizeY()
+{
+    return _sizey;
+}
+
+int NumVolume::GetSizeZ()
+{
+    return _sizez;
+}
 double*** NumVolume::GetWPtr()
 {
     return _dataw;

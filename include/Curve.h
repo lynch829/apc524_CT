@@ -5,7 +5,7 @@
 #define FUNCTION 1
 
 #include"Image.h"
-#include"Interpolator.h"
+//#include"Interpolator.h"
 
 /*!
 Curve is an Image with dimension 1. A few further functions to consider, such as integration.
@@ -13,6 +13,7 @@ Class derived from this class should add more functionalities, such as integrati
 This class is still an abstract class and there is no need for implementing copy constructors.
 */
 
+class Interpolator;
 class Curve : public Image{
 
 public:

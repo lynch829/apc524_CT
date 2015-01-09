@@ -6,13 +6,14 @@
 #define SURFACE 1
 #include "LineIntegral.h"
 #include "Image.h"
-#include "Interpolator.h"
+//#include "Interpolator.h"
 #include "NumCurve.h"
 
 /*!
 Surface is an Image with dimension 2. GetProjection method would return either a double as the result of one particular line integral, or a reference to Curve class as the integrations along all the parallel lines. S
 */
-
+class Interpolator;
+//class NumCurve;
 class Surface : public Image{
 
 public:

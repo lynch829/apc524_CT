@@ -4,13 +4,14 @@
 #ifndef NUMSURFACE
 #define NUMSURFACE 1
 
-#include"Interpolator.h"
+//#include"Interpolator.h"
 #include"Surface.h"
-
+//#include"NumCurve.h"
 /*!
   This class implements the Surface abstract class with numerical points. The values are obtained by interpolation.
 */
 
+class Interpolator;
 class NumSurface : public Surface{
 
 public:
@@ -38,7 +39,9 @@ public:
 
     double* GetXPtr();	//!< Returns a pointer to x coordinates.
     double* GetYPtr();	//!< Returns a pointer to y coordinates.
-    double** GetZPtr();	//!< Returns a pointer to z coordinates.
+    double** GetZPtr();	//!< Returns a pointer to values on xy coordinates.
+    int GetSizeX(); //!< Returns the size in x direction.
+    int GetSizeY(); //!< Returns the size in y direction.
 #ifdef USE_HDF    
     void ExportHDF(const char*);//!< Default, export everything as three columns.
     void ExportHDF(const char*, double,double,int,double,double,int);//!< Export data in the specified range.

@@ -5,13 +5,15 @@
 #define IMAGE3D 1
 
 #include"Image.h"
-#include"Interpolator.h"
+//#include"Interpolator.h"
 #include"NumSurface.h"
 #include"LineIntegral.h"
 
 /*!
 Volume is an Image with dimension 3. A few further functions to consider, such as projections. S
 */
+class Interpolator;
+//class NumSurface;
 class Volume : public Image{
 public:
     Volume(double,double,double);      //! Constructor. Argument is the symmetrical range of each dim. S

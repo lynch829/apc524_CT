@@ -4,13 +4,14 @@
 #ifndef NUMVOLUME
 #define NUMVOLUME 1
 
-#include"Interpolator.h"
+//#include"Interpolator.h"
 #include"Volume.h"
 
 /*!
   This class implements the Surface abstract class with numerical points. The values are obtained by interpolation.
 */
 
+class Interpolator;
 class NumVolume: public Volume{
 
 friend class NumVolume; //!< 
@@ -39,6 +40,9 @@ public:
     double* GetXPtr();	//!< Return a pointer to x coordinates.
     double* GetYPtr();	//!< Return a pointer to y coordinates.
     double* GetZPtr();	//!< Return a pointer to z coordinates.
+    int GetSizeX(); //!< Returns the size in x direction.
+    int GetSizeY(); //!< Returns the size in y direction.
+    int GetSizeZ(); //!< Returns the size in z direction.
     double*** GetWPtr();	//!< Return a pointer containing the data.
 
 #ifdef USE_HDF    

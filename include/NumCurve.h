@@ -5,14 +5,13 @@
 #define NUMIMAGE 1
 
 #include"Curve.h"
-#include"Interpolator.h"
+//#include"Interpolator.h"
 
 /*!
   This class implements the Curve abstract class with numerical points. The values are obtained by interpolation.
 */
-
+class Interpolator;
 class NumCurve : public Curve{
-friend class Interpolator; //!<
 public:
 	NumCurve();		//!< Default constructor, everything null and 0.
 	NumCurve(int size);	//!< Default constructor, _size set and everything else null and 0./Users/qili/Downloads/apc524_CT/include/NumCurve.h

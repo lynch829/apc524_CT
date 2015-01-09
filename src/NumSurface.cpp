@@ -276,7 +276,12 @@ double* NumSurface::GetYPtr(){
 double** NumSurface::GetZPtr(){
     return _dataz;
 }
-
+int NumSurface::GetSizeX(){
+    return _sizex;
+}
+int NumSurface::GetSizeY(){
+    return _sizey;
+}
 void NumSurface::Print()
 {
     for(int j=_sizey-1;j>=0;j--){
