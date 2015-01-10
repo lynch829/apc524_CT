@@ -14,8 +14,8 @@ class Interpolator{
 public:
     Interpolator(); //!< constructor
     ~Interpolator(); //!< destructor
-    void set_values(int,int,double*,double*,double**); //<! set values to relevant data for NumSurface
-    void set_values(int,int,int,double*,double*,double*,double***); //<! set values to relevant data for NumVolume
+    virtual void set_values(int,int,double*,double*,double**)=0;  //<! set values to relevant data for NumSurface
+    virtual void set_values(int,int,int,double*,double*,double*,double***) =0; //<! set values to relevant data for NumVolume
     virtual double Interpolate(double, double) = 0; //!< Interpolate method for NumSurface
     virtual double Interpolate(double, double, double) = 0; //!< Interpolate method for NumVolume
 protected:

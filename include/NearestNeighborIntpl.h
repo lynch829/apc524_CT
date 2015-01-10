@@ -12,6 +12,8 @@ class NearestNeighborIntpl : public Interpolator {
 public:
     NearestNeighborIntpl ();
     ~NearestNeighborIntpl ();
+    void set_values(int,int,double*,double*,double**);
+    void set_values(int,int,int,double*,double*,double*,double***);
     double Interpolate(double x, double y);
     double Interpolate(double x, double y, double z);
 std::vector <int> FindDist(int dim,std::vector<int> size,std::vector<double*> coord,std::vector<double> coord_in);   

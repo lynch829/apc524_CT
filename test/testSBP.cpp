@@ -10,6 +10,7 @@
 #include "TestFunctions.h"
 #include "globals.h"
 #include "Interpolator.h"
+#include "NearestNeighborIntpl.h"
 #include "Bilinear.h"
 #include <math.h>
 #include <stdlib.h>
@@ -30,27 +31,33 @@ int main(int argc, char* argv[]){
 
     //AnaSurface* gauss = new AnaSurface (Batman, range, range);
 			 // a 2D function.
-    Surface *b_temp = new AnaSurface(Gauss2D,2,2);
-    NumSurface* gauss = new NumSurface(5,5,*b_temp);
+    //Surface *b_temp = new AnaSurface(Gauss2D,2,2);
+   // NumSurface* gauss = new NumSurface(500,500,*b_temp);
+   // NumSurface a = *gauss;
     //cerr<<"range "<< gauss->GetRangeX()<<endl;
     //NumSurface* gauss = &b;
     
-    //NumSurface Baltimore=NumSurface("./output/BaltimoreDowntown.h5");
-    //NumSurface* gauss = &Baltimore;
+    NumSurface Baltimore=NumSurface("./output/BaltimoreDowntown.h5");
+    NumSurface* gauss = &Baltimore;
+    NumSurface a = *gauss;
     LineIntegral* l;
     Trapezoid t; l = &t;	// integ. method
     NumSurface sf;	// Num Surf to contain reconstructed result.
+
+    NearestNeighborIntpl intpl_nnb;
+    intpl_nnb.set_values(a.GetSizeX(),a.GetSizeY(),a.GetXPtr(),a.GetYPtr(),a.GetZPtr());
+    Interpolator* intpl = &intpl_nnb; 
     //    gauss->Print(); return 0;
     for(int i=0; i<size; i++){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
-	Interpolator* intpl = new Bilinear();
+	//Interpolator* intpl = new Bilinear();
         //gauss->SetIntegralStep(0.0001);
-        array.PushBack(angle[i], gauss->GetProjection(l,angle[i],0.1,intpl));
+       array.PushBack(angle[i], gauss->GetProjection(l,angle[i],0.1,intpl));
     }
     //NumCurve a = array.GetFilteredCurve(0);
     //a.Print();
     //array.PrintSinogram();
-    sf = *(FilteredBackProjection(array,Nres,Hamming));
+     sf = *(FilteredBackProjection(array,Nres,Hamming));
 			// filtered back-projection
 //    array.PrintFiltered();
 //    sf.Print();	// print out the result.

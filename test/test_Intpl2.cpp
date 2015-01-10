@@ -65,6 +65,9 @@ int main(int argc, char* argv[]){
          //printf("%.9f\n",a(-1.8,-1.8,0));
  //        printf("%.9f\n",a(0,0));
  //          double r = Baltimore.GetRadius();
+        NearestNeighborIntpl intpl_nnb;
+        intpl_nnb.set_values(a.GetSizeX(),a.GetSizeY(),a.GetXPtr(),a.GetYPtr(),a.GetZPtr());
+        Interpolator* intpl = &intpl_nnb;
 	double r = a.GetRadius();
         for(double rx=-r;rx<r;rx+=0.5){
                for(double ry=-r;ry<r;ry+=0.5){
@@ -72,11 +75,10 @@ int main(int argc, char* argv[]){
            //printf("%.9f\n",a(0.8,0.8,intpl));
            //printf("%.9f\n",a(0.1,0.1,intpl));
                //NearestNeighborIntpl intpl_nnb;
-	       Interpolator* intpl = new NearestNeighborIntpl();
+	     //  Interpolator* intpl = new NearestNeighborIntpl();
 	       //Interpolator* intpl = new Bilinear();
                //Interpolator* intpl = &intpl_nnb;
                printf("%.9f\n",a(rx,ry,intpl));
-	       delete intpl;
                }
            }
 //         printf("done interpolation\n");
