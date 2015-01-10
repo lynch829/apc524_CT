@@ -4,8 +4,69 @@ Bilinear::Bilinear () {}
 
 Bilinear::~Bilinear () {}
 
+
+void Bilinear::set_values(int sizex, int sizey, double* xptr, double* yptr, double** vptr){
+
+_xptr = new double[sizex];
+for (int i = 0;i<sizex;i++){
+    double temp = xptr[i];
+    _xptr[i] = temp;
+}
+
+_yptr = new double[sizey];
+for (int i = 0;i<sizey;i++){
+     double temp = yptr[i];
+    _yptr[i] = temp;
+}
+_sizex = sizex; _sizey = sizey;
+
+_vptr = new double*[sizex];
+for (int i = 0;i<sizex;i++){
+    _vptr[i] = new double[sizey];
+}
+
+for (int i = 0;i<sizex;i++){
+    for (int j=0;j<sizey;j++){
+    double temp = vptr[i][j];
+    _vptr[i][j] = temp;
+    }
+}
+
+//delete [] _xptr; delete [] _yptr;
+//for(int i=0;i<_sizex;i++){
+//   delete [] _vptr[i];
+//   }
+//delete [] _vptr;
+}
+
+
+void Bilinear::set_values(int sizex, int sizey,int sizez, double* xptr, double* yptr, double* zptr, double*** wptr){
+_xptr = new double[sizex];
+for (int i = 0;i<sizex;i++){
+    _xptr[i] = xptr[i];
+}
+_yptr = new double[sizey];
+for (int i = 0;i<sizey;i++){
+    _yptr[i] = yptr[i];
+}
+for (int i = 0;i<sizez;i++){
+    _zptr[i] = zptr[i];
+}
+
+_sizex = sizex; _sizey = sizey; _sizez = sizez;
+
+for (int i = 0;i<sizex;i++){
+    for (int j=0;j<sizey;j++){
+        for(int k=0;k<sizez;k++){
+           _wptr[i][j][k] = wptr[i][j][k];
+           }
+    }
+}
+}
+
+
+
 double Bilinear::Interpolate(double x, double y){
-        printf("run1");
         double ret;
         const int dim=2; //dimmension is 2
         double _rx = - _xptr[0];
@@ -22,12 +83,10 @@ double Bilinear::Interpolate(double x, double y){
         while ( i0y>=0 && y < _yptr[i0y]) {i0y--;i1y--;}	// move interval to match with given point.
         if ( i1x>_sizex-1 || i0x < 0 || i1y>_sizey-1 || i0y < 0) {return 0;}
         else {
-             printf("run1");
             double Q11 = _vptr[i0x][i0y];
             double Q21 = _vptr[i1x][i0y];
             double Q12 = _vptr[i0x][i1y];
             double Q22 = _vptr[i1x][i1y];
-             printf("run1");
             double s1 = Q11*(_xptr[i1x]-x)*(_yptr[i1y]-y);
             double s2 = Q21*(x-_xptr[i0x])*(_yptr[i1y]-y);
             double s3 = Q12*(_xptr[i1x]-x)*(y-_yptr[i0y]);

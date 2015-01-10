@@ -44,7 +44,7 @@ int main(int argc, char* argv[]){
     Trapezoid t; l = &t;	// integ. method
     NumSurface sf;	// Num Surf to contain reconstructed result.
 
-    NearestNeighborIntpl intpl_nnb;
+    Bilinear intpl_nnb;
     intpl_nnb.set_values(a.GetSizeX(),a.GetSizeY(),a.GetXPtr(),a.GetYPtr(),a.GetZPtr());
     Interpolator* intpl = &intpl_nnb; 
     //    gauss->Print(); return 0;
