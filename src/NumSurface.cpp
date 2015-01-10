@@ -223,39 +223,9 @@ NumCurve NumSurface::Surface2Curve()
         
 double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
-    if(intpl==0){
-        double ret;
-        int dim=2; //dimmension is 2
-        double dx = 2*_rx/(_sizex-1);
-        int i0x = int((x+_rx)/dx);
-        int i1x = i0x+1;
-        double dy = 2*_ry/(_sizey-1);
-        int i0y = int((y+_ry)/dy);
-        int i1y = i0y+1;
-        while ( i1x < _sizex && x > _datax[i1x] ) {i0x++;i1x++;}
-        while ( i1y < _sizey && y > _datay[i1y] ) {i0y++;i1y++;}
-        while ( i0x>=0 && x < _datax[i0x]) {i0x--;i1x--;}	// move interval to match with given point.
-        while ( i0y>=0 && y < _datay[i0y]) {i0y--;i1y--;}	// move interval to match with given point.
-        if ( i1x>_sizex-1 || i0x < 0 || i1y>_sizey-1 || i0y < 0) {return 0;}
-        else {
-            double Q11 = _dataz[i0x][i0y];
-            double Q21 = _dataz[i1x][i0y];
-            double Q12 = _dataz[i0x][i1y];
-            double Q22 = _dataz[i1x][i1y];
-            double s1 = Q11*(_datax[i1x]-x)*(_datay[i1y]-y);
-            double s2 = Q21*(x-_datax[i0x])*(_datay[i1y]-y);
-            double s3 = Q12*(_datax[i1x]-x)*(y-_datay[i0y]);
-            double s4 = Q22*(x-_datax[i0x])*(y-_datay[i0y]);
-            ret = 1/((_datax[i1x]-_datax[i0x])*(_datay[i1y]-_datay[i0y]))*(s1+s2+s3+s4);
-            return ret;
-        }
-    }
-	    
-     else{    
             intpl->set_values(_sizex,_sizey,_datax,_datay,_dataz);
             return intpl->Interpolate(x,y);
             delete intpl;
-         }
 }
 
 double& NumSurface::operator()(int indexX, int indexY)
