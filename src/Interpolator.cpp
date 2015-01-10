@@ -8,17 +8,28 @@
 
 #include "Interpolator.h"
 Interpolator::Interpolator(){}
-Interpolator::~Interpolator(){} 
+
+Interpolator::~Interpolator(){
+    if(_xptr!=0) delete [] _xptr;
+    if(_yptr!=0) delete [] _yptr;
+    if(_vptr!=0) {
+        for(int i=0;i<_sizex;i++) delete [] _vptr[i];
+        delete [] _vptr;
+       }
+}
+ 
 void Interpolator::set_values(int sizex, int sizey, double* xptr, double* yptr, double** vptr){
 
 _xptr = new double[sizex];
 for (int i = 0;i<sizex;i++){
-    _xptr[i] = xptr[i];
+    double temp = xptr[i];
+    _xptr[i] = temp;
 }
 
 _yptr = new double[sizey];
 for (int i = 0;i<sizey;i++){
-    _yptr[i] = yptr[i];
+     double temp = yptr[i];
+    _yptr[i] = temp;
 }
 _sizex = sizex; _sizey = sizey;
 
@@ -29,15 +40,16 @@ for (int i = 0;i<sizex;i++){
 
 for (int i = 0;i<sizex;i++){
     for (int j=0;j<sizey;j++){
-    _vptr[i][j] = vptr[i][j];
+    double temp = vptr[i][j];
+    _vptr[i][j] = temp;
     }
 }
 
-delete [] _xptr; delete [] _yptr;
-for(int i=0;i<_sizex;i++){
-   delete [] _vptr[i];
-   }
-delete [] _vptr;
+//delete [] _xptr; delete [] _yptr;
+//for(int i=0;i<_sizex;i++){
+//   delete [] _vptr[i];
+//   }
+//delete [] _vptr;
 }
 
 

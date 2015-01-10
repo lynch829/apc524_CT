@@ -225,7 +225,6 @@ double NumSurface::operator()(double x, double y, Interpolator* intpl) const
 {
             intpl->set_values(_sizex,_sizey,_datax,_datay,_dataz);
             return intpl->Interpolate(x,y);
-            delete intpl;
 }
 
 double& NumSurface::operator()(int indexX, int indexY)

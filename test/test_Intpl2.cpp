@@ -6,6 +6,7 @@
 #include "Trapezoid.h"
 #include "Interpolator.h"
 #include "NearestNeighborIntpl.h"
+#include "Bilinear.h"
 #include "MCIntegrator.h"
 #include <math.h>
 #include <stdlib.h>
@@ -49,7 +50,7 @@ int main(int argc, char* argv[]){
   //  NumSurface Baltimore=NumSurface("./output/BaltimoreDowntown.h5");
 // defines trapezoid integration rule.
     //LineIntegral* l=new Trapezoid();
-
+ //  Interpolator* intpl = new NearestNeighborIntpl();
 //  since Projection is defined
    switch(argc)
     {
@@ -72,8 +73,9 @@ int main(int argc, char* argv[]){
            //printf("%.9f\n",a(0.1,0.1,intpl));
                //NearestNeighborIntpl intpl_nnb;
 	       Interpolator* intpl = new NearestNeighborIntpl();
+	       //Interpolator* intpl = new Bilinear();
                //Interpolator* intpl = &intpl_nnb;
-               //printf("%.9f\n",a(rx,ry,intpl));
+               printf("%.9f\n",a(rx,ry,intpl));
 	       delete intpl;
                }
            }
