@@ -2,9 +2,9 @@
 # execute this file with python -- execfile("plotVolume.py")
 import numpy as np
 import h5py
-#import sys
+import sys
 
-fname = "heart.h5" #sys.argv[1]
+fname = sys.argv[1]
 infile = h5py.File(fname, 'r')
 x = np.array((infile["x"]))
 y = np.array((infile["y"]))

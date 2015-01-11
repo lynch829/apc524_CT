@@ -39,19 +39,31 @@ for (int i = 0;i<sizex;i++){
 
 
 void NearestNeighborIntpl::set_values(int sizex, int sizey,int sizez, double* xptr, double* yptr, double* zptr, double*** wptr){
+ printf("in set_values\n");
 _xptr = new double[sizex];
 for (int i = 0;i<sizex;i++){
     _xptr[i] = xptr[i];
 }
+ printf("setx\n");
 _yptr = new double[sizey];
 for (int i = 0;i<sizey;i++){
     _yptr[i] = yptr[i];
 }
+
+_zptr = new double[sizez];
 for (int i = 0;i<sizez;i++){
     _zptr[i] = zptr[i];
 }
 
 _sizex = sizex; _sizey = sizey; _sizez = sizez;
+
+_wptr = new double**[sizex];
+for (int i =0;i<sizex;i++){
+    _wptr[i] = new double*[sizey];
+    for (int j=0;j<sizey;j++){
+        _wptr[i][j] = new double[sizez];
+        }
+    }
 
 for (int i = 0;i<sizex;i++){
     for (int j=0;j<sizey;j++){

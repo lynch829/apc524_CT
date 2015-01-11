@@ -203,6 +203,7 @@ NumVolume::NumVolume(int sizex, int sizey, int sizez, const Volume& f) : Volume(
     _sizey = sizey;
     _sizez = sizez;
     _rx = f.GetRangeX(); _ry = f.GetRangeY(); _rz = f.GetRangeZ();
+    _r = sqrt(_rx*_rx+_ry*_ry);
     _datax = new double[_sizex];
     _datay = new double[_sizey];
     _dataz = new double[_sizez];
@@ -280,18 +281,20 @@ NumVolume::~NumVolume()
     if(_datax!=0) delete [] _datax;
     if(_datay!=0) delete [] _datay;
     if(_dataz!=0) delete [] _dataz;
+    if(_dataw!=0){
     for (int i = 0; i < _sizex; ++i) {
         for (int j = 0; j < _sizey; ++j)
             delete [] _dataw[i][j];
         delete [] _dataw[i];
     }
     delete [] _dataw;
+      }
 }
 
 //! Operator for returning value at a given point.
 double NumVolume::operator()(double x, double y, double z, Interpolator* intpl) const
 {
-return 0;
+return intpl->Interpolate(x,y,z);
 }
 
 //! Operator returning a reference to the data at the specified index.
