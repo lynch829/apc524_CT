@@ -9,6 +9,7 @@
 #include "Romberg.h"
 #include "MCIntegrator.h"
 #include "NearestNeighborIntpl.h"
+#include "TestFunctions.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -43,7 +44,7 @@ int main(int argc, char* argv[]){
         return -1;
     }
     //  creates a nonsymmetric gaussian on 20 x 20 region.
-    Image* gauss  = new AnaVolume( gauss_3D, 2, 3, 3);
+    Image* gauss  = new AnaVolume(Heart, 2, 1.5, 2);
    // Interpolator* intpl = new NearestNeighborIntpl();
     // creates a numerical line using gauss_1D.
     //    Curve* gauss1 = new AnaCurve( gauss_1D,10);
@@ -53,7 +54,7 @@ int main(int argc, char* argv[]){
     //Volume* gauss3 = new AnaVolume( gauss_3D,2,2,1);
     //NumVolume* num_gauss3 = new NumVolume(50,50,25,*gauss3);
     // defines trapezoid integration rule.
-    LineIntegral* l=new Romberg();
+/*    LineIntegral* l=new Romberg();
     
     //  since Projection is defined
     
@@ -61,9 +62,9 @@ int main(int argc, char* argv[]){
     NumSurface a;
     ptr->SetIntegralStep(0.0001);
     a = ptr->GetProjection(l,atof(argv[1]),0.01,0.01);
-    //a.Print();
+*/    //a.Print();
 #ifdef USE_HDF
-    gauss->ExportHDF("output/test.h5");
+    gauss->ExportHDF("test.h5");
 #endif
     delete gauss;
  //   delete gauss3;

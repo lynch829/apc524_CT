@@ -3,6 +3,7 @@
 */
 #include "Curve.h"
 #include <stdio.h>
+#include <string.h>
 
 Curve::Curve(double rx):Image(Dim1){
 	_r = rx;
@@ -18,8 +19,12 @@ double Curve::GetRange() const{
 	return _r;
 }
 #ifdef USE_HDF
+// DO NOT include 'output/' in string 'file'.
 void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, Interpolator* intpl)
 {
+  char fname[strlen(file)+7];
+  strcpy(fname, "output/");
+  strcat(fname, file);
   hid_t file_id;
   double x[N];
   double data[N];
@@ -31,7 +36,7 @@ void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, I
     x[i] = xmin + step * i; 
     data[i] = (*this)(x[i],intpl);
   }
-  file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+  file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
   status = H5LTmake_dataset_double(file_id,"/x",Dim1,dims,x);
   status = H5LTset_attribute_int(file_id,"/x","size of x",&N,1);
   status = H5LTmake_dataset_double(file_id,"/data",Dim1,dims,data);

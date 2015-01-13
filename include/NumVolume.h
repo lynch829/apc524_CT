@@ -26,6 +26,7 @@ public:
 
     NumVolume(int sizex, int sizey, int sizez, const Volume&);	//!< Copy constr. for general Surface obj. Needs size info.
     void Copy(int sizex, int sizey, int sizez, const Volume&);	//!< Copy operator for general Surface, will use previous size information.
+    NumVolume(const char* file); //!< Constructor from a HDF5 file.
     
     ~NumVolume();		//!< Destructor, has to delete stored data.
     

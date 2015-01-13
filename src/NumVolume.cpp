@@ -5,6 +5,7 @@
 
 #include "NumVolume.h"
 #include <stdio.h>
+#include <string.h>
 
 //! Default constructor, everything to Null
 NumVolume::NumVolume() : Volume(0,0,0)
@@ -360,23 +361,29 @@ double*** NumVolume::GetWPtr()
 }
 
 #ifdef USE_HDF
+// DO NOT include 'output/' in string 'file'.
+
 void NumVolume::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
 
 void NumVolume::ExportHDF(const char* file)
 {
-    double data[_sizex*_sizey*_sizez];
+    char fname[strlen(file)+11];
+    strcpy(fname, "output/");
+    strcat(fname, file);
+    double *data;
+    data = new double[_sizez*_sizey*_sizex];
     for (int i = 0; i<_sizex; i++){
         for (int j = 0; j<_sizey; j++){
             for (int k = 0; k <_sizez; k++){
-                data[(i*_sizey + j)*_sizez + k] = _dataw[i][j][k];
+                data[i+(j+k*_sizey)*_sizex] = _dataw[i][j][k];
             }
         }
     }
     hid_t file_id;
     hsize_t dims[Dim3];
-    dims[0] = _sizex;
+    dims[0] = _sizez;
     dims[1] = _sizey;
-    dims[2] = _sizez;
+    dims[2] = _sizex;
     hsize_t dimx[Dim1];
     dimx[0] = _sizex;
     hsize_t dimy[Dim1];
@@ -384,7 +391,7 @@ void NumVolume::ExportHDF(const char* file)
     hsize_t dimz[Dim1];
     dimz[0] = _sizez;
     herr_t status;
-    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,_datax);
     status = H5LTset_attribute_int(file_id, "/x", "size of x", &_sizex, 1);
     status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,_datay);
@@ -393,6 +400,72 @@ void NumVolume::ExportHDF(const char* file)
     status = H5LTset_attribute_int(file_id, "/z", "size of z", &_sizez, 1);
     status = H5LTmake_dataset_double(file_id,"/data",Dim3,dims,data);
     status = H5Fclose(file_id);
+    delete [] data;
+// Create XMDF file that accompanies HDF5 file so as to enable VisIt reading.
+    strcat(fname, ".xmf");
+    FILE *xmf = 0;
+    xmf = fopen(fname, "w");
+    fprintf(xmf, "<?xml version=\"1.0\" ?>\n");
+    fprintf(xmf, "<!DOCTYPE Xdmf SYSTEM \"Xdmf.dtd\" []>\n");
+    fprintf(xmf, "<Xdmf Version=\"2.0\">\n");
+    fprintf(xmf, " <Domain>\n");
+    fprintf(xmf, "   <Grid Name=\"mesh\" GridType=\"Uniform\">\n");
+    fprintf(xmf, "     <Topology TopologyType=\"3DRectMesh\" NumberOfElements=\"%d %d %d\"/>\n", _sizez, _sizey, _sizex);
+    fprintf(xmf, "     <Geometry GeometryType=\"VXVYVZ\">\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", _sizex);
+    fprintf(xmf, "        %s:/x\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", _sizey);
+    fprintf(xmf, "        %s:/y\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", _sizez);
+    fprintf(xmf, "        %s:/z\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "     </Geometry>\n");
+    fprintf(xmf, "     <Attribute Name=\"data\" AttributeType=\"Scalar\" Center=\"Node\">\n");
+fprintf(xmf, "       <DataItem Dimensions=\"%d %d %d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", _sizez, _sizey, _sizex);
+    fprintf(xmf, "        %s:/data\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "     </Attribute>\n");
+    fprintf(xmf, "   </Grid>\n");
+    fprintf(xmf, " </Domain>\n");
+    fprintf(xmf, "</Xdmf>\n");
+    fclose(xmf);
 }
 
+// Constructor from a HDF5 file.
+NumVolume::NumVolume(const char* file): Volume(0, 0, 0)
+{
+    hid_t file_id;
+    herr_t status;
+    file_id = H5Fopen(file, H5F_ACC_RDONLY, H5P_DEFAULT);
+    status = H5LTget_attribute_int(file_id, "/x", "size of x", &_sizex);
+    status = H5LTget_attribute_int(file_id, "/y", "size of y", &_sizey);
+    status = H5LTget_attribute_int(file_id, "/z", "size of z", &_sizez);
+    _datax = new double[_sizex];
+    _datay = new double[_sizey];
+    _dataz = new double[_sizez];
+    double *data;
+    data = new double[_sizez*_sizey*_sizex];
+    status = H5LTread_dataset_double(file_id,"/x",_datax);
+    status = H5LTread_dataset_double(file_id,"/y",_datay);
+    status = H5LTread_dataset_double(file_id,"/z",_dataz);
+    status = H5LTread_dataset_double(file_id,"/data",data);
+    _dataw = new double**[_sizex];
+    for (int i=0;i<_sizex;i++){
+        _dataw[i] = new double*[_sizey];
+        for (int j = 0; j<_sizey; j++){
+            _dataw[i][j] = new double[_sizez];
+            for (int k = 0; k<_sizez; k++){
+                _dataw[i][j][k] = data[i+(j+k*_sizey)*_sizex];
+            }
+        }
+    }
+    status = H5Fclose(file_id);
+    delete [] data;
+    _rx = -_datax[0];
+    _ry = -_datay[0];
+    _rz = -_dataz[0];
+    _r = sqrt(_rx*_rx+_ry*_ry+_rz*_rz);
+}
 #endif

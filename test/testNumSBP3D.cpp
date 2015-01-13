@@ -94,7 +94,7 @@ int main(int argc, char* argv[]){
     //array.PrintFiltered();
     sf.Print();	// print out the result.
 #ifdef USE_HDF
-    sf.ExportHDF("output/test.h5");
+    sf.ExportHDF("test.h5");
 #endif
     delete gauss;
     return 0;

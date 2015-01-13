@@ -1,8 +1,8 @@
 #include "Volume.h"
 #include <math.h>
 #include <stdio.h>
-#include<iostream>
-#define FILE "output/Volume.h5"
+#include <iostream>
+#include <string.h>
 
 Volume::Volume(double rx, double ry, double rz):Image(Dim3){
     _rx = rx; _ry = ry; _rz = rz;
@@ -85,47 +85,57 @@ void Volume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, i
     }
 }
 #ifdef USE_HDF
+// DO NOT include 'output/' in string 'file'.
+
 void Volume::ExportHDF(const char* file)
 {
-    this->ExportHDF(file,-_rx,_rx,100,-_ry,_ry,100,-_rz,_rz,50);
+    this->ExportHDF(file,-_rx,_rx,100,-_ry,_ry,100,-_rz,_rz,100);
 }
 
 void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double zmin, double zmax, int Nz, Interpolator* intpl)
 {
+    char fname[strlen(file)+11];
+    strcpy(fname, "output/");
+    strcat(fname, file);
+// The indexing is meant for consistency with python, VisIt, etc.
     hid_t file_id;
     hsize_t dims[Dim3];
-    dims[0] = Nx;
+    dims[0] = Nz;
     dims[1] = Ny;
-    dims[2] = Nz;
+    dims[2] = Nx;
     hsize_t dimx[Dim1];
     dimx[0] = Nx;
     hsize_t dimy[Dim1];
     dimy[0] = Ny;
     hsize_t dimz[Dim1];
     dimz[0] = Nz;
-    double x[Nx];
-    double y[Ny];
-    double z[Nz];
-    double data[Nx*Ny*Nz];
+    double *x;
+    x = new double[Nx];
+    double *y;
+    y = new double[Ny];
+    double *z;
+    z = new double[Nz];
+    double *data;
+    data= new double[Nz*Ny*Nx];
     double stepx = (xmax-xmin)/Nx;
     double stepy = (ymax-ymin)/Ny;
     double stepz = (zmax-zmin)/Nz;
     herr_t status;
+    for( int i = 0; i < Nx; i++) {
+        x[i] = xmin + stepx * i;
+    }
     for( int j = 0; j < Ny; j++) {
         y[j] = ymin + stepy * j;
     }
     for( int k = 0; k < Nz; k++) {
         z[k] = zmin + stepz * k;
-    }
-    for( int i = 0; i < Nx; i++) {
-        x[i] = xmin + stepx * i;
         for( int j = 0; j < Ny; j++) {
-            for( int k = 0; k < Nz; k++) {
-                data[(i*Ny+j)*Nz + k] = (*this)(x[i], y[j], z[k], intpl);
+            for( int i = 0; i < Nx; i++) {
+                data[i+(j+k*Ny)*Nx] = (*this)(x[i], y[j], z[k], intpl);
             }
         }
     }
-    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,x);
     status = H5LTset_attribute_int(file_id,"/x","size of x",&Nx,1);
     status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,y);
@@ -134,5 +144,39 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
     status = H5LTset_attribute_int(file_id,"/z","size of z",&Nz,1);
     status = H5LTmake_dataset_double(file_id,"/data",Dim3,dims,data);
     status = H5Fclose(file_id);
+    delete [] x;
+    delete [] y;
+    delete [] z;
+    delete [] data;
+// Create XMDF file that accompanies HDF5 file so as to enable VisIt reading.
+    strcat(fname, ".xmf");
+    FILE *xmf = 0;
+    xmf = fopen(fname, "w");
+    fprintf(xmf, "<?xml version=\"1.0\" ?>\n");
+    fprintf(xmf, "<!DOCTYPE Xdmf SYSTEM \"Xdmf.dtd\" []>\n");
+    fprintf(xmf, "<Xdmf Version=\"2.0\">\n");
+    fprintf(xmf, " <Domain>\n");
+    fprintf(xmf, "   <Grid Name=\"mesh\" GridType=\"Uniform\">\n");
+    fprintf(xmf, "     <Topology TopologyType=\"3DRectMesh\" NumberOfElements=\"%d %d %d\"/>\n", Nz, Ny, Nx);
+    fprintf(xmf, "     <Geometry GeometryType=\"VXVYVZ\">\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", Nx);
+    fprintf(xmf, "        %s:/x\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", Ny);
+    fprintf(xmf, "        %s:/y\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", Nz);
+    fprintf(xmf, "        %s:/z\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "     </Geometry>\n");
+    fprintf(xmf, "     <Attribute Name=\"data\" AttributeType=\"Scalar\" Center=\"Node\">\n");
+fprintf(xmf, "       <DataItem Dimensions=\"%d %d %d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", Nz, Ny, Nx);
+    fprintf(xmf, "        %s:/data\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "     </Attribute>\n");
+    fprintf(xmf, "   </Grid>\n");
+    fprintf(xmf, " </Domain>\n");
+    fprintf(xmf, "</Xdmf>\n");
+    fclose(xmf);
 }
 #endif

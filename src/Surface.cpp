@@ -5,6 +5,7 @@
 #include "Surface.h"
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 Surface::Surface(double rx, double ry) : Image(Dim2){
     _rx = rx; _ry = ry;
@@ -64,6 +65,7 @@ void Surface::Print(double xmin, double xmax, int Nx, double ymin, double ymax, 
     }
 }
 #ifdef USE_HDF
+// DO NOT include 'output/' in string 'file'.
 void Surface::ExportHDF(const char* file)
 {
     this->ExportHDF(file,-_rx,_rx,200,-_ry,_ry,200);
@@ -71,35 +73,73 @@ void Surface::ExportHDF(const char* file)
 
 void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl)
 {
+    char fname[strlen(file)+11];
+    strcpy(fname, "output/");
+    strcat(fname, file);
+// The indexing is meant for consistency with python, VisIt, etc.
     hid_t file_id;
     hsize_t dims[Dim2];
-    dims[0] = Nx;
-    dims[1] = Ny; 
+    dims[0] = Ny;
+    dims[1] = Nx; 
     hsize_t dimx[Dim1];
     dimx[0] = Nx;
     hsize_t dimy[Dim1];
     dimy[0] = Ny;
-    double x[Nx];
-    double y[Ny];
-    double data[Nx*Ny];
+    double *x;
+    x = new double[Nx];
+    double *y;
+    y = new double[Ny];
+    double *data;
+    data = new double[Ny*Nx];
     double stepx = (xmax-xmin)/Nx;
     double stepy = (ymax-ymin)/Ny;
     herr_t status;
-    for( int j = 0; j < Ny; j++) {
-        y[j] = ymin + stepy * j;
-    } 
     for( int i = 0; i < Nx; i++) {
         x[i] = xmin + stepx * i;
-        for( int j = 0; j < Ny; j++) {
-            data[i*Ny + j] = (*this)(x[i], y[j], intpl);
-        }
     }
-    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    for( int j = 0; j < Ny; j++) {
+        y[j] = ymin + stepy * j;
+        for( int i = 0; i < Nx; i++) {
+            data[i + j*Nx] = (*this)(x[i], y[j], intpl);
+        }
+    } 
+    file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,x);
     status = H5LTset_attribute_int(file_id,"/x","size of x",&Nx,1);
     status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,y);
     status = H5LTset_attribute_int(file_id,"/y","size of y",&Ny,1);
     status = H5LTmake_dataset_double(file_id,"/data",Dim2,dims,data);
     status = H5Fclose(file_id);
+    delete [] x;
+    delete [] y;
+    delete [] data;
+// Create XMDF file that accompanies HDF5 file so as to enable VisIt reading.
+    strcat(fname, ".xmf");
+    FILE *xmf = 0;
+    xmf = fopen(fname, "w");
+    fprintf(xmf, "<?xml version=\"1.0\" ?>\n");
+    fprintf(xmf, "<!DOCTYPE Xdmf SYSTEM \"Xdmf.dtd\" []>\n");
+    fprintf(xmf, "<Xdmf Version=\"2.0\">\n");
+    fprintf(xmf, " <Domain>\n");
+    fprintf(xmf, "   <Grid Name=\"mesh\" GridType=\"Uniform\">\n");
+    fprintf(xmf, "     <Topology TopologyType=\"2DRectMesh\" NumberOfElements=\"%d %d\"/>\n", Ny, Nx);
+    fprintf(xmf, "     <Geometry GeometryType=\"VXVY\">\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", Nx);
+    fprintf(xmf, "        %s:/x\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", Ny);
+    fprintf(xmf, "        %s:/y\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "     </Geometry>\n");
+    fprintf(xmf, "     <Attribute Name=\"data\" AttributeType=\"Scalar\" Center=\"Node\">\n");
+    fprintf(xmf, "       <DataItem Dimensions=\"%d %d\" NumberType=\"Float\" Precision=\"4\" Format=\"HDF\">\n", Ny, Nx);
+    fprintf(xmf, "        %s:/data\n", file);
+    fprintf(xmf, "       </DataItem>\n");
+    fprintf(xmf, "     </Attribute>\n");
+    fprintf(xmf, "   </Grid>\n");
+    fprintf(xmf, " </Domain>\n");
+    fprintf(xmf, "</Xdmf>\n");
+    fclose(xmf);
+
 }
 #endif
