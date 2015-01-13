@@ -6,7 +6,7 @@
 #define SURFACE 1
 #include "LineIntegral.h"
 #include "Image.h"
-//#include "Interpolator.h"
+#include "Interpolator.h"
 #include "NumCurve.h"
 
 /*!

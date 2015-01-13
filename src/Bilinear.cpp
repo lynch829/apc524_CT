@@ -20,23 +20,23 @@ for (int i = 0;i<sizey;i++){
 }
 _sizex = sizex; _sizey = sizey;
 
-_vptr = new double*[sizex];
+_zzptr = new double*[sizex];
 for (int i = 0;i<sizex;i++){
-    _vptr[i] = new double[sizey];
+    _zzptr[i] = new double[sizey];
 }
 
 for (int i = 0;i<sizex;i++){
     for (int j=0;j<sizey;j++){
     double temp = vptr[i][j];
-    _vptr[i][j] = temp;
+    _zzptr[i][j] = temp;
     }
 }
 
 //delete [] _xptr; delete [] _yptr;
 //for(int i=0;i<_sizex;i++){
-//   delete [] _vptr[i];
+//   delete [] _zzptr[i];
 //   }
-//delete [] _vptr;
+//delete [] _zzptr;
 }
 
 
@@ -94,10 +94,10 @@ double Bilinear::Interpolate(double x, double y){
         while ( i0y>=0 && y < _yptr[i0y]) {i0y--;i1y--;}	// move interval to match with given point.
         if ( i1x>_sizex-1 || i0x < 0 || i1y>_sizey-1 || i0y < 0) {return 0;}
         else {
-            double Q11 = _vptr[i0x][i0y];
-            double Q21 = _vptr[i1x][i0y];
-            double Q12 = _vptr[i0x][i1y];
-            double Q22 = _vptr[i1x][i1y];
+            double Q11 = _zzptr[i0x][i0y];
+            double Q21 = _zzptr[i1x][i0y];
+            double Q12 = _zzptr[i0x][i1y];
+            double Q22 = _zzptr[i1x][i1y];
             double s1 = Q11*(_xptr[i1x]-x)*(_yptr[i1y]-y);
             double s2 = Q21*(x-_xptr[i0x])*(_yptr[i1y]-y);
             double s3 = Q12*(_xptr[i1x]-x)*(y-_yptr[i0y]);

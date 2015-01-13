@@ -5,7 +5,7 @@
 #define FUNCTION 1
 
 #include"Image.h"
-//#include"Interpolator.h"
+#include"Interpolator.h"
 
 /*!
 Curve is an Image with dimension 1. A few further functions to consider, such as integration.

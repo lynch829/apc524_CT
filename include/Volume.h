@@ -5,7 +5,7 @@
 #define IMAGE3D 1
 
 #include"Image.h"
-//#include"Interpolator.h"
+#include"Interpolator.h"
 #include"NumSurface.h"
 #include"LineIntegral.h"
 

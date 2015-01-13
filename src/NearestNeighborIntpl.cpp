@@ -18,33 +18,31 @@ for (int i = 0;i<sizey;i++){
 }
 _sizex = sizex; _sizey = sizey;
 
-_vptr = new double*[sizex];
+_zzptr = new double*[sizex];
 for (int i = 0;i<sizex;i++){
-    _vptr[i] = new double[sizey];
+    _zzptr[i] = new double[sizey];
 }
 
 for (int i = 0;i<sizex;i++){
     for (int j=0;j<sizey;j++){
     double temp = vptr[i][j];
-    _vptr[i][j] = temp;
+    _zzptr[i][j] = temp;
     }
 }
 
 //delete [] _xptr; delete [] _yptr;
 //for(int i=0;i<_sizex;i++){
-//   delete [] _vptr[i];
+//   delete [] _zzptr[i];
 //   }
-//delete [] _vptr;
+//delete [] _zzptr;
 }
 
 
 void NearestNeighborIntpl::set_values(int sizex, int sizey,int sizez, double* xptr, double* yptr, double* zptr, double*** wptr){
- printf("in set_values\n");
 _xptr = new double[sizex];
 for (int i = 0;i<sizex;i++){
     _xptr[i] = xptr[i];
 }
- printf("setx\n");
 _yptr = new double[sizey];
 for (int i = 0;i<sizey;i++){
     _yptr[i] = yptr[i];
@@ -83,7 +81,7 @@ vector <int> size; size.resize(dim); size[0] = _sizex; size[1] = _sizey; //set t
 vector <double> coord_in; coord_in.resize(dim); coord_in[0] = x; coord_in[1] = y; 
 vector <int> coord_out; coord_out.resize(dim);
 coord_out = this->FindDist(dim,size,coord,coord_in);
-double ret = _vptr[coord_out[0]][coord_out[1]];
+double ret = _zzptr[coord_out[0]][coord_out[1]];
 return ret;
 }
 double NearestNeighborIntpl::Interpolate(double x, double y, double z){

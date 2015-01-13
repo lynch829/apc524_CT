@@ -5,7 +5,7 @@
 #define NUMIMAGE 1
 
 #include"Curve.h"
-//#include"Interpolator.h"
+#include"Interpolator.h"
 
 /*!
   This class implements the Curve abstract class with numerical points. The values are obtained by interpolation.

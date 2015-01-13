@@ -25,7 +25,7 @@ protected:
     double* _xptr; //<! pointer to x-coordinates.
     double* _yptr; //<! pointer to y-coordinates.
     double* _zptr; //<! pointer to z-coordinates.
-    double** _vptr; //<! pointer to values of NumSurface object.
+    double** _zzptr; //<! pointer to values of NumSurface object.
     double*** _wptr; //<! pointer to values of NumVolume object.
 };
 

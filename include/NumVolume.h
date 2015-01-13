@@ -4,7 +4,7 @@
 #ifndef NUMVOLUME
 #define NUMVOLUME 1
 
-//#include"Interpolator.h"
+#include"Interpolator.h"
 #include"Volume.h"
 
 /*!
