@@ -21,8 +21,8 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 2;	// range of the geometry
-    const int size= 5;	// number of view per slice
-    const int slice=5; // number of projected horizontal slice
+    const int size= 50;	// number of view per slice
+    const int slice=50; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
     const int Nres=50;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.

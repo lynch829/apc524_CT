@@ -41,12 +41,10 @@ for (int i = 0;i<sizex;i++){
 
 
 void Bilinear::set_values(int sizex, int sizey,int sizez, double* xptr, double* yptr, double* zptr, double*** wptr){
- printf("in set_values\n");
 _xptr = new double[sizex];
 for (int i = 0;i<sizex;i++){
     _xptr[i] = xptr[i];
 }
- printf("setx\n");
 _yptr = new double[sizey];
 for (int i = 0;i<sizey;i++){
     _yptr[i] = yptr[i];

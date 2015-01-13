@@ -14,7 +14,6 @@
 class Interpolator;
 class NumVolume: public Volume{
 
-friend class NumVolume; //!< 
 public:
     NumVolume();		//!< Default constructor, everything null and 0.
     NumVolume(int sizex, int sizey, int sizez);	//!< Default constructor, _size set and everything else null and 0.

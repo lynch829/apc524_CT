@@ -21,8 +21,8 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 8;	// range of the geometry
-    const int size=10;	// number of view
-    const int Nres=100;// resolution/ N of point in the projected curve.
+    const int size=100;	// number of view
+    const int Nres=400;// resolution/ N of point in the projected curve.
     double angle[size];	// array containing size angles.
 
     ImageArray array;
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
     //cerr<<"range "<< gauss->GetRangeX()<<endl;
     //NumSurface* gauss = &b;
     
-    NumSurface Baltimore=NumSurface("./output/BaltimoreDowntown.h5");
+    NumSurface Baltimore=NumSurface("./output/Spine.h5");
     NumSurface* gauss = &Baltimore;
     NumSurface a = *gauss;
     LineIntegral* l;
@@ -62,7 +62,7 @@ int main(int argc, char* argv[]){
 //    array.PrintFiltered();
 //    sf.Print();	// print out the result.
 #ifdef USE_HDF
-    sf.ExportHDF("output/B.h5");
+    sf.ExportHDF("output/Spine_rctr.h5");
 #endif
     //delete gauss;
     return 0;
