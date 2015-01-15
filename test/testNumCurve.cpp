@@ -47,7 +47,7 @@ int main(int argc, char* argv[]){
     if(choice==4) {
         cptr->Print(-2*range,2*range,100000);
 #ifdef USE_HDF
-        cptr->ExportHDF("output/curve.h5");
+        cptr->ExportHDF("curve.h5");
 #endif 
     }
 // test assignment

@@ -97,6 +97,7 @@ int main(int argc, char* argv[]){
 #ifdef USE_HDF
     sf.ExportHDF("output/heart_dense.h5");
     cerr<<"doneHDF"<<endl;
+    sf.ExportHDF("HeartNum.h5");
 #endif
     delete gauss;delete heart;
     return 0;

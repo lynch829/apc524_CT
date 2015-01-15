@@ -4,6 +4,7 @@
 */
 #include "NumCurve.h"
 #include <stdio.h>
+#include <string.h>
 
 // Default constructor, everything to NULL.
 NumCurve::NumCurve() : Curve(0)
@@ -166,13 +167,17 @@ void NumCurve::Print()
     for(int i=0; i<_size; i++) printf("%.9f %.9f\n",_datax[i],_datay[i]);
 }
 #ifdef USE_HDF
+// DO NOT include 'output/' in string 'file'.
 void NumCurve::ExportHDF(const char* file)
 {
+    char fname[strlen(file)+7];
+    strcpy(fname, "output/");
+    strcat(fname, file);
     hid_t file_id;
     hsize_t dims[Dim1];
     dims[0] = _size;
     herr_t status;
-    file_id = H5Fcreate(file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+    file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dims,_datax);
     status = H5LTset_attribute_int(file_id,"/x","size of x",&_size,1);
     status = H5LTmake_dataset_double(file_id,"/data",Dim1,dims,_datay);
@@ -190,6 +195,7 @@ NumCurve::NumCurve(const char* file): Curve(0)
     status = H5LTread_dataset_double(file_id,"/x",_datax);
     status = H5LTread_dataset_double(file_id,"/data",_datay);
     status = H5Fclose(file_id);
+    _r = _datax[0];
 }
     
 #endif

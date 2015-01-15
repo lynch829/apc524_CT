@@ -19,7 +19,7 @@ dmax = data.max()
 fig = plt.figure()
 
 def animate(i):
-  im = plt.pcolormesh(X, Y, data[:, :, i].T, vmin = dmin, vmax = dmax)
+  im = plt.pcolormesh(X, Y, data[i, :, :], vmin = dmin, vmax = dmax)
   plt.title('z = %.2f' % z[i])
   return im
 
@@ -27,4 +27,3 @@ ani = manimation.FuncAnimation(fig, animate, frames = z.shape[0], interval = 50)
 # Codec (such as ffmpeg) is needed for saving the animation. 
 ani.save(fname[:-3] + ".mp4", fps = 10) 
 plt.show()
-

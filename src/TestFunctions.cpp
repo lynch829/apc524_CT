@@ -29,7 +29,11 @@ double Rectangle(double x, double y){
     if(fabs(x)<3 && fabs(y)<3) val = 1;
     return val;
 }
-
+double Cube(double x, double y, double z){
+    double val = 0;
+    if(fabs(x)<1 && fabs(y)<1 && fabs(z)<1) val = 1;
+    return val;
+}
 double Triangle(double x, double y){
     if(y<-1) return 0;
     if(2*x+y>1) return 0;

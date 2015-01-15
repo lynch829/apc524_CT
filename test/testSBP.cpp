@@ -62,7 +62,7 @@ int main(int argc, char* argv[]){
 //    array.PrintFiltered();
 //    sf.Print();	// print out the result.
 #ifdef USE_HDF
-    sf.ExportHDF("output/Spine_rctr.h5");
+    sf.ExportHDF("Spine_rctr.h5");
 #endif
     //delete gauss;
     return 0;

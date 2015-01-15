@@ -21,7 +21,7 @@ int main(int argc, char* argv[]){
 
 // ctor with a size;
     Surface *b_temp = new AnaSurface(Gauss2D,10,10);
-    NumSurface b(10,10,*b_temp);
+    NumSurface b(150,100,*b_temp);
     NumSurface* bptr = &b;
 
     double range = 20;
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]){
     if(choice==0)aptr->Print();
     if(choice==1){bptr->Print();
 #ifdef USE_HDF
-        bptr->ExportHDF("output/test.h5");
+        bptr->ExportHDF("test.h5");
 #endif
     }
     if(choice==2)c->Print();
@@ -59,7 +59,7 @@ int main(int argc, char* argv[]){
 #ifdef USE_HDF
     if(choice==5){
         NumSurface* e = new NumSurface("output/BaltimoreDowntown.h5");
-        e->ExportHDF("output/BaltimoreDowntown2.h5");
+        e->ExportHDF("BaltimoreDowntown2.h5");
     delete e;
     }
 #endif
