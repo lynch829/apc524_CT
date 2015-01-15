@@ -19,8 +19,8 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 2;	// range of the geometry
-    const int size= 5;	// number of view per slice
-    const int slice=5; // number of projected horizontal slice
+    const int size= 30;	// number of view per slice
+    const int slice=50; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
     const int Nres=50;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
 	}
 } //  since 180 symmetry, do not include endpoint.
 
-    Volume* gauss = new AnaVolume (Heart, range, range, range);
+    Volume* gauss = new AnaVolume (Cube, range, range, range);
 			 // a 3D function.
     LineIntegral* l;
     Romberg t; l = &t;	// integ. method
@@ -73,7 +73,7 @@ int main(int argc, char* argv[]){
     //array.PrintFiltered();
     sf.Print();	// print out the result.
 #ifdef USE_HDF
-    sf.ExportHDF("test.h5");
+    sf.ExportHDF("cube.h5");
 #endif
     delete gauss;
     return 0;

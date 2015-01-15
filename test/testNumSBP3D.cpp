@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 2;	// range of the geometry
-    const int size= 50;	// number of view per slice
+    const int size= 30;	// number of view per slice
     const int slice=50; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
     const int Nres=50;// resolution/ N of point in the projected curve.
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]){
     Volume* heart = new AnaVolume (Heart, range, range, range);
 			 // a 3D function.
     cerr << "run1"<<endl;
-    NumVolume* gauss = new NumVolume(16,16,16,*heart);
+    NumVolume* gauss = new NumVolume(80,80,80,*heart);
 
     cerr << "run1"<<endl;
     
@@ -94,7 +94,7 @@ int main(int argc, char* argv[]){
     //array.PrintFiltered();
     sf.Print();	// print out the result.
 #ifdef USE_HDF
-    sf.ExportHDF("test.h5");
+    sf.ExportHDF("HeartNum.h5");
 #endif
     delete gauss;
     return 0;

@@ -70,6 +70,7 @@ NumVolume::NumVolume(int sizex, double* x, int sizey, double* y, int sizez, doub
     _rx = fabs(_datax[0]) > fabs(_datax[_sizex-1]) ? fabs(_datax[0]) : fabs(_datax[_sizex-1]);
     _ry = fabs(_datay[0]) > fabs(_datay[_sizey-1]) ? fabs(_datay[0]) : fabs(_datay[_sizey-1]);
     _rz = fabs(_dataz[0]) > fabs(_dataz[_sizez-1]) ? fabs(_dataz[0]) : fabs(_dataz[_sizez-1]);
+    _r = sqrt(_rx*_rx+_ry*_ry);
 }
 
 //! Constructor with a given size, range and a set of z-values
