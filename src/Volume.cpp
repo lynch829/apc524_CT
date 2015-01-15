@@ -83,20 +83,9 @@ void Volume::ExportHDF(const char* file)
 void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double zmin, double zmax, int Nz, Interpolator* intpl)
 {
     char fname[strlen(file)+11];
-    strcpy(fname, "output/");
+    strcpy(fname, "output/"); // Automatically export to directory 'output/'
     strcat(fname, file);
-// The indexing is meant for consistency with python, VisIt, etc.
-    hid_t file_id;
-    hsize_t dims[Dim3];
-    dims[0] = Nz;
-    dims[1] = Ny;
-    dims[2] = Nx;
-    hsize_t dimx[Dim1];
-    dimx[0] = Nx;
-    hsize_t dimy[Dim1];
-    dimy[0] = Ny;
-    hsize_t dimz[Dim1];
-    dimz[0] = Nz;
+// Allocate memory for output data
     double *x;
     x = new double[Nx];
     double *y;
@@ -105,10 +94,10 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
     z = new double[Nz];
     double *data;
     data= new double[Nz*Ny*Nx];
+// Generate output data
     double stepx = (xmax-xmin)/Nx;
     double stepy = (ymax-ymin)/Ny;
     double stepz = (zmax-zmin)/Nz;
-    herr_t status;
     for( int i = 0; i < Nx; i++) {
         x[i] = xmin + stepx * i;
     }
@@ -119,19 +108,35 @@ void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double
         z[k] = zmin + stepz * k;
         for( int j = 0; j < Ny; j++) {
             for( int i = 0; i < Nx; i++) {
+// The indexing is meant for consistency with python, VisIt, etc.
                 data[i+(j+k*Ny)*Nx] = (*this)(x[i], y[j], z[k], intpl);
             }
         }
     }
+// Create file and save data
+    hid_t file_id;
+    herr_t status;
+    hsize_t dims[Dim3];
+    dims[0] = Nz;
+    dims[1] = Ny;
+    dims[2] = Nx;
+    hsize_t dimx[Dim1];
+    dimx[0] = Nx;
+    hsize_t dimy[Dim1];
+    dimy[0] = Ny;
+    hsize_t dimz[Dim1];
+    dimz[0] = Nz;
     file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+// Number of grids saved as attributes. Coodrinates saved as 1D arrays since the mesh is rectilinear. Data saved as 3D array. 
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,x);
-    status = H5LTset_attribute_int(file_id,"/x","size of x",&Nx,1);
     status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,y);
-    status = H5LTset_attribute_int(file_id,"/y","size of y",&Ny,1);
     status = H5LTmake_dataset_double(file_id,"/z",Dim1,dimz,z);
-    status = H5LTset_attribute_int(file_id,"/z","size of z",&Nz,1);
     status = H5LTmake_dataset_double(file_id,"/data",Dim3,dims,data);
+    status = H5LTset_attribute_int(file_id,"/x","size of x",&Nx,1);
+    status = H5LTset_attribute_int(file_id,"/y","size of y",&Ny,1);
+    status = H5LTset_attribute_int(file_id,"/z","size of z",&Nz,1);
     status = H5Fclose(file_id);
+// Clear up memory
     delete [] x;
     delete [] y;
     delete [] z;

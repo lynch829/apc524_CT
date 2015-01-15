@@ -26,9 +26,9 @@ int main(int argc, char* argv[]){
 
     double range = 2;	// range of the geometry
     const int size= 30;	// number of view per slice
-    const int slice=50; // number of projected horizontal slice
+    const int slice=100; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
-    const int Nres=50;// resolution/ N of point in the projected curve.
+    const int Nres=100;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.
     double height[slice]; // array containing height.
     double spacingz; // distance between each projected horizontal slice.
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]){
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
      */
     
-    Volume* gauss = new AnaVolume (Sphere, range, range, range);
+    Volume* gauss = new AnaVolume(Heart, range, range, range);
 			 // a 3D function.
     LineIntegral* l;
     Trapezoid t; l = &t;	// integ. method
@@ -87,7 +87,7 @@ int main(int argc, char* argv[]){
     //array.PrintFiltered();
     sf.Print();	// print out the result.
 #ifdef USE_HDF
-    sf.ExportHDF("cube.h5");
+    sf.ExportHDF("HeartNum.h5");
 #endif
     delete gauss;
     return 0;

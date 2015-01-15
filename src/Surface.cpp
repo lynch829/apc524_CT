@@ -74,23 +74,16 @@ void Surface::ExportHDF(const char* file)
 void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl)
 {
     char fname[strlen(file)+11];
-    strcpy(fname, "output/");
+    strcpy(fname, "output/"); // Automatically export to directory 'output/'
     strcat(fname, file);
-// The indexing is meant for consistency with python, VisIt, etc.
-    hid_t file_id;
-    hsize_t dims[Dim2];
-    dims[0] = Ny;
-    dims[1] = Nx; 
-    hsize_t dimx[Dim1];
-    dimx[0] = Nx;
-    hsize_t dimy[Dim1];
-    dimy[0] = Ny;
+// Allocate memory for output data
     double *x;
     x = new double[Nx];
     double *y;
     y = new double[Ny];
     double *data;
     data = new double[Ny*Nx];
+// Generate output data
     double stepx = (xmax-xmin)/Nx;
     double stepy = (ymax-ymin)/Ny;
     herr_t status;
@@ -100,16 +93,28 @@ void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, doub
     for( int j = 0; j < Ny; j++) {
         y[j] = ymin + stepy * j;
         for( int i = 0; i < Nx; i++) {
+// The indexing is meant for consistency with python, VisIt, etc.
             data[i + j*Nx] = (*this)(x[i], y[j], intpl);
         }
     } 
+// Create file and save data
+    hid_t file_id;
+    hsize_t dims[Dim2];
+    dims[0] = Ny;
+    dims[1] = Nx; 
+    hsize_t dimx[Dim1];
+    dimx[0] = Nx;
+    hsize_t dimy[Dim1];
+    dimy[0] = Ny;
     file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+// Number of grids saved as attributes. Coodrinates saved as 1D arrays since the mesh is rectilinear. Data saved as 2D array. 
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,x);
-    status = H5LTset_attribute_int(file_id,"/x","size of x",&Nx,1);
     status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,y);
-    status = H5LTset_attribute_int(file_id,"/y","size of y",&Ny,1);
     status = H5LTmake_dataset_double(file_id,"/data",Dim2,dims,data);
+    status = H5LTset_attribute_int(file_id,"/x","size of x",&Nx,1);
+    status = H5LTset_attribute_int(file_id,"/y","size of y",&Ny,1); 
     status = H5Fclose(file_id);
+// Clear up memory
     delete [] x;
     delete [] y;
     delete [] data;

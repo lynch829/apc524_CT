@@ -171,31 +171,38 @@ void NumCurve::Print()
 void NumCurve::ExportHDF(const char* file)
 {
     char fname[strlen(file)+7];
-    strcpy(fname, "output/");
+    strcpy(fname, "output/"); // Automatically export to directory 'output/'
     strcat(fname, file);
+// Create file and save data
     hid_t file_id;
     hsize_t dims[Dim1];
     dims[0] = _size;
     herr_t status;
     file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+// Number of grids is saved as an attribute, coordinates and data saved as 1D arrays.
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dims,_datax);
-    status = H5LTset_attribute_int(file_id,"/x","size of x",&_size,1);
+    status = H5LTset_attribute_int(file_id,"/x","size of x",&_size,1); 
     status = H5LTmake_dataset_double(file_id,"/data",Dim1,dims,_datay);
     status = H5Fclose(file_id);
 }
 // Constructor from a HDF5 file.
 NumCurve::NumCurve(const char* file): Curve(0)
 {
+// Open target file, which needs to be in consistent format as the exported .h5 file: Number of grids as attribute. Coodrinates and data as 1D arrays. 
     hid_t file_id;
     herr_t status;
     file_id = H5Fopen(file, H5F_ACC_RDONLY, H5P_DEFAULT);
+// Read in number of grids
     status = H5LTget_attribute_int(file_id, "/x", "size of x", &_size);
+// Allocate memory
     _datax = new double[_size];
     _datay = new double[_size];
+// Read in data
     status = H5LTread_dataset_double(file_id,"/x",_datax);
     status = H5LTread_dataset_double(file_id,"/data",_datay);
     status = H5Fclose(file_id);
-    _r = _datax[0];
+// Initialize range. 
+    _r = -_datax[0];
 }
     
 #endif
