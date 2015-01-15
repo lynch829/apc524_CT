@@ -19,7 +19,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-
+#ifdef USE_HDF
     double range = 8;	// range of the geometry
     const int size=100;	// number of view
     const int Nres=400;// resolution/ N of point in the projected curve.
@@ -61,9 +61,9 @@ int main(int argc, char* argv[]){
 			// filtered back-projection
 //    array.PrintFiltered();
 //    sf.Print();	// print out the result.
-#ifdef USE_HDF
     sf.ExportHDF("Spine_rctr.h5");
 #endif
     //delete gauss;
     return 0;
 }
+

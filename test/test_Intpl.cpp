@@ -46,7 +46,7 @@ int main(int argc, char* argv[]){
 // creates a numerical surface using gass_2D.
     Surface* gauss2 = new AnaSurface( gauss_2D,2,2);
     NumSurface* num_gauss2 = new NumSurface(5,10,*gauss2);
-    NumSurface Baltimore=NumSurface("./output/BaltimoreDowntown.h5");
+//    NumSurface Baltimore=NumSurface("./output/BaltimoreDowntown.h5");
 // defines trapezoid integration rule.
     LineIntegral* l=new Trapezoid();
 
@@ -63,17 +63,17 @@ int main(int argc, char* argv[]){
  //          NumCurve a = *ptr;  //double a;
          //printf("%.9f\n",a(-1.8,-1.8,0));
  //        printf("%.9f\n",a(0,0));
-           double r = Baltimore.GetRadius();
+//           double r = Baltimore.GetRange();
           // printf("r is %f\n",r);
-        for(double rx=-r;rx<r;rx+=0.005){
-               for(double ry=-r;ry<r;ry+=0.005){
+//        for(double rx=-r;rx<r;rx+=0.005){
+//               for(double ry=-r;ry<r;ry+=0.005){
            //printf("%.9f\n",a(1.8,1.8,intpl));
            //printf("%.9f\n",a(0.8,0.8,intpl));
            //printf("%.9f\n",a(0.1,0.1,intpl));
         //        Interpolator* intpl=new NearestNeighborIntpl();
-                printf("%.9f\n",Baltimore(rx,ry,0));
-               }
-           }
+//                printf("%.9f\n",Baltimore(rx,ry,0));
+//               }
+//           }
         
         delete num_gauss2; return 0;
 		 }

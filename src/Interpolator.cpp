@@ -9,23 +9,28 @@
 #include "Interpolator.h"
 Interpolator::Interpolator(){}
 
-Interpolator::~Interpolator(){
-    if(_xptr!=0) delete [] _xptr;
-    if(_yptr!=0) delete [] _yptr;
-    if(_zptr!=0) delete [] _zptr;
-    if(_zzptr!=0) {
-        for(int i=0;i<_sizex;i++) delete [] _zzptr[i];
-        delete [] _zzptr;
-       }
+Interpolator::~Interpolator(){}
 
-    if(_wptr!=0){
-    for (int i = 0; i < _sizex; ++i) {
-        for (int j = 0; j < _sizey; ++j)
-            delete [] _wptr[i][j];
-        delete [] _wptr[i];
-    }
-    delete [] _wptr;
-      }
+//! Set necessary values for interpolator. This method is called before interpolation is performed.
+//! Interpolator has access to the private data of respective classes, and access that information idrectly through pointers.
+//! This is for 2D.
+void Interpolator::set_values(int sizex, int sizey, double* xptr, double* yptr, double** vptr) 
+{ 
+    _xptr = xptr; 
+    _yptr = yptr; 
+    _sizex = sizex; 
+    _sizey = sizey; 
+    _zzptr = vptr; 
 }
- 
 
+//! 3D interpolator set value method. This function must be called before interpolation.
+void Interpolator::set_values(int sizex, int sizey,int sizez, double* xptr, double* yptr, double* zptr, double*** wptr) 
+{ 
+    _xptr = xptr; 
+    _yptr = yptr; 
+    _zptr = zptr; 
+    _sizex = sizex; 
+    _sizey = sizey; 
+    _sizez = sizez; 
+    _wptr = wptr; 
+}

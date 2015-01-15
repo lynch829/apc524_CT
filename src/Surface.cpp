@@ -21,7 +21,7 @@ double Surface::GetRangeX() const { return _rx; }
 
 double Surface::GetRangeY() const { return _ry; }
 
-double Surface::GetRadius() const { return _r; }
+double Surface::GetRange() const { return _r; }
 
 NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, Interpolator* intpl){
     int N = int(2*_r/spacing)+1;

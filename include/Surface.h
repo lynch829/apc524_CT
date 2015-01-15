@@ -43,7 +43,7 @@ public:
 			//!< Returns symmetrized range in X direction.
     double GetRangeY() const;
 			//!< Returns symmetrized range in Y direction.
-    double GetRadius() const;
+    double GetRange() const;
 			//!< Returns the smallest radius that would enclose the figure.
     void SetIntegralStep(double epsilon);
 			//!< Sets the stepsize to be used in the line integral.

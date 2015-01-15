@@ -159,7 +159,7 @@ NumSurface::NumSurface(int sizex, int sizey, const Surface& f) : Surface(0,0)
     _sizey = sizey;
     _rx = f.GetRangeX();
     _ry = f.GetRangeY();
-    _r = f._r;
+    _r = f.GetRange();
     _datax = new double[_sizex];
     _datay = new double[_sizey];
     _dataz = new double*[_sizex];

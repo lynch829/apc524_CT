@@ -17,9 +17,9 @@ public:
 	//!< constructor
     ~Interpolator();
 	//!< destructor
-    virtual void set_values(int,int,double*,double*,double**)=0;
+    void set_values(int,int,double*,double*,double**);
 	//<! set values to relevant data for NumSurface
-    virtual void set_values(int,int,int,double*,double*,double*,double***) =0;
+    void set_values(int,int,int,double*,double*,double*,double***);
 	//<! set values to relevant data for NumVolume
     virtual double Interpolate(double, double) = 0;
 	//!< Interpolate method for NumSurface

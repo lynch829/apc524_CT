@@ -64,11 +64,11 @@ int main(int argc, char* argv[]){
  //          NumCurve a = *ptr;  //double a;
          //printf("%.9f\n",a(-1.8,-1.8,0));
  //        printf("%.9f\n",a(0,0));
- //          double r = Baltimore.GetRadius();
+ //          double r = Baltimore.GetRange();
         NearestNeighborIntpl intpl_nnb;
         intpl_nnb.set_values(a.GetSizeX(),a.GetSizeY(),a.GetXPtr(),a.GetYPtr(),a.GetZPtr());
         Interpolator* intpl = &intpl_nnb;
-	double r = a.GetRadius();
+	double r = a.GetRange();
         for(double rx=-r;rx<r;rx+=0.5){
                for(double ry=-r;ry<r;ry+=0.5){
            //printf("%.9f\n",a(1.8,1.8,intpl));
