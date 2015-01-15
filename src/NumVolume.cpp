@@ -398,13 +398,13 @@ void NumVolume::ExportHDF(const char* file)
     herr_t status;
     file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
 // Number of grids saved as attributes. Coodrinates saved as 1D arrays since the mesh is rectilinear. Data saved as 3D array.
-    status = H5LTset_attribute_int(file_id, "/x", "size of x", &_sizex, 1);
-    status = H5LTset_attribute_int(file_id, "/y", "size of y", &_sizey, 1);
-    status = H5LTset_attribute_int(file_id, "/z", "size of z", &_sizez, 1);
-    status = H5LTmake_dataset_double(file_id,"/data",Dim3,dims,data);
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,_datax);
     status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,_datay);
     status = H5LTmake_dataset_double(file_id,"/z",Dim1,dimz,_dataz);
+    status = H5LTmake_dataset_double(file_id,"/data",Dim3,dims,data);
+    status = H5LTset_attribute_int(file_id, "/x", "size of x", &_sizex, 1);
+    status = H5LTset_attribute_int(file_id, "/y", "size of y", &_sizey, 1);
+    status = H5LTset_attribute_int(file_id, "/z", "size of z", &_sizez, 1);
     status = H5Fclose(file_id);
 // Clear up memory
     delete [] data;

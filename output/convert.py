@@ -6,11 +6,11 @@ import numpy as np
 infile = sys.argv[1]
 
 data = scipy.io.loadmat(infile)
-N = data[infile[:-4]].shape
+N = data[infile[:-4]].T.shape
 outfile = h5py.File(infile[:-4] + ".h5", 'w')
 
 dset = outfile.create_dataset("/data", N, dtype='f')
-dset[...] = data[infile[:-4]]
+dset[...] = data[infile[:-4]].T
 
 x = outfile.create_dataset("/x", (N[0],), dtype='f')
 x.attrs['size of x'] = N[0]
