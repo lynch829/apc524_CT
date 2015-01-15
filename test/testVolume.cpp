@@ -61,13 +61,8 @@ int main(int argc, char* argv[]){
     Volume* ptr = (Volume*)gauss; //Image has no GetProjection, must downcast.
     NumSurface a;
     ptr->SetIntegralStep(0.0001);
-<<<<<<< HEAD
-    a = ptr->GetProjection3D(l,atof(argv[1]),0.01,0.01);
-    //a.Print();
-=======
     a = ptr->GetProjection(l,atof(argv[1]),0.01,0.01);
 */    //a.Print();
->>>>>>> 60b81c440c43e588b4b9d00baeb9cd692c739557
 #ifdef USE_HDF
     gauss->ExportHDF("test.h5");
 #endif

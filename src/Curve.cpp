@@ -23,24 +23,32 @@ double Curve::GetRange() const{
 void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, Interpolator* intpl)
 {
   char fname[strlen(file)+7];
-  strcpy(fname, "output/");
+  strcpy(fname, "output/"); // Automatically export to directory 'output/'
   strcat(fname, file);
-  hid_t file_id;
-  double x[N];
-  double data[N];
-  hsize_t dims[Dim1];
-  dims[0] = N;
+// Allocate memory for output data
+  double *x;
+  x = new double[N];
+  double *data;
+  data = new double[N];
+// Generate output data
   double step = (xmax-xmin)/N;
-  herr_t status;
   for( int i = 0; i < N; i++) {
     x[i] = xmin + step * i; 
     data[i] = (*this)(x[i],intpl);
   }
+// Create file and save data
+  hid_t file_id;
+  hsize_t dims[Dim1];
+  dims[0] = N;
+  herr_t status;
   file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
   status = H5LTmake_dataset_double(file_id,"/x",Dim1,dims,x);
-  status = H5LTset_attribute_int(file_id,"/x","size of x",&N,1);
+  status = H5LTset_attribute_int(file_id,"/x","size of x",&N,1); // Number of grids is saved as an attribute
   status = H5LTmake_dataset_double(file_id,"/data",Dim1,dims,data);
   status = H5Fclose(file_id);
+// Clear up memory
+  delete [] x;
+  delete [] data;
 }
 
 void Curve::ExportHDF(const char* file)

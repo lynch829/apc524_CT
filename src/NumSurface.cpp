@@ -272,16 +272,18 @@ void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int N
 void NumSurface::ExportHDF(const char* file)
 {
     char fname[strlen(file)+11];
-    strcpy(fname, "output/");
+    strcpy(fname, "output/"); // Automatically export to directory 'output/'
     strcat(fname, file);
-// 2D array _dataz incompatible with HDF5. 1D array 'data' needed for bridging. The indexing is mean for consistency with python, VisIt, etc.
+// 2D array _dataz incompatible with HDF5. 1D array 'data' needed for bridging.
     double *data;
     data = new double[_sizey*_sizex];
     for (int i = 0; i<_sizex; i++){
         for (int j = 0; j<_sizey; j++){
+// The indexing is meant for consistency with python, VisIt, etc.
             data[i + j*_sizex] = _dataz[i][j];
         }
     }
+// Create file and save data
     hid_t file_id;
     hsize_t dims[Dim2];
     dims[0] = _sizey;
@@ -292,12 +294,14 @@ void NumSurface::ExportHDF(const char* file)
     dimy[0] = _sizey;
     herr_t status;
     file_id = H5Fcreate(fname, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
+// Number of grids saved as attributes. Coodrinates saved as 1D arrays since the mesh is rectilinear. Data saved as 2D array.
     status = H5LTmake_dataset_double(file_id,"/x",Dim1,dimx,_datax);
-    status = H5LTset_attribute_int(file_id, "/x", "size of x", &_sizex, 1);
     status = H5LTmake_dataset_double(file_id,"/y",Dim1,dimy,_datay);
-    status = H5LTset_attribute_int(file_id, "/y", "size of y", &_sizey, 1);
     status = H5LTmake_dataset_double(file_id,"/data",Dim2,dims,data);
+    status = H5LTset_attribute_int(file_id, "/x", "size of x", &_sizex, 1);
+    status = H5LTset_attribute_int(file_id, "/y", "size of y", &_sizey, 1); 
     status = H5Fclose(file_id);
+// Clear up memory
     delete [] data;
 // Create XMDF file that accompanies HDF5 file so as to enable VisIt reading.
     strcat(fname, ".xmf"); 
@@ -333,18 +337,24 @@ void NumSurface::ExportHDF(const char* file, double xi, double xf, int Nx, doubl
 // Constructor from a HDF5 file.
 NumSurface::NumSurface(const char* file): Surface(0, 0)
 {
+// Open target file, which needs to be in the same format as the exported .h5 file: Number of grids as attributes. Coodrinates as 1D arrays since the mesh is rectilinear. Data as 2D array. 
     hid_t file_id;
     herr_t status;
     file_id = H5Fopen(file, H5F_ACC_RDONLY, H5P_DEFAULT);
+// Read in number of grids
     status = H5LTget_attribute_int(file_id, "/x", "size of x", &_sizex);
     status = H5LTget_attribute_int(file_id, "/y", "size of y", &_sizey);
+// Allocate memory
     _datax = new double[_sizex];
     _datay = new double[_sizey];
+// 2D array _dataz incompatible with HDF5. 1D array 'data' needed for bridging.
     double *data;
     data = new double[_sizey*_sizex];
+// Read in data
     status = H5LTread_dataset_double(file_id,"/x",_datax);
     status = H5LTread_dataset_double(file_id,"/y",_datay);
     status = H5LTread_dataset_double(file_id,"/data",data);
+// Move data to _dataz
     _dataz = new double*[_sizex];
     for (int i=0;i<_sizex;i++){
         _dataz[i] = new double[_sizey];
@@ -353,7 +363,9 @@ NumSurface::NumSurface(const char* file): Surface(0, 0)
         }
     }
     status = H5Fclose(file_id);
+// Clear up memory
     delete [] data;
+// Initialize ranges. 
     _rx = -_datax[0];
     _ry = -_datay[0];
     _r = sqrt(_rx*_rx+_ry*_ry);
