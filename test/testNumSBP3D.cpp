@@ -21,10 +21,10 @@ using namespace std;
 int main(int argc, char* argv[]){
 
     double range = 2;	// range of the geometry
-    const int size= 50;	// number of view per slice
-    const int slice=50; // number of projected horizontal slice
+    const int size= 2;	// number of view per slice
+    const int slice=4; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
-    const int Nres=50;// resolution/ N of point in the projected curve.
+    const int Nres=5;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.
     double height[slice]; // array containing height.
     double spacingz; // distance between each projected horizontal slice.
@@ -92,11 +92,13 @@ int main(int argc, char* argv[]){
     //cerr << "sf(3,3,3) = " << sf(3,3,3) << endl;
 			// filtered 3D back-projection
     //array.PrintFiltered();
-    sf.Print();	// print out the result.
+    //sf.Print();	// print out the result.
+    cerr<<"done printing"<<endl;
 #ifdef USE_HDF
-    sf.ExportHDF("output/test.h5");
+    sf.ExportHDF("output/heart_dense.h5");
+    cerr<<"doneHDF"<<endl;
 #endif
-    delete gauss;
+    delete gauss;delete heart;
     return 0;
 }
 
