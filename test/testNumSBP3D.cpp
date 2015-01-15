@@ -41,7 +41,7 @@ int main(int argc, char* argv[]){
     Volume* heart = new AnaVolume (Heart, range, range, range);
 			 // a 3D function.
     cerr << "run1"<<endl;
-    NumVolume* gauss = new NumVolume(16,16,16,*heart);
+    NumVolume* gauss = new NumVolume(80,80,80,*heart);
 
     cerr << "run1"<<endl;
     
@@ -67,17 +67,17 @@ int main(int argc, char* argv[]){
         cerr<<"Projecting at height "<<height[k]<<endl;
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*size]<<endl;
-            NumSurface gauss_tmp;
-            NumSurface* gauss_tmp_ptr;
+            NumCurve gauss_tmp;
+            //NumSurface* gauss_tmp_ptr;
     //gauss_tmp = gauss->GetProjection(l,0.2,0.1,spacingz);
             //gauss->SetIntegralStep(0.00001);
-            gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.1,spacingz,intpl); //spacingr =0.1
-            gauss_tmp_ptr = &(gauss_tmp);
+            gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.1,height[k],intpl); //spacingr =0.1
+           // gauss_tmp_ptr = &(gauss_tmp);
             //Use a method of NumSurface to turn surface into numcurve;
-            NumCurve curve_tmp=gauss_tmp_ptr->Surface2Curve();
+           // NumCurve curve_tmp=gauss_tmp_ptr->Surface2Curve();
             //cerr<<"r" << curve_tmp.GetRange()<<endl;
             //array.PushBack(0.1, -range+0.5*spacingz, curve_tmp);
-            array.PushBack(angle[i+k*size], height[k], curve_tmp);
+            array.PushBack(angle[i+k*size], height[k], gauss_tmp);
             //cerr<<"runPushBack"<<endl;
         }
     }

@@ -32,7 +32,7 @@ void Volume::SetIntegralStep(double epsilon){
     _step = epsilon;
 }
 
-NumSurface Volume::GetProjection(LineIntegral* l, double angle, double spacingr, double spacingz, Interpolator* intpl){
+NumSurface Volume::GetProjection3D(LineIntegral* l, double angle, double spacingr, double spacingz, Interpolator* intpl){
     int counterr = 0;
     int counterz = 0;
     for(double d = -_r; d<_r; d += spacingr){ counterr++; }
@@ -62,6 +62,18 @@ NumSurface Volume::GetProjection(LineIntegral* l, double angle, double spacingr,
     std::cerr << "range" << ret1.GetRadius() << std::endl;
     return ret1;
 }
+
+NumCurve Volume::GetProjection(LineIntegral* l, double angle, double spacing, double z, Interpolator* intpl){
+    int N = int(2*_r/spacing)+1;
+    NumCurve ret(N,_r);
+    double *x = ret.GetXPtr();
+    double *y = ret.GetYPtr();
+    
+    for(int i=0; i < N; i++)
+        y[i] = this->GetProjectionAtAngle(l,angle,x[i],z,intpl);
+    return ret;
+}
+
 
 double Volume::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d, double z, Interpolator* intpl){
     double angle = angle_arg-pi/2;

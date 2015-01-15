@@ -1,9 +1,8 @@
 #include "Image.h"
 #include "AnaImage.h"
 #include "NumCurve.h"
-#include "NumSurface.h"
 #include "NumVolume.h"
-#include "Surface.h"
+#include "Volume.h"
 #include "Trapezoid.h"
 #include "Romberg.h"
 #include "MCIntegrator.h"
@@ -17,6 +16,13 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
+    /*
+    int my_rank;
+    int size;
+    
+    int final_rank = 0; // process with final result
+    int num_inc = 0;
+     */
 
     double range = 2;	// range of the geometry
     const int size= 5;	// number of view per slice
@@ -36,27 +42,35 @@ int main(int argc, char* argv[]){
 	}
 } //  since 180 symmetry, do not include endpoint.
 
+    
+    //  Initialize MPI
+    /*
+    MPI_Init(&argc, &argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
+     */
+    
     Volume* gauss = new AnaVolume (Heart, range, range, range);
 			 // a 3D function.
     LineIntegral* l;
-    Romberg t; l = &t;	// integ. method
+    Trapezoid t; l = &t;	// integ. method
     NumVolume sf;	// Num Surf to contain reconstructed result.
 
     for(int k=0;k<slice;k++){
         cerr<<"Projecting at height "<<height[k]<<endl;
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*size]<<endl;
-            NumSurface gauss_tmp;
-            NumSurface* gauss_tmp_ptr;
+            //NumCurve* gauss_tmp_ptr;
     //gauss_tmp = gauss->GetProjection(l,0.2,0.1,spacingz);
-            gauss->SetIntegralStep(0.00001);
-            gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.1,spacingz); //spacingr =0.1
-            gauss_tmp_ptr = &(gauss_tmp);
+            //gauss->SetIntegralStep(0.00001);
+            //gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.1,height[k]); //spacingr =0.1
+            //gauss_tmp_ptr = &(gauss_tmp);
             //Use a method of NumSurface to turn surface into numcurve;
-            NumCurve curve_tmp=gauss_tmp_ptr->Surface2Curve();
+            //NumCurve curve_tmp=gauss_tmp_ptr->Surface2Curve();
             //cerr<<"r" << curve_tmp.GetRange()<<endl;
             //array.PushBack(0.1, -range+0.5*spacingz, curve_tmp);
-            array.PushBack(angle[i+k*size], height[k], curve_tmp);
+            //array.PushBack(angle[i+k*size], height[k], curve_tmp);
+            array.PushBack(angle[i+k*size], height[k], gauss->GetProjection(l,angle[i+k*size],0.1,height[k]));
             //cerr<<"runPushBack"<<endl;
         }
     }
