@@ -296,7 +296,8 @@ NumVolume::~NumVolume()
 //! Operator for returning value at a given point.
 double NumVolume::operator()(double x, double y, double z, Interpolator* intpl) const
 {
-return intpl->Interpolate(x,y,z);
+      intpl->set_values(_sizex,_sizey,_sizez,_datax,_datay,_dataz,_dataw);
+      return intpl->Interpolate(x,y,z);
 }
 
 //! Operator returning a reference to the data at the specified index.

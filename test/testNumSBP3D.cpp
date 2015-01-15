@@ -37,25 +37,12 @@ int main(int argc, char* argv[]){
 	    angle[i+k*size] = 0 + i*pi/size;
 	}
 } //  since 180 symmetry, do not include endpoint.
-    cerr << "run1"<<endl;
     Volume* heart = new AnaVolume (Heart, range, range, range);
 			 // a 3D function.
-    cerr << "run1"<<endl;
     NumVolume* gauss = new NumVolume(80,80,80,*heart);
-
-    cerr << "run1"<<endl;
-    
     NumVolume a = *gauss;
-
-    cerr << "run1"<<endl;
-
     Bilinear intpl_nnb;
-
     cerr << "run1"<<endl;
-
-    intpl_nnb.set_values(a.GetSizeX(),a.GetSizeY(),a.GetSizeZ(),a.GetXPtr(),a.GetYPtr(),a.GetZPtr(),a.GetWPtr());
-    cerr << "run1"<<endl;
-
     Interpolator* intpl = &intpl_nnb; 
     cerr << "run1"<<endl;
  

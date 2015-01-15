@@ -65,8 +65,7 @@ int main(int argc, char* argv[]){
          //printf("%.9f\n",a(-1.8,-1.8,0));
  //        printf("%.9f\n",a(0,0));
  //          double r = Baltimore.GetRange();
-        NearestNeighborIntpl intpl_nnb;
-        intpl_nnb.set_values(a.GetSizeX(),a.GetSizeY(),a.GetXPtr(),a.GetYPtr(),a.GetZPtr());
+        Bilinear intpl_nnb;
         Interpolator* intpl = &intpl_nnb;
 	double r = a.GetRange();
         for(double rx=-r;rx<r;rx+=0.5){

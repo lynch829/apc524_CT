@@ -43,7 +43,6 @@ int main(int argc, char* argv[]){
     NumSurface sf;	// Num Surf to contain reconstructed result.
     
     Bilinear intpl_nnb;
-    intpl_nnb.set_values(a.GetSizeX(),a.GetSizeY(),a.GetXPtr(),a.GetYPtr(),a.GetZPtr());
     Interpolator* intpl = &intpl_nnb;
     for(int i=0; i<size; i++){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
@@ -54,6 +53,5 @@ int main(int argc, char* argv[]){
 #ifdef USE_HDF
     sf.ExportHDF("out_rctr.h5");
 #endif
-    delete gauss;
     return 0;
 }
