@@ -54,6 +54,5 @@ int main(int argc, char* argv[]){
 #ifdef USE_HDF
     sf.ExportHDF("out_rctr.h5");
 #endif
-    delete gauss;
     return 0;
 }
