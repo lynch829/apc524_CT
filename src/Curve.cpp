@@ -1,29 +1,34 @@
-/*!
-    \file Source code for 1D function (named Curve).
+/*! \file
+    \brief Source code for 1D function (Curve).
 */
 #include "Curve.h"
 #include <stdio.h>
 #include <string.h>
 
-Curve::Curve(double rx):Image(Dim1){
+Curve::Curve(double rx):Image(Dim1)
+{
 	_r = rx;
+	//!< Curve must be initialized with the range over which it is defined.
 }
 
 Curve::~Curve(){}
 
-void Curve::SetRange(double rx){
+void Curve::SetRange(double rx)
+{
 	_r = rx;
 }
 
-double Curve::GetRange() const{
+double Curve::GetRange() const
+{
 	return _r;
 }
+
 #ifdef USE_HDF
 // DO NOT include 'output/' in string 'file'.
 void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, Interpolator* intpl)
 {
   char fname[strlen(file)+7];
-  strcpy(fname, "output/");
+  strcpy(fname, "output/");	// Append output to the filename.
   strcat(fname, file);
   hid_t file_id;
   double x[N];
@@ -46,8 +51,10 @@ void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, I
 void Curve::ExportHDF(const char* file)
 {
   this->ExportHDF(file,-_r,_r,100);
+		//!< call overloaded ExportHDF with arguments.
 }
 #endif
+
 void Curve::Print(double xmin, double xmax, const int N, Interpolator* intpl)
 {
   double step = (xmax-xmin)/N;

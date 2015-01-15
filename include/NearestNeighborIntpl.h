@@ -17,8 +17,6 @@ public:
     double Interpolate(double x, double y);
     double Interpolate(double x, double y, double z);
 std::vector <int> FindDist(int dim,std::vector<int> size,std::vector<double*> coord,std::vector<double> coord_in);   
-   //double Interpolate(vector<double>& x, double** data_x, double* fx, int* size, int dim);
-	//!< Implements the virtual method of class Interpolator.
 };
 
 

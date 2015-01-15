@@ -1,5 +1,5 @@
 /*! \file
-    \brief Abstract Image class from which everything will derive.
+    \brief Abstract Image class from which curves, surfaces and volumes will be derived.
 */
 
 #ifndef IMAGE_ABSTRACT
@@ -25,17 +25,18 @@ Object in each dimension will have to implement operator(), which returns the im
 class Image{
 
 public:
-    Image(Dimension dim = Dim0);//!< Constructor. Dimension by default is 0. S
-    virtual ~Image();		//!< Virtual destructor, in case someone calls delete derived. S
+    Image(Dimension dim = Dim0);//!< Constructor. Dimension by default is 0.
+    virtual ~Image();		//!< Virtual destructor, in case someone calls delete derived.
 
-    virtual void Print() = 0;	//!< Default method for printing. S
+    virtual void Print() = 0;	//!< Default method for printing.
+
 #ifdef USE_HDF
     virtual void ExportHDF(const char*) = 0;	//!< Method to print to HDF5 file.
 #endif
-    Dimension GetDimension();	//!< Returns the dimension of the image. S
+    Dimension GetDimension();	//!< Returns the dimension of the image.
 
 protected:
-    Dimension _dim;		//! Dimension of the problem, will be 1D, 2D, or 3D.
+    Dimension _dim;		//!< Dimension of the problem, will be 1D, 2D, or 3D.
 };
 
 #endif
