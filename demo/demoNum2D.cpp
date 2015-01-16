@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
     NumSurface* gauss = &object;
     LineIntegral* l;
     Trapezoid t; l = &t;	// integ. method
-    NumSurface sf;	// Num Surf to contain reconstructed result.
+    NumSurface *sf;	// Num Surf to contain reconstructed result.
     
     Bilinear intpl_nnb;
     Interpolator* intpl = &intpl_nnb;
@@ -48,10 +48,11 @@ int main(int argc, char* argv[]){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
         array.PushBack(angle[i], gauss->GetProjection(l,angle[i],0.01,intpl));
     }
-    sf = *(FilteredBackProjection(array,Nres,Hamming));
+    sf = (FilteredBackProjection(array,Nres,Hamming));
     // filtered back-projection
 // The file will automatically be stored in the output directory
-    sf.ExportHDF("out2D.h5");
+    sf->ExportHDF("out2D.h5");
+    delete sf;
     return 0;
 }
 #endif

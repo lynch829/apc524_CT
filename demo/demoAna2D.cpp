@@ -45,16 +45,17 @@ int main(int argc, char* argv[]){
 			 // a 2D function.
     LineIntegral* l;
     Trapezoid t; l = &t;	// integ. method
-    NumSurface sf;	// Num Surf to contain reconstructed result.
+    NumSurface *sf;	// Num Surf to contain reconstructed result.
     
     for(int i=0; i<size; i++){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
         array.PushBack(angle[i], gauss->GetProjection(l,angle[i],0.1));
     }
-    sf = *(FilteredBackProjection(array,Nres,Hamming));
+    sf = (FilteredBackProjection(array,Nres,Hamming));
 #ifdef USE_HDF
-    sf.ExportHDF("out2D.h5");
+    sf->ExportHDF("out2D.h5");
 #endif
+    delete sf;
     delete gauss;
     return 0;
 }

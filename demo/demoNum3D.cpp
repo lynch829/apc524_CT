@@ -52,7 +52,7 @@ int main(int argc, char* argv[]){
     
     LineIntegral* l;
     Trapezoid t; l = &t;	// integ. method
-    NumVolume sf;	// Num Surf to contain reconstructed result.
+    NumVolume *sf;	// Num Surf to contain reconstructed result.
     
     for(int k=0;k<slice;k++){
         cerr<<"Projecting at height "<<height[k]<<endl;
@@ -65,11 +65,12 @@ int main(int argc, char* argv[]){
         }
     }
     cerr<<"running FBP3D"<<endl;
-    sf = *(FilteredBackProjection3D(array,Nres,Hamming));
+    sf = (FilteredBackProjection3D(array,Nres,Hamming));
     cerr<<"Done running FBP3D"<<endl;
 // File will automatically be stored in output directory
-    sf.ExportHDF("out3D.h5");
+    sf->ExportHDF("out3D.h5");
     cerr<<"doneHDF"<<endl;
+    delete sf;
     return 0;
 }
 #endif
