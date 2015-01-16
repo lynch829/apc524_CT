@@ -77,6 +77,9 @@ int main(int argc, char* argv[]){
 
 #ifdef USE_HDF
     sf->ExportHDF("outAna3D.h5");
+#else
+    sf->Print();
+			// if no HDF5, print out to stdout.
 #endif
     delete sf;
     delete gauss;

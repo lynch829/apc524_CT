@@ -60,6 +60,9 @@ int main(int argc, char* argv[]){
 #ifdef USE_HDF
     sf->ExportHDF("outAna2D.h5");
 			//!< If HDF5 is defined, export it to file.
+#else
+    sf->Print();
+			// If HDF5 is not installed, then print out to stdout.
 #endif
     delete sf;
     delete gauss;
