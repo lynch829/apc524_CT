@@ -1,4 +1,3 @@
-#ifdef USE_HDF
 #include "Image.h"
 #include "AnaImage.h"
 #include "NumCurve.h"
@@ -20,7 +19,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-    
+#ifdef USE_HDF  
     double range = 0.5;	// range of the geometry
     const int size= 50;	// number of view per slice
     const int slice=27; // number of projected horizontal slice
@@ -70,7 +69,10 @@ int main(int argc, char* argv[]){
 // File will automatically be stored in output directory
     sf.ExportHDF("out3D.h5");
     cerr<<"doneHDF"<<endl;
+#else
+    fprintf(stderr,"This demo requires HDF5 libraries. Please enable them by\n");
+    fprintf(stderr,"\n\t\tmake USE_HDF=1\n\n");
+#endif
     return 0;
 }
-#endif
 

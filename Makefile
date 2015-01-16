@@ -16,7 +16,7 @@ TEST_DIR=./test/
 
 all : test demo testIntegration
 
-test : testSBP testNumCurve testNumSurface testVolume testSBP3D test_Intpl test_Intpl2 testNumSBP3D
+test : testSBP testNumCurve testNumSurface testVolume testSBP3D test_Intpl test_Intpl2
 
 demo : demoAna2D demoAna3D demoNum2D demoNum3D 
 
