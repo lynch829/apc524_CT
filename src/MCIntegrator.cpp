@@ -12,5 +12,5 @@ double MCIntegrator::Integrate(std::function<double (double)> f, double xmin, do
     for(int i=0;i<N;i++){
 	sum += f( xmin+1.0*rand()/RAND_MAX*(xmax-xmin));
     }
-    return sum/N;
+    return (xmax-xmin)*sum/N;
 }
