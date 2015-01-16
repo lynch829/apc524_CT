@@ -280,7 +280,7 @@ void NumSurface::Print(double xi, double xf, int Nx, double yi, double yf, int N
 }
 
 #ifdef USE_HDF
-//! DO NOT include 'output/' in string 'file'.
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void NumSurface::ExportHDF(const char* file)
 {
     char fname[strlen(file)+11];
@@ -344,6 +344,7 @@ void NumSurface::ExportHDF(const char* file)
     fclose(xmf);
 }
 
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void NumSurface::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
 
 //! Constructor from a HDF5 file.

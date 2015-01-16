@@ -155,7 +155,10 @@ void NumCurve::Print()
     for(int i=0; i<_size; i++) printf("%.9f %.9f\n",_datax[i],_datay[i]);
 }
 #ifdef USE_HDF
-//! DO NOT include 'output/' in string 'file'.
+
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
+void NumCurve::ExportHDF(const char* file, double xi,double xf,int N){}
+
 void NumCurve::ExportHDF(const char* file)
 {
     char fname[strlen(file)+7];

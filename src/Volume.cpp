@@ -74,12 +74,13 @@ void Volume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, i
 
 #ifdef USE_HDF
 
-// DO NOT include 'output/' in string 'file'.
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void Volume::ExportHDF(const char* file)
 {
     this->ExportHDF(file,-_rx,_rx,100,-_ry,_ry,100,-_rz,_rz,100);
 }
 
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void Volume::ExportHDF(const char* file,double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double zmin, double zmax, int Nz, Interpolator* intpl)
 {
     char fname[strlen(file)+11];
