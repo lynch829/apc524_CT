@@ -43,8 +43,8 @@ double Bilinear::Interpolate(double x, double y, double z)
     if(i0x<0 || i0y<0 || i0z<0) return 0;
 
     double dx = (_xptr[_sizex-1]-_xptr[0])/(_sizex-1);
-    double dy = (_yptr[_sizez-1]-_yptr[0])/(_sizey-1);
-    double dz = (_yptr[_sizez-1]-_zptr[0])/(_sizez-1);
+    double dy = (_yptr[_sizey-1]-_yptr[0])/(_sizey-1);
+    double dz = (_zptr[_sizez-1]-_zptr[0])/(_sizez-1);
 
     double xd = (x-_xptr[i0x])/dx;
     double yd = (y-_yptr[i0y])/dy;
