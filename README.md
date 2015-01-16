@@ -2,30 +2,30 @@
 
 ##Final Project for APC524 Fall 2014, Princeton University
 ---------------------------------------------------
-### Junast Suerfu, Qi Li, Yao Zhou, Xiang Gao
+### Suerfu, Qi Li, Yao Zhou, Xiang Gao
 
 X-ray computed tomography, or simply CT, is a technique for non-invasive imaging through objects. With appropriate reconstruction algorithm, two/three dimensional cross-sectional images can be obtained from multiple projections along different directions.
 This software is capable of simulating such process: generating test objects, forming projections, reconstruction and visualization.
 
 ### Description of the Software
 
--TEST OBJECT
+- **TEST OBJECT**
 Test objects are used to study and check the performance of reconstruction algorithms. The overall base class is called *Image*, from which derives *Curve*(1D), *Surface*(2D), and *Volume*(3D). Each of the derived class must implement *operator(double,double,double,intpl)*, which is used to access values at given points.
 Currently test objects are implemented either analytically or numerically. Analytical objects are created by specifying a function rule that determines field values.
 Numerical objects are implemented by storing coordinates and corresponding values, and uses Interpolation method to access field values.
 If HDF5 is enabled, numerical images can also be read from .h5 files that has the correct format.
 If one wants to interface his own test objects, at least *operator()* must be implemented such that line integration is possible.
 
--PROJECTION
+- **PROJECTION**
 Projection is the key process in reconstruction. In CT projection refers to line integrals (of X-ray attenuation coefficient) along a set of parallel lines. Therefore the result of a projection is another function with lower dimension.
 *Surface* object has a method *GetProjection(intg,double,...)* that returns a *NumCurve* object as a result of projection along specified direction. The curve object is characterized by the parallel distance to the center.
 In calling projection method, an *Integrator* must be specified. This integrator is an abstract class that performs line integrals. Currently implemented integration schemes are: *Trapezoid*, *Parabola*, *Romberg* and *Monte-Carlo*.
 Similarly *Volume* has a *GetProjection* method that returns a *NumCurve* at the specified angle and height.
 Result of projections are stored in an object called *ImageArray*.
 
--RECONSTRUCTION
+- **RECONSTRUCTION**
 Reconstruction refers to combining information from multiple projections to reproduce the scalar field.
-  *ImageArray* object, which stores result of projections has the following features:
+  * *ImageArray* object, which stores result of projections has the following features:
   * Store and access *Image* and the angle/height at which they were taken,
   * Call convolution on all the stored *Image* objects with a specified kernal. This kernal is by default Hamming function.
 The core of reconstruction is *FilteredBackProjection* class, which takes in an *ImageArray* object, performs convolution and back-project images. The results are superposed and returns a *NumSurface* object.
@@ -33,7 +33,7 @@ For more information about reconstruction algorithm, please refer to [*Principle
 If one wants to interface with our software by implementing different reconstruction algorithm, it is better to work with *ImageArray* objects since they contain essentially all information that is needed for reconstruction.
 About usage of classes, please refer to user manual.
 
--VISUALIZATION
+- **VISUALIZATION**
 All the derived classes of *Image* (*Curve* & *NumCurve*, *Surface* & *NumSurface*, *Volume* & *NumVolume*) are equipped with a method named ExportHDF.
 When the method is called, the data in the class is saved into a designated HDF5 file in directory 'output'.
 The file includes 1D arrays (/x, /y, & /z, depending on dimension) storing the coordinates of the rectilinear mesh, and array /data storing the value at each node.
@@ -59,9 +59,9 @@ Besides, all the derived classes of Image also have a constructor from reading i
 * To compile:        make
 * To enable HDF5:    make USE_HDF=1
 * By default:
-    -./include/ contains all header files.
-    -./src/     contains all source files.
-    -./test/    contains functions used to test during development.
-    -./demo/    contains codes for demonstrating usage of this software.
-    -./output/  default location for exporting HDF5 files.
-    -./bin/     binary executable files produced by make.
+    - ./include/ contains all header files.
+    - ./src/     contains all source files.
+    - ./test/    contains functions used to test during development.
+    - ./demo/    contains codes for demonstrating usage of this software.
+    - ./output/  default location for exporting HDF5 files.
+    - ./bin/     binary executable files produced by make.

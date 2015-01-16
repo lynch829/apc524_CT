@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, char* argv[]){
 #ifdef USE_HDF  
     double range = 0.5;	// range of the geometry
-    const int size= 50;	// number of view per slice
+    const int size= 30;	// number of view per slice
     const int slice=27; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
     const int Nres=128;// resolution/ N of point in the projected curve.
@@ -60,7 +60,6 @@ int main(int argc, char* argv[]){
             NumCurve gauss_tmp;
             gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.01,height[k],intpl); //spacingr =0.1
             array.PushBack(angle[i+k*size], height[k], gauss_tmp);
-
         }
     }
     cerr<<"running FBP3D"<<endl;

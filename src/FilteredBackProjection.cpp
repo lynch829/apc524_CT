@@ -43,7 +43,6 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
     //std::cerr << "range is " << range <<std::endl;
     //std::cerr << "rangeZ is " << rangeZ<<std::endl;
     Bilinear bilin;
-
     int Nslice = array.GetSlice(); // Nslice is the slice number of horizontal slice.
     std::cerr << "FBP: Nslice is " << Nslice<<std::endl;
     array.ConvolveWithKernal(kernal); // Filter each projection with kernal.
