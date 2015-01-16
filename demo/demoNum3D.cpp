@@ -1,6 +1,7 @@
 #include "Trapezoid.h"
 #include "FilteredBackProjection.h"
 #include "TestFunctions.h"
+#include "Bilinear.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
