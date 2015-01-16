@@ -52,7 +52,7 @@ int main(int argc, char* argv[]){
     }
     sf = *(FilteredBackProjection(array,Nres,Hamming));
 #ifdef USE_HDF
-    sf.ExportHDF("out_rctr.h5");
+    sf.ExportHDF("out2D.h5");
 #endif
     delete gauss;
     return 0;
