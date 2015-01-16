@@ -8,6 +8,8 @@ INCLUDE:= -I./include -I/usr/local/hdf5/include -I/usr/local/include
 LINKER= -L/usr/local/hdf5/lib -L/usr/local/lib
 LIBS= -lhdf5 -lhdf5_cpp -lhdf5_hl -lhdf5_hl_cpp
 
+integrators = ./src/LineIntegral.o ./src/MCIntegrator.o ./src/Parabola.o ./src/Romberg.o ./src/Trapezoid.o
+
 INC_DIR=./include/
 SRC_DIR=./src/
 TEST_DIR=./test/
@@ -27,6 +29,9 @@ test% : ./test/test%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
+testIntegration : ./test/testIntegration.o $(integrators)
+	$(CXX) -o $@ $^
+	@mv $@ ./bin/
 
 .PHONY : clean
 clean :
