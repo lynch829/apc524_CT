@@ -145,6 +145,5 @@ void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, doub
     fprintf(xmf, " </Domain>\n");
     fprintf(xmf, "</Xdmf>\n");
     fclose(xmf);
-
 }
 #endif

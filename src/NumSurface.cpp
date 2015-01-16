@@ -382,5 +382,4 @@ NumSurface::NumSurface(const char* file): Surface(0, 0)
     _ry = -_datay[0];
     _r = sqrt(_rx*_rx+_ry*_ry);
 }
-
 #endif

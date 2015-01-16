@@ -68,11 +68,11 @@ int main(int argc, char* argv[]){
 // File will automatically be stored in output directory
     sf->ExportHDF("out3D.h5");
     cerr<<"doneHDF"<<endl;
+    delete sf;
 #else
     fprintf(stderr,"This demo requires HDF5 libraries. Please enable them by\n");
     fprintf(stderr,"\n\t\tmake USE_HDF=1\n\n");
 #endif
-    delete sf;
     return 0;
 }
 

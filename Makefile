@@ -16,11 +16,7 @@ TEST_DIR=./test/
 
 all : test demo testIntegration
 
-<<<<<<< HEAD
-test : testSBP testNumCurve testNumSurface testVolume testSBP3D test_Intpl test_Intpl2
-=======
 test : testNumCurve testNumSurface testVolume test_Intpl test_Intpl2 
->>>>>>> f834e64d2f41d6482af9d1d56a3c4b023cc5279a
 
 demo : demoAna2D demoAna3D demoNum2D demoNum3D 
 
@@ -41,12 +37,14 @@ testIntegration : ./test/testIntegration.o $(integrators)
 	$(CXX) -o $@ $^
 	@mv $@ ./bin/
 
+.PHONY : clean
 clean :
-	@for i in `ls ${SRC_DIR}*.o`; do rm ${i}; done
-	@for i in `ls ${TEST_DIR}*.o`; do rm ${i}; done
+	-@rm -f ./src/*.o > /dev/null 2>&1
+	-@rm -f ./test/*.o > /dev/null 2>&1
+	-@rm -f .depend > /dev/null 2>&1
 
+.PHONY : depend
 depend:
 	${CXX} -MM ${CXXFLAGS} -I./include ./src/*.cpp > .depend
 -include .depend
 
-.PHONY : depend all clean test demo testIntegration
