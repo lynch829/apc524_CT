@@ -1,0 +1,1278 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 31.50     57.84    57.84 806600000     0.00     0.00  Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}::operator()(double) const
+ 18.74     92.23    34.40 806600000     0.00     0.00  Circle(double, double)
+  9.36    109.41    17.18 806600000     0.00     0.00  AnaSurface::operator()(double, double, Interpolator*) const
+  7.75    123.64    14.23 806600000     0.00     0.00  std::_Function_handler<double (double), Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_invoke(std::_Any_data const&, double)
+  6.78    136.10    12.46 806600000     0.00     0.00  std::function<double (double)>::operator()(double) const
+  5.20    145.65     9.54 806622700     0.00     0.00  std::_Function_base::_M_empty() const
+  4.25    153.44     7.80    22700     0.00     0.01  Trapezoid::Integrate(std::function<double (double)>, double, double, double)
+  3.98    160.75     7.30 806600000     0.00     0.00  std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_get_pointer(std::_Any_data const&)
+  3.30    166.80     6.05 806622700     0.00     0.00  Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}* const& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() const
+  2.73    171.81     5.01 1613200000     0.00     0.00  double&& std::forward<double>(std::remove_reference<double>::type&)
+  1.17    173.96     2.15 806622700     0.00     0.00  std::_Any_data::_M_access() const
+  0.72    175.28     1.32        1     1.32     5.63  FilteredBackProjection(ImageArray&, int, double (*)(int, double))
+  0.69    176.54     1.26 16000000     0.00     0.00  ArryIndexFloor(double, double*, int)
+  0.59    177.63     1.09 16000000     0.00     0.00  Bilinear::Interpolate(double)
+  0.42    178.40     0.77    22700     0.00     0.01  Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)
+  0.36    179.06     0.66    90800     0.00     0.00  std::_Any_data::_M_access()
+  0.36    179.72     0.66                             Heart(double, double, double)
+  0.35    180.37     0.65                             AnaCurve::operator()(double, Interpolator*) const
+  0.23    180.78     0.41    68100     0.00     0.00  std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_manager(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::_Manager_operation)
+  0.22    181.19     0.41                             Surface::Print()
+  0.20    181.56     0.38 16000000     0.00     0.00  NumCurve::operator()(double, Interpolator*) const
+  0.20    181.93     0.36 16000000     0.00     0.00  Interpolator::set_values(int, double*, double*)
+  0.17    182.25     0.32 26328800     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::operator[](unsigned int)
+  0.17    182.55     0.30    90800     0.00     0.00  Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>()
+  0.16    182.84     0.28 16000000     0.00     0.00  NumSurface::operator()(int, int)
+  0.13    183.07     0.24  5152900     0.00     0.00  Hamming(int, double)
+  0.09    183.25     0.17        1     0.17     0.60  ImageArray::ConvolveWithKernal(double (*)(int, double))
+  0.08    183.39     0.14 16000000     0.00     0.00  ImageArray::GetFilteredCurve(int)
+  0.03    183.45     0.06 10328500     0.00     0.00  NumCurve::operator[](int)
+  0.02    183.49     0.04                             Interpolator::set_values(int, int, double*, double*, double**)
+  0.01    183.51     0.02        1     0.02     0.02  NumSurface::Print()
+  0.01    183.53     0.02                             NumCurve::~NumCurve()
+  0.01    183.55     0.02                             std::_Miter_base<double*>::iterator_type std::__miter_base<double*>(double*)
+  0.01    183.56     0.01      454     0.00     0.00  NumCurve::NumCurve(NumCurve const&)
+  0.00    183.56     0.01        1     0.01     0.01  __static_initialization_and_destruction_0(int, int)
+  0.00    183.57     0.01                             ArryIndexRoof(double, double*, int)
+  0.00    183.57     0.01                             NumSurface::GetXPtr()
+  0.00    183.58     0.01                             NumCurve::operator()(int)
+  0.00    183.58     0.00    68100     0.00     0.00  std::remove_reference<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>::type&& std::move<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>(std::remove_reference&&)
+  0.00    183.58     0.00    45400     0.00     0.00  std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_destroy(std::_Any_data&, std::integral_constant<bool, false>)
+  0.00    183.58     0.00    45400     0.00     0.00  std::_Function_base::_Function_base()
+  0.00    183.58     0.00    45400     0.00     0.00  std::_Function_base::~_Function_base()
+  0.00    183.58     0.00    45400     0.00     0.00  std::unary_function<double, double>::unary_function()
+  0.00    183.58     0.00    45400     0.00     0.00  std::_Maybe_unary_or_binary_function<double, double>::_Maybe_unary_or_binary_function()
+  0.00    183.58     0.00    45400     0.00     0.00  std::function<double (double)>::~function()
+  0.00    183.58     0.00    22700     0.00     0.00  std::function<double (double)>::operator bool() const
+  0.00    183.58     0.00    22700     0.00     0.00  std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&)
+  0.00    183.58     0.00    22700     0.00     0.00  std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&, std::integral_constant<bool, false>)
+  0.00    183.58     0.00    22700     0.00     0.00  bool std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_not_empty_function<{lambda(double)#1}>({lambda(double)#1} const&)
+  0.00    183.58     0.00    22700     0.00     0.00  std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_clone(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::integral_constant<bool, false>)
+  0.00    183.58     0.00    22700     0.00     0.00  std::function<double (double)>::function(std::function<double (double)> const&)
+  0.00    183.58     0.00    22700     0.00     0.00  std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type)
+  0.00    183.58     0.00      708     0.00     0.00  NumCurve* std::__addressof<NumCurve>(NumCurve&)
+  0.00    183.58     0.00      572     0.00     0.00  std::move_iterator<NumCurve*>::base() const
+  0.00    183.58     0.00      556     0.00     0.00  Image::Image(Dimension)
+  0.00    183.58     0.00      556     0.00     0.00  Image::~Image()
+  0.00    183.58     0.00      554     0.00     0.00  Curve::Curve(double)
+  0.00    183.58     0.00      554     0.00     0.00  Curve::~Curve()
+  0.00    183.58     0.00      554     0.00     0.00  NumCurve::~NumCurve()
+  0.00    183.58     0.00      554     0.00     0.00  operator new(unsigned int, void*)
+  0.00    183.58     0.00      454     0.00     0.00  void std::_Destroy<NumCurve>(NumCurve*)
+  0.00    183.58     0.00      286     0.00     0.00  bool std::operator==<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&)
+  0.00    183.58     0.00      286     0.00     0.00  bool std::operator!=<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&)
+  0.00    183.58     0.00      254     0.00     0.00  std::move_iterator<NumCurve*>::operator*() const
+  0.00    183.58     0.00      254     0.00     0.00  std::move_iterator<NumCurve*>::operator++()
+  0.00    183.58     0.00      254     0.00     0.00  _ZSt10_ConstructI8NumCurveIS0_EEvPT_DpOT0_
+  0.00    183.58     0.00      254     0.00     0.00  std::remove_reference<NumCurve&>::type&& std::move<NumCurve&>(NumCurve&)
+  0.00    183.58     0.00      254     0.00     0.00  NumCurve&& std::forward<NumCurve>(std::remove_reference<NumCurve>::type&)
+  0.00    183.58     0.00      200     0.00     0.00  double max<double>(double, double)
+  0.00    183.58     0.00      200     0.00     0.00  __gnu_cxx::new_allocator<NumCurve>::construct(NumCurve*, NumCurve const&)
+  0.00    183.58     0.00      200     0.00     0.00  Curve::GetRange() const
+  0.00    183.58     0.00      200     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::push_back(NumCurve const&)
+  0.00    183.58     0.00      100     0.00     0.00  ImageArray::GetAngle(int)
+  0.00    183.58     0.00      100     0.00     0.00  ImageArray::PushBack(double, NumCurve const&)
+  0.00    183.58     0.00      100     0.00     1.76  Surface::GetProjection(LineIntegral*, double, double, Interpolator*)
+  0.00    183.58     0.00      100     0.00     0.00  NumCurve::GetSize()
+  0.00    183.58     0.00      100     0.00     0.00  NumCurve::GetXPtr()
+  0.00    183.58     0.00      100     0.00     0.00  NumCurve::GetYPtr()
+  0.00    183.58     0.00      100     0.00     0.00  NumCurve::NumCurve(int, double)
+  0.00    183.58     0.00      100     0.00     0.00  __gnu_cxx::new_allocator<double>::construct(double*, double const&)
+  0.00    183.58     0.00      100     0.00     0.00  std::vector<double, std::allocator<double> >::push_back(double const&)
+  0.00    183.58     0.00      100     0.00     0.00  std::vector<double, std::allocator<double> >::operator[](unsigned int)
+  0.00    183.58     0.00       64     0.00     0.00  __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::base() const
+  0.00    183.58     0.00       64     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::size() const
+  0.00    183.58     0.00       64     0.00     0.00  std::move_iterator<NumCurve*>::move_iterator(NumCurve*)
+  0.00    183.58     0.00       64     0.00     0.00  std::move_iterator<NumCurve*> std::make_move_iterator<NumCurve*>(NumCurve* const&)
+  0.00    183.58     0.00       52     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator()
+  0.00    183.58     0.00       48     0.00     0.00  __gnu_cxx::new_allocator<NumCurve>::max_size() const
+  0.00    183.58     0.00       48     0.00     0.00  std::_Iter_base<double*, false>::_S_base(double*)
+  0.00    183.58     0.00       48     0.00     0.00  std::_Niter_base<double*>::iterator_type std::__niter_base<double*>(double*)
+  0.00    183.58     0.00       32     0.00     0.00  __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::__normal_iterator(NumCurve* const&)
+  0.00    183.58     0.00       32     0.00     0.00  __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::base() const
+  0.00    183.58     0.00       32     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() const
+  0.00    183.58     0.00       32     0.00     0.00  std::move_iterator<double*>::base() const
+  0.00    183.58     0.00       32     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::max_size() const
+  0.00    183.58     0.00       32     0.00     0.00  std::vector<double, std::allocator<double> >::size() const
+  0.00    183.58     0.00       32     0.00     0.00  std::_Iter_base<std::move_iterator<double*>, true>::_S_base(std::move_iterator<double*>)
+  0.00    183.58     0.00       32     0.00     0.00  std::move_iterator<double*>::move_iterator(double*)
+  0.00    183.58     0.00       32     0.00     0.00  NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*)
+  0.00    183.58     0.00       32     0.00     0.00  std::_Miter_base<std::move_iterator<double*> >::iterator_type std::__miter_base<std::move_iterator<double*> >(std::move_iterator<double*>)
+  0.00    183.58     0.00       32     0.00     0.00  std::move_iterator<double*> std::make_move_iterator<double*>(double* const&)
+  0.00    183.58     0.00       32     0.00     0.00  NumCurve* std::uninitialized_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*)
+  0.00    183.58     0.00       32     0.00     0.00  NumCurve* std::__uninitialized_copy_a<std::move_iterator<NumCurve*>, NumCurve*, NumCurve>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*, std::allocator<NumCurve>&)
+  0.00    183.58     0.00       32     0.00     0.00  NumCurve* std::__uninitialized_move_a<NumCurve*, NumCurve*, std::allocator<NumCurve> >(NumCurve*, NumCurve*, NumCurve*, std::allocator<NumCurve>&)
+  0.00    183.58     0.00       28     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator()
+  0.00    183.58     0.00       24     0.00     0.00  __gnu_cxx::new_allocator<double>::max_size() const
+  0.00    183.58     0.00       24     0.00     0.00  unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
+  0.00    183.58     0.00       20     0.00     0.00  void std::_Destroy_aux<false>::__destroy<NumCurve*>(NumCurve*, NumCurve*)
+  0.00    183.58     0.00       20     0.00     0.00  void std::_Destroy<NumCurve*>(NumCurve*, NumCurve*)
+  0.00    183.58     0.00       20     0.00     0.00  void std::_Destroy<NumCurve*, NumCurve>(NumCurve*, NumCurve*, std::allocator<NumCurve>&)
+  0.00    183.58     0.00       18     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_deallocate(NumCurve*, unsigned int)
+  0.00    183.58     0.00       16     0.00     0.00  __gnu_cxx::new_allocator<NumCurve>::deallocate(NumCurve*, unsigned int)
+  0.00    183.58     0.00       16     0.00     0.00  __gnu_cxx::new_allocator<NumCurve>::allocate(unsigned int, void const*)
+  0.00    183.58     0.00       16     0.00     0.00  __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::__normal_iterator(double* const&)
+  0.00    183.58     0.00       16     0.00     0.00  __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::difference_type __gnu_cxx::operator-<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&, __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&)
+  0.00    183.58     0.00       16     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() const
+  0.00    183.58     0.00       16     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::_M_check_len(unsigned int, char const*) const
+  0.00    183.58     0.00       16     0.00     0.00  std::vector<double, std::allocator<double> >::max_size() const
+  0.00    183.58     0.00       16     0.00     0.00  double* std::__copy_move<true, true, std::random_access_iterator_tag>::__copy_m<double>(double const*, double const*, double*)
+  0.00    183.58     0.00       16     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_allocate(unsigned int)
+  0.00    183.58     0.00       16     0.00     0.00  double* std::__uninitialized_copy<true>::__uninit_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*)
+  0.00    183.58     0.00       16     0.00     0.00  void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&)
+  0.00    183.58     0.00       16     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::end()
+  0.00    183.58     0.00       16     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::begin()
+  0.00    183.58     0.00       16     0.00     0.00  double* std::__copy_move_a<true, double*, double*>(double*, double*, double*)
+  0.00    183.58     0.00       16     0.00     0.00  double* std::__copy_move_a2<true, double*, double*>(double*, double*, double*)
+  0.00    183.58     0.00       16     0.00     0.00  double* std::uninitialized_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*)
+  0.00    183.58     0.00       16     0.00     0.00  double* std::__uninitialized_copy_a<std::move_iterator<double*>, double*, double>(std::move_iterator<double*>, std::move_iterator<double*>, double*, std::allocator<double>&)
+  0.00    183.58     0.00       16     0.00     0.00  double* std::__uninitialized_move_a<double*, double*, std::allocator<double> >(double*, double*, double*, std::allocator<double>&)
+  0.00    183.58     0.00       16     0.00     0.00  double* std::copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*)
+  0.00    183.58     0.00       16     0.00     0.00  NumCurve const& std::forward<NumCurve const&>(std::remove_reference<NumCurve const&>::type&)
+  0.00    183.58     0.00       12     0.00     0.00  void std::_Destroy_aux<true>::__destroy<double*>(double*, double*)
+  0.00    183.58     0.00       12     0.00     0.00  void std::_Destroy<double*>(double*, double*)
+  0.00    183.58     0.00       12     0.00     0.00  void std::_Destroy<double*, double>(double*, double*, std::allocator<double>&)
+  0.00    183.58     0.00       10     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::_M_deallocate(double*, unsigned int)
+  0.00    183.58     0.00        8     0.00     0.00  __gnu_cxx::new_allocator<double>::deallocate(double*, unsigned int)
+  0.00    183.58     0.00        8     0.00     0.00  __gnu_cxx::new_allocator<double>::allocate(unsigned int, void const*)
+  0.00    183.58     0.00        8     0.00     0.00  __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::difference_type __gnu_cxx::operator-<double*, std::vector<double, std::allocator<double> > >(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&, __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&)
+  0.00    183.58     0.00        8     0.00     0.00  std::vector<double, std::allocator<double> >::_M_check_len(unsigned int, char const*) const
+  0.00    183.58     0.00        8     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned int)
+  0.00    183.58     0.00        8     0.00     0.00  void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&)
+  0.00    183.58     0.00        8     0.00     0.00  std::vector<double, std::allocator<double> >::end()
+  0.00    183.58     0.00        8     0.00     0.00  std::vector<double, std::allocator<double> >::begin()
+  0.00    183.58     0.00        8     0.00     0.00  double const& std::forward<double const&>(std::remove_reference<double const&>::type&)
+  0.00    183.58     0.00        2     0.00     0.00  ImageArray::GetRange()
+  0.00    183.58     0.00        2     0.00     0.00  Surface::Surface(double, double)
+  0.00    183.58     0.00        2     0.00     0.00  Surface::~Surface()
+  0.00    183.58     0.00        2     0.00     0.00  __gnu_cxx::new_allocator<NumCurve>::new_allocator()
+  0.00    183.58     0.00        2     0.00     0.00  __gnu_cxx::new_allocator<NumCurve>::~new_allocator()
+  0.00    183.58     0.00        2     0.00     0.00  __gnu_cxx::new_allocator<double>::new_allocator()
+  0.00    183.58     0.00        2     0.00     0.00  __gnu_cxx::new_allocator<double>::~new_allocator()
+  0.00    183.58     0.00        2     0.00     0.00  std::allocator<NumCurve>::allocator()
+  0.00    183.58     0.00        2     0.00     0.00  std::allocator<NumCurve>::~allocator()
+  0.00    183.58     0.00        2     0.00     0.00  std::allocator<double>::allocator()
+  0.00    183.58     0.00        2     0.00     0.00  std::allocator<double>::~allocator()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::_Vector_impl()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::~_Vector_impl()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_base()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<NumCurve, std::allocator<NumCurve> >::~_Vector_base()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::_Vector_impl::_Vector_impl()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::_Vector_impl::~_Vector_impl()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::_Vector_base()
+  0.00    183.58     0.00        2     0.00     0.00  std::_Vector_base<double, std::allocator<double> >::~_Vector_base()
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::_M_erase_at_end(NumCurve*)
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::clear()
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::vector()
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<NumCurve, std::allocator<NumCurve> >::~vector()
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<double, std::allocator<double> >::_M_erase_at_end(double*)
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<double, std::allocator<double> >::clear()
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<double, std::allocator<double> >::vector()
+  0.00    183.58     0.00        2     0.00     0.00  std::vector<double, std::allocator<double> >::~vector()
+  0.00    183.58     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z22FilteredBackProjectionR10ImageArrayiPFdidE
+  0.00    183.58     0.00        1     0.00     0.01  _GLOBAL__sub_I__ZN10ImageArrayC2Ev
+  0.00    183.58     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN10NumSurfaceC2Ev
+  0.00    183.58     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN6VolumeC2Eddd
+  0.00    183.58     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN8AnaCurveC2EPFddEd
+  0.00    183.58     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN9NumVolumeC2Ev
+  0.00    183.58     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00    183.58     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00    183.58     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00    183.58     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00    183.58     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00    183.58     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00    183.58     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00    183.58     0.00        1     0.00     0.00  AnaSurface::AnaSurface(double (*)(double, double), double, double)
+  0.00    183.58     0.00        1     0.00     0.00  AnaSurface::~AnaSurface()
+  0.00    183.58     0.00        1     0.00     0.00  AnaSurface::~AnaSurface()
+  0.00    183.58     0.00        1     0.00     0.00  ImageArray::GetSize()
+  0.00    183.58     0.00        1     0.00     0.00  ImageArray::ImageArray()
+  0.00    183.58     0.00        1     0.00     0.00  ImageArray::~ImageArray()
+  0.00    183.58     0.00        1     0.00     0.00  NumSurface::NumSurface(int, double, int, double)
+  0.00    183.58     0.00        1     0.00     0.00  NumSurface::~NumSurface()
+  0.00    183.58     0.00        1     0.00     0.00  NumSurface::~NumSurface()
+  0.00    183.58     0.00        1     0.00     0.00  Interpolator::Interpolator()
+  0.00    183.58     0.00        1     0.00     0.00  Interpolator::~Interpolator()
+  0.00    183.58     0.00        1     0.00     0.00  LineIntegral::LineIntegral()
+  0.00    183.58     0.00        1     0.00     0.00  LineIntegral::~LineIntegral()
+  0.00    183.58     0.00        1     0.00     0.00  Bilinear::Bilinear()
+  0.00    183.58     0.00        1     0.00     0.00  Bilinear::~Bilinear()
+  0.00    183.58     0.00        1     0.00     0.00  Trapezoid::Trapezoid()
+  0.00    183.58     0.00        1     0.00     0.00  Trapezoid::~Trapezoid()
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.01% of 183.58 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     99.0    0.00  181.76                 main [1]
+                0.00  176.10     100/100         Surface::GetProjection(LineIntegral*, double, double, Interpolator*) [3]
+                1.32    4.31       1/1           FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+                0.02    0.00       1/1           NumSurface::Print() [41]
+                0.00    0.01     100/100         ImageArray::PushBack(double, NumCurve const&) [46]
+                0.00    0.00     100/554         NumCurve::~NumCurve() [76]
+                0.00    0.00       1/1           ImageArray::ImageArray() [194]
+                0.00    0.00       1/1           AnaSurface::AnaSurface(double (*)(double, double), double, double) [190]
+                0.00    0.00       1/1           Trapezoid::Trapezoid() [205]
+                0.00    0.00       1/1           NumSurface::~NumSurface() [197]
+                0.00    0.00       1/1           AnaSurface::~AnaSurface() [191]
+                0.00    0.00       1/1           Trapezoid::~Trapezoid() [206]
+                0.00    0.00       1/1           ImageArray::~ImageArray() [195]
+-----------------------------------------------
+                0.77  175.34   22700/22700       Surface::GetProjection(LineIntegral*, double, double, Interpolator*) [3]
+[2]     95.9    0.77  175.34   22700         Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*) [2]
+                7.80  166.16   22700/22700       Trapezoid::Integrate(std::function<double (double)>, double, double, double) [4]
+                0.00    0.76   45400/45400       std::function<double (double)>::~function() [22]
+                0.00    0.38   22700/22700       std::function<double (double)>::function(std::function<double (double)> const&) [29]
+                0.00    0.24   22700/22700       std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) [37]
+-----------------------------------------------
+                0.00  176.10     100/100         main [1]
+[3]     95.9    0.00  176.10     100         Surface::GetProjection(LineIntegral*, double, double, Interpolator*) [3]
+                0.77  175.34   22700/22700       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*) [2]
+                0.00    0.00     100/100         NumCurve::NumCurve(int, double) [91]
+                0.00    0.00     100/100         NumCurve::GetXPtr() [89]
+                0.00    0.00     100/100         NumCurve::GetYPtr() [90]
+-----------------------------------------------
+                7.80  166.16   22700/22700       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*) [2]
+[4]     94.8    7.80  166.16   22700         Trapezoid::Integrate(std::function<double (double)>, double, double, double) [4]
+               12.46  153.70 806600000/806600000     std::function<double (double)>::operator()(double) const [5]
+-----------------------------------------------
+               12.46  153.70 806600000/806600000     Trapezoid::Integrate(std::function<double (double)>, double, double, double) [4]
+[5]     90.5   12.46  153.70 806600000         std::function<double (double)>::operator()(double) const [5]
+               14.23  127.42 806600000/806600000     std::_Function_handler<double (double), Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_invoke(std::_Any_data const&, double) [6]
+                9.54    0.00 806600000/806622700     std::_Function_base::_M_empty() const [11]
+                2.50    0.00 806600000/1613200000     double&& std::forward<double>(std::remove_reference<double>::type&) [14]
+-----------------------------------------------
+               14.23  127.42 806600000/806600000     std::function<double (double)>::operator()(double) const [5]
+[6]     77.2   14.23  127.42 806600000         std::_Function_handler<double (double), Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_invoke(std::_Any_data const&, double) [6]
+               57.84   51.58 806600000/806600000     Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}::operator()(double) const [7]
+                7.30    8.20 806600000/806600000     std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_get_pointer(std::_Any_data const&) [10]
+                2.50    0.00 806600000/1613200000     double&& std::forward<double>(std::remove_reference<double>::type&) [14]
+-----------------------------------------------
+               57.84   51.58 806600000/806600000     std::_Function_handler<double (double), Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_invoke(std::_Any_data const&, double) [6]
+[7]     59.6   57.84   51.58 806600000         Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}::operator()(double) const [7]
+               17.18   34.40 806600000/806600000     AnaSurface::operator()(double, double, Interpolator*) const [8]
+-----------------------------------------------
+               17.18   34.40 806600000/806600000     Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}::operator()(double) const [7]
+[8]     28.1   17.18   34.40 806600000         AnaSurface::operator()(double, double, Interpolator*) const [8]
+               34.40    0.00 806600000/806600000     Circle(double, double) [9]
+-----------------------------------------------
+               34.40    0.00 806600000/806600000     AnaSurface::operator()(double, double, Interpolator*) const [8]
+[9]     18.7   34.40    0.00 806600000         Circle(double, double) [9]
+-----------------------------------------------
+                7.30    8.20 806600000/806600000     std::_Function_handler<double (double), Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_invoke(std::_Any_data const&, double) [6]
+[10]     8.4    7.30    8.20 806600000         std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_get_pointer(std::_Any_data const&) [10]
+                6.05    2.15 806600000/806622700     Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}* const& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() const [12]
+-----------------------------------------------
+                0.00    0.00   22700/806622700     std::function<double (double)>::operator bool() const [60]
+                9.54    0.00 806600000/806622700     std::function<double (double)>::operator()(double) const [5]
+[11]     5.2    9.54    0.00 806622700         std::_Function_base::_M_empty() const [11]
+-----------------------------------------------
+                0.00    0.00   22700/806622700     std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_clone(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::integral_constant<bool, false>) [34]
+                6.05    2.15 806600000/806622700     std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_get_pointer(std::_Any_data const&) [10]
+[12]     4.5    6.05    2.15 806622700         Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}* const& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() const [12]
+                2.15    0.00 806622700/806622700     std::_Any_data::_M_access() const [17]
+-----------------------------------------------
+                1.32    4.31       1/1           main [1]
+[13]     3.1    1.32    4.31       1         FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+                0.38    2.71 16000000/16000000     NumCurve::operator()(double, Interpolator*) const [15]
+                0.17    0.43       1/1           ImageArray::ConvolveWithKernal(double (*)(int, double)) [26]
+                0.14    0.19 16000000/16000000     ImageArray::GetFilteredCurve(int) [31]
+                0.28    0.00 16000000/16000000     NumSurface::operator()(int, int) [33]
+                0.00    0.00       1/2           ImageArray::GetRange() [61]
+                0.00    0.00     100/100         ImageArray::GetAngle(int) [87]
+                0.00    0.00       1/1           Bilinear::Bilinear() [203]
+                0.00    0.00       1/1           NumSurface::NumSurface(int, double, int, double) [196]
+                0.00    0.00       1/1           ImageArray::GetSize() [193]
+                0.00    0.00       1/1           Bilinear::~Bilinear() [204]
+-----------------------------------------------
+                2.50    0.00 806600000/1613200000     std::function<double (double)>::operator()(double) const [5]
+                2.50    0.00 806600000/1613200000     std::_Function_handler<double (double), Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_invoke(std::_Any_data const&, double) [6]
+[14]     2.7    5.01    0.00 1613200000         double&& std::forward<double>(std::remove_reference<double>::type&) [14]
+-----------------------------------------------
+                0.38    2.71 16000000/16000000     FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[15]     1.7    0.38    2.71 16000000         NumCurve::operator()(double, Interpolator*) const [15]
+                1.09    1.26 16000000/16000000     Bilinear::Interpolate(double) [16]
+                0.36    0.00 16000000/16000000     Interpolator::set_values(int, double*, double*) [30]
+-----------------------------------------------
+                1.09    1.26 16000000/16000000     NumCurve::operator()(double, Interpolator*) const [15]
+[16]     1.3    1.09    1.26 16000000         Bilinear::Interpolate(double) [16]
+                1.26    0.00 16000000/16000000     ArryIndexFloor(double, double*, int) [18]
+-----------------------------------------------
+                2.15    0.00 806622700/806622700     Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}* const& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() const [12]
+[17]     1.2    2.15    0.00 806622700         std::_Any_data::_M_access() const [17]
+-----------------------------------------------
+                1.26    0.00 16000000/16000000     Bilinear::Interpolate(double) [16]
+[18]     0.7    1.26    0.00 16000000         ArryIndexFloor(double, double*, int) [18]
+-----------------------------------------------
+                0.14    0.24   22700/68100       std::function<double (double)>::function(std::function<double (double)> const&) [29]
+                0.28    0.48   45400/68100       std::_Function_base::~_Function_base() [21]
+[19]     0.6    0.41    0.72   68100         std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_manager(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::_Manager_operation) [19]
+                0.00    0.48   45400/45400       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_destroy(std::_Any_data&, std::integral_constant<bool, false>) [27]
+                0.00    0.24   22700/22700       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_clone(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::integral_constant<bool, false>) [34]
+-----------------------------------------------
+                0.08    0.17   22700/90800       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_clone(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::integral_constant<bool, false>) [34]
+                0.08    0.17   22700/90800       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&, std::integral_constant<bool, false>) [36]
+                0.15    0.33   45400/90800       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_destroy(std::_Any_data&, std::integral_constant<bool, false>) [27]
+[20]     0.5    0.30    0.66   90800         Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() [20]
+                0.66    0.00   90800/90800       std::_Any_data::_M_access() [23]
+-----------------------------------------------
+                0.00    0.76   45400/45400       std::function<double (double)>::~function() [22]
+[21]     0.4    0.00    0.76   45400         std::_Function_base::~_Function_base() [21]
+                0.28    0.48   45400/68100       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_manager(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::_Manager_operation) [19]
+-----------------------------------------------
+                0.00    0.76   45400/45400       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*) [2]
+[22]     0.4    0.00    0.76   45400         std::function<double (double)>::~function() [22]
+                0.00    0.76   45400/45400       std::_Function_base::~_Function_base() [21]
+-----------------------------------------------
+                0.66    0.00   90800/90800       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() [20]
+[23]     0.4    0.66    0.00   90800         std::_Any_data::_M_access() [23]
+-----------------------------------------------
+                                                 <spontaneous>
+[24]     0.4    0.66    0.00                 Heart(double, double, double) [24]
+-----------------------------------------------
+                                                 <spontaneous>
+[25]     0.4    0.65    0.00                 AnaCurve::operator()(double, Interpolator*) const [25]
+-----------------------------------------------
+                0.17    0.43       1/1           FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[26]     0.3    0.17    0.43       1         ImageArray::ConvolveWithKernal(double (*)(int, double)) [26]
+                0.24    0.00 5152900/5152900     Hamming(int, double) [38]
+                0.13    0.00 10328600/26328800     std::vector<NumCurve, std::allocator<NumCurve> >::operator[](unsigned int) [32]
+                0.06    0.00 10328500/10328500     NumCurve::operator[](int) [39]
+                0.00    0.00       1/2           ImageArray::GetRange() [61]
+                0.00    0.00     100/100         NumCurve::GetSize() [88]
+-----------------------------------------------
+                0.00    0.48   45400/45400       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_manager(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::_Manager_operation) [19]
+[27]     0.3    0.00    0.48   45400         std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_destroy(std::_Any_data&, std::integral_constant<bool, false>) [27]
+                0.15    0.33   45400/90800       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() [20]
+-----------------------------------------------
+                                                 <spontaneous>
+[28]     0.2    0.41    0.00                 Surface::Print() [28]
+-----------------------------------------------
+                0.00    0.38   22700/22700       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*) [2]
+[29]     0.2    0.00    0.38   22700         std::function<double (double)>::function(std::function<double (double)> const&) [29]
+                0.14    0.24   22700/68100       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_manager(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::_Manager_operation) [19]
+                0.00    0.00   22700/22700       std::function<double (double)>::operator bool() const [60]
+                0.00    0.00   22700/45400       std::_Maybe_unary_or_binary_function<double, double>::_Maybe_unary_or_binary_function() [68]
+                0.00    0.00   22700/45400       std::_Function_base::_Function_base() [66]
+-----------------------------------------------
+                0.36    0.00 16000000/16000000     NumCurve::operator()(double, Interpolator*) const [15]
+[30]     0.2    0.36    0.00 16000000         Interpolator::set_values(int, double*, double*) [30]
+-----------------------------------------------
+                0.14    0.19 16000000/16000000     FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[31]     0.2    0.14    0.19 16000000         ImageArray::GetFilteredCurve(int) [31]
+                0.19    0.00 16000000/26328800     std::vector<NumCurve, std::allocator<NumCurve> >::operator[](unsigned int) [32]
+-----------------------------------------------
+                0.00    0.00     200/26328800     ImageArray::GetRange() [61]
+                0.13    0.00 10328600/26328800     ImageArray::ConvolveWithKernal(double (*)(int, double)) [26]
+                0.19    0.00 16000000/26328800     ImageArray::GetFilteredCurve(int) [31]
+[32]     0.2    0.32    0.00 26328800         std::vector<NumCurve, std::allocator<NumCurve> >::operator[](unsigned int) [32]
+-----------------------------------------------
+                0.28    0.00 16000000/16000000     FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[33]     0.2    0.28    0.00 16000000         NumSurface::operator()(int, int) [33]
+-----------------------------------------------
+                0.00    0.24   22700/22700       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_manager(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::_Manager_operation) [19]
+[34]     0.1    0.00    0.24   22700         std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_clone(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::integral_constant<bool, false>) [34]
+                0.08    0.17   22700/90800       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() [20]
+                0.00    0.00   22700/806622700     Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}* const& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() const [12]
+-----------------------------------------------
+                0.00    0.24   22700/22700       std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) [37]
+[35]     0.1    0.00    0.24   22700         std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&) [35]
+                0.00    0.24   22700/22700       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&, std::integral_constant<bool, false>) [36]
+                0.00    0.00   22700/68100       std::remove_reference<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>::type&& std::move<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>(std::remove_reference&&) [65]
+-----------------------------------------------
+                0.00    0.24   22700/22700       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&) [35]
+[36]     0.1    0.00    0.24   22700         std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&, std::integral_constant<bool, false>) [36]
+                0.08    0.17   22700/90800       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() [20]
+                0.00    0.00   22700/68100       std::remove_reference<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>::type&& std::move<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>(std::remove_reference&&) [65]
+-----------------------------------------------
+                0.00    0.24   22700/22700       Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*) [2]
+[37]     0.1    0.00    0.24   22700         std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) [37]
+                0.00    0.24   22700/22700       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&) [35]
+                0.00    0.00   22700/45400       std::_Maybe_unary_or_binary_function<double, double>::_Maybe_unary_or_binary_function() [68]
+                0.00    0.00   22700/45400       std::_Function_base::_Function_base() [66]
+                0.00    0.00   22700/22700       bool std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_not_empty_function<{lambda(double)#1}>({lambda(double)#1} const&) [69]
+                0.00    0.00   22700/68100       std::remove_reference<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>::type&& std::move<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>(std::remove_reference&&) [65]
+-----------------------------------------------
+                0.24    0.00 5152900/5152900     ImageArray::ConvolveWithKernal(double (*)(int, double)) [26]
+[38]     0.1    0.24    0.00 5152900         Hamming(int, double) [38]
+-----------------------------------------------
+                0.06    0.00 10328500/10328500     ImageArray::ConvolveWithKernal(double (*)(int, double)) [26]
+[39]     0.0    0.06    0.00 10328500         NumCurve::operator[](int) [39]
+-----------------------------------------------
+                                                 <spontaneous>
+[40]     0.0    0.04    0.00                 Interpolator::set_values(int, int, double*, double*, double**) [40]
+-----------------------------------------------
+                0.02    0.00       1/1           main [1]
+[41]     0.0    0.02    0.00       1         NumSurface::Print() [41]
+-----------------------------------------------
+                                                 <spontaneous>
+[42]     0.0    0.02    0.00                 NumCurve::~NumCurve() [42]
+-----------------------------------------------
+                                                 <spontaneous>
+[43]     0.0    0.02    0.00                 std::_Miter_base<double*>::iterator_type std::__miter_base<double*>(double*) [43]
+-----------------------------------------------
+                0.00    0.00     200/454         __gnu_cxx::new_allocator<NumCurve>::construct(NumCurve*, NumCurve const&) [59]
+                0.01    0.00     254/454         _ZSt10_ConstructI8NumCurveIS0_EEvPT_DpOT0_ [48]
+[44]     0.0    0.01    0.00     454         NumCurve::NumCurve(NumCurve const&) [44]
+                0.00    0.00     454/554         Curve::Curve(double) [74]
+-----------------------------------------------
+                0.00    0.01     200/200         ImageArray::PushBack(double, NumCurve const&) [46]
+[45]     0.0    0.00    0.01     200         std::vector<NumCurve, std::allocator<NumCurve> >::push_back(NumCurve const&) [45]
+                0.00    0.01      16/16          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+                0.00    0.00     184/200         __gnu_cxx::new_allocator<NumCurve>::construct(NumCurve*, NumCurve const&) [59]
+                0.00    0.00      16/16          std::vector<NumCurve, std::allocator<NumCurve> >::end() [130]
+-----------------------------------------------
+                0.00    0.01     100/100         main [1]
+[46]     0.0    0.00    0.01     100         ImageArray::PushBack(double, NumCurve const&) [46]
+                0.00    0.01     200/200         std::vector<NumCurve, std::allocator<NumCurve> >::push_back(NumCurve const&) [45]
+                0.00    0.00     100/100         std::vector<double, std::allocator<double> >::push_back(double const&) [93]
+-----------------------------------------------
+                0.00    0.01      16/16          std::vector<NumCurve, std::allocator<NumCurve> >::push_back(NumCurve const&) [45]
+[47]     0.0    0.00    0.01      16         void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+                0.00    0.01      32/32          NumCurve* std::__uninitialized_move_a<NumCurve*, NumCurve*, std::allocator<NumCurve> >(NumCurve*, NumCurve*, NumCurve*, std::allocator<NumCurve>&) [52]
+                0.00    0.00      16/200         __gnu_cxx::new_allocator<NumCurve>::construct(NumCurve*, NumCurve const&) [59]
+                0.00    0.00      48/52          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() [99]
+                0.00    0.00      32/64          __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::base() const [95]
+                0.00    0.00      16/16          std::vector<NumCurve, std::allocator<NumCurve> >::_M_check_len(unsigned int, char const*) const [125]
+                0.00    0.00      16/16          std::vector<NumCurve, std::allocator<NumCurve> >::begin() [131]
+                0.00    0.00      16/16          __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::difference_type __gnu_cxx::operator-<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&, __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&) [123]
+                0.00    0.00      16/16          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_allocate(unsigned int) [128]
+                0.00    0.00      16/16          NumCurve const& std::forward<NumCurve const&>(std::remove_reference<NumCurve const&>::type&) [138]
+                0.00    0.00      16/20          void std::_Destroy<NumCurve*, NumCurve>(NumCurve*, NumCurve*, std::allocator<NumCurve>&) [118]
+                0.00    0.00      16/18          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_deallocate(NumCurve*, unsigned int) [119]
+-----------------------------------------------
+                0.00    0.01     254/254         NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [49]
+[48]     0.0    0.00    0.01     254         _ZSt10_ConstructI8NumCurveIS0_EEvPT_DpOT0_ [48]
+                0.01    0.00     254/454         NumCurve::NumCurve(NumCurve const&) [44]
+                0.00    0.00     254/254         NumCurve&& std::forward<NumCurve>(std::remove_reference<NumCurve>::type&) [84]
+                0.00    0.00     254/554         operator new(unsigned int, void*) [77]
+-----------------------------------------------
+                0.00    0.01      32/32          NumCurve* std::uninitialized_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [50]
+[49]     0.0    0.00    0.01      32         NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [49]
+                0.00    0.01     254/254         _ZSt10_ConstructI8NumCurveIS0_EEvPT_DpOT0_ [48]
+                0.00    0.00     286/286         bool std::operator!=<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&) [80]
+                0.00    0.00     254/254         std::move_iterator<NumCurve*>::operator*() const [81]
+                0.00    0.00     254/708         NumCurve* std::__addressof<NumCurve>(NumCurve&) [70]
+                0.00    0.00     254/254         std::move_iterator<NumCurve*>::operator++() [82]
+-----------------------------------------------
+                0.00    0.01      32/32          NumCurve* std::__uninitialized_copy_a<std::move_iterator<NumCurve*>, NumCurve*, NumCurve>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*, std::allocator<NumCurve>&) [51]
+[50]     0.0    0.00    0.01      32         NumCurve* std::uninitialized_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [50]
+                0.00    0.01      32/32          NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [49]
+-----------------------------------------------
+                0.00    0.01      32/32          NumCurve* std::__uninitialized_move_a<NumCurve*, NumCurve*, std::allocator<NumCurve> >(NumCurve*, NumCurve*, NumCurve*, std::allocator<NumCurve>&) [52]
+[51]     0.0    0.00    0.01      32         NumCurve* std::__uninitialized_copy_a<std::move_iterator<NumCurve*>, NumCurve*, NumCurve>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*, std::allocator<NumCurve>&) [51]
+                0.00    0.01      32/32          NumCurve* std::uninitialized_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [50]
+-----------------------------------------------
+                0.00    0.01      32/32          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[52]     0.0    0.00    0.01      32         NumCurve* std::__uninitialized_move_a<NumCurve*, NumCurve*, std::allocator<NumCurve> >(NumCurve*, NumCurve*, NumCurve*, std::allocator<NumCurve>&) [52]
+                0.00    0.01      32/32          NumCurve* std::__uninitialized_copy_a<std::move_iterator<NumCurve*>, NumCurve*, NumCurve>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*, std::allocator<NumCurve>&) [51]
+                0.00    0.00      64/64          std::move_iterator<NumCurve*> std::make_move_iterator<NumCurve*>(NumCurve* const&) [98]
+-----------------------------------------------
+                0.00    0.01       1/1           __libc_csu_init [58]
+[53]     0.0    0.00    0.01       1         _GLOBAL__sub_I__ZN10ImageArrayC2Ev [53]
+                0.01    0.00       1/1           __static_initialization_and_destruction_0(int, int) [54]
+-----------------------------------------------
+                0.01    0.00       1/1           _GLOBAL__sub_I__ZN10ImageArrayC2Ev [53]
+[54]     0.0    0.01    0.00       1         __static_initialization_and_destruction_0(int, int) [54]
+-----------------------------------------------
+                                                 <spontaneous>
+[55]     0.0    0.01    0.00                 ArryIndexRoof(double, double*, int) [55]
+-----------------------------------------------
+                                                 <spontaneous>
+[56]     0.0    0.01    0.00                 NumSurface::GetXPtr() [56]
+-----------------------------------------------
+                                                 <spontaneous>
+[57]     0.0    0.01    0.00                 NumCurve::operator()(int) [57]
+-----------------------------------------------
+                                                 <spontaneous>
+[58]     0.0    0.00    0.01                 __libc_csu_init [58]
+                0.00    0.01       1/1           _GLOBAL__sub_I__ZN10ImageArrayC2Ev [53]
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN6VolumeC2Eddd [180]
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN9NumVolumeC2Ev [182]
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN10NumSurfaceC2Ev [179]
+                0.00    0.00       1/1           _GLOBAL__sub_I__Z22FilteredBackProjectionR10ImageArrayiPFdidE [178]
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN8AnaCurveC2EPFddEd [181]
+                0.00    0.00       1/1           _GLOBAL__sub_I_main [183]
+-----------------------------------------------
+                0.00    0.00      16/200         void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+                0.00    0.00     184/200         std::vector<NumCurve, std::allocator<NumCurve> >::push_back(NumCurve const&) [45]
+[59]     0.0    0.00    0.00     200         __gnu_cxx::new_allocator<NumCurve>::construct(NumCurve*, NumCurve const&) [59]
+                0.00    0.00     200/454         NumCurve::NumCurve(NumCurve const&) [44]
+                0.00    0.00     200/554         operator new(unsigned int, void*) [77]
+-----------------------------------------------
+                0.00    0.00   22700/22700       std::function<double (double)>::function(std::function<double (double)> const&) [29]
+[60]     0.0    0.00    0.00   22700         std::function<double (double)>::operator bool() const [60]
+                0.00    0.00   22700/806622700     std::_Function_base::_M_empty() const [11]
+-----------------------------------------------
+                0.00    0.00       1/2           FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+                0.00    0.00       1/2           ImageArray::ConvolveWithKernal(double (*)(int, double)) [26]
+[61]     0.0    0.00    0.00       2         ImageArray::GetRange() [61]
+                0.00    0.00     200/26328800     std::vector<NumCurve, std::allocator<NumCurve> >::operator[](unsigned int) [32]
+                0.00    0.00     200/200         Curve::GetRange() const [86]
+                0.00    0.00     200/200         double max<double>(double, double) [85]
+-----------------------------------------------
+                0.00    0.00   22700/68100       std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) [37]
+                0.00    0.00   22700/68100       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&) [35]
+                0.00    0.00   22700/68100       std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&, std::integral_constant<bool, false>) [36]
+[65]     0.0    0.00    0.00   68100         std::remove_reference<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>::type&& std::move<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>(std::remove_reference&&) [65]
+-----------------------------------------------
+                0.00    0.00   22700/45400       std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) [37]
+                0.00    0.00   22700/45400       std::function<double (double)>::function(std::function<double (double)> const&) [29]
+[66]     0.0    0.00    0.00   45400         std::_Function_base::_Function_base() [66]
+-----------------------------------------------
+                0.00    0.00   45400/45400       std::_Maybe_unary_or_binary_function<double, double>::_Maybe_unary_or_binary_function() [68]
+[67]     0.0    0.00    0.00   45400         std::unary_function<double, double>::unary_function() [67]
+-----------------------------------------------
+                0.00    0.00   22700/45400       std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) [37]
+                0.00    0.00   22700/45400       std::function<double (double)>::function(std::function<double (double)> const&) [29]
+[68]     0.0    0.00    0.00   45400         std::_Maybe_unary_or_binary_function<double, double>::_Maybe_unary_or_binary_function() [68]
+                0.00    0.00   45400/45400       std::unary_function<double, double>::unary_function() [67]
+-----------------------------------------------
+                0.00    0.00   22700/22700       std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) [37]
+[69]     0.0    0.00    0.00   22700         bool std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_not_empty_function<{lambda(double)#1}>({lambda(double)#1} const&) [69]
+-----------------------------------------------
+                0.00    0.00     254/708         NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [49]
+                0.00    0.00     454/708         void std::_Destroy_aux<false>::__destroy<NumCurve*>(NumCurve*, NumCurve*) [116]
+[70]     0.0    0.00    0.00     708         NumCurve* std::__addressof<NumCurve>(NumCurve&) [70]
+-----------------------------------------------
+                0.00    0.00     572/572         bool std::operator==<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&) [79]
+[71]     0.0    0.00    0.00     572         std::move_iterator<NumCurve*>::base() const [71]
+-----------------------------------------------
+                0.00    0.00       2/556         Surface::Surface(double, double) [152]
+                0.00    0.00     554/556         Curve::Curve(double) [74]
+[72]     0.0    0.00    0.00     556         Image::Image(Dimension) [72]
+-----------------------------------------------
+                0.00    0.00       2/556         Surface::~Surface() [153]
+                0.00    0.00     554/556         Curve::~Curve() [75]
+[73]     0.0    0.00    0.00     556         Image::~Image() [73]
+-----------------------------------------------
+                0.00    0.00     100/554         NumCurve::NumCurve(int, double) [91]
+                0.00    0.00     454/554         NumCurve::NumCurve(NumCurve const&) [44]
+[74]     0.0    0.00    0.00     554         Curve::Curve(double) [74]
+                0.00    0.00     554/556         Image::Image(Dimension) [72]
+-----------------------------------------------
+                0.00    0.00     554/554         NumCurve::~NumCurve() [76]
+[75]     0.0    0.00    0.00     554         Curve::~Curve() [75]
+                0.00    0.00     554/556         Image::~Image() [73]
+-----------------------------------------------
+                0.00    0.00     100/554         main [1]
+                0.00    0.00     454/554         void std::_Destroy<NumCurve>(NumCurve*) [78]
+[76]     0.0    0.00    0.00     554         NumCurve::~NumCurve() [76]
+                0.00    0.00     554/554         Curve::~Curve() [75]
+-----------------------------------------------
+                0.00    0.00     100/554         __gnu_cxx::new_allocator<double>::construct(double*, double const&) [92]
+                0.00    0.00     200/554         __gnu_cxx::new_allocator<NumCurve>::construct(NumCurve*, NumCurve const&) [59]
+                0.00    0.00     254/554         _ZSt10_ConstructI8NumCurveIS0_EEvPT_DpOT0_ [48]
+[77]     0.0    0.00    0.00     554         operator new(unsigned int, void*) [77]
+-----------------------------------------------
+                0.00    0.00     454/454         void std::_Destroy_aux<false>::__destroy<NumCurve*>(NumCurve*, NumCurve*) [116]
+[78]     0.0    0.00    0.00     454         void std::_Destroy<NumCurve>(NumCurve*) [78]
+                0.00    0.00     454/554         NumCurve::~NumCurve() [76]
+-----------------------------------------------
+                0.00    0.00     286/286         bool std::operator!=<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&) [80]
+[79]     0.0    0.00    0.00     286         bool std::operator==<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&) [79]
+                0.00    0.00     572/572         std::move_iterator<NumCurve*>::base() const [71]
+-----------------------------------------------
+                0.00    0.00     286/286         NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [49]
+[80]     0.0    0.00    0.00     286         bool std::operator!=<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&) [80]
+                0.00    0.00     286/286         bool std::operator==<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&) [79]
+-----------------------------------------------
+                0.00    0.00     254/254         NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [49]
+[81]     0.0    0.00    0.00     254         std::move_iterator<NumCurve*>::operator*() const [81]
+                0.00    0.00     254/254         std::remove_reference<NumCurve&>::type&& std::move<NumCurve&>(NumCurve&) [83]
+-----------------------------------------------
+                0.00    0.00     254/254         NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*) [49]
+[82]     0.0    0.00    0.00     254         std::move_iterator<NumCurve*>::operator++() [82]
+-----------------------------------------------
+                0.00    0.00     254/254         std::move_iterator<NumCurve*>::operator*() const [81]
+[83]     0.0    0.00    0.00     254         std::remove_reference<NumCurve&>::type&& std::move<NumCurve&>(NumCurve&) [83]
+-----------------------------------------------
+                0.00    0.00     254/254         _ZSt10_ConstructI8NumCurveIS0_EEvPT_DpOT0_ [48]
+[84]     0.0    0.00    0.00     254         NumCurve&& std::forward<NumCurve>(std::remove_reference<NumCurve>::type&) [84]
+-----------------------------------------------
+                0.00    0.00     200/200         ImageArray::GetRange() [61]
+[85]     0.0    0.00    0.00     200         double max<double>(double, double) [85]
+-----------------------------------------------
+                0.00    0.00     200/200         ImageArray::GetRange() [61]
+[86]     0.0    0.00    0.00     200         Curve::GetRange() const [86]
+-----------------------------------------------
+                0.00    0.00     100/100         FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[87]     0.0    0.00    0.00     100         ImageArray::GetAngle(int) [87]
+                0.00    0.00     100/100         std::vector<double, std::allocator<double> >::operator[](unsigned int) [94]
+-----------------------------------------------
+                0.00    0.00     100/100         ImageArray::ConvolveWithKernal(double (*)(int, double)) [26]
+[88]     0.0    0.00    0.00     100         NumCurve::GetSize() [88]
+-----------------------------------------------
+                0.00    0.00     100/100         Surface::GetProjection(LineIntegral*, double, double, Interpolator*) [3]
+[89]     0.0    0.00    0.00     100         NumCurve::GetXPtr() [89]
+-----------------------------------------------
+                0.00    0.00     100/100         Surface::GetProjection(LineIntegral*, double, double, Interpolator*) [3]
+[90]     0.0    0.00    0.00     100         NumCurve::GetYPtr() [90]
+-----------------------------------------------
+                0.00    0.00     100/100         Surface::GetProjection(LineIntegral*, double, double, Interpolator*) [3]
+[91]     0.0    0.00    0.00     100         NumCurve::NumCurve(int, double) [91]
+                0.00    0.00     100/554         Curve::Curve(double) [74]
+-----------------------------------------------
+                0.00    0.00       8/100         void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+                0.00    0.00      92/100         std::vector<double, std::allocator<double> >::push_back(double const&) [93]
+[92]     0.0    0.00    0.00     100         __gnu_cxx::new_allocator<double>::construct(double*, double const&) [92]
+                0.00    0.00     100/554         operator new(unsigned int, void*) [77]
+-----------------------------------------------
+                0.00    0.00     100/100         ImageArray::PushBack(double, NumCurve const&) [46]
+[93]     0.0    0.00    0.00     100         std::vector<double, std::allocator<double> >::push_back(double const&) [93]
+                0.00    0.00      92/100         __gnu_cxx::new_allocator<double>::construct(double*, double const&) [92]
+                0.00    0.00       8/8           std::vector<double, std::allocator<double> >::end() [149]
+                0.00    0.00       8/8           void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+-----------------------------------------------
+                0.00    0.00     100/100         ImageArray::GetAngle(int) [87]
+[94]     0.0    0.00    0.00     100         std::vector<double, std::allocator<double> >::operator[](unsigned int) [94]
+-----------------------------------------------
+                0.00    0.00      32/64          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+                0.00    0.00      32/64          __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::difference_type __gnu_cxx::operator-<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&, __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&) [123]
+[95]     0.0    0.00    0.00      64         __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::base() const [95]
+-----------------------------------------------
+                0.00    0.00      64/64          std::vector<NumCurve, std::allocator<NumCurve> >::_M_check_len(unsigned int, char const*) const [125]
+[96]     0.0    0.00    0.00      64         std::vector<NumCurve, std::allocator<NumCurve> >::size() const [96]
+-----------------------------------------------
+                0.00    0.00      64/64          std::move_iterator<NumCurve*> std::make_move_iterator<NumCurve*>(NumCurve* const&) [98]
+[97]     0.0    0.00    0.00      64         std::move_iterator<NumCurve*>::move_iterator(NumCurve*) [97]
+-----------------------------------------------
+                0.00    0.00      64/64          NumCurve* std::__uninitialized_move_a<NumCurve*, NumCurve*, std::allocator<NumCurve> >(NumCurve*, NumCurve*, NumCurve*, std::allocator<NumCurve>&) [52]
+[98]     0.0    0.00    0.00      64         std::move_iterator<NumCurve*> std::make_move_iterator<NumCurve*>(NumCurve* const&) [98]
+                0.00    0.00      64/64          std::move_iterator<NumCurve*>::move_iterator(NumCurve*) [97]
+-----------------------------------------------
+                0.00    0.00       2/52          std::vector<NumCurve, std::allocator<NumCurve> >::~vector() [173]
+                0.00    0.00       2/52          std::vector<NumCurve, std::allocator<NumCurve> >::_M_erase_at_end(NumCurve*) [170]
+                0.00    0.00      48/52          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[99]     0.0    0.00    0.00      52         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() [99]
+-----------------------------------------------
+                0.00    0.00      16/48          __gnu_cxx::new_allocator<NumCurve>::allocate(unsigned int, void const*) [121]
+                0.00    0.00      32/48          std::vector<NumCurve, std::allocator<NumCurve> >::max_size() const [107]
+[100]    0.0    0.00    0.00      48         __gnu_cxx::new_allocator<NumCurve>::max_size() const [100]
+-----------------------------------------------
+                0.00    0.00      48/48          std::_Niter_base<double*>::iterator_type std::__niter_base<double*>(double*) [102]
+[101]    0.0    0.00    0.00      48         std::_Iter_base<double*, false>::_S_base(double*) [101]
+-----------------------------------------------
+                0.00    0.00      48/48          double* std::__copy_move_a2<true, double*, double*>(double*, double*, double*) [133]
+[102]    0.0    0.00    0.00      48         std::_Niter_base<double*>::iterator_type std::__niter_base<double*>(double*) [102]
+                0.00    0.00      48/48          std::_Iter_base<double*, false>::_S_base(double*) [101]
+-----------------------------------------------
+                0.00    0.00      16/32          std::vector<NumCurve, std::allocator<NumCurve> >::end() [130]
+                0.00    0.00      16/32          std::vector<NumCurve, std::allocator<NumCurve> >::begin() [131]
+[103]    0.0    0.00    0.00      32         __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::__normal_iterator(NumCurve* const&) [103]
+-----------------------------------------------
+                0.00    0.00      16/32          void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+                0.00    0.00      16/32          __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::difference_type __gnu_cxx::operator-<double*, std::vector<double, std::allocator<double> > >(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&, __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&) [145]
+[104]    0.0    0.00    0.00      32         __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::base() const [104]
+-----------------------------------------------
+                0.00    0.00      32/32          std::vector<NumCurve, std::allocator<NumCurve> >::max_size() const [107]
+[105]    0.0    0.00    0.00      32         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() const [105]
+-----------------------------------------------
+                0.00    0.00      32/32          std::_Iter_base<std::move_iterator<double*>, true>::_S_base(std::move_iterator<double*>) [109]
+[106]    0.0    0.00    0.00      32         std::move_iterator<double*>::base() const [106]
+-----------------------------------------------
+                0.00    0.00      32/32          std::vector<NumCurve, std::allocator<NumCurve> >::_M_check_len(unsigned int, char const*) const [125]
+[107]    0.0    0.00    0.00      32         std::vector<NumCurve, std::allocator<NumCurve> >::max_size() const [107]
+                0.00    0.00      32/32          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() const [105]
+                0.00    0.00      32/48          __gnu_cxx::new_allocator<NumCurve>::max_size() const [100]
+-----------------------------------------------
+                0.00    0.00      32/32          std::vector<double, std::allocator<double> >::_M_check_len(unsigned int, char const*) const [146]
+[108]    0.0    0.00    0.00      32         std::vector<double, std::allocator<double> >::size() const [108]
+-----------------------------------------------
+                0.00    0.00      32/32          std::_Miter_base<std::move_iterator<double*> >::iterator_type std::__miter_base<std::move_iterator<double*> >(std::move_iterator<double*>) [111]
+[109]    0.0    0.00    0.00      32         std::_Iter_base<std::move_iterator<double*>, true>::_S_base(std::move_iterator<double*>) [109]
+                0.00    0.00      32/32          std::move_iterator<double*>::base() const [106]
+-----------------------------------------------
+                0.00    0.00      32/32          std::move_iterator<double*> std::make_move_iterator<double*>(double* const&) [112]
+[110]    0.0    0.00    0.00      32         std::move_iterator<double*>::move_iterator(double*) [110]
+-----------------------------------------------
+                0.00    0.00      32/32          double* std::copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [137]
+[111]    0.0    0.00    0.00      32         std::_Miter_base<std::move_iterator<double*> >::iterator_type std::__miter_base<std::move_iterator<double*> >(std::move_iterator<double*>) [111]
+                0.00    0.00      32/32          std::_Iter_base<std::move_iterator<double*>, true>::_S_base(std::move_iterator<double*>) [109]
+-----------------------------------------------
+                0.00    0.00      32/32          double* std::__uninitialized_move_a<double*, double*, std::allocator<double> >(double*, double*, double*, std::allocator<double>&) [136]
+[112]    0.0    0.00    0.00      32         std::move_iterator<double*> std::make_move_iterator<double*>(double* const&) [112]
+                0.00    0.00      32/32          std::move_iterator<double*>::move_iterator(double*) [110]
+-----------------------------------------------
+                0.00    0.00       2/28          std::vector<double, std::allocator<double> >::~vector() [177]
+                0.00    0.00       2/28          std::vector<double, std::allocator<double> >::_M_erase_at_end(double*) [174]
+                0.00    0.00      24/28          void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[113]    0.0    0.00    0.00      28         std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() [113]
+-----------------------------------------------
+                0.00    0.00       8/24          __gnu_cxx::new_allocator<double>::allocate(unsigned int, void const*) [144]
+                0.00    0.00      16/24          std::vector<double, std::allocator<double> >::max_size() const [126]
+[114]    0.0    0.00    0.00      24         __gnu_cxx::new_allocator<double>::max_size() const [114]
+-----------------------------------------------
+                0.00    0.00       8/24          std::vector<double, std::allocator<double> >::_M_check_len(unsigned int, char const*) const [146]
+                0.00    0.00      16/24          std::vector<NumCurve, std::allocator<NumCurve> >::_M_check_len(unsigned int, char const*) const [125]
+[115]    0.0    0.00    0.00      24         unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&) [115]
+-----------------------------------------------
+                0.00    0.00      20/20          void std::_Destroy<NumCurve*>(NumCurve*, NumCurve*) [117]
+[116]    0.0    0.00    0.00      20         void std::_Destroy_aux<false>::__destroy<NumCurve*>(NumCurve*, NumCurve*) [116]
+                0.00    0.00     454/708         NumCurve* std::__addressof<NumCurve>(NumCurve&) [70]
+                0.00    0.00     454/454         void std::_Destroy<NumCurve>(NumCurve*) [78]
+-----------------------------------------------
+                0.00    0.00      20/20          void std::_Destroy<NumCurve*, NumCurve>(NumCurve*, NumCurve*, std::allocator<NumCurve>&) [118]
+[117]    0.0    0.00    0.00      20         void std::_Destroy<NumCurve*>(NumCurve*, NumCurve*) [117]
+                0.00    0.00      20/20          void std::_Destroy_aux<false>::__destroy<NumCurve*>(NumCurve*, NumCurve*) [116]
+-----------------------------------------------
+                0.00    0.00       2/20          std::vector<NumCurve, std::allocator<NumCurve> >::~vector() [173]
+                0.00    0.00       2/20          std::vector<NumCurve, std::allocator<NumCurve> >::_M_erase_at_end(NumCurve*) [170]
+                0.00    0.00      16/20          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[118]    0.0    0.00    0.00      20         void std::_Destroy<NumCurve*, NumCurve>(NumCurve*, NumCurve*, std::allocator<NumCurve>&) [118]
+                0.00    0.00      20/20          void std::_Destroy<NumCurve*>(NumCurve*, NumCurve*) [117]
+-----------------------------------------------
+                0.00    0.00       2/18          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::~_Vector_base() [165]
+                0.00    0.00      16/18          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[119]    0.0    0.00    0.00      18         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_deallocate(NumCurve*, unsigned int) [119]
+                0.00    0.00      16/16          __gnu_cxx::new_allocator<NumCurve>::deallocate(NumCurve*, unsigned int) [120]
+-----------------------------------------------
+                0.00    0.00      16/16          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_deallocate(NumCurve*, unsigned int) [119]
+[120]    0.0    0.00    0.00      16         __gnu_cxx::new_allocator<NumCurve>::deallocate(NumCurve*, unsigned int) [120]
+-----------------------------------------------
+                0.00    0.00      16/16          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_allocate(unsigned int) [128]
+[121]    0.0    0.00    0.00      16         __gnu_cxx::new_allocator<NumCurve>::allocate(unsigned int, void const*) [121]
+                0.00    0.00      16/48          __gnu_cxx::new_allocator<NumCurve>::max_size() const [100]
+-----------------------------------------------
+                0.00    0.00       8/16          std::vector<double, std::allocator<double> >::end() [149]
+                0.00    0.00       8/16          std::vector<double, std::allocator<double> >::begin() [150]
+[122]    0.0    0.00    0.00      16         __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::__normal_iterator(double* const&) [122]
+-----------------------------------------------
+                0.00    0.00      16/16          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[123]    0.0    0.00    0.00      16         __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::difference_type __gnu_cxx::operator-<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&, __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&) [123]
+                0.00    0.00      32/64          __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::base() const [95]
+-----------------------------------------------
+                0.00    0.00      16/16          std::vector<double, std::allocator<double> >::max_size() const [126]
+[124]    0.0    0.00    0.00      16         std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() const [124]
+-----------------------------------------------
+                0.00    0.00      16/16          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[125]    0.0    0.00    0.00      16         std::vector<NumCurve, std::allocator<NumCurve> >::_M_check_len(unsigned int, char const*) const [125]
+                0.00    0.00      64/64          std::vector<NumCurve, std::allocator<NumCurve> >::size() const [96]
+                0.00    0.00      32/32          std::vector<NumCurve, std::allocator<NumCurve> >::max_size() const [107]
+                0.00    0.00      16/24          unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&) [115]
+-----------------------------------------------
+                0.00    0.00      16/16          std::vector<double, std::allocator<double> >::_M_check_len(unsigned int, char const*) const [146]
+[126]    0.0    0.00    0.00      16         std::vector<double, std::allocator<double> >::max_size() const [126]
+                0.00    0.00      16/16          std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() const [124]
+                0.00    0.00      16/24          __gnu_cxx::new_allocator<double>::max_size() const [114]
+-----------------------------------------------
+                0.00    0.00      16/16          double* std::__copy_move_a<true, double*, double*>(double*, double*, double*) [132]
+[127]    0.0    0.00    0.00      16         double* std::__copy_move<true, true, std::random_access_iterator_tag>::__copy_m<double>(double const*, double const*, double*) [127]
+-----------------------------------------------
+                0.00    0.00      16/16          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[128]    0.0    0.00    0.00      16         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_allocate(unsigned int) [128]
+                0.00    0.00      16/16          __gnu_cxx::new_allocator<NumCurve>::allocate(unsigned int, void const*) [121]
+-----------------------------------------------
+                0.00    0.00      16/16          double* std::uninitialized_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [134]
+[129]    0.0    0.00    0.00      16         double* std::__uninitialized_copy<true>::__uninit_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [129]
+                0.00    0.00      16/16          double* std::copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [137]
+-----------------------------------------------
+                0.00    0.00      16/16          std::vector<NumCurve, std::allocator<NumCurve> >::push_back(NumCurve const&) [45]
+[130]    0.0    0.00    0.00      16         std::vector<NumCurve, std::allocator<NumCurve> >::end() [130]
+                0.00    0.00      16/32          __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::__normal_iterator(NumCurve* const&) [103]
+-----------------------------------------------
+                0.00    0.00      16/16          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[131]    0.0    0.00    0.00      16         std::vector<NumCurve, std::allocator<NumCurve> >::begin() [131]
+                0.00    0.00      16/32          __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::__normal_iterator(NumCurve* const&) [103]
+-----------------------------------------------
+                0.00    0.00      16/16          double* std::__copy_move_a2<true, double*, double*>(double*, double*, double*) [133]
+[132]    0.0    0.00    0.00      16         double* std::__copy_move_a<true, double*, double*>(double*, double*, double*) [132]
+                0.00    0.00      16/16          double* std::__copy_move<true, true, std::random_access_iterator_tag>::__copy_m<double>(double const*, double const*, double*) [127]
+-----------------------------------------------
+                0.00    0.00      16/16          double* std::copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [137]
+[133]    0.0    0.00    0.00      16         double* std::__copy_move_a2<true, double*, double*>(double*, double*, double*) [133]
+                0.00    0.00      48/48          std::_Niter_base<double*>::iterator_type std::__niter_base<double*>(double*) [102]
+                0.00    0.00      16/16          double* std::__copy_move_a<true, double*, double*>(double*, double*, double*) [132]
+-----------------------------------------------
+                0.00    0.00      16/16          double* std::__uninitialized_copy_a<std::move_iterator<double*>, double*, double>(std::move_iterator<double*>, std::move_iterator<double*>, double*, std::allocator<double>&) [135]
+[134]    0.0    0.00    0.00      16         double* std::uninitialized_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [134]
+                0.00    0.00      16/16          double* std::__uninitialized_copy<true>::__uninit_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [129]
+-----------------------------------------------
+                0.00    0.00      16/16          double* std::__uninitialized_move_a<double*, double*, std::allocator<double> >(double*, double*, double*, std::allocator<double>&) [136]
+[135]    0.0    0.00    0.00      16         double* std::__uninitialized_copy_a<std::move_iterator<double*>, double*, double>(std::move_iterator<double*>, std::move_iterator<double*>, double*, std::allocator<double>&) [135]
+                0.00    0.00      16/16          double* std::uninitialized_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [134]
+-----------------------------------------------
+                0.00    0.00      16/16          void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[136]    0.0    0.00    0.00      16         double* std::__uninitialized_move_a<double*, double*, std::allocator<double> >(double*, double*, double*, std::allocator<double>&) [136]
+                0.00    0.00      32/32          std::move_iterator<double*> std::make_move_iterator<double*>(double* const&) [112]
+                0.00    0.00      16/16          double* std::__uninitialized_copy_a<std::move_iterator<double*>, double*, double>(std::move_iterator<double*>, std::move_iterator<double*>, double*, std::allocator<double>&) [135]
+-----------------------------------------------
+                0.00    0.00      16/16          double* std::__uninitialized_copy<true>::__uninit_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [129]
+[137]    0.0    0.00    0.00      16         double* std::copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*) [137]
+                0.00    0.00      32/32          std::_Miter_base<std::move_iterator<double*> >::iterator_type std::__miter_base<std::move_iterator<double*> >(std::move_iterator<double*>) [111]
+                0.00    0.00      16/16          double* std::__copy_move_a2<true, double*, double*>(double*, double*, double*) [133]
+-----------------------------------------------
+                0.00    0.00      16/16          void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&) [47]
+[138]    0.0    0.00    0.00      16         NumCurve const& std::forward<NumCurve const&>(std::remove_reference<NumCurve const&>::type&) [138]
+-----------------------------------------------
+                0.00    0.00      12/12          void std::_Destroy<double*>(double*, double*) [140]
+[139]    0.0    0.00    0.00      12         void std::_Destroy_aux<true>::__destroy<double*>(double*, double*) [139]
+-----------------------------------------------
+                0.00    0.00      12/12          void std::_Destroy<double*, double>(double*, double*, std::allocator<double>&) [141]
+[140]    0.0    0.00    0.00      12         void std::_Destroy<double*>(double*, double*) [140]
+                0.00    0.00      12/12          void std::_Destroy_aux<true>::__destroy<double*>(double*, double*) [139]
+-----------------------------------------------
+                0.00    0.00       2/12          std::vector<double, std::allocator<double> >::~vector() [177]
+                0.00    0.00       2/12          std::vector<double, std::allocator<double> >::_M_erase_at_end(double*) [174]
+                0.00    0.00       8/12          void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[141]    0.0    0.00    0.00      12         void std::_Destroy<double*, double>(double*, double*, std::allocator<double>&) [141]
+                0.00    0.00      12/12          void std::_Destroy<double*>(double*, double*) [140]
+-----------------------------------------------
+                0.00    0.00       2/10          std::_Vector_base<double, std::allocator<double> >::~_Vector_base() [169]
+                0.00    0.00       8/10          void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[142]    0.0    0.00    0.00      10         std::_Vector_base<double, std::allocator<double> >::_M_deallocate(double*, unsigned int) [142]
+                0.00    0.00       8/8           __gnu_cxx::new_allocator<double>::deallocate(double*, unsigned int) [143]
+-----------------------------------------------
+                0.00    0.00       8/8           std::_Vector_base<double, std::allocator<double> >::_M_deallocate(double*, unsigned int) [142]
+[143]    0.0    0.00    0.00       8         __gnu_cxx::new_allocator<double>::deallocate(double*, unsigned int) [143]
+-----------------------------------------------
+                0.00    0.00       8/8           std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned int) [147]
+[144]    0.0    0.00    0.00       8         __gnu_cxx::new_allocator<double>::allocate(unsigned int, void const*) [144]
+                0.00    0.00       8/24          __gnu_cxx::new_allocator<double>::max_size() const [114]
+-----------------------------------------------
+                0.00    0.00       8/8           void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[145]    0.0    0.00    0.00       8         __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::difference_type __gnu_cxx::operator-<double*, std::vector<double, std::allocator<double> > >(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&, __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&) [145]
+                0.00    0.00      16/32          __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::base() const [104]
+-----------------------------------------------
+                0.00    0.00       8/8           void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[146]    0.0    0.00    0.00       8         std::vector<double, std::allocator<double> >::_M_check_len(unsigned int, char const*) const [146]
+                0.00    0.00      32/32          std::vector<double, std::allocator<double> >::size() const [108]
+                0.00    0.00      16/16          std::vector<double, std::allocator<double> >::max_size() const [126]
+                0.00    0.00       8/24          unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&) [115]
+-----------------------------------------------
+                0.00    0.00       8/8           void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[147]    0.0    0.00    0.00       8         std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned int) [147]
+                0.00    0.00       8/8           __gnu_cxx::new_allocator<double>::allocate(unsigned int, void const*) [144]
+-----------------------------------------------
+                0.00    0.00       8/8           std::vector<double, std::allocator<double> >::push_back(double const&) [93]
+[148]    0.0    0.00    0.00       8         void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+                0.00    0.00      24/28          std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() [113]
+                0.00    0.00      16/32          __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::base() const [104]
+                0.00    0.00      16/16          double* std::__uninitialized_move_a<double*, double*, std::allocator<double> >(double*, double*, double*, std::allocator<double>&) [136]
+                0.00    0.00       8/8           std::vector<double, std::allocator<double> >::_M_check_len(unsigned int, char const*) const [146]
+                0.00    0.00       8/8           std::vector<double, std::allocator<double> >::begin() [150]
+                0.00    0.00       8/8           __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::difference_type __gnu_cxx::operator-<double*, std::vector<double, std::allocator<double> > >(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&, __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&) [145]
+                0.00    0.00       8/8           std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned int) [147]
+                0.00    0.00       8/8           double const& std::forward<double const&>(std::remove_reference<double const&>::type&) [151]
+                0.00    0.00       8/100         __gnu_cxx::new_allocator<double>::construct(double*, double const&) [92]
+                0.00    0.00       8/12          void std::_Destroy<double*, double>(double*, double*, std::allocator<double>&) [141]
+                0.00    0.00       8/10          std::_Vector_base<double, std::allocator<double> >::_M_deallocate(double*, unsigned int) [142]
+-----------------------------------------------
+                0.00    0.00       8/8           std::vector<double, std::allocator<double> >::push_back(double const&) [93]
+[149]    0.0    0.00    0.00       8         std::vector<double, std::allocator<double> >::end() [149]
+                0.00    0.00       8/16          __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::__normal_iterator(double* const&) [122]
+-----------------------------------------------
+                0.00    0.00       8/8           void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[150]    0.0    0.00    0.00       8         std::vector<double, std::allocator<double> >::begin() [150]
+                0.00    0.00       8/16          __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::__normal_iterator(double* const&) [122]
+-----------------------------------------------
+                0.00    0.00       8/8           void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&) [148]
+[151]    0.0    0.00    0.00       8         double const& std::forward<double const&>(std::remove_reference<double const&>::type&) [151]
+-----------------------------------------------
+                0.00    0.00       1/2           AnaSurface::AnaSurface(double (*)(double, double), double, double) [190]
+                0.00    0.00       1/2           NumSurface::NumSurface(int, double, int, double) [196]
+[152]    0.0    0.00    0.00       2         Surface::Surface(double, double) [152]
+                0.00    0.00       2/556         Image::Image(Dimension) [72]
+-----------------------------------------------
+                0.00    0.00       1/2           AnaSurface::~AnaSurface() [192]
+                0.00    0.00       1/2           NumSurface::~NumSurface() [198]
+[153]    0.0    0.00    0.00       2         Surface::~Surface() [153]
+                0.00    0.00       2/556         Image::~Image() [73]
+-----------------------------------------------
+                0.00    0.00       2/2           std::allocator<NumCurve>::allocator() [158]
+[154]    0.0    0.00    0.00       2         __gnu_cxx::new_allocator<NumCurve>::new_allocator() [154]
+-----------------------------------------------
+                0.00    0.00       2/2           std::allocator<NumCurve>::~allocator() [159]
+[155]    0.0    0.00    0.00       2         __gnu_cxx::new_allocator<NumCurve>::~new_allocator() [155]
+-----------------------------------------------
+                0.00    0.00       2/2           std::allocator<double>::allocator() [160]
+[156]    0.0    0.00    0.00       2         __gnu_cxx::new_allocator<double>::new_allocator() [156]
+-----------------------------------------------
+                0.00    0.00       2/2           std::allocator<double>::~allocator() [161]
+[157]    0.0    0.00    0.00       2         __gnu_cxx::new_allocator<double>::~new_allocator() [157]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::_Vector_impl() [162]
+[158]    0.0    0.00    0.00       2         std::allocator<NumCurve>::allocator() [158]
+                0.00    0.00       2/2           __gnu_cxx::new_allocator<NumCurve>::new_allocator() [154]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::~_Vector_impl() [163]
+[159]    0.0    0.00    0.00       2         std::allocator<NumCurve>::~allocator() [159]
+                0.00    0.00       2/2           __gnu_cxx::new_allocator<NumCurve>::~new_allocator() [155]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::_Vector_impl::_Vector_impl() [166]
+[160]    0.0    0.00    0.00       2         std::allocator<double>::allocator() [160]
+                0.00    0.00       2/2           __gnu_cxx::new_allocator<double>::new_allocator() [156]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::_Vector_impl::~_Vector_impl() [167]
+[161]    0.0    0.00    0.00       2         std::allocator<double>::~allocator() [161]
+                0.00    0.00       2/2           __gnu_cxx::new_allocator<double>::~new_allocator() [157]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_base() [164]
+[162]    0.0    0.00    0.00       2         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::_Vector_impl() [162]
+                0.00    0.00       2/2           std::allocator<NumCurve>::allocator() [158]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::~_Vector_base() [165]
+[163]    0.0    0.00    0.00       2         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::~_Vector_impl() [163]
+                0.00    0.00       2/2           std::allocator<NumCurve>::~allocator() [159]
+-----------------------------------------------
+                0.00    0.00       2/2           std::vector<NumCurve, std::allocator<NumCurve> >::vector() [172]
+[164]    0.0    0.00    0.00       2         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_base() [164]
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::_Vector_impl() [162]
+-----------------------------------------------
+                0.00    0.00       2/2           std::vector<NumCurve, std::allocator<NumCurve> >::~vector() [173]
+[165]    0.0    0.00    0.00       2         std::_Vector_base<NumCurve, std::allocator<NumCurve> >::~_Vector_base() [165]
+                0.00    0.00       2/18          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_deallocate(NumCurve*, unsigned int) [119]
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::~_Vector_impl() [163]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::_Vector_base() [168]
+[166]    0.0    0.00    0.00       2         std::_Vector_base<double, std::allocator<double> >::_Vector_impl::_Vector_impl() [166]
+                0.00    0.00       2/2           std::allocator<double>::allocator() [160]
+-----------------------------------------------
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::~_Vector_base() [169]
+[167]    0.0    0.00    0.00       2         std::_Vector_base<double, std::allocator<double> >::_Vector_impl::~_Vector_impl() [167]
+                0.00    0.00       2/2           std::allocator<double>::~allocator() [161]
+-----------------------------------------------
+                0.00    0.00       2/2           std::vector<double, std::allocator<double> >::vector() [176]
+[168]    0.0    0.00    0.00       2         std::_Vector_base<double, std::allocator<double> >::_Vector_base() [168]
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::_Vector_impl::_Vector_impl() [166]
+-----------------------------------------------
+                0.00    0.00       2/2           std::vector<double, std::allocator<double> >::~vector() [177]
+[169]    0.0    0.00    0.00       2         std::_Vector_base<double, std::allocator<double> >::~_Vector_base() [169]
+                0.00    0.00       2/10          std::_Vector_base<double, std::allocator<double> >::_M_deallocate(double*, unsigned int) [142]
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::_Vector_impl::~_Vector_impl() [167]
+-----------------------------------------------
+                0.00    0.00       2/2           std::vector<NumCurve, std::allocator<NumCurve> >::clear() [171]
+[170]    0.0    0.00    0.00       2         std::vector<NumCurve, std::allocator<NumCurve> >::_M_erase_at_end(NumCurve*) [170]
+                0.00    0.00       2/52          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() [99]
+                0.00    0.00       2/20          void std::_Destroy<NumCurve*, NumCurve>(NumCurve*, NumCurve*, std::allocator<NumCurve>&) [118]
+-----------------------------------------------
+                0.00    0.00       2/2           ImageArray::~ImageArray() [195]
+[171]    0.0    0.00    0.00       2         std::vector<NumCurve, std::allocator<NumCurve> >::clear() [171]
+                0.00    0.00       2/2           std::vector<NumCurve, std::allocator<NumCurve> >::_M_erase_at_end(NumCurve*) [170]
+-----------------------------------------------
+                0.00    0.00       2/2           ImageArray::ImageArray() [194]
+[172]    0.0    0.00    0.00       2         std::vector<NumCurve, std::allocator<NumCurve> >::vector() [172]
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_base() [164]
+-----------------------------------------------
+                0.00    0.00       2/2           ImageArray::~ImageArray() [195]
+[173]    0.0    0.00    0.00       2         std::vector<NumCurve, std::allocator<NumCurve> >::~vector() [173]
+                0.00    0.00       2/52          std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() [99]
+                0.00    0.00       2/20          void std::_Destroy<NumCurve*, NumCurve>(NumCurve*, NumCurve*, std::allocator<NumCurve>&) [118]
+                0.00    0.00       2/2           std::_Vector_base<NumCurve, std::allocator<NumCurve> >::~_Vector_base() [165]
+-----------------------------------------------
+                0.00    0.00       2/2           std::vector<double, std::allocator<double> >::clear() [175]
+[174]    0.0    0.00    0.00       2         std::vector<double, std::allocator<double> >::_M_erase_at_end(double*) [174]
+                0.00    0.00       2/28          std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() [113]
+                0.00    0.00       2/12          void std::_Destroy<double*, double>(double*, double*, std::allocator<double>&) [141]
+-----------------------------------------------
+                0.00    0.00       2/2           ImageArray::~ImageArray() [195]
+[175]    0.0    0.00    0.00       2         std::vector<double, std::allocator<double> >::clear() [175]
+                0.00    0.00       2/2           std::vector<double, std::allocator<double> >::_M_erase_at_end(double*) [174]
+-----------------------------------------------
+                0.00    0.00       2/2           ImageArray::ImageArray() [194]
+[176]    0.0    0.00    0.00       2         std::vector<double, std::allocator<double> >::vector() [176]
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::_Vector_base() [168]
+-----------------------------------------------
+                0.00    0.00       2/2           ImageArray::~ImageArray() [195]
+[177]    0.0    0.00    0.00       2         std::vector<double, std::allocator<double> >::~vector() [177]
+                0.00    0.00       2/28          std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() [113]
+                0.00    0.00       2/12          void std::_Destroy<double*, double>(double*, double*, std::allocator<double>&) [141]
+                0.00    0.00       2/2           std::_Vector_base<double, std::allocator<double> >::~_Vector_base() [169]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [58]
+[178]    0.0    0.00    0.00       1         _GLOBAL__sub_I__Z22FilteredBackProjectionR10ImageArrayiPFdidE [178]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [186]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [58]
+[179]    0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN10NumSurfaceC2Ev [179]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [187]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [58]
+[180]    0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN6VolumeC2Eddd [180]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [189]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [58]
+[181]    0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN8AnaCurveC2EPFddEd [181]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [185]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [58]
+[182]    0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN9NumVolumeC2Ev [182]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [188]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [58]
+[183]    0.0    0.00    0.00       1         _GLOBAL__sub_I_main [183]
+                0.00    0.00       1/1           __static_initialization_and_destruction_0(int, int) [184]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I_main [183]
+[184]    0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [184]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN8AnaCurveC2EPFddEd [181]
+[185]    0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [185]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I__Z22FilteredBackProjectionR10ImageArrayiPFdidE [178]
+[186]    0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [186]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN10NumSurfaceC2Ev [179]
+[187]    0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [187]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN9NumVolumeC2Ev [182]
+[188]    0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [188]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN6VolumeC2Eddd [180]
+[189]    0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [189]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[190]    0.0    0.00    0.00       1         AnaSurface::AnaSurface(double (*)(double, double), double, double) [190]
+                0.00    0.00       1/2           Surface::Surface(double, double) [152]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[191]    0.0    0.00    0.00       1         AnaSurface::~AnaSurface() [191]
+                0.00    0.00       1/1           AnaSurface::~AnaSurface() [192]
+-----------------------------------------------
+                0.00    0.00       1/1           AnaSurface::~AnaSurface() [191]
+[192]    0.0    0.00    0.00       1         AnaSurface::~AnaSurface() [192]
+                0.00    0.00       1/2           Surface::~Surface() [153]
+-----------------------------------------------
+                0.00    0.00       1/1           FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[193]    0.0    0.00    0.00       1         ImageArray::GetSize() [193]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[194]    0.0    0.00    0.00       1         ImageArray::ImageArray() [194]
+                0.00    0.00       2/2           std::vector<NumCurve, std::allocator<NumCurve> >::vector() [172]
+                0.00    0.00       2/2           std::vector<double, std::allocator<double> >::vector() [176]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[195]    0.0    0.00    0.00       1         ImageArray::~ImageArray() [195]
+                0.00    0.00       2/2           std::vector<double, std::allocator<double> >::clear() [175]
+                0.00    0.00       2/2           std::vector<NumCurve, std::allocator<NumCurve> >::clear() [171]
+                0.00    0.00       2/2           std::vector<double, std::allocator<double> >::~vector() [177]
+                0.00    0.00       2/2           std::vector<NumCurve, std::allocator<NumCurve> >::~vector() [173]
+-----------------------------------------------
+                0.00    0.00       1/1           FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[196]    0.0    0.00    0.00       1         NumSurface::NumSurface(int, double, int, double) [196]
+                0.00    0.00       1/2           Surface::Surface(double, double) [152]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[197]    0.0    0.00    0.00       1         NumSurface::~NumSurface() [197]
+                0.00    0.00       1/1           NumSurface::~NumSurface() [198]
+-----------------------------------------------
+                0.00    0.00       1/1           NumSurface::~NumSurface() [197]
+[198]    0.0    0.00    0.00       1         NumSurface::~NumSurface() [198]
+                0.00    0.00       1/2           Surface::~Surface() [153]
+-----------------------------------------------
+                0.00    0.00       1/1           Bilinear::Bilinear() [203]
+[199]    0.0    0.00    0.00       1         Interpolator::Interpolator() [199]
+-----------------------------------------------
+                0.00    0.00       1/1           Bilinear::~Bilinear() [204]
+[200]    0.0    0.00    0.00       1         Interpolator::~Interpolator() [200]
+-----------------------------------------------
+                0.00    0.00       1/1           Trapezoid::Trapezoid() [205]
+[201]    0.0    0.00    0.00       1         LineIntegral::LineIntegral() [201]
+-----------------------------------------------
+                0.00    0.00       1/1           Trapezoid::~Trapezoid() [206]
+[202]    0.0    0.00    0.00       1         LineIntegral::~LineIntegral() [202]
+-----------------------------------------------
+                0.00    0.00       1/1           FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[203]    0.0    0.00    0.00       1         Bilinear::Bilinear() [203]
+                0.00    0.00       1/1           Interpolator::Interpolator() [199]
+-----------------------------------------------
+                0.00    0.00       1/1           FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [13]
+[204]    0.0    0.00    0.00       1         Bilinear::~Bilinear() [204]
+                0.00    0.00       1/1           Interpolator::~Interpolator() [200]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[205]    0.0    0.00    0.00       1         Trapezoid::Trapezoid() [205]
+                0.00    0.00       1/1           LineIntegral::LineIntegral() [201]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[206]    0.0    0.00    0.00       1         Trapezoid::~Trapezoid() [206]
+                0.00    0.00       1/1           LineIntegral::~LineIntegral() [202]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+ [178] _GLOBAL__sub_I__Z22FilteredBackProjectionR10ImageArrayiPFdidE (FilteredBackProjection.cpp) [206] Trapezoid::~Trapezoid() [10] std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_get_pointer(std::_Any_data const&) (functional)
+  [53] _GLOBAL__sub_I__ZN10ImageArrayC2Ev (ImageArray.cpp) [120] __gnu_cxx::new_allocator<NumCurve>::deallocate(NumCurve*, unsigned int) [35] std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&) (functional)
+ [179] _GLOBAL__sub_I__ZN10NumSurfaceC2Ev (NumSurface.cpp) [121] __gnu_cxx::new_allocator<NumCurve>::allocate(unsigned int, void const*) [36] std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_init_functor(std::_Any_data&, {lambda(double)#1}&&, std::integral_constant<bool, false>) (functional)
+ [180] _GLOBAL__sub_I__ZN6VolumeC2Eddd (Volume.cpp) [59] __gnu_cxx::new_allocator<NumCurve>::construct(NumCurve*, NumCurve const&) [69] bool std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_not_empty_function<{lambda(double)#1}>({lambda(double)#1} const&) (functional)
+ [181] _GLOBAL__sub_I__ZN8AnaCurveC2EPFddEd (AnaImage.cpp) [154] __gnu_cxx::new_allocator<NumCurve>::new_allocator() [34] std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_clone(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::integral_constant<bool, false>) (functional)
+ [182] _GLOBAL__sub_I__ZN9NumVolumeC2Ev (NumVolume.cpp) [155] __gnu_cxx::new_allocator<NumCurve>::~new_allocator() [66] std::_Function_base::_Function_base()
+ [183] _GLOBAL__sub_I_main (demoAna2D.cpp) [143] __gnu_cxx::new_allocator<double>::deallocate(double*, unsigned int) [21] std::_Function_base::~_Function_base()
+  [55] ArryIndexRoof(double, double*, int) [144] __gnu_cxx::new_allocator<double>::allocate(unsigned int, void const*) [67] std::unary_function<double, double>::unary_function()
+  [18] ArryIndexFloor(double, double*, int) [92] __gnu_cxx::new_allocator<double>::construct(double*, double const&) [6] std::_Function_handler<double (double), Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_invoke(std::_Any_data const&, double) (functional)
+  [13] FilteredBackProjection(ImageArray&, int, double (*)(int, double)) [156] __gnu_cxx::new_allocator<double>::new_allocator() [49] NumCurve* std::__uninitialized_copy<false>::__uninit_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*)
+  [85] double max<double>(double, double) [157] __gnu_cxx::new_allocator<double>::~new_allocator() [129] double* std::__uninitialized_copy<true>::__uninit_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*)
+ [184] __static_initialization_and_destruction_0(int, int) (demoAna2D.cpp) [103] __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::__normal_iterator(NumCurve* const&) [68] std::_Maybe_unary_or_binary_function<double, double>::_Maybe_unary_or_binary_function()
+ [185] __static_initialization_and_destruction_0(int, int) (AnaImage.cpp) [122] __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::__normal_iterator(double* const&) [47] void std::vector<NumCurve, std::allocator<NumCurve> >::_M_insert_aux<NumCurve const&>(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >, NumCurve const&)
+ [186] __static_initialization_and_destruction_0(int, int) (FilteredBackProjection.cpp) [123] __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::difference_type __gnu_cxx::operator-<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >(__gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&, __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > > const&) [170] std::vector<NumCurve, std::allocator<NumCurve> >::_M_erase_at_end(NumCurve*)
+ [187] __static_initialization_and_destruction_0(int, int) (NumSurface.cpp) [145] __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::difference_type __gnu_cxx::operator-<double*, std::vector<double, std::allocator<double> > >(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&, __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > > const&) [130] std::vector<NumCurve, std::allocator<NumCurve> >::end()
+ [188] __static_initialization_and_destruction_0(int, int) (NumVolume.cpp) [8] AnaSurface::operator()(double, double, Interpolator*) const [131] std::vector<NumCurve, std::allocator<NumCurve> >::begin()
+  [54] __static_initialization_and_destruction_0(int, int) (ImageArray.cpp) [86] Curve::GetRange() const [171] std::vector<NumCurve, std::allocator<NumCurve> >::clear()
+ [189] __static_initialization_and_destruction_0(int, int) (Volume.cpp) [25] AnaCurve::operator()(double, Interpolator*) const [45] std::vector<NumCurve, std::allocator<NumCurve> >::push_back(NumCurve const&)
+  [24] Heart(double, double, double) [15] NumCurve::operator()(double, Interpolator*) const [172] std::vector<NumCurve, std::allocator<NumCurve> >::vector()
+   [9] Circle(double, double) [100] __gnu_cxx::new_allocator<NumCurve>::max_size() const [173] std::vector<NumCurve, std::allocator<NumCurve> >::~vector()
+  [38] Hamming(int, double)  [114] __gnu_cxx::new_allocator<double>::max_size() const [32] std::vector<NumCurve, std::allocator<NumCurve> >::operator[](unsigned int)
+ [190] AnaSurface::AnaSurface(double (*)(double, double), double, double) [95] __gnu_cxx::__normal_iterator<NumCurve*, std::vector<NumCurve, std::allocator<NumCurve> > >::base() const [148] void std::vector<double, std::allocator<double> >::_M_insert_aux<double const&>(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, double const&)
+ [191] AnaSurface::~AnaSurface() [104] __gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >::base() const [174] std::vector<double, std::allocator<double> >::_M_erase_at_end(double*)
+ [192] AnaSurface::~AnaSurface() [105] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() const [149] std::vector<double, std::allocator<double> >::end()
+  [31] ImageArray::GetFilteredCurve(int) [124] std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() const [150] std::vector<double, std::allocator<double> >::begin()
+  [26] ImageArray::ConvolveWithKernal(double (*)(int, double)) [71] std::move_iterator<NumCurve*>::base() const [175] std::vector<double, std::allocator<double> >::clear()
+ [193] ImageArray::GetSize()  [81] std::move_iterator<NumCurve*>::operator*() const [93] std::vector<double, std::allocator<double> >::push_back(double const&)
+  [87] ImageArray::GetAngle(int) [106] std::move_iterator<double*>::base() const [176] std::vector<double, std::allocator<double> >::vector()
+  [61] ImageArray::GetRange() [11] std::_Function_base::_M_empty() const [177] std::vector<double, std::allocator<double> >::~vector()
+  [46] ImageArray::PushBack(double, NumCurve const&) [125] std::vector<NumCurve, std::allocator<NumCurve> >::_M_check_len(unsigned int, char const*) const [94] std::vector<double, std::allocator<double> >::operator[](unsigned int)
+ [194] ImageArray::ImageArray() [96] std::vector<NumCurve, std::allocator<NumCurve> >::size() const [29] std::function<double (double)>::function(std::function<double (double)> const&)
+ [195] ImageArray::~ImageArray() [107] std::vector<NumCurve, std::allocator<NumCurve> >::max_size() const [37] std::function<double (double)>::function<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>(Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}, std::enable_if<!(std::is_integral<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::value), std::function<double (double)>::_Useless>::type) (functional)
+  [41] NumSurface::Print()   [146] std::vector<double, std::allocator<double> >::_M_check_len(unsigned int, char const*) const [22] std::function<double (double)>::~function()
+  [56] NumSurface::GetXPtr() [108] std::vector<double, std::allocator<double> >::size() const [23] std::_Any_data::_M_access()
+ [196] NumSurface::NumSurface(int, double, int, double) [126] std::vector<double, std::allocator<double> >::max_size() const [20] Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() (functional)
+ [197] NumSurface::~NumSurface() [5] std::function<double (double)>::operator()(double) const [48] _ZSt10_ConstructI8NumCurveIS0_EEvPT_DpOT0_
+ [198] NumSurface::~NumSurface() [60] std::function<double (double)>::operator bool() const [70] NumCurve* std::__addressof<NumCurve>(NumCurve&)
+  [33] NumSurface::operator()(int, int) [17] std::_Any_data::_M_access() const [43] std::_Miter_base<double*>::iterator_type std::__miter_base<double*>(double*)
+  [30] Interpolator::set_values(int, double*, double*) [12] Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}* const& std::_Any_data::_M_access<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}*>() const (functional) [111] std::_Miter_base<std::move_iterator<double*> >::iterator_type std::__miter_base<std::move_iterator<double*> >(std::move_iterator<double*>)
+  [40] Interpolator::set_values(int, int, double*, double*, double**) [158] std::allocator<NumCurve>::allocator() [102] std::_Niter_base<double*>::iterator_type std::__niter_base<double*>(double*)
+ [199] Interpolator::Interpolator() [159] std::allocator<NumCurve>::~allocator() [132] double* std::__copy_move_a<true, double*, double*>(double*, double*, double*)
+ [200] Interpolator::~Interpolator() [160] std::allocator<double>::allocator() [133] double* std::__copy_move_a2<true, double*, double*>(double*, double*, double*)
+ [201] LineIntegral::LineIntegral() [161] std::allocator<double>::~allocator() [98] std::move_iterator<NumCurve*> std::make_move_iterator<NumCurve*>(NumCurve* const&)
+ [202] LineIntegral::~LineIntegral() [101] std::_Iter_base<double*, false>::_S_base(double*) [112] std::move_iterator<double*> std::make_move_iterator<double*>(double* const&)
+  [74] Curve::Curve(double)  [109] std::_Iter_base<std::move_iterator<double*>, true>::_S_base(std::move_iterator<double*>) [50] NumCurve* std::uninitialized_copy<std::move_iterator<NumCurve*>, NumCurve*>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*)
+  [75] Curve::~Curve()       [127] double* std::__copy_move<true, true, std::random_access_iterator_tag>::__copy_m<double>(double const*, double const*, double*) [134] double* std::uninitialized_copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*)
+  [72] Image::Image(Dimension) [116] void std::_Destroy_aux<false>::__destroy<NumCurve*>(NumCurve*, NumCurve*) [51] NumCurve* std::__uninitialized_copy_a<std::move_iterator<NumCurve*>, NumCurve*, NumCurve>(std::move_iterator<NumCurve*>, std::move_iterator<NumCurve*>, NumCurve*, std::allocator<NumCurve>&)
+  [73] Image::~Image()       [139] void std::_Destroy_aux<true>::__destroy<double*>(double*, double*) [135] double* std::__uninitialized_copy_a<std::move_iterator<double*>, double*, double>(std::move_iterator<double*>, std::move_iterator<double*>, double*, std::allocator<double>&)
+   [3] Surface::GetProjection(LineIntegral*, double, double, Interpolator*) [128] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_allocate(unsigned int) [52] NumCurve* std::__uninitialized_move_a<NumCurve*, NumCurve*, std::allocator<NumCurve> >(NumCurve*, NumCurve*, NumCurve*, std::allocator<NumCurve>&)
+   [2] Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*) [162] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::_Vector_impl() [136] double* std::__uninitialized_move_a<double*, double*, std::allocator<double> >(double*, double*, double*, std::allocator<double>&)
+  [28] Surface::Print()      [163] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_impl::~_Vector_impl() [115] unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
+ [152] Surface::Surface(double, double) [119] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_deallocate(NumCurve*, unsigned int) [137] double* std::copy<std::move_iterator<double*>, double*>(std::move_iterator<double*>, std::move_iterator<double*>, double*)
+ [153] Surface::~Surface()    [99] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_M_get_Tp_allocator() [83] std::remove_reference<NumCurve&>::type&& std::move<NumCurve&>(NumCurve&)
+  [16] Bilinear::Interpolate(double) [164] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::_Vector_base() [65] std::remove_reference<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>::type&& std::move<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}&>(std::remove_reference&&) (move.h)
+ [203] Bilinear::Bilinear()  [165] std::_Vector_base<NumCurve, std::allocator<NumCurve> >::~_Vector_base() [84] NumCurve&& std::forward<NumCurve>(std::remove_reference<NumCurve>::type&)
+ [204] Bilinear::~Bilinear() [147] std::_Vector_base<double, std::allocator<double> >::_M_allocate(unsigned int) [138] NumCurve const& std::forward<NumCurve const&>(std::remove_reference<NumCurve const&>::type&)
+  [88] NumCurve::GetSize()   [166] std::_Vector_base<double, std::allocator<double> >::_Vector_impl::_Vector_impl() [151] double const& std::forward<double const&>(std::remove_reference<double const&>::type&)
+  [89] NumCurve::GetXPtr()   [167] std::_Vector_base<double, std::allocator<double> >::_Vector_impl::~_Vector_impl() [14] double&& std::forward<double>(std::remove_reference<double>::type&)
+  [90] NumCurve::GetYPtr()   [142] std::_Vector_base<double, std::allocator<double> >::_M_deallocate(double*, unsigned int) [78] void std::_Destroy<NumCurve>(NumCurve*)
+  [44] NumCurve::NumCurve(NumCurve const&) [113] std::_Vector_base<double, std::allocator<double> >::_M_get_Tp_allocator() [117] void std::_Destroy<NumCurve*>(NumCurve*, NumCurve*)
+  [91] NumCurve::NumCurve(int, double) [168] std::_Vector_base<double, std::allocator<double> >::_Vector_base() [118] void std::_Destroy<NumCurve*, NumCurve>(NumCurve*, NumCurve*, std::allocator<NumCurve>&)
+  [42] NumCurve::~NumCurve() [169] std::_Vector_base<double, std::allocator<double> >::~_Vector_base() [140] void std::_Destroy<double*>(double*, double*)
+  [76] NumCurve::~NumCurve()  [97] std::move_iterator<NumCurve*>::move_iterator(NumCurve*) [141] void std::_Destroy<double*, double>(double*, double*, std::allocator<double>&)
+  [57] NumCurve::operator()(int) [82] std::move_iterator<NumCurve*>::operator++() [79] bool std::operator==<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&)
+  [39] NumCurve::operator[](int) [110] std::move_iterator<double*>::move_iterator(double*) [80] bool std::operator!=<NumCurve*>(std::move_iterator<NumCurve*> const&, std::move_iterator<NumCurve*> const&)
+   [4] Trapezoid::Integrate(std::function<double (double)>, double, double, double) [27] std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_destroy(std::_Any_data&, std::integral_constant<bool, false>) (functional) [7] Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}::operator()(double) const (Surface.cpp)
+ [205] Trapezoid::Trapezoid() [19] std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}>::_M_manager(std::_Any_data&, std::_Function_base::_Base_manager<Surface::GetProjectionAtAngle(LineIntegral*, double, double, Interpolator*)::{lambda(double)#1}> const&, std::_Manager_operation) (functional) [77] operator new(unsigned int, void*)
