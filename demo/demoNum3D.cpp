@@ -1,17 +1,6 @@
-#include "Image.h"
-#include "AnaImage.h"
-#include "NumCurve.h"
-#include "NumSurface.h"
-#include "NumVolume.h"
-#include "Surface.h"
 #include "Trapezoid.h"
-#include "Romberg.h"
-#include "MCIntegrator.h"
 #include "FilteredBackProjection.h"
 #include "TestFunctions.h"
-#include "globals.h"
-#include "NearestNeighborIntpl.h"
-#include "Bilinear.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

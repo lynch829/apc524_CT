@@ -1,10 +1,6 @@
-#include "Image.h"
 #include "AnaImage.h"
 #include "NumCurve.h"
-#include "NumSurface.h"
-#include "Surface.h"
 #include "Trapezoid.h"
-#include "MCIntegrator.h"
 #include "TestFunctions.h"
 #include <math.h>
 #include <stdlib.h>

@@ -29,7 +29,7 @@ RECN = ./src/FilteredBackProjection.o ./src/NumCurve.o ./src/NumSurface.o ./src/
 
 all : test demo
 
-test : testNumCurve testNumSurface testVolume test_Intpl test_Intpl2 testIntegration testInterpolation
+test : testNumCurve testNumSurface testVolume test_Intpl testIntegration testInterpolation
 
 demo : demoAna2D demoAna3D demoNum2D demoNum3D 
 
@@ -62,10 +62,6 @@ testVolume : ./test/testVolume.o ${RECN} ${GEOM} ./src/AnaImage.o ./src/TestFunc
 	@mv $@ ./bin/
 
 test_Intpl : ./test/test_Intpl.o ${RECN} ${GEOM} ./src/AnaImage.o
-	@${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
-	@mv $@ ./bin/
-
-test_Intpl2 : ./test/test_Intpl2.o ${RECN} ${GEOM} ./src/AnaImage.o
 	@${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
 	@mv $@ ./bin/
 

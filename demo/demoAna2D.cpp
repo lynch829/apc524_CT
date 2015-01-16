@@ -1,14 +1,7 @@
-#include "ImageArray.h"
 #include "AnaImage.h"
-#include "NumCurve.h"
-#include "NumSurface.h"
-#include "Surface.h"
-#include "Trapezoid.h"
 #include "FilteredBackProjection.h"
+#include "Trapezoid.h"
 #include "TestFunctions.h"
-#include "globals.h"
-#include "Interpolator.h"
-#include "Bilinear.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>

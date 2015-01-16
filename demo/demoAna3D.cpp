@@ -1,14 +1,7 @@
-#include "Image.h"
 #include "AnaImage.h"
-#include "NumCurve.h"
-#include "NumVolume.h"
-#include "Volume.h"
 #include "Trapezoid.h"
-#include "Romberg.h"
-#include "MCIntegrator.h"
-#include "FilteredBackProjection.h"
 #include "TestFunctions.h"
-#include "globals.h"
+#include "FilteredBackProjection.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
