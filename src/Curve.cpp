@@ -24,7 +24,7 @@ double Curve::GetRange() const
 }
 
 #ifdef USE_HDF
-// DO NOT include 'output/' in string 'file'.
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, Interpolator* intpl)
 {
   char fname[strlen(file)+7];
@@ -56,6 +56,7 @@ void Curve::ExportHDF(const char* file, double xmin, double xmax, const int N, I
   delete [] data;
 }
 
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void Curve::ExportHDF(const char* file)
 {
   this->ExportHDF(file,-_r,_r,100);

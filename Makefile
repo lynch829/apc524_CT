@@ -86,4 +86,3 @@ clean :
 depend:
 	${CXX} -MM ${CXXFLAGS} -I./include ./src/*.cpp > .depend
 -include .depend
-

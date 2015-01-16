@@ -10,8 +10,8 @@ using namespace std;
 int main(int argc, char* argv[]){
 #ifdef USE_HDF  
     double range = 0.5;	// range of the geometry
-    const int size= 30;	// number of view per slice
-    const int slice=27; // number of projected horizontal slice
+    const int size= 100;	// number of view per slice
+    const int slice=30; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
     const int Nres=128;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]){
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*size]<<endl;
             NumCurve gauss_tmp;
-            gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.01,height[k],intpl); //spacingr =0.1
+            gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.01,height[k],intpl); //spacingr =0.01
             array.PushBack(angle[i+k*size], height[k], gauss_tmp);
         }
     }

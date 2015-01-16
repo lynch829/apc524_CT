@@ -65,12 +65,13 @@ void Surface::Print(double xmin, double xmax, int Nx, double ymin, double ymax, 
     }
 }
 #ifdef USE_HDF
-// DO NOT include 'output/' in string 'file'.
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void Surface::ExportHDF(const char* file)
 {
     this->ExportHDF(file,-_rx,_rx,200,-_ry,_ry,200);
 }
 
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void Surface::ExportHDF(const char* file, double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, Interpolator* intpl)
 {
     char fname[strlen(file)+11];

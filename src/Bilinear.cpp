@@ -4,6 +4,7 @@
 Bilinear::Bilinear(){}	//!< Constructor for bilinear Interpolator.
 Bilinear::~Bilinear(){}	//!< Destructor for bilinear Interpolator. Free memory.
 
+//! Interpolate the one-dimensional data linearly at a given x.
 double Bilinear::Interpolate(double x)
 {
     int i0 = ArryIndexFloor(x,_xptr,_sizex);
@@ -11,7 +12,7 @@ double Bilinear::Interpolate(double x)
     int i1 = i0 +1;
     return _yptr[i0]+(_yptr[i1]-_yptr[i0])*(x-_xptr[i0])/(_xptr[_sizex-1]-_xptr[0]);
 }
-
+//! Interpolate the two-dimensional data bilinearly at given (x,y).
 double Bilinear::Interpolate(double x, double y)
 {
     int i0x = ArryIndexFloor(x,_xptr,_sizex);
@@ -31,7 +32,7 @@ double Bilinear::Interpolate(double x, double y)
     double s4 = Q22*(x-_xptr[i0x])*(y-_yptr[i0y]);
     return 1./((_xptr[i1x]-_xptr[i0x])*(_yptr[i1y]-_yptr[i0y]))*(s1+s2+s3+s4);
 }
-
+//! Interpolate the three-dimensional data trilinearly at given (x,y,z).
 double Bilinear::Interpolate(double x, double y, double z)
 {
     int i0x = ArryIndexFloor(x,_xptr,_sizex);

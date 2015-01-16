@@ -8,19 +8,21 @@
 #include <iostream>
 using namespace std;
 
+//! demoAna2D is a demo for 2D Analytical functions to do X-ray simulation and reconstruction. Five analytical functions can be chosen. They are "Batman", Gauss2D, Rectangle, Circle and Triangle. USAGE: ./bin/demoAna2D (number)
+//! number is 0~5 0: Batman, 1: Gauss2D, 2: Circle, 3: Rectangle, 4: Triangle
 int main(int argc, char* argv[]){
     
     int choice = -1;
     if (argc > 1) choice = atoi(argv[1]);
     
-    double range = 8;	// range of the geometry
-    const int size=100;	// number of view
-    const int Nres=400;// resolution/ N of point in the projected curve.
-    double angle[size];	// array containing size angles.
+    double range = 8;	//!< range of the geometry
+    const int size=100;	//!< number of view
+    const int Nres=400;//!< resolution/ N of point in the projected curve.
+    double angle[size];	//!< array containing size angles.
     
     ImageArray array;
     for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size;
-			 //  since 180 symmetry, do not include endpoint.
+			 //!<  since 180 symmetry, do not include endpoint.
     AnaSurface* gauss;
     if(choice < 0 || choice > 4){
         printf("USAGE: %s (number)\n number is 0~4\n 0: Batman, 1: Gauss2D, 2: Circle, 3: Rectangle, 4: Triangle\n",argv[0]);
@@ -32,10 +34,10 @@ int main(int argc, char* argv[]){
     if(choice == 2) gauss = new AnaSurface (Circle, range, range);
     if(choice == 3) gauss = new AnaSurface (Rectangle, range, range);
     if(choice == 4) gauss = new AnaSurface (Triangle, range, range);
-			 // a 2D function.
+			 //!< a 2D function.
     LineIntegral* l;
-    Trapezoid t; l = &t;	// integ. method
-    NumSurface *sf;	// Num Surf to contain reconstructed result.
+    Trapezoid t; l = &t;	//!< integ. method
+    NumSurface *sf;	//!< Num Surf to contain reconstructed result.
     
     for(int i=0; i<size; i++){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
@@ -43,7 +45,7 @@ int main(int argc, char* argv[]){
     }
     sf = (FilteredBackProjection(array,Nres,Hamming));
 #ifdef USE_HDF
-    sf->ExportHDF("out2D.h5");
+    sf->ExportHDF("outAna2D.h5");
 #endif
     delete sf;
     delete gauss;
