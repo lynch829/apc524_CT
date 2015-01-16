@@ -16,7 +16,7 @@ Volume::~Volume(){}
 void Volume::SetRange(double rx, double ry, double rz)
 {
     _rx = rx; _ry = ry; _rz = rz;
-    _r = sqrt(_rx*_rx+_ry*_ry+_rz*_rz);
+    _r = sqrt(_rx*_rx+_ry*_ry);
 }
 
 double Volume::GetRangeX() const { return _rx; }
@@ -38,15 +38,15 @@ NumCurve Volume::GetProjection(LineIntegral* l, double angle, double spacing, do
     double *x = ret.GetXPtr();
     double *y = ret.GetYPtr();
     
-    for(int i=0; i < N; i++)
+    for(int i=0; i < N; i++){
         y[i] = this->GetProjectionAtAngle(l,angle,x[i],z,intpl);
+         }
     return ret;
 }
 
 //!< Returns the projection at a certain angle, distance and height.
-double Volume::GetProjectionAtAngle(LineIntegral* l, double angle_arg, double d, double z, Interpolator* intpl)
+double Volume::GetProjectionAtAngle(LineIntegral* l, double angle, double d, double z, Interpolator* intpl)
 {
-    double angle = angle_arg-pi/2;
     double ri = sqrt(_r*_r-d*d);
 		//!< t goes from -range to +range
     std::function<double (double)> fptr = [angle,d,z,ri,intpl,this](double t) -> double

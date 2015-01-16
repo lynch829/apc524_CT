@@ -20,11 +20,11 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    double range = 2;	// range of the geometry
-    const int size= 2;	// number of view per slice
-    const int slice=4; // number of projected horizontal slice
+    double range = .5;	// range of the geometry
+    const int size= 50;	// number of view per slice
+    const int slice=27; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
-    const int Nres=5;// resolution/ N of point in the projected curve.
+    const int Nres=200;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.
     double height[slice]; // array containing height.
     double spacingz; // distance between each projected horizontal slice.
@@ -39,7 +39,7 @@ int main(int argc, char* argv[]){
 } //  since 180 symmetry, do not include endpoint.
     Volume* heart = new AnaVolume (Heart, range, range, range);
 			 // a 3D function.
-    NumVolume* gauss = new NumVolume(80,80,80,*heart);
+    NumVolume* gauss = new NumVolume("output/brain.h5");
     NumVolume a = *gauss;
     Bilinear intpl_nnb;
     cerr << "run1"<<endl;
@@ -82,11 +82,11 @@ int main(int argc, char* argv[]){
     //sf.Print();	// print out the result.
     cerr<<"done printing"<<endl;
 #ifdef USE_HDF
-    sf.ExportHDF("output/heart_dense.h5");
+    sf.ExportHDF("brain_rec.h5");
     cerr<<"doneHDF"<<endl;
-    sf.ExportHDF("HeartNum.h5");
 #endif
     delete gauss;delete heart;
     return 0;
 }
+
 
