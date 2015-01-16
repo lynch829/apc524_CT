@@ -21,4 +21,8 @@ T min(T a, T b){return a<b?a:b;}
 
 double Hamming(int , double);		//!< Default convolution kernal used by filtered back-projection.
 
+int ArryIndexFloor(double x, double* array, int size);
+				//!< Find the floor index number of the double in the given array.
+int ArryIndexRoof(double x, double* array, int size);
+				//!< Find the roof index number of the double in the given array.
 #endif
