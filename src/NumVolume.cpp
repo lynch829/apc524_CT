@@ -367,8 +367,10 @@ double*** NumVolume::GetWPtr()
 #ifdef USE_HDF
 // DO NOT include 'output/' in string 'file'.
 
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void NumVolume::ExportHDF(const char* file, double xi, double xf, int Nx, double yi, double yf, int Ny){}
 
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
 void NumVolume::ExportHDF(const char* file)
 {
     char fname[strlen(file)+11];
@@ -442,7 +444,7 @@ fprintf(xmf, "       <DataItem Dimensions=\"%d %d %d\" NumberType=\"Float\" Prec
     fclose(xmf);
 }
 
-// Constructor from a HDF5 file.
+//! Constructor from a HDF5 file.
 NumVolume::NumVolume(const char* file): Volume(0, 0, 0)
 {
 // Open target file, which needs to be in the same format as the exported .h5 file: Number of grids as attributes. Coodrinates as 1D arrays since the mesh is rectilinear. Data as 3D array.

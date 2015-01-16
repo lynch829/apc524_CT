@@ -155,7 +155,10 @@ void NumCurve::Print()
     for(int i=0; i<_size; i++) printf("%.9f %.9f\n",_datax[i],_datay[i]);
 }
 #ifdef USE_HDF
-// DO NOT include 'output/' in string 'file'.
+
+//! Export data to HDF5 file. DO NOT include 'output/' in string 'file'.
+void ExportHDF(const char*, double,double,int){}
+
 void NumCurve::ExportHDF(const char* file)
 {
     char fname[strlen(file)+7];
@@ -173,7 +176,7 @@ void NumCurve::ExportHDF(const char* file)
     status = H5LTmake_dataset_double(file_id,"/data",Dim1,dims,_datay);
     status = H5Fclose(file_id);
 }
-// Constructor from a HDF5 file.
+//! Constructor from a HDF5 file.
 NumCurve::NumCurve(const char* file): Curve(0)
 {
 // Open target file, which needs to be in consistent format as the exported .h5 file: Number of grids as attribute. Coodrinates and data as 1D arrays. 
