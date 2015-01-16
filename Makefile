@@ -80,6 +80,7 @@ testInterpolation : ./test/testInterpolation.o ./src/globals.o
 clean :
 	-@rm -f ./src/*.o > /dev/null 2>&1
 	-@rm -f ./test/*.o > /dev/null 2>&1
+	-@rm -f ./demo/*.o > /dev/null 2>&1
 	-@rm -f .depend > /dev/null 2>&1
 
 .PHONY : depend
