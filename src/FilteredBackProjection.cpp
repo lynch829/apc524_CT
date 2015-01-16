@@ -1,4 +1,5 @@
 #include "FilteredBackProjection.h"
+#include "Bilinear.h"
 #include "globals.h"
 #include <math.h>
 #include <stdio.h>
@@ -8,7 +9,7 @@ NumSurface* FilteredBackProjection( ImageArray& array, int Nres, double (*kernal
 {
     //! Nres is the resolution for the reconstructed surface.
     const double range = array.GetRange();
-
+    Bilinear bilin;
     array.ConvolveWithKernal(kernal);	// Array filters each curve with the kernal.
     std::cerr<<"FBP: Convolution done."<<std::endl;
     NumSurface* rec = new NumSurface(Nres,range,Nres,range);	// NumSurface to store the reconstructed obj.
@@ -23,7 +24,7 @@ NumSurface* FilteredBackProjection( ImageArray& array, int Nres, double (*kernal
                 double y = -range + j*2*range/(Nres-1);
                 double t = x*cos(angle) + y*sin(angle);	// Distance from (x,y) to origin at angle ll.
                 //std::cerr<<"t is."<< t <<" "<<i<<" "<<j<< "range is "<< range<<std::endl;
-                (*rec)(i,j) += (array.GetFilteredCurve(ll))(t,0)*pi/Nangle; // Superpose all values, assuming uniform grid.
+                (*rec)(i,j) += (array.GetFilteredCurve(ll))(t,&bilin)*pi/Nangle; // Superpose all values, assuming uniform grid.
             }
         }
         std::cerr<<"running" <<std::endl;

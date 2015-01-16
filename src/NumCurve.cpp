@@ -118,20 +118,8 @@ NumCurve::~NumCurve()
 
 double NumCurve::operator()(double x, Interpolator* intpl) const
 {
-
-    if(intpl==0){
-        double d = 2*_r/(_size-1);
-        int i0 = int((x+_r)/d);	// recall An = A0 + i*d
-        int i1 = i0 +1;
-        while ( i1 < _size && x > _datax[i1] ) {i0++;i1++;}
-        while ( i0>=0 && x < _datax[i0]) {i0--;i1--;}	// move interval to match with given point.
-        if ( i1>_size-1 || i0 < 0 ) return 0;
-        else return _datay[i0]+(_datay[i1]-_datay[i0])*(x-_datax[i0])/d;
-    }
-
-    else{
-	return 0;
-}
+    intpl->set_values(_size,_datax,_datay);
+    return intpl->Interpolate(x);
 }
 
 double& NumCurve::operator[](int index)

@@ -1,7 +1,18 @@
 #include "Bilinear.h"
+#include "globals.h"
 
 Bilinear::Bilinear(){}	//!< Constructor for bilinear Interpolator.
 Bilinear::~Bilinear(){}	//!< Destructor for bilinear Interpolator. Free memory.
+
+double Bilinear::Interpolate(double x)
+{
+    if(x>_xptr[_sizex] || x<_xptr[0]) return 0;
+    int i0 = ArryIndexFloor(x,_xptr,_sizex);
+    if(i0==_sizex-1) return 0;
+    int i1 = i0 +1;
+    if ( i1>_sizex-1 || i0 < 0 ) return 0;
+    else return _yptr[i0]+(_yptr[i1]-_yptr[i0])*(x-_xptr[i0])/(_xptr[_sizex-1]-_xptr[0]);
+}
 
 double Bilinear::Interpolate(double x, double y)
 {

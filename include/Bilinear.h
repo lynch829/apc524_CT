@@ -12,6 +12,7 @@ class Bilinear : public Interpolator {
 public:
     Bilinear ();
     ~Bilinear ();
+    double Interpolate(double x);
     double Interpolate(double x, double y);
     double Interpolate(double x, double y, double z);
 		//!< Implements the virtual method of class Interpolator.

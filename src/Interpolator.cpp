@@ -13,6 +13,16 @@ Interpolator::~Interpolator(){}
 
 //! Set necessary values for interpolator. This method is called before interpolation is performed.
 //! Interpolator has access to the private data of respective classes, and access that information idrectly through pointers.
+//! This is for 1D.
+void Interpolator::set_values(int sizex, double* xptr, double* vptr) 
+{ 
+    _xptr = xptr;
+    _yptr = vptr;
+    _sizex = sizex;
+}
+
+//! Set necessary values for interpolator. This method is called before interpolation is performed.
+//! Interpolator has access to the private data of respective classes, and access that information idrectly through pointers.
 //! This is for 2D.
 void Interpolator::set_values(int sizex, int sizey, double* xptr, double* yptr, double** vptr) 
 { 
