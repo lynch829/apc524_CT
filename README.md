@@ -65,3 +65,12 @@ Besides, all the derived classes of Image also have a constructor from reading i
     - ./demo/    contains codes for demonstrating usage of this software.
     - ./output/  default location for exporting HDF5 files.
     - ./bin/     binary executable files produced by make.
+
+### Demostration Usage
+
+* demoAna2D: demoAna2D is a demo for 2D Analytical functions to do X-ray simulation and reconstruction. Five analytical functions can be chosen. They are "Batman", Gauss2D, Rectangle, Circle and Triangle. Output is located in the directory ./output/outAna2D.h5.
+   * USAGE: ./bin/demoAna2D (number).  number is 0~5 0: Batman, 1: Gauss2D, 2: Circle, 3: Rectangle, 4: Triangle
+* demoAna3D: demoAna3D is a demo for 3D analytical functions to do X-ray simulation and reconstruction. Four analytical functions can be chosen. They are Gauss3D, heart, sphere, cube. Output is located in the directory ./output/outAna2D.h5.
+   * USAGE: ./bin/demoAna3D (number). number is 0~3 0: Gauss3D, 1: Heart, 2: Sphere, 3: Cube
+* demoNum2D: This demo loads a hdf5 file from external sources and output a numerical surface that is the reconstructed image of the origin one. If input from command line is 1, then the default image spine.h5 will be loaded. If input from command line is the path of a hdf5 file specified by the user, then the user-specified file will be loaded. File name of output of this demo is outNum2D.h5.
+* demoNum3D: This demo loads a hdf5 file from external sources and output a numerical volume that is the reconstructed image of the origin one. If input from command line is 1, then the default image spine.h5 will be loaded. If input from command line is the path of a hdf5 file specified by the user, then the user-specified file will be loaded. File name of output of this demo is outNum3D.h5.
