@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
         object=NumSurface("./input/spine.h5");
     }
     else{
-        object=NumSurface(argv[1]);    //argv[1] is the path of the input file. e.g. argv[1]="./output/Spine.h5"
+        object=NumSurface(argv[1]);    //argv[1] is the path of the input file. e.g. argv[1]="./input/spine.h5"
     }
     
     NumSurface* gauss = &object;

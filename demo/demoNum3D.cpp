@@ -43,7 +43,7 @@ int main(int argc, char* argv[]){
         object=NumVolume("./input/brain.h5");
     }
     else{
-        object=NumVolume(argv[1]);    //argv[1] is the path of the input file. e.g. argv[1]="./output/Spine.h5"
+        object=NumVolume(argv[1]);    //argv[1] is the path of the input file. e.g. argv[1]="./input/brain.h5"
     }
     NumVolume* gauss = &object;
     Bilinear intpl_nnb;
