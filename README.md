@@ -78,7 +78,11 @@ Besides, all the derived classes of Image also have a constructor from reading i
 ### WRITING YOUR OWN CODE
 
 Computing tomography consists of three plus one steps:
-1. Creating the geometry/scalar field you want to study.
-2. Call GetProjection method on the scalar field you have created, and push the result NumCurves into a, ImageArray.
-3. Call FilteredBackProjection() on the ImageArray object which stores projection. This method will return the final 2D/3D reconstructed field.
-4. On the reconstructed object, Print() will print the field values to stdout; alternatively one can call ExportHDF to store the reconsrtucted field in a .h5 file.
+
+  1. Creating the geometry/scalar field you want to study.
+
+  2. Call GetProjection method on the scalar field you have created, and push the result NumCurves into a, ImageArray.
+
+  3. Call FilteredBackProjection() on the ImageArray object which stores projection. This method will return the final 2D/3D reconstructed field.
+  
+  4. On the reconstructed object, Print() will print the field values to stdout; alternatively one can call ExportHDF to store the reconsrtucted field in a .h5 file.
