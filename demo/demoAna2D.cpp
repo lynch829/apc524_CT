@@ -32,10 +32,11 @@ int main(int argc, char* argv[]){
     for(int i=0;i<size;i++) angle[i] = 0 + i*pi/size;
 			 //  since 180 symmetry, do not include endpoint.
     AnaSurface* gauss;
-    if(choice == -1){
+    if(choice < 0 || choice > 4){
         printf("USAGE: %s (number)\n number is 0~4\n 0: Batman, 1: Gauss2D, 2: Circle, 3: Rectangle, 4: Triangle\n",argv[0]);
         return -1;
     }
+
     if(choice == 0) gauss = new AnaSurface (Batman, range, range);
     if(choice == 1) gauss = new AnaSurface (Gauss2D, range, range);
     if(choice == 2) gauss = new AnaSurface (Circle, range, range);
