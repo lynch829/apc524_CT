@@ -74,3 +74,11 @@ Besides, all the derived classes of Image also have a constructor from reading i
    * USAGE: ./bin/demoAna3D (number). number is 0~3 0: Gauss3D, 1: Heart, 2: Sphere, 3: Cube
 * demoNum2D: This demo loads a hdf5 file from external sources and output a numerical surface that is the reconstructed image of the origin one. If input from command line is 1, then the default image spine.h5 will be loaded. If input from command line is the path of a hdf5 file specified by the user, then the user-specified file will be loaded. File name of output of this demo is outNum2D.h5. The final image is an image of spine from MATLAB Gallery.
 * demoNum3D: This demo loads a hdf5 file from external sources and output a numerical volume that is the reconstructed image of the origin one. If input from command line is 1, then the default image brain.h5 will be loaded. If input from command line is the path of a hdf5 file specified by the user, then the user-specified file will be loaded. File name of output of this demo is outNum3D.h5. The final 3D image is a human brain MRI image from MATLAB Gallery.
+
+### WRITING YOUR OWN CODE
+
+Computing tomography consists of three plus one steps:
+1. Creating the geometry/scalar field you want to study.
+2. Call GetProjection method on the scalar field you have created, and push the result NumCurves into a, ImageArray.
+3. Call FilteredBackProjection() on the ImageArray object which stores projection. This method will return the final 2D/3D reconstructed field.
+4. On the reconstructed object, Print() will print the field values to stdout; alternatively one can call ExportHDF to store the reconsrtucted field in a .h5 file.
