@@ -24,13 +24,13 @@ double Volume::GetRangeY() const { return _ry; }
 double Volume::GetRangeZ() const { return _rz; }
 double Volume::GetRadius() const { return _r; }
 
-//!< This is the integration step size. For Romberg method this is the precision.
+//! This is the integration step size. For Romberg method this is the precision.
 void Volume::SetIntegralStep(double epsilon)
 {
     _step = epsilon;
 }
 
-//!< Returns projection curve at a particular angle and height.
+//! Returns projection curve at a particular angle and height.
 NumCurve Volume::GetProjection(LineIntegral* l, double angle, double spacing, double z, Interpolator* intpl)
 {
     int N = int(2*_r/spacing)+1;
@@ -44,7 +44,7 @@ NumCurve Volume::GetProjection(LineIntegral* l, double angle, double spacing, do
     return ret;
 }
 
-//!< Returns the projection at a certain angle, distance and height.
+//! Returns the projection at a certain angle, distance and height.
 double Volume::GetProjectionAtAngle(LineIntegral* l, double angle, double d, double z, Interpolator* intpl)
 {
     double ri = sqrt(_r*_r-d*d);
@@ -57,11 +57,11 @@ double Volume::GetProjectionAtAngle(LineIntegral* l, double angle, double d, dou
     return l->Integrate(fptr, 0 , 2*ri, _step);
 }
 
-//!< Default print method, will call overloaded print method.
+//! Default print method, will call overloaded print method.
 void Volume::Print()
 { this->Print(-_rx,_rx,200,-_ry,_ry,200,0.0); }
 
-//!< Print the volume information in the range specified.
+//! Print the volume information in the range specified.
 void Volume::Print(double xmin, double xmax, int Nx, double ymin, double ymax, int Ny, double z, Interpolator* intpl)
 {
     double stepx = (xmax-xmin)/Nx; double stepy = (ymax-ymin)/Ny;

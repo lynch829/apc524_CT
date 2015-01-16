@@ -48,7 +48,7 @@ void ImageArray::PushBack(double a, const NumCurve& c)
     _size++;
 }
 
-void ImageArray::PushBack(double a, double h, const NumCurve& c) //PushBack method for 3D objects.Note that _size will be the total number of NumCurves in the whole 3D domain.
+void ImageArray::PushBack(double a, double h, const NumCurve& c) //!< PushBack method for 3D objects.Note that _size will be the total number of NumCurves in the whole 3D domain.
 {
     _curve.push_back(c);
     _filtered.push_back(c);
@@ -111,8 +111,8 @@ void ImageArray::ConvolveWithKernal(double (*kernal)(int,double))
     double _ran = this->GetRange();
     for(int i=0;i<_size;i++){
         int Npt = _curve[i].GetSize();
-        double tau = 2*_ran/(Npt-1);			// Nyquist frequency
-        for(int j=0;j<Npt;j++){		// beginning convolution.
+        double tau = 2*_ran/(Npt-1);			//!< Nyquist frequency
+        for(int j=0;j<Npt;j++){		//!< beginning convolution.
             _filtered[i][j] = 0;
             for(int k=j-Npt+1;k<j+1;k++)
                 _filtered[i][j] += tau * kernal(k,tau)*(_curve[i])[j-k];
