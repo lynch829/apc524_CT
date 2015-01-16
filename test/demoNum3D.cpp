@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, char* argv[]){
     
     double range = 0.5;	// range of the geometry
-    const int size= 30;	// number of view per slice
+    const int size= 50;	// number of view per slice
     const int slice=27; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
     const int Nres=128;// resolution/ N of point in the projected curve.
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
     
     NumVolume object;
     if (argc == 1){
-        object=NumVolume("./output/Brain.h5");
+        object=NumVolume("./input/brain.h5");
     }
     else{
         object=NumVolume(argv[1]);    //argv[1] is the path of the input file. e.g. argv[1]="./output/Spine.h5"
@@ -67,7 +67,8 @@ int main(int argc, char* argv[]){
     sf = *(FilteredBackProjection3D(array,Nres,Hamming));
     cerr<<"Done running FBP3D"<<endl;
 #ifdef USE_HDF
-    sf.ExportHDF("out.h5");
+// File will automatically be stored in output directory
+    sf.ExportHDF("out3D.h5");
     cerr<<"doneHDF"<<endl;
 #endif
     return 0;

@@ -54,7 +54,7 @@ int main(int argc, char* argv[]){
         cerr<<"Projecting at height "<<height[k]<<endl;
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*size]<<endl;
-            array.PushBack(angle[i+k*size], height[k], gauss->GetProjection(l,angle[i+k*size],0.1,height[k]));
+            array.PushBack(angle[i+k*size], height[k], gauss->GetProjection(l,angle[i+k*size],0.01,height[k]));
         }
     }
     sf = *(FilteredBackProjection3D(array,Nres,Hamming));
