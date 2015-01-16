@@ -50,7 +50,8 @@ int main(int argc, char* argv[]){
     sf = (FilteredBackProjection(array,Nres,Hamming));
     // filtered back-projection
 // The file will automatically be stored in the output directory
-    sf.ExportHDF("out2D.h5");
+    sf->ExportHDF("out2D.h5");
+    delete sf;
 #else
     fprintf(stderr,"This demo requires HDF5 libraries. Please enable them by\n");
     fprintf(stderr,"\n\t\tmake USE_HDF=1\n\n");
