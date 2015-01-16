@@ -37,5 +37,6 @@ int ArryIndexRoof(double x, double* array, int size)
 {
     int indx = ArryIndexFloor(x,array,size);
     if(indx<size-1) return indx+1;
+    else return -1;
 }
 
