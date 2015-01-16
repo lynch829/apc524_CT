@@ -42,6 +42,7 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
     const double rangeZ = array.GetRangeZ(); // This is the maximum domain height.
     //std::cerr << "range is " << range <<std::endl;
     //std::cerr << "rangeZ is " << rangeZ<<std::endl;
+    Bilinear bilin;
 
     int Nslice = array.GetSlice(); // Nslice is the slice number of horizontal slice.
     std::cerr << "FBP: Nslice is " << Nslice<<std::endl;
@@ -70,7 +71,7 @@ NumVolume* FilteredBackProjection3D( ImageArray& array, int Nres,double (*kernal
                     double y = -range + j*2*range/(Nres-1);
                     double t = x*cos(angle) + y*sin(angle);	// distance to origin for angle ll.
                     NumCurve temp_Curve = (array.GetFilteredCurve(ll+k*NviewPerslice));
-                    sum[i][j] += (temp_Curve)(t,0)*pi/NviewPerslice;
+                    sum[i][j] += (temp_Curve)(t,&bilin)*pi/NviewPerslice;
                 } // i loop
             }// j loop
         }    // ll loop
