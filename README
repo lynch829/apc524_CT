@@ -1,9 +1,0 @@
-VISUALIZATION
-
-All the derived classes of Image (Curve & NumCurve, Surface & NumSurface, Volume & NumVolume) are equipped with a method named ExportHDF. When the method is called, the data in the class is saved into a designated HDF5 file in directory 'output'. The file includes 1D arrays (/x, /y, & /z, depending on dimension) storing the coordinates of the rectilinear mesh, and array /data storing the value at each node.
-
-A few sample python scripts can also be found in the output directory to visualize the output data (plotCurve.py, plotSurface.py, & movieVolume.py). Note that movieVolume.py requires codec (such as FFMpeg) to save the movie. Example usage: "python plotCurve.py Curve.h5".
-
-When exporting HDF5 files from 2D and 3D Images, a XDMF file is also generated in the output directory to enable reading and visualizing with VisIt (visit.llnl.gov). In VisIt, simply open the .xmf file with format Xdmf and draw contour, pseudocolor, etc.  
-
-Besides, all the derived classes of Image also have a constructor from reading in data from a HDF5 file that has the same "flavor" as the output file.

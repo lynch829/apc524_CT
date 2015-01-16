@@ -1,4 +1,3 @@
-#ifdef USE_HDF
 #include "Image.h"
 #include "AnaImage.h"
 #include "NumCurve.h"
@@ -20,7 +19,7 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-    
+#ifdef USE_HDF
     double range = .5;	// range of the geometry
     const int size=100;	// number of view
     const int Nres=400;// resolution/ N of point in the projected curve.
@@ -51,8 +50,11 @@ int main(int argc, char* argv[]){
     sf = (FilteredBackProjection(array,Nres,Hamming));
     // filtered back-projection
 // The file will automatically be stored in the output directory
-    sf->ExportHDF("out2D.h5");
-    delete sf;
+    sf.ExportHDF("out2D.h5");
+#else
+    fprintf(stderr,"This demo requires HDF5 libraries. Please enable them by\n");
+    fprintf(stderr,"\n\t\tmake USE_HDF=1\n\n");
+#endif
     return 0;
 }
-#endif
+

@@ -14,20 +14,19 @@ int ArryIndexFloor(double x, double* array, int size)
 {
 
     int indx = int((size-1)*((x-array[0])/(array[size-1]-array[0])));
-    if(indx>size-1){
-        fprintf(stderr,"Error: index %d is already at the end.\n",indx);
+    if(indx>=size-1){
+//        fprintf(stderr,"Error: index %d is already at the end.\n",indx);
         return -1;
     }
     else if(indx<0){
-        fprintf(stderr,"Error: index %d is below 0.\n",indx);
+//        fprintf(stderr,"Error: index %d is below 0.\n",indx);
         return -2;
     }
-    if(indx==size-1)
-        return indx;
     if(x>=array[indx] && x<array[indx+1]){
         return indx;
     }
     else{
+//    the following two line for considering non-equally spaced arrays.
 //        while(indx>0 && x>array[indx+1]) indx--;
 //        while(indx<size-1 && x<array[indx]) indx++;
         return -1;
