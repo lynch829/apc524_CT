@@ -1,3 +1,4 @@
+#ifdef USE_HDF
 #include "Image.h"
 #include "AnaImage.h"
 #include "NumCurve.h"
@@ -66,11 +67,10 @@ int main(int argc, char* argv[]){
     cerr<<"running FBP3D"<<endl;
     sf = *(FilteredBackProjection3D(array,Nres,Hamming));
     cerr<<"Done running FBP3D"<<endl;
-#ifdef USE_HDF
 // File will automatically be stored in output directory
     sf.ExportHDF("out3D.h5");
     cerr<<"doneHDF"<<endl;
-#endif
     return 0;
 }
+#endif
 

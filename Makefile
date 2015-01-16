@@ -14,12 +14,13 @@ INC_DIR=./include/
 SRC_DIR=./src/
 TEST_DIR=./test/
 
-.PHONY: test demo
-test : demoBatman testSBP testNumCurve testNumSurface testVolume testSBP3D test_Intpl test_Intpl2 testNumSBP3D
+all : test demo testIntegration
+
+test : testSBP testNumCurve testNumSurface testVolume testSBP3D test_Intpl test_Intpl2 testNumSBP3D
 
 demo : demoAna2D demoAna3D demoNum2D demoNum3D 
 
-demo% : ./test/demo%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
+demo% : ./demo/demo%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 	${CXX} ${CXX_FLAGS} ${INCLUDE} $^ ${LINKER} ${LIBS} -o $@
 	@chmod +x $@
 	@mv $@ ./bin/
@@ -31,16 +32,17 @@ test% : ./test/test%.o $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
 
 %.o : %.cpp
 	${CXX} ${CXX_FLAGS} ${INCLUDE} -c $< -o $@
+
 testIntegration : ./test/testIntegration.o $(integrators)
 	$(CXX) -o $@ $^
 	@mv $@ ./bin/
 
-.PHONY : clean
 clean :
 	@for i in `ls ${SRC_DIR}*.o`; do rm ${i}; done
 	@for i in `ls ${TEST_DIR}*.o`; do rm ${i}; done
 
-.PHONY : depend
 depend:
 	${CXX} -MM ${CXXFLAGS} -I./include ./src/*.cpp > .depend
 -include .depend
+
+.PHONY : depend all clean test demo testIntegration

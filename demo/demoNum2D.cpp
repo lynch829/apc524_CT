@@ -1,3 +1,4 @@
+#ifdef USE_HDF
 #include "Image.h"
 #include "AnaImage.h"
 #include "NumCurve.h"
@@ -49,9 +50,8 @@ int main(int argc, char* argv[]){
     }
     sf = *(FilteredBackProjection(array,Nres,Hamming));
     // filtered back-projection
-#ifdef USE_HDF
 // The file will automatically be stored in the output directory
     sf.ExportHDF("out2D.h5");
-#endif
     return 0;
 }
+#endif
