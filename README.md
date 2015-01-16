@@ -6,6 +6,7 @@
 
 X-ray computed tomography, or simply CT, is a technique for non-invasive imaging through objects. With appropriate reconstruction algorithm, two/three dimensional cross-sectional images can be obtained from multiple projections along different directions.
 This software is capable of simulating such process: generating test objects, forming projections, reconstruction and visualization.
+The final report is in the folder ./final/ as a PDF file. The ./final/ folder also contains two movies in case one's laptop is not equipted with ffmpeg to make movies.
 
 ### Description of the Software
 
