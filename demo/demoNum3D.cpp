@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <iostream>
 using namespace std;
-//! This demo loads a hdf5 file from external sources and output a numerical volume that is the reconstructed image of the origin one. If input from command line is 1, then the default image spine.h5 will be loaded. If input from command line is the path of a hdf5 file specified by the user, then the user-specified file will be loaded. File name of output of this demo is outNum3D.h5.
+//! This demo loads a hdf5 file from external sources and output a numerical volume that is the reconstructed image of the origin one. If input from command line is 1, then the default image brain.h5 will be loaded. If input from command line is the path of a hdf5 file specified by the user, then the user-specified file will be loaded. File name of output of this demo is outNum3D.h5.
 
 int main(int argc, char* argv[]){
 #ifdef USE_HDF  

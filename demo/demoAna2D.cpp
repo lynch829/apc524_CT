@@ -42,10 +42,13 @@ int main(int argc, char* argv[]){
     for(int i=0; i<size; i++){
         cerr<<"Projecting at angle "<< angle[i]<<endl;
         array.PushBack(angle[i], gauss->GetProjection(l,angle[i],0.1));
+			//!< Fill the ImageArray with projections from different angles.
     }
     sf = (FilteredBackProjection(array,Nres,Hamming));
+			//!< Performing backprojection with Nres points and Hamming kernal.
 #ifdef USE_HDF
     sf->ExportHDF("outAna2D.h5");
+			//!< If HDF5 is defined, export it to file.
 #endif
     delete sf;
     delete gauss;
