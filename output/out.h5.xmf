@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="2.0">
+ <Domain>
+   <Grid Name="mesh" GridType="Uniform">
+     <Topology TopologyType="3DRectMesh" NumberOfElements="27 128 128"/>
+     <Geometry GeometryType="VXVYVZ">
+       <DataItem Dimensions="128" NumberType="Float" Precision="4" Format="HDF">
+        out.h5:/x
+       </DataItem>
+       <DataItem Dimensions="128" NumberType="Float" Precision="4" Format="HDF">
+        out.h5:/y
+       </DataItem>
+       <DataItem Dimensions="27" NumberType="Float" Precision="4" Format="HDF">
+        out.h5:/z
+       </DataItem>
+     </Geometry>
+     <Attribute Name="data" AttributeType="Scalar" Center="Node">
+       <DataItem Dimensions="27 128 128" NumberType="Float" Precision="4" Format="HDF">
+        out.h5:/data
+       </DataItem>
+     </Attribute>
+   </Grid>
+ </Domain>
+</Xdmf>

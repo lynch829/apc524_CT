@@ -20,11 +20,11 @@ using namespace std;
 
 int main(int argc, char* argv[]){
     
-    double range = 2;	// range of the geometry
+    double range = 0.5;	// range of the geometry
     const int size= 30;	// number of view per slice
-    const int slice=50; // number of projected horizontal slice
+    const int slice=27; // number of projected horizontal slice
     const int sizeT = size*slice; // total number of view
-    const int Nres=50;// resolution/ N of point in the projected curve.
+    const int Nres=128;// resolution/ N of point in the projected curve.
     double angle[sizeT]; // array containing sizeT angles.
     double height[slice]; // array containing height.
     double spacingz; // distance between each projected horizontal slice.
@@ -46,7 +46,6 @@ int main(int argc, char* argv[]){
         object=NumVolume(argv[1]);    //argv[1] is the path of the input file. e.g. argv[1]="./output/Spine.h5"
     }
     NumVolume* gauss = &object;
-    NumVolume a = *gauss;
     Bilinear intpl_nnb;
     Interpolator* intpl = &intpl_nnb;
     
@@ -59,7 +58,7 @@ int main(int argc, char* argv[]){
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*size]<<endl;
             NumCurve gauss_tmp;
-            gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.1,height[k],intpl); //spacingr =0.1
+            gauss_tmp = gauss->GetProjection(l,angle[i+k*size],0.01,height[k],intpl); //spacingr =0.1
             array.PushBack(angle[i+k*size], height[k], gauss_tmp);
 
         }
@@ -68,9 +67,8 @@ int main(int argc, char* argv[]){
     sf = *(FilteredBackProjection3D(array,Nres,Hamming));
     cerr<<"Done running FBP3D"<<endl;
 #ifdef USE_HDF
-    sf.ExportHDF("output/out.h5");
-    cerr<<"doneHDF"<<endl;
     sf.ExportHDF("out.h5");
+    cerr<<"doneHDF"<<endl;
 #endif
     return 0;
 }

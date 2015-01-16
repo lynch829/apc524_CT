@@ -24,6 +24,7 @@ double Surface::GetRangeY() const { return _ry; }
 double Surface::GetRange() const { return _r; }
 
 NumCurve Surface::GetProjection(LineIntegral* l, double angle, double spacing, Interpolator* intpl){
+    printf("r %f\n",_r);
     int N = int(2*_r/spacing)+1;
     NumCurve ret(N,_r);
     double *x = ret.GetXPtr();

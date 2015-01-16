@@ -11,7 +11,6 @@
   This class implements the Surface abstract class with numerical points. The values are obtained by interpolation.
 */
 
-class Interpolator;
 class NumVolume: public Volume{
 
 public:

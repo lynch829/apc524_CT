@@ -5,6 +5,7 @@
 
 #include "NumVolume.h"
 #include <stdio.h>
+#include <iostream>
 #include <string.h>
 
 //! Default constructor, everything to Null
@@ -169,6 +170,7 @@ NumVolume& NumVolume::operator=(const NumVolume& f)
     if(_dataz!=0) delete [] _dataz;
     if(_dataw!=0) delete [] _dataw;
     _sizex = f._sizex; _sizey = f._sizey; _sizez = f._sizez;
+    _rx = f._rx; _ry = f._ry; _rz = f._rz; _r = f._r;
     _datax = new double[_sizex];
     _datay = new double[_sizey];
     _dataz = new double[_sizez];
@@ -481,6 +483,6 @@ NumVolume::NumVolume(const char* file): Volume(0, 0, 0)
     _rx = -_datax[0];
     _ry = -_datay[0];
     _rz = -_dataz[0];
-    _r = sqrt(_rx*_rx+_ry*_ry+_rz*_rz);
+    _r = sqrt(_rx*_rx+_ry*_ry);
 }
 #endif
