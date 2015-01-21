@@ -52,8 +52,8 @@ int main(int argc, char* argv[]){
         for(int i=0; i<size; i++){
             cerr<<"Projecting at angle "<< angle[i+k*size]<<endl;
             NumCurve obj_tmp;
-            obj_tmp = obj.GetProjection(l,angle[i+k*size],0.01,height[k],intpl);
-            array.PushBack(angle[i+k*size], height[k], gauss_tmp);
+            obj_tmp = object.GetProjection(l,angle[i+k*size],0.01,height[k],intpl);
+            array.PushBack(angle[i+k*size], height[k], obj_tmp);
 					// performing projection and storing the result in the container
         }
     }
